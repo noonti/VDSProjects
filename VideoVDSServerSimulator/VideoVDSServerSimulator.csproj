@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>VideoVDSServerSimulator</RootNamespace>
     <AssemblyName>VideoVDSServerSimulator</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -81,10 +82,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DarkUI\DarkUI.csproj">
-      <Project>{F19472F5-8C44-4C51-A8A0-B9DE5F555255}</Project>
-      <Name>DarkUI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VDSCommon\VDSCommon.csproj">
       <Project>{e418e921-6a72-4651-bf99-a77d7ab683de}</Project>
       <Name>VDSCommon</Name>

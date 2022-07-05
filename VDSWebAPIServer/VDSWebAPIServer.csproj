@@ -11,12 +11,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>VDSWebAPIServer</RootNamespace>
     <AssemblyName>VDSWebAPIServer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,6 +56,9 @@
     </Reference>
     <Reference Include="CefSharp.WinForms, Version=100.0.230.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
       <HintPath>..\packages\CefSharp.WinForms.100.0.230\lib\net452\CefSharp.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="DarkUI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DarkUI.2.0.2\lib\DarkUI.dll</HintPath>
     </Reference>
     <Reference Include="DirectShowLib-NET4.6.1">
       <HintPath>..\Datastead\include\DirectShowLib.NET_dlls\DirectShowLib-NET4.6.1.dll</HintPath>
@@ -177,6 +181,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ucTreeView.resx">
       <DependentUpon>ucTreeView.cs</DependentUpon>
@@ -203,10 +208,6 @@
     <ProjectReference Include="..\AdminManageCtrl\AdminManageCtrl.csproj">
       <Project>{5a7871d0-e5e1-4f2e-ae57-bb89e26559d3}</Project>
       <Name>AdminManageCtrl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DarkUI\DarkUI.csproj">
-      <Project>{F19472F5-8C44-4C51-A8A0-B9DE5F555255}</Project>
-      <Name>DarkUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\RTSPPlayerCtrl\RTSPPlayerCtrl.csproj">
       <Project>{119E5B60-33F0-4C6E-AC0B-D707E4EC5F4E}</Project>
