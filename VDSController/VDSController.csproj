@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF0BA60F-A80E-48DB-A413-8CE67E5BE751}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VDSController</RootNamespace>
+    <AssemblyName>VDSController</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global\GlobalCommonData.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tabLogVIewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="tabLogVIewer.Designer.cs">
+      <DependentUpon>tabLogVIewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tabMainStat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="tabMainStat.Designer.cs">
+      <DependentUpon>tabMainStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tabTargetSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="tabTargetSummary.Designer.cs">
+      <DependentUpon>tabTargetSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrafficSummaryStatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrafficSummaryStatForm.Designer.cs">
+      <DependentUpon>TrafficSummaryStatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucCarInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCarInfo.Designer.cs">
+      <DependentUpon>ucCarInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucCarLane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCarLane.Designer.cs">
+      <DependentUpon>ucCarLane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDateTimePicker.Designer.cs">
+      <DependentUpon>ucDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTargetSummaryInfo_Backup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTargetSummaryInfo_Backup.Designer.cs">
+      <DependentUpon>ucTargetSummaryInfo_Backup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTargetSummaryInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTargetSummaryInfo.Designer.cs">
+      <DependentUpon>ucTargetSummaryInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTargetSummaryStat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTargetSummaryStat.Designer.cs">
+      <DependentUpon>ucTargetSummaryStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTrafficDataStat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTrafficDataStat.Designer.cs">
+      <DependentUpon>ucTrafficDataStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VDSConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VDSConfigForm.Designer.cs">
+      <DependentUpon>VDSConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewLiveCamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewLiveCamForm.Designer.cs">
+      <DependentUpon>ViewLiveCamForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="tabLogVIewer.resx">
+      <DependentUpon>tabLogVIewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tabMainStat.resx">
+      <DependentUpon>tabMainStat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tabTargetSummary.resx">
+      <DependentUpon>tabTargetSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrafficSummaryStatForm.resx">
+      <DependentUpon>TrafficSummaryStatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCarInfo.resx">
+      <DependentUpon>ucCarInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCarLane.resx">
+      <DependentUpon>ucCarLane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucDateTimePicker.resx">
+      <DependentUpon>ucDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTargetSummaryInfo_Backup.resx">
+      <DependentUpon>ucTargetSummaryInfo_Backup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTargetSummaryInfo.resx">
+      <DependentUpon>ucTargetSummaryInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTargetSummaryStat.resx">
+      <DependentUpon>ucTargetSummaryStat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTrafficDataStat.resx">
+      <DependentUpon>ucTrafficDataStat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VDSConfigForm.resx">
+      <DependentUpon>VDSConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewLiveCamForm.resx">
+      <DependentUpon>ViewLiveCamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BenchMarkManageCtrl\BenchMarkManageCtrl.csproj">
+      <Project>{2403ce39-bbcc-4ed6-b184-1c19d4eb2d8f}</Project>
+      <Name>BenchMarkManageCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DarkUI\DarkUI.csproj">
+      <Project>{f19472f5-8c44-4c51-a8a0-b9de5f555255}</Project>
+      <Name>DarkUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KorExManageCtrl\KorExManageCtrl.csproj">
+      <Project>{7055f439-d53d-4c76-bf69-1bbcfc3c8ae6}</Project>
+      <Name>KorExManageCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MClavisRadarManageCtrl\MClavisRadarManageCtrl.csproj">
+      <Project>{9c3869d2-0ff2-4f7d-ad3b-0bdcf3179198}</Project>
+      <Name>MClavisRadarManageCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RadarManager\RadarManageCtrl.csproj">
+      <Project>{2450d928-cb5b-4189-8d7f-86f7343aab02}</Project>
+      <Name>RadarManageCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RTSPPlayerCtrl\RTSPPlayerCtrl.csproj">
+      <Project>{119e5b60-33f0-4c6e-ac0b-d707e4ec5f4e}</Project>
+      <Name>RTSPPlayerCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialComManageCtrl\SerialComManageCtrl.csproj">
+      <Project>{deb482b5-5fd0-4eac-8909-b29f6a8afbce}</Project>
+      <Name>SerialComManageCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SevenSegment\SevenSegment.csproj">
+      <Project>{00db5a9c-12d3-43b0-9e4a-d9eca873f5c9}</Project>
+      <Name>SevenSegment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VDSAPIModule\VDSAPIModule.csproj">
+      <Project>{87f2a8a5-309f-40e9-9606-9ab7aff80ca1}</Project>
+      <Name>VDSAPIModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VDSCommon\VDSCommon.csproj">
+      <Project>{e418e921-6a72-4651-bf99-a77d7ab683de}</Project>
+      <Name>VDSCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VDSDBHandler\VDSDBHandler.csproj">
+      <Project>{9de65190-bf5e-4903-897a-2fea49133b5f}</Project>
+      <Name>VDSDBHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VDSManagerCtrl\VDSManagerCtrl.csproj">
+      <Project>{e9c73c44-42f3-49b2-adf5-9a10a45a3719}</Project>
+      <Name>VDSManagerCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoVDSManageCtrl\VideoVDSManageCtrl.csproj">
+      <Project>{7ac12313-2f47-46a8-9514-afbfac3f83d2}</Project>
+      <Name>VideoVDSManageCtrl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="image\cam.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\car_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\car_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\large_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\large_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\middle_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\middle_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\small_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\small_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

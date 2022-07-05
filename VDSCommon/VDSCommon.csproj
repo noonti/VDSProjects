@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E418E921-6A72-4651-BF99-A77D7AB683DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VDSCommon</RootNamespace>
+    <AssemblyName>VDSCommon</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminConfig.cs" />
+    <Compile Include="API\APIResponse\APIResponse.cs" />
+    <Compile Include="API\APIResponse\TrafficDataResponse.cs" />
+    <Compile Include="API\APIResponse\UserInfoResponse.cs" />
+    <Compile Include="API\APIResponse\VDSConfigResponse.cs" />
+    <Compile Include="API\APIResponse\VDSControllerResponse.cs" />
+    <Compile Include="API\APIResponse\VDSGroupsResponse.cs" />
+    <Compile Include="API\Model\RackStatus.cs" />
+    <Compile Include="API\Model\TRAFFIC_DATA.cs" />
+    <Compile Include="API\Model\USER_INFO.cs" />
+    <Compile Include="API\Model\VDS_CONFIG.cs" />
+    <Compile Include="API\Model\VDS_CONTROLLER.cs" />
+    <Compile Include="API\Model\VDS_GROUPS.cs" />
+    <Compile Include="API\Model\VDS_TYPE.cs" />
+    <Compile Include="AppConfiguration.cs" />
+    <Compile Include="Config\ControllerConfig.cs" />
+    <Compile Include="Config\KictConfig.cs" />
+    <Compile Include="Config\KorExConfig.cs" />
+    <Compile Include="Config\MAConfig.cs" />
+    <Compile Include="DataType\TargetSummaryInfo.cs" />
+    <Compile Include="IVDSDevice.cs" />
+    <Compile Include="IVDSManager.cs" />
+    <Compile Include="LaneGroup.cs" />
+    <Compile Include="LaneInfo.cs" />
+    <Compile Include="LedBulb.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LedBulb.Designer.cs">
+      <DependentUpon>LedBulb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MAClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataType\RadarData.cs" />
+    <Compile Include="DataType\RadarDataDefine.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Protocol\admin\IOpData.cs" />
+    <Compile Include="Protocol\admin\MAAuthRequest.cs" />
+    <Compile Include="Protocol\admin\MAAuthResponse.cs" />
+    <Compile Include="Protocol\admin\MAControlVDSRequest.cs" />
+    <Compile Include="Protocol\admin\MAControlVDSResponse.cs" />
+    <Compile Include="Protocol\admin\MADataFrame.cs" />
+    <Compile Include="Protocol\admin\MADataFrameDefine.cs" />
+    <Compile Include="Protocol\admin\MAHeartBeatRequest.cs" />
+    <Compile Include="Protocol\admin\MAHeartBeatResponse.cs" />
+    <Compile Include="Protocol\admin\MAResponse.cs" />
+    <Compile Include="Protocol\admin\MATrafficDataEvent.cs" />
+    <Compile Include="Protocol\admin\MAVDSConfigRequest.cs" />
+    <Compile Include="Protocol\admin\TrafficData.cs" />
+    <Compile Include="SerialCom.cs" />
+    <Compile Include="SessionContext.cs" />
+    <Compile Include="SP_RESULT.cs" />
+    <Compile Include="TrafficDataEvent.cs" />
+    <Compile Include="TrafficLane.cs" />
+    <Compile Include="ucDateTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDateTime.Designer.cs">
+      <DependentUpon>ucDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucLEDLight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLEDLight.Designer.cs">
+      <DependentUpon>ucLEDLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucVDSConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucVDSConfig.Designer.cs">
+      <DependentUpon>ucVDSConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
+    <Compile Include="VDSClient.cs" />
+    <Compile Include="VDSConfig.cs" />
+    <Compile Include="VDSLog.cs" />
+    <Compile Include="VDSLogger.cs" />
+    <Compile Include="VDSRackStatus.cs" />
+    <Compile Include="VDSServer.cs" />
+    <Compile Include="VDSSyncClient.cs" />
+    <Compile Include="VitualKeyboard\ucKeyButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VitualKeyboard\ucKeyButton.Designer.cs">
+      <DependentUpon>ucKeyButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VitualKeyboard\VirtualKeybardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VitualKeyboard\VirtualKeybardForm.Designer.cs">
+      <DependentUpon>VirtualKeybardForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucDateTime.resx">
+      <DependentUpon>ucDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLEDLight.resx">
+      <DependentUpon>ucLEDLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucVDSConfig.resx">
+      <DependentUpon>ucVDSConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VitualKeyboard\ucKeyButton.resx">
+      <DependentUpon>ucKeyButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VitualKeyboard\VirtualKeybardForm.resx">
+      <DependentUpon>VirtualKeybardForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DarkUI\DarkUI.csproj">
+      <Project>{F19472F5-8C44-4C51-A8A0-B9DE5F555255}</Project>
+      <Name>DarkUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0101.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0102.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0103.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0104.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0105.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0106.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0107.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0108.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0109.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0110.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0111.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0112.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0113.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0114.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0115.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0116.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0117.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0201.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0202.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0203.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0204.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0205.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0206.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0207.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0208.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0209.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0210.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0211.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0212.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0213.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0214.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0215.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0216.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0217.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0301.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0301ON.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0302.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0303.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0304.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0305.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0306.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0307.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0308.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0309.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0310.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0311.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0312.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0313.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0401.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0401ON.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0402.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0403.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0404.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0405.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0406.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0407.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0408.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0409.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0410.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0411.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0412.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0412ON.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0413.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0501.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0502.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0503.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0504.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0505.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0505ENGLISH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0505HANGUL.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0506.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0507.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0508.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0509.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0510.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\K0511.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
