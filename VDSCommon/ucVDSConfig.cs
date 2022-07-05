@@ -267,9 +267,10 @@ namespace VDSCommon
                 korExConfig.centerAddress = txtKorExCenterAddress.Text;
                 korExConfig.centerPort = int.Parse(txtKorExCenterPort.Text);
 
-                korExConfig.vdsType = vdsTypeList[cbVDSType.SelectedIndex].VDS_TYPE_CODE;
-
-                korExConfig.vdsGroup = vdsGroupList[cbVDSGroup.SelectedIndex].GROUP_CODE;
+                if(cbVDSType.SelectedIndex>=0)
+                    korExConfig.vdsType = vdsTypeList[cbVDSType.SelectedIndex].VDS_TYPE_CODE;
+                if(cbVDSGroup.SelectedIndex>=0)
+                    korExConfig.vdsGroup = vdsGroupList[cbVDSGroup.SelectedIndex].GROUP_CODE;
                 korExConfig.vdsNo = txtVDSNo.Text;
 
                 korExConfig.csn = Utility.GetCSN(korExConfig.vdsType, korExConfig.vdsGroup, korExConfig.vdsNo);
