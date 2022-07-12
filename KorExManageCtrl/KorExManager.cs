@@ -65,7 +65,7 @@ namespace KorExManageCtrl
         public override int StartManager()
         {
 
-            // 동기화 이전에는 
+            //  
             _prevSyncDateTime = DateTime.Now;
             _currentSyncDateTime = DateTime.Now;
 

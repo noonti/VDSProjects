@@ -496,6 +496,7 @@ check_time()
             return;
         }
 
+        /* 20220712 버그로 파일삭제 안됨. 코멘트로 막고 main_proc의 main 루프에서 처리하는 것으로 변경 by avogadro
         chdir("/root/am1808/savefolder");
 
         while((entry = readdir(dp)) != NULL)
@@ -603,7 +604,7 @@ check_time()
 
         chdir("..");
         closedir(dp);
-
+        */
 		  sync_time_flag = 1;
 		  //printf("avogadro sync_time_flag=%d", sync_time_flag);
     }
