@@ -121,9 +121,9 @@ namespace KorExSimulator
                 _sessionContext._socket.BeginReceive(_sessionContext.buffer, 0, SessionContext.BufferSize, 0,
                     new AsyncCallback(KorExReadCallback), _sessionContext);
 
-                strLog = String.Format("제어기 ({0}:{1}  접속 성공)", VDSConfig.controllerConfig.MAServerAddress, VDSConfig.controllerConfig.MAServerPort);
+                //strLog = String.Format("제어기 ({0}:{1}  접속 성공)", VDSConfig.controllerConfig.MAServerAddress, VDSConfig.controllerConfig.MAServerPort);
 
-                Utility.AddLog(LOG_TYPE.LOG_INFO, strLog);
+                //Utility.AddLog(LOG_TYPE.LOG_INFO, strLog);
                 nResult = 1;
             }
             catch (Exception ex)
