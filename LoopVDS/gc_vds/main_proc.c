@@ -1250,7 +1250,7 @@ int main(int argc, char *argv[])
         check_time();
 
         //20220712 특정 기간 지난 파일/디렉토리 삭제 추가 by avogadro start
-        checkSavedDataDirectory("/root/am1808/savefolder", 1); // /root/am1808/savefolder 아래 8일 지난 디렉토리/파일 모두 삭제 
+        checkSavedDataDirectory("/root/am1808/savefolder", 8); // /root/am1808/savefolder 아래 8일 지난 디렉토리/파일 모두 삭제 
         //20220712 특정 기간 지난 파일/디렉토리 삭제 추가 by avogadro end 
 
 
