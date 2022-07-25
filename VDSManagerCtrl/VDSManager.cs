@@ -32,6 +32,8 @@ namespace VDSManagerCtrl
 
         public Control _control = null;
         public FormAddTargetInfoDelegate _formAddTargetInfo = null;
+        public FormAddCommuDataDelegate _formAddCommuData = null;
+
 
         public Queue<TrafficDataEvent> trafficDataEventQueue = new Queue<TrafficDataEvent>();
         public object _trafficDataEventLock = new object();
@@ -122,6 +124,16 @@ namespace VDSManagerCtrl
                 _control = control;
             return 1;
         }
+
+
+        public int SetFormAddCommuDataDelegate(Control control, FormAddCommuDataDelegate addCommuDataDelegate)
+        {
+            _formAddCommuData = addCommuDataDelegate;
+            if (_control == null)
+                _control = control;
+            return 1;
+        }
+
 
 
         public int AddTrafficDataEvent(TrafficDataEvent trafficDataEvent)
@@ -671,6 +683,17 @@ namespace VDSManagerCtrl
             }
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
             return nResult;
+        }
+
+        public int AddCommuDataToForm(CommuData commuData)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            if (_control != null && _formAddCommuData != null)
+            {
+                _control.BeginInvoke(_formAddCommuData, new object[] { commuData });
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return 1;
         }
     }
 }

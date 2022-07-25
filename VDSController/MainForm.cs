@@ -1,6 +1,8 @@
 ﻿using BenchMarkManageCtrl;
 using DarkUI.Forms;
 using KorExManageCtrl;
+using KorExManageCtrl.VDSProtocol;
+using KorExManageCtrl.VDSProtocol_v2._0;
 using MClavisRadarManageCtrl;
 using SerialComManageCtrl;
 using SerialComManageCtrl.Protocol;
@@ -152,6 +154,7 @@ namespace VDSController
 
             }
             vdsManager.SetFormAddTargetInfoDelegate(this, new FormAddTargetInfoDelegate(tabTarget.AddTargetInfo));
+            vdsManager.SetFormAddCommuDataDelegate(this, new FormAddCommuDataDelegate(ProcessCommuData));
 
             if (apiManager == null)
                 apiManager = new WebAPIManager();
@@ -322,6 +325,53 @@ namespace VDSController
         private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             
+        }
+
+        public int ProcessCommuData(CommuData commuData)
+        {
+            int nResult = 0;
+            //if(commuData!=null)
+            {
+                switch(commuData.ProtocolType)
+                {
+                    case 1: // ITS
+                        break;
+                    case 2: // KorEx
+                        nResult = ProcessKorExCommuData(commuData);
+                        break;
+                }
+
+            }
+            return nResult;
+        }
+
+        public int ProcessKorExCommuData(CommuData commuData)
+        {
+            int nResult = 0;
+            switch(commuData.OpCode)
+            {
+                case  ExDataFrameDefine.OP_SET_TEMPERATURE_COMMAND:
+                    nResult = ProcessSetTemperature(commuData);
+                    break;
+            }
+
+            return nResult;
+
+        }
+        public int ProcessSetTemperature(CommuData commuData)
+        {
+            int nResult = 0;
+            KorExManageCtrl.VDSProtocol.WorkData workData = (KorExManageCtrl.VDSProtocol.WorkData)commuData.data;
+            //if(workData!=null)
+            {
+                SetTemperatureRequest request = (SetTemperatureRequest)(workData.frame.opData);
+                if(serialManager!=null)
+                {
+                    serialManager.SetHeaterThresholdRequest(request.heaterTemperature);
+                    serialManager.SetFanThresholdRequest(request.fanTemperature);
+                }
+            }
+            return nResult;
         }
     }
 }

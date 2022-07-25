@@ -34,7 +34,7 @@ namespace VDSCommon
         public ushort wMilliseconds;
     }
 
-    
+   
 
 
     public delegate int AddLogDelegate(LOG_TYPE type, String _log);
@@ -48,6 +48,7 @@ namespace VDSCommon
     public delegate int ConnectCallback(SessionContext session, SOCKET_STATUS status);
 
     public delegate int FormAddTargetInfoDelegate(TrafficDataEvent target);
+    public delegate int FormAddCommuDataDelegate(CommuData commuData);
 
     public delegate int ProcessRadarCallbackDelegate(Object[] _params);
 
@@ -96,6 +97,8 @@ namespace VDSCommon
         public int size;
     }
 
+    
+
     //LENGTH_CATEGORY[0] = 8 ; // 80 dm --> 8 m small
     //LENGTH_CATEGORY[1] = 12; // 120 dm --> 12 m mid 
     //LENGTH_CATEGORY[2] = 15; // 150 dm --> 15 m big
@@ -105,6 +108,15 @@ namespace VDSCommon
         CATEGORY_SMALL = 0,
         CATEGORY_MIDDLE = 1,
         CATEGORY_LARGE = 2
+    }
+
+
+    public struct CommuData
+    {
+        public SessionContext session;
+        public int ProtocolType; // 1:ITS 2: korEx
+        public int OpCode;
+        public object data;
     }
 
     public static class Utility
@@ -1074,6 +1086,16 @@ namespace VDSCommon
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
             return nResult;
+        }
+
+        public static CommuData GetCommuData(int protocolType, SessionContext session, int opCode,object data)
+        {
+            CommuData result = new CommuData();
+            result.ProtocolType = protocolType;
+            result.session = session;
+            result.OpCode = opCode;
+            result.data = data;
+            return result;
         }
 
     }

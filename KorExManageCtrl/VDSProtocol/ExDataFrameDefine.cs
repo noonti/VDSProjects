@@ -88,7 +88,7 @@ namespace KorExManageCtrl.VDSProtocol
 
         public const byte OP_SYSTEM_STATUS_COMMAND = 0x1E; // 상태 요청
 
-        public const byte OP_SET_TEMPERATURE__COMMAND = 0x20; // Fan/Heater 동작 온도 설정 요청
+        public const byte OP_SET_TEMPERATURE_COMMAND = 0x20; // Fan/Heater 동작 온도 설정 요청
 
 
 

@@ -382,7 +382,7 @@ namespace KorExSimulator
                         case ExDataFrameDefine.OP_PARAM_DOWNLOAD_COMMAND:
                         case ExDataFrameDefine.OP_MEMORY_STATUS_COMMAND:
                         case ExDataFrameDefine.OP_CHANGE_RTC_COMMAND:
-                        case ExDataFrameDefine.OP_SET_TEMPERATURE__COMMAND:
+                        case ExDataFrameDefine.OP_SET_TEMPERATURE_COMMAND:
                             DisplayAckResponse(frame.frame, list);
                             break;
 
@@ -1946,7 +1946,7 @@ namespace KorExSimulator
             request.fanTemperature = (byte)(int.Parse(txtFan.Text));
             request.heaterTemperature = (byte)(int.Parse(txtHeater.Text));
 
-            ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_SET_TEMPERATURE__COMMAND, request);
+            ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_SET_TEMPERATURE_COMMAND, request);
 
             byte[] data = frame.Serialize();
 

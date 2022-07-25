@@ -1220,7 +1220,7 @@ namespace KorExManageCtrl
                     break;
 
                 // Fan/Heater 동작 온도 설정 
-                case ExDataFrameDefine.OP_SET_TEMPERATURE__COMMAND:
+                case ExDataFrameDefine.OP_SET_TEMPERATURE_COMMAND:
                     ProcessSetTemperatureCommand(workData);
                     break;
 
@@ -2312,8 +2312,9 @@ namespace KorExManageCtrl
                 SetTemperatureRequest request = (SetTemperatureRequest)(workData.frame.opData);
                 if(request!=null)
                 {
-
-
+                    // 팬/온도 설정 모듈 전송
+                    CommuData commuData = Utility.GetCommuData(2, workData.session, workData.frame.opCode, workData);
+                    nResult = AddCommuDataToForm(commuData);
                     SetACKResponseFrame(workData.frame, ref response, ExDataFrameDefine.ACK_NORMAL, ExDataFrameDefine.NAK_NO_ERROR);
                 }
                 else
