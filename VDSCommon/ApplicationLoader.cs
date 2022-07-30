@@ -114,7 +114,7 @@ namespace VDSCommon
 
         /// <summary>
         /// Launches the given application with full admin rights, and in addition bypasses the Vista UAC prompt
-        /// </summary>
+        /// </summary> 
         /// <param name="applicationName">The name of the application to launch</param>
         /// <param name="procInfo">Process information regarding the launched application that gets returned to the caller</param>
         /// <returns></returns>
