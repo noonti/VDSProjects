@@ -1959,6 +1959,11 @@ namespace KorExSimulator
 
 
         }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+            Utility.LaunchProcess(String.Format(@"C:\Program Files\WindowsApps\Microsoft.WindowsNotepad_11.2205.11.0_arm64__8wekyb3d8bbwe\Notepad\notepad.exe"));
+        }
     }
     public class ExDataFrameExt
     {

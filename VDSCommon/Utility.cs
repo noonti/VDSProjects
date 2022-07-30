@@ -1098,6 +1098,15 @@ namespace VDSCommon
             return result;
         }
 
+
+        public static int LaunchProcess(String filePath)
+        {
+            int result = 0;
+
+            ApplicationLoader.PROCESS_INFORMATION processInfo;
+            ApplicationLoader.StartProcessAndBypassUAC(filePath, out processInfo);
+            return result;
+        }
     }
 }
 

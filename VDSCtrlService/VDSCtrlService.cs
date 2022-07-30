@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Configuration;
-
+using VDSCommon;
 
 namespace VDSCtrlService
 {
@@ -90,7 +90,7 @@ namespace VDSCtrlService
         public void LaunchProcess(String processPath, String processName)
         {
             String path = String.Format($"{processPath}\\{processName}.exe");
-            Process.Start(path);
+            Utility.LaunchProcess(path);
         }
 
         public void KillProcess(String processName)

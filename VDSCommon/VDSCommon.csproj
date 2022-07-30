@@ -103,6 +103,7 @@
     <Compile Include="API\Model\VDS_GROUPS.cs" />
     <Compile Include="API\Model\VDS_TYPE.cs" />
     <Compile Include="AppConfiguration.cs" />
+    <Compile Include="ApplicationLoader.cs" />
     <Compile Include="Config\ControllerConfig.cs" />
     <Compile Include="Config\KictConfig.cs" />
     <Compile Include="Config\KorExConfig.cs" />
