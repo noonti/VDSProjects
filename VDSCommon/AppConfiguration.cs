@@ -10,7 +10,7 @@ namespace VDSCommon
     public class AppConfiguration
     { 
         public static string GetAppConfig(string key)
-        {
+        { 
             return ConfigurationManager.AppSettings[key];
         }
         public static void SetAppConfig(string key, string value)
