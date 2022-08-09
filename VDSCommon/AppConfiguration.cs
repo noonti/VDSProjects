@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace VDSCommon
 {
     public class AppConfiguration
-    {
+    { 
         public static string GetAppConfig(string key)
         {
             return ConfigurationManager.AppSettings[key];
