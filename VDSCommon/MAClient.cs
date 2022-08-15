@@ -62,7 +62,6 @@ namespace VDSCommon
         public int StopProcessSocketMsgThread()
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
-            String strLog;
             _bSocketMsgProcessing = false;
 
             socketMsgThreadExitEvent.WaitOne();

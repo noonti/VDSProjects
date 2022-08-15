@@ -23,8 +23,6 @@ namespace CCTVManageCtrl
 
         private uint iLastErr = 0;
 
-        private Int32 iListenHandle = -1;
-        private CHCNetSDK.MSGCallBack_V31 m_falarmData = null;
 
         private bool initializeSDK()
         {

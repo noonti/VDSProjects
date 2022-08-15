@@ -82,10 +82,33 @@ namespace VDSController
             segmentCount.Value = VecycleCount.ToString();
 
 
-            
+            AddRealTimeTrafficDataList(trafficDataEvent);
 
             return 1;
         }
+
+        private void AddRealTimeTrafficDataList(TrafficDataEvent trafficDataEvent)
+        {
+            if (lvTrafficData.Items.Count > 1000)
+                lvTrafficData.Items.RemoveAt(lvTrafficData.Items.Count - 1);
+
+            ListViewItem item;
+            // 제목, 콘텐츠 유형,  조회수, 별점수, 의뢰인, 코치, 등록일
+            item = new ListViewItem(trafficDataEvent.detectTime); // 
+
+            item.SubItems.Add(trafficDataEvent.lane.ToString());
+            item.SubItems.Add(trafficDataEvent.direction == 1 ? "상행선" : "하행선");
+            item.SubItems.Add(trafficDataEvent.length.ToString());
+            item.SubItems.Add(trafficDataEvent.speed.ToString());
+            item.SubItems.Add(trafficDataEvent.occupyTime.ToString());
+            item.SubItems.Add(trafficDataEvent.loop1OccupyTime.ToString());
+            item.SubItems.Add(trafficDataEvent.loop2OccupyTime.ToString());
+            item.SubItems.Add(trafficDataEvent.reverseRunYN);
+            item.SubItems.Add(trafficDataEvent.reportYN != null ? trafficDataEvent.reportYN : "N");
+            lvTrafficData.Items.Insert(0, item);
+
+        }
+
 
         public void SetVecycleCount(long count)
         {
@@ -100,9 +123,9 @@ namespace VDSController
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TrafficSummaryStatForm statForm = new TrafficSummaryStatForm();
-            statForm.SetInitialInfo(lane.lane, resetTime.ToString("yyyyMMddHHmmss"));
-            statForm.ShowDialog();
+            //TrafficSummaryStatForm statForm = new TrafficSummaryStatForm();
+            //statForm.SetInitialInfo(lane.lane, resetTime.ToString("yyyyMMddHHmmss"));
+            //statForm.ShowDialog();
         }
 
         private void segmentCount_Load(object sender, EventArgs e)
