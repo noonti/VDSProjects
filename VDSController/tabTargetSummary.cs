@@ -32,10 +32,7 @@ namespace VDSController
         public StartRTSPStreamingDelegate _startRTSPStreaming = null;
 
 
-        System.Windows.Forms.Timer CarMovingTimer = null;
-        int _moveInterval = 100;
-        Thread carMoveThread = null;
-
+        
 
         public List<int> laneList = new List<int>();
 
@@ -51,13 +48,8 @@ namespace VDSController
         public tabTargetSummary()
         {
             InitializeComponent();
+             _startRTSPStreaming = StartRTSPStreaming;
 
-            // StartCarMovingTimer();
-
-
-            _startRTSPStreaming = StartRTSPStreaming;
-
-            
             
         }
 
@@ -65,116 +57,17 @@ namespace VDSController
         {
 
             lbServiceStartTime.Text = String.Format($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]");
-            StartCarMovingTimer(); 
-            //StartCarMoveThread();
-            //StartRTSPStreaming("rtsp://218.36.126.200:8554/sample");
+           
         }
 
         public void StopService()
         {
             lbServiceStartTime.Text = String.Format("[중지상태]");
             StopRTSPStreaming();
-            StopCarMovingTimer();
-            //StopCarMoveThread();
+            
         }
 
-        public void StartCarMoveThread()
-        {
-            if(carMoveThread == null)
-            {
-                carMoveThread = new Thread(() =>
-                {
-                    try
-                    {
-                        while (true)
-                        {
-                            //foreach (var target in targetSummaryInfo)
-                            for(int i =0;i< ucTargetSummaryInfo.Count;i++)
-                            {
-                                var target = ucTargetSummaryInfo.ElementAt(i);
-                                this.Invoke(new Action(delegate ()
-                                {
-                                    target.MoveCar();
-                                    //target.Update();
-
-                                }));
-                            }
-                            Thread.Sleep(100);
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("aaa");
-                    }
-                }
-                );
-            }
-            carMoveThread.Start();
-
-        }
-
-        public void StopCarMoveThread()
-        {
-            if (carMoveThread != null)
-            {
-                carMoveThread.Abort();
-                carMoveThread.Join();
-                carMoveThread = null;
-            }
-        }
-
-        public void StartCarMovingTimer()
-        {
-            if(CarMovingTimer == null)
-            {
-                CarMovingTimer = new System.Windows.Forms.Timer();
-                CarMovingTimer.Interval = _moveInterval; // 200
-                CarMovingTimer.Tick += OnTimeMoveCar;
-            }
-            CarMovingTimer.Start();
-
-            //new Thread(() =>
-            //{
-            //    try
-            //    {
-            //        while (true)
-            //        {
-            //            foreach (var target in targetSummaryInfo)
-            //            {
-            //                this.Invoke(new Action(delegate ()
-            //                {
-            //                    target.MoveCar();
-
-            //                }));
-            //            }
-                            
-            //            Thread.Sleep(200);
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
-            //    }
-            //}
-            //).Start();
-
-
-        }
-
-        public void StopCarMovingTimer()
-        {
-            if (CarMovingTimer != null)
-                CarMovingTimer.Stop();
-
-        }
-
-        public void OnTimeMoveCar(object sender, EventArgs e)
-        {
-            foreach (var target in ucTargetSummaryInfo)
-                target.MoveCar();
-
-        }
+        
 
         private void InitializeLaneInfo()
         {
@@ -216,7 +109,7 @@ namespace VDSController
                 ucTargetInfo.lane.lane = laneList[i].Lane;
                 ucTargetInfo.lane.laneName = laneList[i].LaneName;
                 ucTargetInfo.lane.travel_direction = laneList[i].Direction; // 
-                ucTargetInfo._moveInterval = _moveInterval;
+                
                 ucTargetInfo.SetLaneName(laneList[i].LaneName);
                 pbxList[i].Controls.Add(ucTargetInfo);
                 ucTargetSummaryInfo.Add(ucTargetInfo);

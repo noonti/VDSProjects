@@ -48,9 +48,7 @@ namespace VDSController
         public void SetLaneName(String laneName)
         {
             lbLane.Text = laneName;
-            carLane._interval = _moveInterval;
-            carLane._lane = lane.lane;
-            carLane.SetCarDirection(lane.travel_direction);
+           
 
         }
         private void Timer_Tick(object sender, EventArgs e)
@@ -65,21 +63,15 @@ namespace VDSController
         }
 
 
-        public void MoveCar()
-        {
-            carLane.MoveCar();
-        }
+       
         public int AddTargetInfo(TrafficDataEvent trafficDataEvent)
         {
-            //if (lbxTarget.Items.Count > 1000)
-            //    lbxTarget.Items.RemoveAt(lbxTarget.Items.Count - 1);
-
+      
             String info = String.Format(" 시간      : {0} \n 속도      : {1} km/h\n 길이      : {2} cm\n 점유시간 : {3:f3} msec",
                                         trafficDataEvent.detectTime, trafficDataEvent.speed , trafficDataEvent.length ,
                                         trafficDataEvent.occupyTime);
-            //lbxTarget.Items.Insert(0, info);
-
-            lbTarget.Text = info;
+        
+            //lbTarget.Text = info;
 
             TimeSpan duration = new TimeSpan(0, 0, 0, 0, 500); //5초 후에 초기화
             _displayTime = DateTime.Now.Add(duration);
@@ -90,8 +82,7 @@ namespace VDSController
             segmentCount.Value = VecycleCount.ToString();
 
 
-            if(VDSConfig.controllerConfig.UseAnimation==1)
-                carLane.AddCar(trafficDataEvent); // avogadro addcar
+            
 
             return 1;
         }
