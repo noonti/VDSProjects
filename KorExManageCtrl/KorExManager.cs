@@ -206,63 +206,31 @@ namespace KorExManageCtrl
             {
                 switch(i)
                 {
-                    case 0:
-                        VDSParam[i] = ReadLaneConfig() ;// ReadLoopDetectorConfig();
+
+                    case 0: // 차로 지정
+                        VDSParam[i] = ReadLaneConfig();// ReadLoopDetectorConfig();
                         break;
-                    case 1:
-                        VDSParam[i] = ReadSpeedLoopConfig();
-                        break;
-                    case 2:
+                    case 2: // 수집 주기
                         VDSParam[i] = ReadPollingCycle();
                         break;
-                    case 3:
-                        VDSParam[i] = ReadVehiclePulseNumber();
-                        break;
-                    case 4:
+                    case 4: // 차량 속도 구분 (속도별 12단계 구분)
                         VDSParam[i] = ReadSpeedCategory();
                         break;
-                    case 5:
+                    case 5: // 차량 길이 구분 (dm - decimeter)
                         VDSParam[i] = ReadLengthCategory();
                         break;
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                        VDSParam[i] = ReadVDSValue((byte)(i+1));
+                    case 6: // 속도별 누적치 계산
+                    case 7: // 차량 길이별 누적치 계산
+                    case 8: // 속도 계산 가능 여부
+                    case 9: // 차량 길이 계산 가능 여부
+                    case 20: // 역주행 사용 여부 
+                        VDSParam[i] = ReadVDSValue((byte)(i + 1));
                         break;
-                    case 10:
-                        VDSParam[i] = ReadSpeedLoopDimension();
-                        break;
-                    case 11:
-                    case 12:
-                    case 13:
-                        VDSParam[i] = ReadPollingThreshold((byte)(i + 1));
-                        break;
-                    case 14:
-                        VDSParam[i] = ReadIncidentDetectThreshold();
-                        break;
-                    case 15:
-                        VDSParam[i] = ReadStuckThreshold();
-                        break;
-                    case 16:
+                    case 16: // 차량 길이 계산 가능 여부
                         VDSParam[i] = ReadOscillationThreshold((byte)(i + 1));
                         break;
-                    case 17:
-                        break;
-                    case 18:
-                        break;
-                    case 19:
+                    case 19: // 자동 동기화 대기 시간
                         VDSParam[i] = ReadAutoSyncPeriod((byte)(i + 1));
-                        break;
-                    case 20:
-                        VDSParam[i] = ReadVDSValue((byte)(i + 1)); // ReadSimulationTemplate();
-                        break;
-                    case 21:
-                        break;
-
-                    case 22:
-                        break;
-                    case 23:
                         break;
                 }
             }
@@ -278,64 +246,30 @@ namespace KorExManageCtrl
             {
                 switch (i)
                 {
-                    case 0:
-                        //SaveLoopDetectorConfig((ParamLoopConfig) VDSParam[i]);
+                    case 0: // 차로 지정
                         SaveLaneConfig((ParamLaneConfig) VDSParam[i]);
                         break;
-                    case 1:
-                        SaveSpeedLoopConfig((SpeedLoopConfig)VDSParam[i]);
-                        break;
-                    case 2:
+                    case 2: // 수집 주기
                         SavePollingCycle((PollingCycle)VDSParam[i]);
                         break;
-                    case 3:
-                        SaveVehiclePulseNumber((VehiclePulseNumber)VDSParam[i]);
-                        break;
-                    case 4:
+                    case 4: // 차량 속도 구분 (속도별 12단계 구분)
                         SaveSpeedCategory((SpeedCategory)VDSParam[i]);
                         break;
-                    case 5:
+                    case 5: // 차량 길이 구분 (dm - decimeter)
                         SaveLengthCategory((LengthCategory)VDSParam[i]);
                         break;
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
+                    case 6: // 속도별 누적치 계산
+                    case 7: // 차량 길이별 누적치 계산
+                    case 8: // 속도 계산 가능 여부
+                    case 9: // 차량 길이 계산 가능 여부
+                    case 20: // 역주행 사용 여부 
                         SaveVDSValue((VDSValue)VDSParam[i], i);
                         break;
-                    case 10:
-                        SaveSpeedLoopDimension((SpeedLoopDimension)VDSParam[i]);
-                        break;
-                    case 11:
-                    case 12:
-                    case 13:
-                        SavePollingThreshold((PollingThreshold)VDSParam[i],i);
-                        break;
-                    case 14:
-                        SaveIncidentDetectThreshold((IncidentDetectThreshold)VDSParam[i]);
-                        break;
-                    case 15:
-                         SaveStuckThreshold((StuckThreshold)VDSParam[i]);
-                        break;
-                    case 16:
+                    case 16: // 차량 길이 계산 가능 여부
                         SaveOscillationThreshold((VDSValue)VDSParam[i],i);
                         break;
-                    case 17:
-                        break;
-                    case 18:
-                        break;
-                    case 19:
+                    case 19: // 자동 동기화 대기 시간
                         SaveAutoSyncPeriod((VDSValue)VDSParam[i]);
-                        break;
-                    case 20:
-                        SaveSimulationTemplate((SimulationTemplate) VDSParam[i]);
-                        break;
-                    case 21:
-                        break;
-
-                    case 22:
-                        break;
-                    case 23:
                         break;
                 }
             }
