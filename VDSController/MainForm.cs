@@ -93,7 +93,7 @@ namespace VDSController
 
             tabTarget.frmMain = this;
             ucControl[idx++] = tabTarget;
-            //AddMainTab("실시간", tabTarget);
+            //AddMainTab("실시간", tabTarget);   
             
         }
         
