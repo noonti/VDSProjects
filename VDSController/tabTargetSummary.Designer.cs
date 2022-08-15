@@ -32,11 +32,11 @@ namespace VDSController
         {
             this.components = new System.ComponentModel.Container();
             this.pnPlayer = new System.Windows.Forms.Panel();
-            this.chkExpandPlayer = new System.Windows.Forms.CheckBox();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.darkButton2 = new DarkUI.Controls.DarkButton();
             this.darkButton1 = new DarkUI.Controls.DarkButton();
             this.rtspPlayer = new RTSPPlayerCtrl.RTSPPlayer();
+            this.chkExpandPlayer = new System.Windows.Forms.CheckBox();
             this.tabTrafficInfo = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panelContainer = new System.Windows.Forms.Panel();
@@ -44,6 +44,7 @@ namespace VDSController
             this.gbxLeft = new DarkUI.Controls.DarkGroupBox();
             this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
             this.btnSetTime = new DarkUI.Controls.DarkButton();
+            this.ucStartDate = new VDSController.ucDateTimePicker();
             this.lbServiceStartTime = new DarkUI.Controls.DarkLabel();
             this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.lbLastCountTime_ = new DarkUI.Controls.DarkLabel();
@@ -62,15 +63,14 @@ namespace VDSController
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
             this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
             this.cbLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton3 = new DarkUI.Controls.DarkButton();
             this.darkLabel2 = new DarkUI.Controls.DarkLabel();
-            this.timerSliding = new System.Windows.Forms.Timer(this.components);
-            this.ucStartDate = new VDSController.ucDateTimePicker();
-            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
             this.ucEndTime = new VDSController.ucDateTimePicker();
             this.ucStartTime = new VDSController.ucDateTimePicker();
+            this.timerSliding = new System.Windows.Forms.Timer(this.components);
             this.pnPlayer.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.tabTrafficInfo.SuspendLayout();
@@ -94,21 +94,6 @@ namespace VDSController
             this.pnPlayer.Name = "pnPlayer";
             this.pnPlayer.Size = new System.Drawing.Size(1005, 658);
             this.pnPlayer.TabIndex = 34;
-            // 
-            // chkExpandPlayer
-            // 
-            this.chkExpandPlayer.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkExpandPlayer.Dock = System.Windows.Forms.DockStyle.Right;
-            this.chkExpandPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkExpandPlayer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chkExpandPlayer.Location = new System.Drawing.Point(978, 0);
-            this.chkExpandPlayer.Name = "chkExpandPlayer";
-            this.chkExpandPlayer.Size = new System.Drawing.Size(27, 658);
-            this.chkExpandPlayer.TabIndex = 0;
-            this.chkExpandPlayer.Text = "<";
-            this.chkExpandPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkExpandPlayer.UseVisualStyleBackColor = true;
-            this.chkExpandPlayer.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // darkGroupBox1
             // 
@@ -156,6 +141,21 @@ namespace VDSController
             this.rtspPlayer.Name = "rtspPlayer";
             this.rtspPlayer.Size = new System.Drawing.Size(978, 658);
             this.rtspPlayer.TabIndex = 31;
+            // 
+            // chkExpandPlayer
+            // 
+            this.chkExpandPlayer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkExpandPlayer.Dock = System.Windows.Forms.DockStyle.Right;
+            this.chkExpandPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkExpandPlayer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.chkExpandPlayer.Location = new System.Drawing.Point(978, 0);
+            this.chkExpandPlayer.Name = "chkExpandPlayer";
+            this.chkExpandPlayer.Size = new System.Drawing.Size(27, 658);
+            this.chkExpandPlayer.TabIndex = 0;
+            this.chkExpandPlayer.Text = "<";
+            this.chkExpandPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkExpandPlayer.UseVisualStyleBackColor = true;
+            this.chkExpandPlayer.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // tabTrafficInfo
             // 
@@ -246,6 +246,15 @@ namespace VDSController
             this.btnSetTime.Size = new System.Drawing.Size(60, 32);
             this.btnSetTime.TabIndex = 2;
             this.btnSetTime.Text = "SET";
+            // 
+            // ucStartDate
+            // 
+            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
+            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucStartDate.Name = "ucStartDate";
+            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
+            this.ucStartDate.TabIndex = 4;
             // 
             // lbServiceStartTime
             // 
@@ -411,7 +420,17 @@ namespace VDSController
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(767, 630);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "센터 전송 차량 검지 정보";
+            this.tabPage2.Text = "차량 검지 정보 조회";
+            // 
+            // ucCenterTrafficData
+            // 
+            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
+            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
+            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
+            this.ucCenterTrafficData.TabIndex = 1;
             // 
             // darkGroupBox3
             // 
@@ -447,6 +466,7 @@ namespace VDSController
             this.darkButton3.Size = new System.Drawing.Size(128, 32);
             this.darkButton3.TabIndex = 3;
             this.darkButton3.Text = "조회";
+            this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
             // 
             // darkLabel2
             // 
@@ -457,29 +477,6 @@ namespace VDSController
             this.darkLabel2.Size = new System.Drawing.Size(14, 15);
             this.darkLabel2.TabIndex = 27;
             this.darkLabel2.Text = "~";
-            // 
-            // timerSliding
-            // 
-            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
-            // 
-            // ucStartDate
-            // 
-            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
-            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucStartDate.Name = "ucStartDate";
-            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
-            this.ucStartDate.TabIndex = 4;
-            // 
-            // ucCenterTrafficData
-            // 
-            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
-            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
-            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
-            this.ucCenterTrafficData.TabIndex = 1;
             // 
             // ucEndTime
             // 
@@ -494,6 +491,10 @@ namespace VDSController
             this.ucStartTime.Name = "ucStartTime";
             this.ucStartTime.Size = new System.Drawing.Size(258, 27);
             this.ucStartTime.TabIndex = 1;
+            // 
+            // timerSliding
+            // 
+            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
             // 
             // tabTargetSummary
             // 

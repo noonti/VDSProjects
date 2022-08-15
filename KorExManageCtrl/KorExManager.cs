@@ -126,6 +126,7 @@ namespace KorExManageCtrl
             _ctrlServer.StopManager();
             //_korExCenter.StopCheckConnection();
             DeleteAllSessionContext();
+            _korExServer.StopManager();
             StopWorkThread();
             StopDBUpdateThread();
 
@@ -1323,8 +1324,12 @@ namespace KorExManageCtrl
             try
             {
                 // Begin sending the data to the remote device.  
-                session._socket.BeginSend(byteData, 0, byteData.Length, 0,
+                if (session!=null && session._socket != null)
+                {
+                    session._socket.BeginSend(byteData, 0, byteData.Length, 0,
                     new AsyncCallback(SendCallback), session._socket);
+                }
+                
             }
             catch (Exception ex)
             {
