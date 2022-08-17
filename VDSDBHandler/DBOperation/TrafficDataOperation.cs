@@ -133,5 +133,153 @@ namespace VDSDBHandler.DBOperation
             return _dapperOrm.ReturnSingle<TRAFFIC_DATA>("SP_GET_LAST_TRAFFIC_DATA", param, out spResult);
 
         }
+
+
+        public void AddTrafficStat(TRAFFIC_STAT input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_DETECT_DATE = input.DETECT_DATE,
+                I_FRAME_NO = input.FRAME_NO,
+                I_ERROR_INFO = input.ERROR_INFO,
+                I_LANE_COUNT = input.LANE_COUNT,
+                I_LANE_INFO = input.LANE_INFO,
+                I_REPORT_YN = input.REPORT_YN
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_TRAFFIC_STAT", param, out spResult);
+        }
+
+        public void UpdateTrafficStat(TRAFFIC_STAT input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_DETECT_DATE = input.DETECT_DATE,
+                I_FRAME_NO = input.FRAME_NO,
+                I_ERROR_INFO = input.ERROR_INFO,
+                I_LANE_COUNT = input.LANE_COUNT,
+                I_LANE_INFO = input.LANE_INFO,
+                I_REPORT_YN = input.REPORT_YN
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_TRAFFIC_STAT", param, out spResult);
+        }
+
+
+
+        public void AddTrafficStatDetail(TRAFFIC_STAT_DETAIL input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_PARENT_ID = input.PARENT_ID,
+                I_LANE = input.LANE,
+                I_LARGE_COUNT = input.LARGE_COUNT,
+                I_MIDDLE_COUNT = input.MIDDLE_COUNT,
+                I_SMALL_COUNT = input.SMALL_COUNT,
+                I_SPEED = input.SPEED,
+                I_OCCUPY = input.OCCUPY,
+                I_CAR_LENGTH = input.CAR_LENGTH
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_TRAFFIC_STAT_DETAIL", param, out spResult);
+        }
+
+        public void UpdateTrafficStatDetail(TRAFFIC_STAT_DETAIL input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_PARENT_ID = input.PARENT_ID,
+                I_LANE = input.LANE,
+                I_LARGE_COUNT = input.LARGE_COUNT,
+                I_MIDDLE_COUNT = input.MIDDLE_COUNT,
+                I_SMALL_COUNT = input.SMALL_COUNT,
+                I_SPEED = input.SPEED,
+                I_OCCUPY = input.OCCUPY,
+                I_CAR_LENGTH = input.CAR_LENGTH
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_TRAFFIC_STAT_DETAIL", param, out spResult);
+        }
+
+
+        public void AddSpeedStat(SPEED_STAT input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_DETECT_DATE = input.DETECT_DATE,
+                I_LANE_COUNT = input.LANE_COUNT,
+                I_SPEED_INFO = input.SPEED_INFO,
+                I_REPORT_YN = input.REPORT_YN
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_SPEED_STAT", param, out spResult);
+        }
+
+        public void UpdateSpeedStat(SPEED_STAT input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_DETECT_DATE = input.DETECT_DATE,
+                I_LANE_COUNT = input.LANE_COUNT,
+                I_SPEED_INFO = input.SPEED_INFO,
+                I_REPORT_YN = input.REPORT_YN
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_SPEED_STAT", param, out spResult);
+        }
+
+        public void AddSpeedStatDetail(SPEED_STAT_DETAIL input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_PARENT_ID = input.PARENT_ID,
+                I_LANE = input.LANE,
+                I_CATEGORY_1_COUNT = input.CATEGORY_1_COUNT,
+                I_CATEGORY_2_COUNT = input.CATEGORY_2_COUNT,
+                I_CATEGORY_3_COUNT = input.CATEGORY_3_COUNT,
+                I_CATEGORY_4_COUNT = input.CATEGORY_4_COUNT,
+                I_CATEGORY_5_COUNT = input.CATEGORY_5_COUNT,
+                I_CATEGORY_6_COUNT = input.CATEGORY_6_COUNT,
+                I_CATEGORY_7_COUNT = input.CATEGORY_7_COUNT,
+                I_CATEGORY_8_COUNT = input.CATEGORY_8_COUNT,
+                I_CATEGORY_9_COUNT = input.CATEGORY_9_COUNT,
+                I_CATEGORY_10_COUNT = input.CATEGORY_10_COUNT,
+                I_CATEGORY_11_COUNT = input.CATEGORY_11_COUNT,
+                I_CATEGORY_12_COUNT = input.CATEGORY_12_COUNT,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_SPEED_STAT_DETAIL", param, out spResult);
+        }
+
+        public void UpdateSpeedStatDetail(SPEED_STAT_DETAIL input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_PARENT_ID = input.PARENT_ID,
+                I_LANE = input.LANE,
+                I_CATEGORY_1_COUNT = input.CATEGORY_1_COUNT,
+                I_CATEGORY_2_COUNT = input.CATEGORY_2_COUNT,
+                I_CATEGORY_3_COUNT = input.CATEGORY_3_COUNT,
+                I_CATEGORY_4_COUNT = input.CATEGORY_4_COUNT,
+                I_CATEGORY_5_COUNT = input.CATEGORY_5_COUNT,
+                I_CATEGORY_6_COUNT = input.CATEGORY_6_COUNT,
+                I_CATEGORY_7_COUNT = input.CATEGORY_7_COUNT,
+                I_CATEGORY_8_COUNT = input.CATEGORY_8_COUNT,
+                I_CATEGORY_9_COUNT = input.CATEGORY_9_COUNT,
+                I_CATEGORY_10_COUNT = input.CATEGORY_10_COUNT,
+                I_CATEGORY_11_COUNT = input.CATEGORY_11_COUNT,
+                I_CATEGORY_12_COUNT = input.CATEGORY_12_COUNT,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_SPEED_STAT_DETAIL", param, out spResult);
+        }
     }
 }

@@ -86,9 +86,12 @@
     <Compile Include="Model\ACCU_TRAFFIC_DATA_STAT.cs" />
     <Compile Include="Model\LENGTH_DATA_STAT.cs" />
     <Compile Include="Model\SPEED_DATA_STAT.cs" />
+    <Compile Include="Model\SPEED_STAT.cs" />
+    <Compile Include="Model\SPEED_STAT_DETAIL.cs" />
     <Compile Include="Model\TARGET_SUMMARY_INFO.cs" />
     <Compile Include="Model\TARGET_SUMMARY_STAT.cs" />
-    <Compile Include="Model\TRAFFIC_DATA_STAT.cs" />
+    <Compile Include="Model\TRAFFIC_STAT.cs" />
+    <Compile Include="Model\TRAFFIC_STAT_DETAIL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

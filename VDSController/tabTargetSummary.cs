@@ -138,17 +138,17 @@ namespace VDSController
 
         public void InitializeRTSPPlayer()
         {
-            //bmtManager.SetFormAddTargetInfoDelegate(this, new FormAddTargetInfoDelegate(tabTarget.AddTargetInfo));
             rtspPlayer.SetRTSPLogDelegate(this, new FormAddLogDelegate(AddRTSPLog));
             if(VDSConfig.controllerConfig!=null)
             {
-                if(VDSConfig.controllerConfig.DeviceType==1)
-                    ExpandPnPlayer(true);
+                if (VDSConfig.controllerConfig.DeviceType == 1)
+                    chkExpandPlayer.Checked = true;
                 else
-                    ExpandPnPlayer(false);
+                    chkExpandPlayer.Checked = false;   
             }
             else
-                ExpandPnPlayer(false);
+                chkExpandPlayer.Checked = false;   
+            ExpandPnPlayer(chkExpandPlayer.Checked);
         }
         
         public int AddRTSPLog(LOG_TYPE logType, String log)

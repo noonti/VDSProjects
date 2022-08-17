@@ -116,18 +116,18 @@ namespace VDSDBHandler.DBOperation
 
         }
 
-        public IEnumerable<TRAFFIC_DATA_STAT> GetTrafficDataStat(TRAFFIC_DATA_STAT input, out SP_RESULT spResult)
-        {
-            var param = new DynamicParameters();
-            param.AddDynamicParams(new
-            {
-                I_START_DATE = input.I_START_DATE,
-                I_END_DATE = input.I_END_DATE,
+        //public IEnumerable<TRAFFIC_DATA_STAT> GetTrafficDataStat(TRAFFIC_DATA_STAT input, out SP_RESULT spResult)
+        //{
+        //    var param = new DynamicParameters();
+        //    param.AddDynamicParams(new
+        //    {
+        //        I_START_DATE = input.I_START_DATE,
+        //        I_END_DATE = input.I_END_DATE,
 
-            });
-            return _dapperOrm.ReturnList<TRAFFIC_DATA_STAT>("SP_GET_TRAFFIC_DATA_STAT", param, out spResult).ToList();
+        //    });
+        //    return _dapperOrm.ReturnList<TRAFFIC_DATA_STAT>("SP_GET_TRAFFIC_DATA_STAT", param, out spResult).ToList();
 
-        }
+        //}
 
         public SPEED_DATA_STAT GetSpeedDataStat(SPEED_DATA_STAT input, byte [] speedCategory, out SP_RESULT spResult)
         {
