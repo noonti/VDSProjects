@@ -1107,6 +1107,13 @@ namespace VDSCommon
             ApplicationLoader.StartProcessAndBypassUAC(filePath, out processInfo);
             return result;
         }
+
+        public static String ToJson(object data)
+        {
+            String result = String.Empty;
+            result = JsonConvert.SerializeObject(data);
+            return result;
+        }
     }
 }
 

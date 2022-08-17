@@ -33,7 +33,7 @@ namespace KorExManageCtrl
         public DateTime _lastCheckSession;
         public KOR_EX_SESSION_STATE sessionState;
 
-        public List<TRAFFIC_DATA_STAT> trafficDataList = new List<TRAFFIC_DATA_STAT>();
+        //public List<TRAFFIC_DATA_STAT> trafficDataList = new List<TRAFFIC_DATA_STAT>();
 
         public SpeedData[] speedDataStat ;
 
@@ -1071,7 +1071,7 @@ namespace KorExManageCtrl
                 case ExDataFrameDefine.OP_TRAFFIC_DATA_COMMAND:
                     ProcessTrafficDataCommand(workData);
                     break;
-
+                // 속도 데이터 수집 요청
                 case ExDataFrameDefine.OP_SPEED_DATA_COMMAND:
                     ProcessSpeedDataCommand(workData);
                     break;
@@ -1428,57 +1428,11 @@ namespace KorExManageCtrl
                 TrafficDataExResponse trafficData = GetTrafficDataExResponse();
                 SetResponseFrame(workData.frame, ref response, trafficData);
                 byte[] data = response.Serialize();
-                Send(workData.session, data);
-
-                //ExDataFrame response = new ExDataFrame();
-                //TrafficDataResponse trafficData = new TrafficDataResponse();
-
-                //trafficData.frameNo = _lastFrameNo;
-
-                //// 루프 장애 정보 루프당 2 bit . 32개까지. 즉 64 비트 --> 8 bytes 
-                //// 레이더식 방식이기에 루프 장애 정보는 편의상 정상으로 설정
-                //for (int i = 0; i < 8; i++)
-                //    trafficData.detector.errorInfo[i] = ExDataFrameDefine.LOOP_NORMAL;
-
-                //// 루프 유고 정보 루프당 1 bit. 32 bit --> 4 bytes
-                //for (int i = 0; i < 4; i++)
-                //    trafficData.detector.accidentInfo[i] = ExDataFrameDefine.INCIDENT_NORMAL;
-
-                //// 루프 갯수 = 차선수 * 2 (쌍루프로 설정)
-                //int laneCount = VDSConfig.ToLeftLaneGroup.LaneList.Count + VDSConfig.ToRIghtLaneGroup.LaneList.Count;
-                //trafficData.detector.sensorCount = (byte)(VDSConfig.controllerConfig.DeviceType == 2 ? VDSConfig.korExConfig.sensorCount : 1); //  (laneCount * 2);
-                //trafficData.detector.laneCount = (byte)laneCount;
-
-                //DetectInfo detectInfo = new DetectInfo();
-                //// _activeCenterDataIndex : 현재 저장되는 버퍼 인덱스. 따라서 반대 인덱스가 저장되어있는 인덱스
-                //ts = _currentSyncDateTime - _prevSyncDateTime;
-                //GetTrafficDataSummary(_centerData[(_activeCenterDataIndex + 1) % 2], out detectInfo.trafficCount, out detectInfo.occupyTime, ts);
-                //trafficData.detector.detectInfoList.Add(detectInfo);
-                //for (int i=0;i<laneCount;i++)
-                //{
-
-                //    var trafficStatData = GetTrafficDataByLane(i + 1, _centerData[(_activeCenterDataIndex + 1) % 2]);
-                //    //var trafficStatData = trafficDataList.Where(x => x.LANE == (i + 1)).FirstOrDefault();
-                //    LaneInfo lane = new LaneInfo();
-
-                //    if (trafficStatData != null)
-                //    {
-                //        lane.averageLength = (byte)trafficStatData.AVG_LENGTH;
-                //        lane.averageSpeed = (byte)trafficStatData.AVG_SPEED;
-                //    }
-                //    Console.WriteLine($"Lane:{i+1} 평균 길이:{lane.averageLength}, 평균속도:{lane.averageSpeed} ");
-                //    trafficData.detector.laneInfoList.Add(lane);
-                //}
-
-                //response.opData = trafficData;
-                //response._totalLength = 13 + 8 + 4 + 1 + 3* trafficData.detector.detectInfoList.Count + 1 + 2* trafficData.detector.laneInfoList.Count;
-                ////SetResponseFrame(workData.frame, ref response, ExDataFrameDefine.ACK_NORMAL);
-
-                //byte[] data = response.Serialize();
-                //Send(workData.session, data);
-
+                nResult = Send(workData.session, data);
                 _prevSyncDateTime = _currentSyncDateTime; // 현재 동기화 시간 저장
 
+                // TrafficDataEx 정보 DB 저장
+                AddTrafficStat(trafficData, nResult);
             }
             catch (Exception ex)
             {
@@ -1491,6 +1445,48 @@ namespace KorExManageCtrl
         }
 
 
+        int AddTrafficStat(TrafficDataExResponse trafficData, int reportYN)
+        {
+            int nResult = 0;
+            String parentId = Guid.NewGuid().ToString();
+            TrafficDataOperation trafficDB = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            trafficDB.AddTrafficStat(new TRAFFIC_STAT()
+            {
+                ID = parentId,
+                DETECT_DATE = int.Parse(DateTime.Now.ToString("yyyyMMdd")),
+                FRAME_NO = trafficData.frameNo,
+                ERROR_INFO = Utility.ByteToString(trafficData.errorInfo),
+                LANE_COUNT = trafficData.laneCount,
+                LANE_INFO = Utility.ToJson(trafficData),
+                REPORT_YN = reportYN==1? "Y":"N"
+            }, out SP_RESULT spResult); ;
+            nResult = spResult.RESULT_COUNT;
+            if(nResult > 0)
+            {
+
+                for(int i=0;i<trafficData.laneInfoList.Count;i++)
+                {
+                    LaneInfoEx laneInfo = trafficData.laneInfoList[i];
+                    trafficDB.AddTrafficStatDetail(new TRAFFIC_STAT_DETAIL()
+                    {
+                        ID = Guid.NewGuid().ToString(),
+                        PARENT_ID = parentId,
+                        LANE = i,
+                        LARGE_COUNT = laneInfo.largeTrafficCount,
+                        MIDDLE_COUNT = laneInfo.middleTrafficCount,
+                        SMALL_COUNT = laneInfo.smallTrafficCount,
+                        SPEED = laneInfo.speed,
+                        OCCUPY = laneInfo.occupyRatio,
+                        CAR_LENGTH = laneInfo.carLength
+                    }, out spResult);
+                    nResult += spResult.RESULT_COUNT;
+                }
+
+            }
+
+            return nResult;
+        }
+
         public int ProcessSpeedDataCommand(WorkData workData)
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
@@ -1502,8 +1498,9 @@ namespace KorExManageCtrl
                 SpeedDataExResponse speedData = GetSpeedDataExResponse();
                 SetResponseFrame(workData.frame, ref response, speedData);
                 byte[] data = response.Serialize();
-                Send(workData.session, data);
+                nResult = Send(workData.session, data);
 
+                AddSpeedStat(speedData, nResult);
 
                 //SpeedDataResponse speedData = new SpeedDataResponse();
                 //speedData.laneNo = (workData.frame.opData as SpeedDataRequest).laneNo;
@@ -1516,7 +1513,7 @@ namespace KorExManageCtrl
                 //        speedDataStat[speedData.laneNo - 1].speedCategory[i] = 0;// 리셋
                 //    }
                 //}
-                
+
                 //response.opData = speedData;
                 //response._totalLength = 12 + 1 + 24;
                 ////SetResponseFrame(workData.frame, ref response, ExDataFrameDefine.ACK_NORMAL_RESULT);
@@ -1535,6 +1532,53 @@ namespace KorExManageCtrl
 
         }
 
+        int AddSpeedStat(SpeedDataExResponse speedData, int reportYN)
+        {
+            int nResult = 0;
+            String parentId = Guid.NewGuid().ToString();
+            TrafficDataOperation trafficDB = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            trafficDB.AddSpeedStat(new SPEED_STAT()
+            {
+                ID = parentId,
+                DETECT_DATE = int.Parse(DateTime.Now.ToString("yyyyMMdd")),
+                LANE_COUNT = speedData.laneCount,
+                SPEED_INFO = Utility.ToJson(speedData),
+                REPORT_YN = reportYN == 1 ? "Y" : "N"
+            }, out SP_RESULT spResult); ;
+            nResult = spResult.RESULT_COUNT;
+            if (nResult > 0)
+            {
+
+                for (int i = 0; i < speedData.speedDataList.Count; i++)
+                {
+                    SpeedData sData = speedData.speedDataList[i];
+                    trafficDB.AddSpeedStatDetail(new SPEED_STAT_DETAIL()
+                    {
+                        ID = Guid.NewGuid().ToString(),
+                        PARENT_ID = parentId,
+                        LANE = i,
+                        CATEGORY_1_COUNT = sData.speedCategory[0],
+                        CATEGORY_2_COUNT = sData.speedCategory[1],
+                        CATEGORY_3_COUNT = sData.speedCategory[2],
+                        CATEGORY_4_COUNT = sData.speedCategory[3],
+                        CATEGORY_5_COUNT = sData.speedCategory[4],
+                        CATEGORY_6_COUNT = sData.speedCategory[5],
+                        CATEGORY_7_COUNT = sData.speedCategory[6],
+                        CATEGORY_8_COUNT = sData.speedCategory[7],
+                        CATEGORY_9_COUNT = sData.speedCategory[8],
+                        CATEGORY_10_COUNT = sData.speedCategory[9],
+                        CATEGORY_11_COUNT = sData.speedCategory[10],
+                        CATEGORY_12_COUNT = sData.speedCategory[11],
+
+
+                    }, out spResult);
+                    nResult += spResult.RESULT_COUNT;
+                }
+
+            }
+
+            return nResult;
+        }
         public int ProcessVehicleLengthDataCommand(WorkData workData)
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
@@ -2868,34 +2912,34 @@ namespace KorExManageCtrl
             return 1;
         }
 
-        public TRAFFIC_DATA_STAT GetTrafficDataByLane(int lane, List<Object> dataList)
-        {
-            TRAFFIC_DATA_STAT trafficDataStat = new TRAFFIC_DATA_STAT();
-            TrafficDataEvent trafficData;
-            int totalTrafficCount = 0;
-            int totalLength = 0;
-            double totalSpeed = 0;
-            foreach (var data in dataList)
-            {
-                trafficData = (data as TrafficDataEvent);
-                if (trafficData != null) // && )  // 1: 상행(TO RIGHT) 2: 하행(TO LEFT)
-                {
-                    if(GetKorExLaneNo(trafficData) == lane)
-                    {
-                        totalTrafficCount++;
-                        totalSpeed += trafficData.speed;
-                        totalLength += trafficData.length/10; // cm--> dm 단위.
-                    }
-                }
-            }
+        //public TRAFFIC_DATA_STAT GetTrafficDataByLane(int lane, List<Object> dataList)
+        //{
+        //    TRAFFIC_DATA_STAT trafficDataStat = new TRAFFIC_DATA_STAT();
+        //    TrafficDataEvent trafficData;
+        //    int totalTrafficCount = 0;
+        //    int totalLength = 0;
+        //    double totalSpeed = 0;
+        //    foreach (var data in dataList)
+        //    {
+        //        trafficData = (data as TrafficDataEvent);
+        //        if (trafficData != null) // && )  // 1: 상행(TO RIGHT) 2: 하행(TO LEFT)
+        //        {
+        //            if(GetKorExLaneNo(trafficData) == lane)
+        //            {
+        //                totalTrafficCount++;
+        //                totalSpeed += trafficData.speed;
+        //                totalLength += trafficData.length/10; // cm--> dm 단위.
+        //            }
+        //        }
+        //    }
 
-            if(totalTrafficCount>0)
-            {
-                trafficDataStat.AVG_SPEED = totalSpeed / totalTrafficCount;
-                trafficDataStat.AVG_LENGTH = totalLength / totalTrafficCount;
-            }
-            return trafficDataStat;
-        }
+        //    if(totalTrafficCount>0)
+        //    {
+        //        trafficDataStat.AVG_SPEED = totalSpeed / totalTrafficCount;
+        //        trafficDataStat.AVG_LENGTH = totalLength / totalTrafficCount;
+        //    }
+        //    return trafficDataStat;
+        //}
 
 
         public int GetKorExLaneNo(TrafficDataEvent trafficDataEvent)
