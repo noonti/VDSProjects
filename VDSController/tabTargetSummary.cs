@@ -501,5 +501,20 @@ namespace VDSController
             var trafficDataList = await task1;
             //AddTrafficDataResult(trafficDataList);
         }
+
+
+        public async void SearchSpeedStat(SPEED_STAT data)
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            //trafficDataList.Clear();
+
+            SP_RESULT spResult;
+            var task1 = Task.Run(() => {
+                return db.GetSpeedStatList(data, out spResult).ToList();
+            });
+
+            var SpeedDataList = await task1;
+            //AddTrafficDataResult(trafficDataList);
+        }
     }
 }
