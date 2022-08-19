@@ -67,11 +67,11 @@ namespace VDSController
         public int AddTargetInfo(TrafficDataEvent trafficDataEvent)
         {
       
-            String info = String.Format(" 시간      : {0} 차선:{4}  속도      : {1} km/h 길이      : {2} cm 점유시간 : {3:f3} msec",
-                                        trafficDataEvent.detectTime, trafficDataEvent.speed , trafficDataEvent.length ,
-                                        trafficDataEvent.occupyTime, trafficDataEvent.lane);
+            //String info = String.Format(" 시간      : {0} 차선:{4}  속도      : {1} km/h 길이      : {2} cm 점유시간 : {3:f3} msec",
+            //                            trafficDataEvent.detectTime, trafficDataEvent.speed , trafficDataEvent.length ,
+            //                            trafficDataEvent.occupyTime, trafficDataEvent.lane);
 
-            Console.WriteLine(info);
+            //Console.WriteLine(info);
 
             TimeSpan duration = new TimeSpan(0, 0, 0, 0, 500); //5초 후에 초기화
             _displayTime = DateTime.Now.Add(duration);
