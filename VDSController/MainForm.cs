@@ -165,18 +165,20 @@ namespace VDSController
 
         //public int AddLog(LOG_TYPE logType, String strLog)
 
-        public int StartVDSManager()
+        public async void StartVDSManager()
         {
             int nResult = 0;
             
-            nResult = vdsManager.StartManager();
-            if(nResult>0)
+            var task1 = Task.Run(() => {
+                nResult = vdsManager.StartManager();
+                if (apiManager != null)
+                    apiManager.StartService();
+                return nResult;
+            });
+            nResult = await task1;
+            if (nResult > 0)
                 tabTarget.ResetVecycleCount();
             tabTarget.StartService();
-
-            if (apiManager != null)
-                apiManager.StartService();
-            return nResult;
         }
 
         public int StopVDSManager()
@@ -311,7 +313,6 @@ namespace VDSController
             if(!_initialActiviated)
             {
                 StartSerialManager();
-
                 StartVDSManager();
                 _initialActiviated = true;
             }
