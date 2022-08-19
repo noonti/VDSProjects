@@ -25,5 +25,9 @@ namespace VDSDBHandler.Model
         public String I_START_DATE { get; set; }
         public String I_END_DATE { get; set; }
 
+        public int I_LANE { get; set; }
+
+        public List<TRAFFIC_STAT_DETAIL> trafficStatDetailList = new List<TRAFFIC_STAT_DETAIL>();
+
     }
 }

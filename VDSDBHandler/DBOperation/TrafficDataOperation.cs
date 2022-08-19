@@ -281,5 +281,21 @@ namespace VDSDBHandler.DBOperation
             });
             _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_SPEED_STAT_DETAIL", param, out spResult);
         }
+
+        //public IEnumerable<TRAFFIC_STAT> GetTrafficStatList(TRAFFIC_DATA input, out SP_RESULT spResult)
+        public IEnumerable<dynamic> GetTrafficStatList(TRAFFIC_STAT input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_START_DATE = input.I_START_DATE,
+                I_END_DATE = input.I_END_DATE,
+                I_LANE = input.I_LANE,
+                I_REPORT_YN = input.REPORT_YN,
+
+            });
+            return _dapperOrm.ReturnList<dynamic>("SP_GET_TRAFFIC_STAT_LIST", param, out spResult).ToList();
+
+        }
     }
 }

@@ -466,5 +466,40 @@ namespace VDSController
             }
             
         }
+
+        private void darkButton4_Click(object sender, EventArgs e)
+        {
+            String startDate = ucTrafficStartTime.GetDateTimeFormat();
+            String endDate = ucTrafficEndTime.GetDateTimeFormat();
+            int lane = 0;
+            if (cbTrafficLane.SelectedIndex > 0)
+                lane = laneList[cbLane.SelectedIndex - 1];
+
+
+            TRAFFIC_STAT data = new TRAFFIC_STAT()
+            {
+                I_START_DATE = startDate,
+                I_END_DATE = endDate,
+                I_LANE = lane,
+
+            };
+            SearchTrafficStat(data);
+
+        }
+
+
+        public async void SearchTrafficStat(TRAFFIC_STAT data)
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            //trafficDataList.Clear();
+
+            SP_RESULT spResult;
+            var task1 = Task.Run(() => {
+                return db.GetTrafficStatList(data, out spResult).ToList();
+            });
+
+            var trafficDataList = await task1;
+            //AddTrafficDataResult(trafficDataList);
+        }
     }
 }
