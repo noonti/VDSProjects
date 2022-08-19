@@ -491,17 +491,38 @@ namespace VDSController
         public async void SearchTrafficStat(TRAFFIC_STAT data)
         {
             TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
-            //trafficDataList.Clear();
-
             SP_RESULT spResult;
-            var task1 = Task.Run(() => {
+            var task1 = Task.Run(() =>
+            {
                 return db.GetTrafficStatList(data, out spResult).ToList();
             });
 
             var trafficDataList = await task1;
-            //AddTrafficDataResult(trafficDataList);
+            AddTrafficStatResult(trafficDataList);
         }
 
+        public void AddTrafficStatResult(List<dynamic> trafficStatList)
+        {
+
+            lvTrafficStat.Items.Clear();
+            ListViewItem item;
+            foreach(var trafficStat in trafficStatList)
+            {
+                item = new ListViewItem(trafficStat.DETECT_DATE.ToString()); // 
+                item.SubItems.Add(trafficStat.FRAME_NO.ToString());
+                //item.SubItems.Add(trafficStat.lane_count.ToString());
+                //item.SubItems.Add(trafficStat.report_yn.ToString());
+                item.SubItems.Add(trafficStat.LANE.ToString());
+                item.SubItems.Add(trafficStat.LARGE_COUNT.ToString());
+                item.SubItems.Add(trafficStat.MIDDLE_COUNT.ToString());
+                item.SubItems.Add(trafficStat.SMALL_COUNT.ToString());
+                //item.SubItems.Add(trafficStat.speed.ToString());
+                item.SubItems.Add(trafficStat.OCCUPY.ToString());
+                item.SubItems.Add(trafficStat.CAR_LENGTH.ToString());
+                lvTrafficStat.Items.Add(item);
+
+            }
+        }
 
         public async void SearchSpeedStat(SPEED_STAT data)
         {
@@ -513,8 +534,55 @@ namespace VDSController
                 return db.GetSpeedStatList(data, out spResult).ToList();
             });
 
-            var SpeedDataList = await task1;
-            //AddTrafficDataResult(trafficDataList);
+            var speedDataList = await task1;
+            AddSpeedStatResult(speedDataList);
+        }
+
+        public void AddSpeedStatResult(List<dynamic> speedStatList)
+        {
+
+            lvSpeedStat.Items.Clear();
+            ListViewItem item;
+            foreach (var speedStat in speedStatList)
+            {
+                item = new ListViewItem(speedStat.DETECT_DATE.ToString()); // 
+                item.SubItems.Add(speedStat.LANE.ToString());
+
+                item.SubItems.Add(speedStat.CATEGORY_1_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_2_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_3_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_4_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_5_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_6_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_7_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_8_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_9_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_10_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_11_COUNT.ToString());
+                item.SubItems.Add(speedStat.CATEGORY_12_COUNT.ToString());
+                lvSpeedStat.Items.Add(item);
+
+            }
+        }
+
+        private void darkButton5_Click(object sender, EventArgs e)
+        {
+            String startDate = ucSpeedStartTime.GetDateTimeFormat();
+            String endDate = ucSpeedEndTime.GetDateTimeFormat();
+            int lane = 0;
+            if (cbSpeedLane.SelectedIndex > 0)
+                lane = laneList[cbLane.SelectedIndex - 1];
+
+
+            SPEED_STAT data = new SPEED_STAT()
+            {
+                I_START_DATE = startDate,
+                I_END_DATE = endDate,
+                I_LANE = lane,
+
+            };
+            SearchSpeedStat(data);
+
         }
     }
 }
