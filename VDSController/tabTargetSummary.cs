@@ -407,7 +407,7 @@ namespace VDSController
                 lvTrafficData.Items.RemoveAt(lvTrafficData.Items.Count - 1);
             
             ListViewItem item;
-            // 제목, 콘텐츠 유형,  조회수, 별점수, 의뢰인, 코치, 등록일
+
             item = new ListViewItem(trafficDataEvent.detectTime); // 
 
             item.SubItems.Add(trafficDataEvent.lane.ToString());

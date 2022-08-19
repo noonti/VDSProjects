@@ -67,11 +67,11 @@ namespace VDSController
         public int AddTargetInfo(TrafficDataEvent trafficDataEvent)
         {
       
-            String info = String.Format(" 시간      : {0} \n 속도      : {1} km/h\n 길이      : {2} cm\n 점유시간 : {3:f3} msec",
+            String info = String.Format(" 시간      : {0} 차선:{4}  속도      : {1} km/h 길이      : {2} cm 점유시간 : {3:f3} msec",
                                         trafficDataEvent.detectTime, trafficDataEvent.speed , trafficDataEvent.length ,
-                                        trafficDataEvent.occupyTime);
-        
-            //lbTarget.Text = info;
+                                        trafficDataEvent.occupyTime, trafficDataEvent.lane);
+
+            Console.WriteLine(info);
 
             TimeSpan duration = new TimeSpan(0, 0, 0, 0, 500); //5초 후에 초기화
             _displayTime = DateTime.Now.Add(duration);
@@ -93,7 +93,7 @@ namespace VDSController
                 lvTrafficData.Items.RemoveAt(lvTrafficData.Items.Count - 1);
 
             ListViewItem item;
-            // 제목, 콘텐츠 유형,  조회수, 별점수, 의뢰인, 코치, 등록일
+           
             item = new ListViewItem(trafficDataEvent.detectTime); // 
 
             item.SubItems.Add(trafficDataEvent.lane.ToString());
