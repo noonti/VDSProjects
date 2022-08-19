@@ -44,36 +44,12 @@ namespace VDSController
             this.gbxLeft = new DarkUI.Controls.DarkGroupBox();
             this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
             this.btnSetTime = new DarkUI.Controls.DarkButton();
-            this.ucStartDate = new VDSController.ucDateTimePicker();
             this.lbServiceStartTime = new DarkUI.Controls.DarkLabel();
             this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.lbLastCountTime_ = new DarkUI.Controls.DarkLabel();
             this.darkLabel1 = new DarkUI.Controls.DarkLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.darkGroupBox4 = new DarkUI.Controls.DarkGroupBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
-            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
-            this.cbLane = new DarkUI.Controls.DarkComboBox();
-            this.darkButton3 = new DarkUI.Controls.DarkButton();
-            this.darkLabel2 = new DarkUI.Controls.DarkLabel();
-            this.ucEndTime = new VDSController.ucDateTimePicker();
-            this.ucStartTime = new VDSController.ucDateTimePicker();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.darkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
-            this.cbTrafficLane = new DarkUI.Controls.DarkComboBox();
-            this.darkButton4 = new DarkUI.Controls.DarkButton();
-            this.darkLabel4 = new DarkUI.Controls.DarkLabel();
-            this.ucTrafficEndTime = new VDSController.ucDateTimePicker();
-            this.ucTrafficStartTime = new VDSController.ucDateTimePicker();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.darkGroupBox6 = new DarkUI.Controls.DarkGroupBox();
-            this.darkComboBox2 = new DarkUI.Controls.DarkComboBox();
-            this.darkButton5 = new DarkUI.Controls.DarkButton();
-            this.darkLabel5 = new DarkUI.Controls.DarkLabel();
-            this.ucDateTimePicker3 = new VDSController.ucDateTimePicker();
-            this.ucDateTimePicker4 = new VDSController.ucDateTimePicker();
-            this.timerSliding = new System.Windows.Forms.Timer(this.components);
             this.lvTrafficData = new VDSCommon.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,6 +61,12 @@ namespace VDSController
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
+            this.cbLane = new DarkUI.Controls.DarkComboBox();
+            this.darkButton3 = new DarkUI.Controls.DarkButton();
+            this.darkLabel2 = new DarkUI.Controls.DarkLabel();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lvTrafficStat = new VDSCommon.ListViewEx();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -94,6 +76,11 @@ namespace VDSController
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.darkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
+            this.cbTrafficLane = new DarkUI.Controls.DarkComboBox();
+            this.darkButton4 = new DarkUI.Controls.DarkButton();
+            this.darkLabel4 = new DarkUI.Controls.DarkLabel();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.lvSpeedStat = new VDSCommon.ListViewEx();
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -109,6 +96,19 @@ namespace VDSController
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.darkGroupBox6 = new DarkUI.Controls.DarkGroupBox();
+            this.cbSpeedLane = new DarkUI.Controls.DarkComboBox();
+            this.darkButton5 = new DarkUI.Controls.DarkButton();
+            this.darkLabel5 = new DarkUI.Controls.DarkLabel();
+            this.timerSliding = new System.Windows.Forms.Timer(this.components);
+            this.ucStartDate = new VDSController.ucDateTimePicker();
+            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
+            this.ucEndTime = new VDSController.ucDateTimePicker();
+            this.ucStartTime = new VDSController.ucDateTimePicker();
+            this.ucTrafficEndTime = new VDSController.ucDateTimePicker();
+            this.ucTrafficStartTime = new VDSController.ucDateTimePicker();
+            this.ucSpeedEndTime = new VDSController.ucDateTimePicker();
+            this.ucSpeedStartTime = new VDSController.ucDateTimePicker();
             this.pnPlayer.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.tabTrafficInfo.SuspendLayout();
@@ -291,15 +291,6 @@ namespace VDSController
             this.btnSetTime.TabIndex = 2;
             this.btnSetTime.Text = "SET";
             // 
-            // ucStartDate
-            // 
-            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
-            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucStartDate.Name = "ucStartDate";
-            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
-            this.ucStartDate.TabIndex = 4;
-            // 
             // lbServiceStartTime
             // 
             this.lbServiceStartTime.AutoSize = true;
@@ -369,233 +360,6 @@ namespace VDSController
             this.darkGroupBox4.Size = new System.Drawing.Size(767, 630);
             this.darkGroupBox4.TabIndex = 0;
             this.darkGroupBox4.TabStop = false;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.tabPage2.Controls.Add(this.ucCenterTrafficData);
-            this.tabPage2.Controls.Add(this.darkGroupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(767, 630);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "차량 검지 정보 조회";
-            // 
-            // ucCenterTrafficData
-            // 
-            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
-            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
-            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
-            this.ucCenterTrafficData.TabIndex = 1;
-            // 
-            // darkGroupBox3
-            // 
-            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.darkGroupBox3.Controls.Add(this.cbLane);
-            this.darkGroupBox3.Controls.Add(this.darkButton3);
-            this.darkGroupBox3.Controls.Add(this.darkLabel2);
-            this.darkGroupBox3.Controls.Add(this.ucEndTime);
-            this.darkGroupBox3.Controls.Add(this.ucStartTime);
-            this.darkGroupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.darkGroupBox3.Location = new System.Drawing.Point(3, 3);
-            this.darkGroupBox3.Name = "darkGroupBox3";
-            this.darkGroupBox3.Size = new System.Drawing.Size(761, 65);
-            this.darkGroupBox3.TabIndex = 0;
-            this.darkGroupBox3.TabStop = false;
-            this.darkGroupBox3.Text = "조회 조건";
-            // 
-            // cbLane
-            // 
-            this.cbLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbLane.FormattingEnabled = true;
-            this.cbLane.Location = new System.Drawing.Point(19, 29);
-            this.cbLane.Name = "cbLane";
-            this.cbLane.Size = new System.Drawing.Size(187, 22);
-            this.cbLane.TabIndex = 0;
-            // 
-            // darkButton3
-            // 
-            this.darkButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton3.Location = new System.Drawing.Point(627, 22);
-            this.darkButton3.Name = "darkButton3";
-            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton3.Size = new System.Drawing.Size(128, 32);
-            this.darkButton3.TabIndex = 3;
-            this.darkButton3.Text = "조회";
-            this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
-            // 
-            // darkLabel2
-            // 
-            this.darkLabel2.AutoSize = true;
-            this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(398, 34);
-            this.darkLabel2.Name = "darkLabel2";
-            this.darkLabel2.Size = new System.Drawing.Size(14, 15);
-            this.darkLabel2.TabIndex = 27;
-            this.darkLabel2.Text = "~";
-            // 
-            // ucEndTime
-            // 
-            this.ucEndTime.Location = new System.Drawing.Point(418, 27);
-            this.ucEndTime.Name = "ucEndTime";
-            this.ucEndTime.Size = new System.Drawing.Size(258, 27);
-            this.ucEndTime.TabIndex = 2;
-            // 
-            // ucStartTime
-            // 
-            this.ucStartTime.Location = new System.Drawing.Point(212, 27);
-            this.ucStartTime.Name = "ucStartTime";
-            this.ucStartTime.Size = new System.Drawing.Size(258, 27);
-            this.ucStartTime.TabIndex = 1;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.lvTrafficStat);
-            this.tabPage4.Controls.Add(this.darkGroupBox5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 24);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(767, 630);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "교통 데이터 조회";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // darkGroupBox5
-            // 
-            this.darkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.darkGroupBox5.Controls.Add(this.cbTrafficLane);
-            this.darkGroupBox5.Controls.Add(this.darkButton4);
-            this.darkGroupBox5.Controls.Add(this.darkLabel4);
-            this.darkGroupBox5.Controls.Add(this.ucTrafficEndTime);
-            this.darkGroupBox5.Controls.Add(this.ucTrafficStartTime);
-            this.darkGroupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.darkGroupBox5.Location = new System.Drawing.Point(0, 0);
-            this.darkGroupBox5.Name = "darkGroupBox5";
-            this.darkGroupBox5.Size = new System.Drawing.Size(767, 65);
-            this.darkGroupBox5.TabIndex = 2;
-            this.darkGroupBox5.TabStop = false;
-            this.darkGroupBox5.Text = "조회 조건";
-            // 
-            // cbTrafficLane
-            // 
-            this.cbTrafficLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbTrafficLane.FormattingEnabled = true;
-            this.cbTrafficLane.Location = new System.Drawing.Point(19, 29);
-            this.cbTrafficLane.Name = "cbTrafficLane";
-            this.cbTrafficLane.Size = new System.Drawing.Size(187, 22);
-            this.cbTrafficLane.TabIndex = 0;
-            // 
-            // darkButton4
-            // 
-            this.darkButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton4.Location = new System.Drawing.Point(633, 22);
-            this.darkButton4.Name = "darkButton4";
-            this.darkButton4.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton4.Size = new System.Drawing.Size(128, 32);
-            this.darkButton4.TabIndex = 3;
-            this.darkButton4.Text = "조회";
-            this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
-            // 
-            // darkLabel4
-            // 
-            this.darkLabel4.AutoSize = true;
-            this.darkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel4.Location = new System.Drawing.Point(398, 34);
-            this.darkLabel4.Name = "darkLabel4";
-            this.darkLabel4.Size = new System.Drawing.Size(14, 15);
-            this.darkLabel4.TabIndex = 27;
-            this.darkLabel4.Text = "~";
-            // 
-            // ucTrafficEndTime
-            // 
-            this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
-            this.ucTrafficEndTime.Name = "ucTrafficEndTime";
-            this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
-            this.ucTrafficEndTime.TabIndex = 2;
-            // 
-            // ucTrafficStartTime
-            // 
-            this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
-            this.ucTrafficStartTime.Name = "ucTrafficStartTime";
-            this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
-            this.ucTrafficStartTime.TabIndex = 1;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.lvSpeedStat);
-            this.tabPage5.Controls.Add(this.darkGroupBox6);
-            this.tabPage5.Location = new System.Drawing.Point(4, 24);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(767, 630);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "속도 데이터 조회";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // darkGroupBox6
-            // 
-            this.darkGroupBox6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.darkGroupBox6.Controls.Add(this.darkComboBox2);
-            this.darkGroupBox6.Controls.Add(this.darkButton5);
-            this.darkGroupBox6.Controls.Add(this.darkLabel5);
-            this.darkGroupBox6.Controls.Add(this.ucDateTimePicker3);
-            this.darkGroupBox6.Controls.Add(this.ucDateTimePicker4);
-            this.darkGroupBox6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.darkGroupBox6.Location = new System.Drawing.Point(0, 0);
-            this.darkGroupBox6.Name = "darkGroupBox6";
-            this.darkGroupBox6.Size = new System.Drawing.Size(767, 65);
-            this.darkGroupBox6.TabIndex = 2;
-            this.darkGroupBox6.TabStop = false;
-            this.darkGroupBox6.Text = "조회 조건";
-            // 
-            // darkComboBox2
-            // 
-            this.darkComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.darkComboBox2.FormattingEnabled = true;
-            this.darkComboBox2.Location = new System.Drawing.Point(19, 29);
-            this.darkComboBox2.Name = "darkComboBox2";
-            this.darkComboBox2.Size = new System.Drawing.Size(187, 22);
-            this.darkComboBox2.TabIndex = 0;
-            // 
-            // darkButton5
-            // 
-            this.darkButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton5.Location = new System.Drawing.Point(633, 22);
-            this.darkButton5.Name = "darkButton5";
-            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton5.Size = new System.Drawing.Size(128, 32);
-            this.darkButton5.TabIndex = 3;
-            this.darkButton5.Text = "조회";
-            // 
-            // darkLabel5
-            // 
-            this.darkLabel5.AutoSize = true;
-            this.darkLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel5.Location = new System.Drawing.Point(398, 34);
-            this.darkLabel5.Name = "darkLabel5";
-            this.darkLabel5.Size = new System.Drawing.Size(14, 15);
-            this.darkLabel5.TabIndex = 27;
-            this.darkLabel5.Text = "~";
-            // 
-            // ucDateTimePicker3
-            // 
-            this.ucDateTimePicker3.Location = new System.Drawing.Point(418, 27);
-            this.ucDateTimePicker3.Name = "ucDateTimePicker3";
-            this.ucDateTimePicker3.Size = new System.Drawing.Size(258, 27);
-            this.ucDateTimePicker3.TabIndex = 2;
-            // 
-            // ucDateTimePicker4
-            // 
-            this.ucDateTimePicker4.Location = new System.Drawing.Point(212, 27);
-            this.ucDateTimePicker4.Name = "ucDateTimePicker4";
-            this.ucDateTimePicker4.Size = new System.Drawing.Size(258, 27);
-            this.ucDateTimePicker4.TabIndex = 1;
-            // 
-            // timerSliding
-            // 
-            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
             // 
             // lvTrafficData
             // 
@@ -681,6 +445,75 @@ namespace VDSController
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 100;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.tabPage2.Controls.Add(this.ucCenterTrafficData);
+            this.tabPage2.Controls.Add(this.darkGroupBox3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(767, 630);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "차량 검지 정보 조회";
+            // 
+            // darkGroupBox3
+            // 
+            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox3.Controls.Add(this.cbLane);
+            this.darkGroupBox3.Controls.Add(this.darkButton3);
+            this.darkGroupBox3.Controls.Add(this.darkLabel2);
+            this.darkGroupBox3.Controls.Add(this.ucEndTime);
+            this.darkGroupBox3.Controls.Add(this.ucStartTime);
+            this.darkGroupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.darkGroupBox3.Location = new System.Drawing.Point(3, 3);
+            this.darkGroupBox3.Name = "darkGroupBox3";
+            this.darkGroupBox3.Size = new System.Drawing.Size(761, 65);
+            this.darkGroupBox3.TabIndex = 0;
+            this.darkGroupBox3.TabStop = false;
+            this.darkGroupBox3.Text = "조회 조건";
+            // 
+            // cbLane
+            // 
+            this.cbLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbLane.FormattingEnabled = true;
+            this.cbLane.Location = new System.Drawing.Point(19, 29);
+            this.cbLane.Name = "cbLane";
+            this.cbLane.Size = new System.Drawing.Size(187, 22);
+            this.cbLane.TabIndex = 0;
+            // 
+            // darkButton3
+            // 
+            this.darkButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton3.Location = new System.Drawing.Point(627, 22);
+            this.darkButton3.Name = "darkButton3";
+            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton3.Size = new System.Drawing.Size(128, 32);
+            this.darkButton3.TabIndex = 3;
+            this.darkButton3.Text = "조회";
+            this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
+            // 
+            // darkLabel2
+            // 
+            this.darkLabel2.AutoSize = true;
+            this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel2.Location = new System.Drawing.Point(398, 34);
+            this.darkLabel2.Name = "darkLabel2";
+            this.darkLabel2.Size = new System.Drawing.Size(14, 15);
+            this.darkLabel2.TabIndex = 27;
+            this.darkLabel2.Text = "~";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.lvTrafficStat);
+            this.tabPage4.Controls.Add(this.darkGroupBox5);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(767, 630);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "교통 데이터 조회";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // lvTrafficStat
             // 
             this.lvTrafficStat.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -693,7 +526,7 @@ namespace VDSController
             this.columnHeader17,
             this.columnHeader18});
             this.lvTrafficStat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvTrafficStat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvTrafficStat.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvTrafficStat.FullRowSelect = true;
             this.lvTrafficStat.GridLines = true;
             this.lvTrafficStat.HideSelection = false;
@@ -752,6 +585,63 @@ namespace VDSController
             this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader18.Width = 100;
             // 
+            // darkGroupBox5
+            // 
+            this.darkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox5.Controls.Add(this.cbTrafficLane);
+            this.darkGroupBox5.Controls.Add(this.darkButton4);
+            this.darkGroupBox5.Controls.Add(this.darkLabel4);
+            this.darkGroupBox5.Controls.Add(this.ucTrafficEndTime);
+            this.darkGroupBox5.Controls.Add(this.ucTrafficStartTime);
+            this.darkGroupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.darkGroupBox5.Location = new System.Drawing.Point(0, 0);
+            this.darkGroupBox5.Name = "darkGroupBox5";
+            this.darkGroupBox5.Size = new System.Drawing.Size(767, 65);
+            this.darkGroupBox5.TabIndex = 2;
+            this.darkGroupBox5.TabStop = false;
+            this.darkGroupBox5.Text = "조회 조건";
+            // 
+            // cbTrafficLane
+            // 
+            this.cbTrafficLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbTrafficLane.FormattingEnabled = true;
+            this.cbTrafficLane.Location = new System.Drawing.Point(19, 29);
+            this.cbTrafficLane.Name = "cbTrafficLane";
+            this.cbTrafficLane.Size = new System.Drawing.Size(187, 22);
+            this.cbTrafficLane.TabIndex = 0;
+            // 
+            // darkButton4
+            // 
+            this.darkButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton4.Location = new System.Drawing.Point(633, 22);
+            this.darkButton4.Name = "darkButton4";
+            this.darkButton4.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton4.Size = new System.Drawing.Size(128, 32);
+            this.darkButton4.TabIndex = 3;
+            this.darkButton4.Text = "조회";
+            this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
+            // 
+            // darkLabel4
+            // 
+            this.darkLabel4.AutoSize = true;
+            this.darkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel4.Location = new System.Drawing.Point(398, 34);
+            this.darkLabel4.Name = "darkLabel4";
+            this.darkLabel4.Size = new System.Drawing.Size(14, 15);
+            this.darkLabel4.TabIndex = 27;
+            this.darkLabel4.Text = "~";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.lvSpeedStat);
+            this.tabPage5.Controls.Add(this.darkGroupBox6);
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(767, 630);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "속도 데이터 조회";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // lvSpeedStat
             // 
             this.lvSpeedStat.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -770,7 +660,7 @@ namespace VDSController
             this.columnHeader31,
             this.columnHeader32});
             this.lvSpeedStat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvSpeedStat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvSpeedStat.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvSpeedStat.FullRowSelect = true;
             this.lvSpeedStat.GridLines = true;
             this.lvSpeedStat.HideSelection = false;
@@ -865,6 +755,117 @@ namespace VDSController
             this.columnHeader32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader32.Width = 70;
             // 
+            // darkGroupBox6
+            // 
+            this.darkGroupBox6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox6.Controls.Add(this.cbSpeedLane);
+            this.darkGroupBox6.Controls.Add(this.darkButton5);
+            this.darkGroupBox6.Controls.Add(this.darkLabel5);
+            this.darkGroupBox6.Controls.Add(this.ucSpeedEndTime);
+            this.darkGroupBox6.Controls.Add(this.ucSpeedStartTime);
+            this.darkGroupBox6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.darkGroupBox6.Location = new System.Drawing.Point(0, 0);
+            this.darkGroupBox6.Name = "darkGroupBox6";
+            this.darkGroupBox6.Size = new System.Drawing.Size(767, 65);
+            this.darkGroupBox6.TabIndex = 2;
+            this.darkGroupBox6.TabStop = false;
+            this.darkGroupBox6.Text = "조회 조건";
+            // 
+            // cbSpeedLane
+            // 
+            this.cbSpeedLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbSpeedLane.FormattingEnabled = true;
+            this.cbSpeedLane.Location = new System.Drawing.Point(19, 29);
+            this.cbSpeedLane.Name = "cbSpeedLane";
+            this.cbSpeedLane.Size = new System.Drawing.Size(187, 22);
+            this.cbSpeedLane.TabIndex = 0;
+            // 
+            // darkButton5
+            // 
+            this.darkButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton5.Location = new System.Drawing.Point(633, 22);
+            this.darkButton5.Name = "darkButton5";
+            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton5.Size = new System.Drawing.Size(128, 32);
+            this.darkButton5.TabIndex = 3;
+            this.darkButton5.Text = "조회";
+            this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click);
+            // 
+            // darkLabel5
+            // 
+            this.darkLabel5.AutoSize = true;
+            this.darkLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel5.Location = new System.Drawing.Point(398, 34);
+            this.darkLabel5.Name = "darkLabel5";
+            this.darkLabel5.Size = new System.Drawing.Size(14, 15);
+            this.darkLabel5.TabIndex = 27;
+            this.darkLabel5.Text = "~";
+            // 
+            // timerSliding
+            // 
+            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
+            // 
+            // ucStartDate
+            // 
+            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
+            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucStartDate.Name = "ucStartDate";
+            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
+            this.ucStartDate.TabIndex = 4;
+            // 
+            // ucCenterTrafficData
+            // 
+            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
+            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
+            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
+            this.ucCenterTrafficData.TabIndex = 1;
+            // 
+            // ucEndTime
+            // 
+            this.ucEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucEndTime.Name = "ucEndTime";
+            this.ucEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucEndTime.TabIndex = 2;
+            // 
+            // ucStartTime
+            // 
+            this.ucStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucStartTime.Name = "ucStartTime";
+            this.ucStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucStartTime.TabIndex = 1;
+            // 
+            // ucTrafficEndTime
+            // 
+            this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucTrafficEndTime.Name = "ucTrafficEndTime";
+            this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucTrafficEndTime.TabIndex = 2;
+            // 
+            // ucTrafficStartTime
+            // 
+            this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucTrafficStartTime.Name = "ucTrafficStartTime";
+            this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucTrafficStartTime.TabIndex = 1;
+            // 
+            // ucSpeedEndTime
+            // 
+            this.ucSpeedEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucSpeedEndTime.Name = "ucSpeedEndTime";
+            this.ucSpeedEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucSpeedEndTime.TabIndex = 2;
+            // 
+            // ucSpeedStartTime
+            // 
+            this.ucSpeedStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucSpeedStartTime.Name = "ucSpeedStartTime";
+            this.ucSpeedStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucSpeedStartTime.TabIndex = 1;
+            // 
             // tabTargetSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -948,11 +949,11 @@ namespace VDSController
         private ucDateTimePicker ucTrafficEndTime;
         private ucDateTimePicker ucTrafficStartTime;
         private DarkUI.Controls.DarkGroupBox darkGroupBox6;
-        private DarkUI.Controls.DarkComboBox darkComboBox2;
+        private DarkUI.Controls.DarkComboBox cbSpeedLane;
         private DarkUI.Controls.DarkButton darkButton5;
         private DarkUI.Controls.DarkLabel darkLabel5;
-        private ucDateTimePicker ucDateTimePicker3;
-        private ucDateTimePicker ucDateTimePicker4;
+        private ucDateTimePicker ucSpeedEndTime;
+        private ucDateTimePicker ucSpeedStartTime;
         private ListViewEx lvTrafficStat;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
