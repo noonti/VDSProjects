@@ -18,5 +18,10 @@ namespace VDSDBHandler.Model
         public String REPORT_YN { get; set; }
 
         public String REG_DATE { get; set; }
+
+        public String I_START_DATE { get; set; }
+        public String I_END_DATE { get; set; }
+
+        public int I_LANE { get; set; }
     }
 }

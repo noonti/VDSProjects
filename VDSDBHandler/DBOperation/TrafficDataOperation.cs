@@ -297,5 +297,20 @@ namespace VDSDBHandler.DBOperation
             return _dapperOrm.ReturnList<dynamic>("SP_GET_TRAFFIC_STAT_LIST", param, out spResult).ToList();
 
         }
+
+        public IEnumerable<dynamic> GetSpeedStatList(SPEED_STAT input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_START_DATE = input.I_START_DATE,
+                I_END_DATE = input.I_END_DATE,
+                I_LANE = input.I_LANE,
+                I_REPORT_YN = input.REPORT_YN,
+
+            });
+            return _dapperOrm.ReturnList<dynamic>("SP_GET_SPEED_STAT_LIST", param, out spResult).ToList();
+
+        }
     }
 }
