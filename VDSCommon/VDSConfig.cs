@@ -65,7 +65,7 @@ namespace VDSCommon
                 ReadLaneGroup(ref ToRIghtLaneGroup, "Right");
 
 
-                // 스피트 분류 초기값 설정 
+                // 스피드 분류 초기값 설정 
                 for (int i = 0; i < 12; i++)
                     SPEED_CATEGORY[i] =(byte)( (i + 1) * 10);
 
