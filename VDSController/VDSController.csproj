@@ -64,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global\GlobalCommonData.cs" />
+    <Compile Include="LaneManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LaneManageForm.Designer.cs">
+      <DependentUpon>LaneManageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     <Compile Include="ViewLiveCamForm.Designer.cs">
       <DependentUpon>ViewLiveCamForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LaneManageForm.resx">
+      <DependentUpon>LaneManageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

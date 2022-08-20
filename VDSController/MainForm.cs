@@ -374,5 +374,10 @@ namespace VDSController
             }
             return nResult;
         }
+
+        private void menuLaneMng_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
