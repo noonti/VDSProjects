@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddLaneInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddLaneInfoForm.Designer.cs">
+      <DependentUpon>AddLaneInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global\GlobalCommonData.cs" />
     <Compile Include="LaneManageForm.cs">
       <SubType>Form</SubType>
@@ -156,6 +162,9 @@
     <Compile Include="ViewLiveCamForm.Designer.cs">
       <DependentUpon>ViewLiveCamForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddLaneInfoForm.resx">
+      <DependentUpon>AddLaneInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LaneManageForm.resx">
       <DependentUpon>LaneManageForm.cs</DependentUpon>
     </EmbeddedResource>

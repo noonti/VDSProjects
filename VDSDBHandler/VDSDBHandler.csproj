@@ -84,6 +84,8 @@
     <Compile Include="DBOperation\VDSManage\UserInfoOperation.cs" />
     <Compile Include="DBOperation\VDSManage\VDSControllerOperation.cs" />
     <Compile Include="Model\ACCU_TRAFFIC_DATA_STAT.cs" />
+    <Compile Include="Model\LANE_GROUP.cs" />
+    <Compile Include="Model\LANE_INFO.cs" />
     <Compile Include="Model\LENGTH_DATA_STAT.cs" />
     <Compile Include="Model\SPEED_DATA_STAT.cs" />
     <Compile Include="Model\SPEED_STAT.cs" />

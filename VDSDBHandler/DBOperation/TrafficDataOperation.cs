@@ -312,5 +312,130 @@ namespace VDSDBHandler.DBOperation
             return _dapperOrm.ReturnList<dynamic>("SP_GET_SPEED_STAT_LIST", param, out spResult).ToList();
 
         }
+
+        public void AddLaneGroup(LANE_GROUP input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_CSN_NO = input.CSN_NO,
+                I_LANE_GROUP_NAME = input.LANE_GROUP_NAME,
+                I_LANE_SORT = input.LANE_SORT,
+                I_DIRECTION = input.DIRECTION,
+                I_LANE_COUNT = input.LANE_COUNT,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_LANE_GROUP", param, out spResult);
+        }
+
+        public void UpdateLaneGroup(LANE_GROUP input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_CSN_NO = input.CSN_NO,
+                I_LANE_GROUP_NAME = input.LANE_GROUP_NAME,
+                I_LANE_SORT = input.LANE_SORT,
+                I_DIRECTION = input.DIRECTION,
+                I_LANE_COUNT = input.LANE_COUNT,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_LANE_GROUP", param, out spResult);
+        }
+
+        public void DeleteLaneGroup(LANE_GROUP input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_DELETE_LANE_GROUP", param, out spResult);
+        }
+
+        public IEnumerable<LANE_GROUP> GetLaneGroupList(LANE_GROUP input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_CSN_NO = input.CSN_NO,
+
+            });
+            return _dapperOrm.ReturnList<LANE_GROUP>("SP_GET_LANE_GROUP_LIST", param, out spResult).ToList();
+
+        }
+
+        public LANE_GROUP GetLaneGroup(LANE_GROUP input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+
+            });
+            return _dapperOrm.ReturnSingle<LANE_GROUP>("SP_GET_LANE_GROUP", param, out spResult);
+
+        }
+
+        public void AddLaneInfo(LANE_INFO input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_LANE_GROUP_ID = input.LANE_GROUP_ID,
+                I_LANE_NAME = input.LANE_NAME,
+                I_LANE = input.LANE,
+                I_DIRECTION = input.DIRECTION,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_LANE_INFO", param, out spResult);
+        }
+
+        public void UpdateLaneInfo(LANE_INFO input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+                I_LANE_GROUP_ID = input.LANE_GROUP_ID,
+                I_LANE_NAME = input.LANE_NAME,
+                I_LANE = input.LANE,
+                I_DIRECTION = input.DIRECTION,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_LANE_INFO", param, out spResult);
+        }
+
+        public void DeleteLaneInfo(LANE_INFO input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_DELETE_LANE_INFO", param, out spResult);
+        }
+
+
+        public IEnumerable<LANE_INFO> GetLaneInfoList(LANE_INFO input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_LANE_GROUP_ID = input.LANE_GROUP_ID,
+
+            });
+            return _dapperOrm.ReturnList<LANE_INFO>("SP_GET_LANE_INFO_LIST", param, out spResult).ToList();
+
+        }
+
+        public LANE_INFO GetLaneInfo(LANE_INFO input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = input.ID,
+
+            });
+            return _dapperOrm.ReturnSingle<LANE_INFO>("SP_GET_LANE_INFO", param, out spResult);
+
+        }
     }
 }
