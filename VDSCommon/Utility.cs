@@ -111,6 +111,12 @@ namespace VDSCommon
     }
 
 
+    public enum MOVE_DIRECTION
+    {
+        TO_RIGHT = 1, // 왼쪽에서 오른쪽으로 이동(<---)
+        TO_LEFT = 2   // 오른쪽에서 왼쪽으로 이동(--->)
+    }
+
     public struct CommuData
     {
         public SessionContext session;

@@ -24,7 +24,7 @@ namespace VDSDBHandler.Model
 
 		public String REG_DATE { get; set; }
 
-		List<LANE_INFO> laneInfoList = new List<LANE_INFO>();
+		public List<LANE_INFO> laneInfoList = new List<LANE_INFO>();
 
 	}
 }

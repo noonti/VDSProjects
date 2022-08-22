@@ -11,7 +11,7 @@ namespace VDSDBHandler.Model
 
 		public int ID { get; set; }
 
-		public String LANE_GROUP_ID { get; set; }
+		public int LANE_GROUP_ID { get; set; }
 
 		public String LANE_NAME { get; set; }
 
