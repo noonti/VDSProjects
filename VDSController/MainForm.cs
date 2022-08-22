@@ -287,9 +287,7 @@ namespace VDSController
             VDSConfigForm configForm = new VDSConfigForm();
             if(configForm.ShowDialog() == DialogResult.OK)
             {
-                VDSConfig.SaveConfig();
-                MessageBox.Show("설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다");
-                Close();
+                SaveConfigAndClose();
             }
         }
 
@@ -377,7 +375,19 @@ namespace VDSController
 
         private void menuLaneMng_Click(object sender, EventArgs e)
         {
+            LaneManageForm laneManageForm = new LaneManageForm();
+            if(laneManageForm.ShowDialog() == DialogResult.OK)
+            {
+                SaveConfigAndClose();
 
+            }
+        }
+
+        private void SaveConfigAndClose()
+        {
+            VDSConfig.SaveConfig();
+            MessageBox.Show("설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다");
+            Close();
         }
     }
 }
