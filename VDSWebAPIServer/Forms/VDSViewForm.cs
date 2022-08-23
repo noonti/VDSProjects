@@ -176,12 +176,11 @@ namespace VDSWebAPIServer.Forms
                 lvTrafficData.Items.RemoveAt(lvTrafficData.Items.Count - 1);
 
             ListViewItem item;
-            // 제목, 콘텐츠 유형,  조회수, 별점수, 의뢰인, 코치, 등록일
-            item = new ListViewItem(trafficData.detectTime); // 
 
+            item = new ListViewItem(trafficData.detectTime); // 
             item.SubItems.Add(trafficData.lane.ToString());
             //item.SubItems.Add(trafficData.direction == 1 ? "상행선" : "하행선");
-            item.SubItems.Add(Utility.GetLaneGroupName(trafficData.DIRECTION));
+            item.SubItems.Add(Utility.GetLaneGroupName(trafficData.direction));
             item.SubItems.Add(trafficData.length.ToString());
             item.SubItems.Add(trafficData.speed.ToString());
             item.SubItems.Add(trafficData.occupyTime.ToString());
