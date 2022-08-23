@@ -20,6 +20,8 @@ using VDSAPIModule;
 using VDSCommon;
 using VDSCommon.DataType;
 using VDSController.Global;
+using VDSDBHandler.DBOperation;
+using VDSDBHandler.Model;
 using VDSManagerCtrl;
 using VideoVDSManageCtrl;
 
@@ -39,10 +41,15 @@ namespace VDSController
         Timer _timer = new Timer();
         bool _initialActiviated = false;
 
+        List<LANE_GROUP> laneGroupList = new List<LANE_GROUP>();
+
         public MainForm()
         {
             InitializeComponent();
             VDSConfig.ReadConfig();
+
+            GetLaneGroupList();
+
             this.Text = VDSConfig.GetVDSControllerName();
            
             InitTabPages();
@@ -388,6 +395,75 @@ namespace VDSController
             VDSConfig.SaveConfig();
             MessageBox.Show("설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다");
             Close();
+        }
+
+        private void GetLaneGroupList()
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            laneGroupList = db.GetLaneGroupList(new LANE_GROUP()
+            {
+
+            }, out SP_RESULT spResult).ToList();
+
+            GetLaneInfoList(laneGroupList);
+
+            var leftLaneGroup = laneGroupList.Where(x => x.DIRECTION == (int)MOVE_DIRECTION.TO_LEFT).FirstOrDefault();
+            if(leftLaneGroup!=null)
+            {
+                VDSConfig.ToLeftLaneGroup = new LaneGroup()
+                {
+                    LaneGroupName = leftLaneGroup.LANE_GROUP_NAME,
+                    LaneSort = leftLaneGroup.LANE_SORT,
+                    Direction = leftLaneGroup.DIRECTION
+                };
+                foreach(var lane in leftLaneGroup.laneInfoList)
+                {
+                    LaneInfo laneInfo = new LaneInfo()
+                    {
+                        LaneName = lane.LANE_NAME,
+                        Lane = lane.LANE,
+                        Direction = lane.DIRECTION
+                    };
+                    VDSConfig.ToLeftLaneGroup.AddLaneInfo(laneInfo);
+                }
+
+            }
+
+            var rightLaneGroup = laneGroupList.Where(x => x.DIRECTION == (int)MOVE_DIRECTION.TO_RIGHT).FirstOrDefault();
+            if (rightLaneGroup != null)
+            {
+                VDSConfig.ToRIghtLaneGroup = new LaneGroup()
+                {
+                    LaneGroupName = rightLaneGroup.LANE_GROUP_NAME,
+                    LaneSort = rightLaneGroup.LANE_SORT,
+                    Direction = rightLaneGroup.DIRECTION
+                };
+                foreach (var lane in rightLaneGroup.laneInfoList)
+                {
+                    LaneInfo laneInfo = new LaneInfo()
+                    {
+                        LaneName = lane.LANE_NAME,
+                        Lane = lane.LANE,
+                        Direction = lane.DIRECTION
+                    };
+                    VDSConfig.ToRIghtLaneGroup.AddLaneInfo(laneInfo);
+                }
+
+            }
+            // VDSConfig.
+
+        }
+        private void GetLaneInfoList(List<LANE_GROUP> groupList)
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            foreach (var group in groupList)
+            {
+                group.laneInfoList = db.GetLaneInfoList(new LANE_INFO()
+                {
+                    LANE_GROUP_ID = group.ID
+
+                }, out SP_RESULT spResult).ToList();
+            }
         }
     }
 }

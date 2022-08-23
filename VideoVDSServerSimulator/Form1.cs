@@ -382,10 +382,12 @@ namespace VideoVDSServerSimulator
             
             VDSTrafficDataEvent trafficDataEvent = new VDSTrafficDataEvent();
             //byte _lane = (byte)((DateTime.Now.Millisecond % 4)+1);
-            byte _lane  = (byte)((DateTime.Now.Second % 2) + 1);
-            byte _direction = (byte)((DateTime.Now.Millisecond % 2) + 1);
-           
-
+            byte _lane  = (byte)((DateTime.Now.Millisecond % 8) + 1);
+            byte _direction = 0;
+            if (_lane <5)
+                _direction = (int)MOVE_DIRECTION.TO_LEFT;
+            else
+                _direction = (int)MOVE_DIRECTION.TO_RIGHT;
 
             TrafficData trafficData = new TrafficData()
             {
@@ -497,7 +499,7 @@ namespace VideoVDSServerSimulator
 
             }
 
-            for (int i=0;i<2;i++)
+            for (int i=0;i<8;i++)
             {
                 foreach (var unisem in _clientList)
                 {

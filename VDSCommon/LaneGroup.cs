@@ -13,7 +13,7 @@ namespace VDSController
         public int Direction { get; set; }// 1: TO Left  2: TO Right
         public List<LaneInfo> LaneList = new List<LaneInfo>();
 
-        public int AddLaineInfo(LaneInfo lane)
+        public int AddLaneInfo(LaneInfo lane)
         {
             LaneList.Add(lane);
             return LaneList.Count;

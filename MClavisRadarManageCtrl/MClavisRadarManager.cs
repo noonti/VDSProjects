@@ -266,10 +266,11 @@ namespace MClavisRadarManageCtrl
 
         public TrafficDataEvent GetTrafficData(MCLAVIS_MESSAGE message)
         {
+          
             TrafficDataEvent result = new TrafficDataEvent();
             result.id = DateTime.Now.ToString("yyMMddHHmmss_") + Guid.NewGuid().ToString();
             result.detectTime = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT);
-            result.direction = (byte)(message.Lane_Dir == 0 ? 1 : 2); // 1: 상행 2: 하행
+            result.direction = (byte)(message.Lane_Dir == 0 ? (int)MOVE_DIRECTION.TO_RIGHT : (int)MOVE_DIRECTION.TO_LEFT); // 1: 상행 2: 하행
             result.lane = message.Lane;
             result.length = (int)(message.Range_X * 100);
             result.speed = Math.Abs(message.Velocity_X);

@@ -124,6 +124,7 @@
             this.Controls.Add(this.txtLaneName);
             this.Controls.Add(this.darkLabel1);
             this.Name = "AddLaneInfoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "차선 정보 설정";
             this.Activated += new System.EventHandler(this.AddLaneInfoForm_Activated);
             this.ResumeLayout(false);

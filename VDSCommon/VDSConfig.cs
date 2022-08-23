@@ -37,11 +37,10 @@ namespace VDSCommon
         public const int PACKET_SIZE = 4096*2;
         public const int PAGE_SIZE = 20;
 
-       
+
 
         public static LaneGroup ToLeftLaneGroup = new LaneGroup();
         public static LaneGroup ToRIghtLaneGroup = new LaneGroup();
-
 
         public static byte[] SPEED_CATEGORY = new byte[12];
 
@@ -61,8 +60,8 @@ namespace VDSCommon
                 ReadKorExConfig();
 
 
-                ReadLaneGroup(ref ToLeftLaneGroup, "Left");
-                ReadLaneGroup(ref ToRIghtLaneGroup, "Right");
+                //ReadLaneGroup(ref ToLeftLaneGroup, "Left");
+                //ReadLaneGroup(ref ToRIghtLaneGroup, "Right");
 
 
                 // 스피드 분류 초기값 설정 
@@ -371,53 +370,53 @@ namespace VDSCommon
             // korExConfig end 
 
         }
-        public static void ReadLaneGroup(ref LaneGroup laneGroup, String laneName)
-        {
-            NameValueCollection groupNVC;
-            String laneGroupName = String.Format("LaneGroup/{0}LaneGroup", laneName);
-            int laneCount = 0;
+        //public static void ReadLaneGroup(ref LaneGroup laneGroup, String laneName)
+        //{
+        //    NameValueCollection groupNVC;
+        //    String laneGroupName = String.Format("LaneGroup/{0}LaneGroup", laneName);
+        //    int laneCount = 0;
             
-            //"LaneGroup/LeftLaneGroup" , "LaneGroup/RightLaneGroup"
+        //    //"LaneGroup/LeftLaneGroup" , "LaneGroup/RightLaneGroup"
             
-            groupNVC = (NameValueCollection)ConfigurationManager.GetSection(laneGroupName);
-            if(groupNVC != null && groupNVC.Keys.Count > 0)
-            {
-                //< add key = "LaneGroupName" value = "좌측방향" />
-                // < add key = "LaneSort" value = "1" />
-                //    < add key = "Direction" value = "1" />
-                //       < add key = "LaneCount" value = "0" />
-                laneGroup.LaneGroupName = groupNVC.GetValues("LaneGroupName")[0].ToString() ;
-                laneGroup.LaneSort = int.Parse(groupNVC.GetValues("LaneSort")[0].ToString());
-                laneGroup.Direction = int.Parse(groupNVC.GetValues("Direction")[0].ToString());
-                laneCount = int.Parse(groupNVC.GetValues("LaneCount")[0].ToString());
-                if(laneCount>0)
-                {
-                    for(int i =0;i< laneCount;i++)
-                    {
-                        String laneSection = String.Format("{0}Lane/Lane_{1}", laneName, i+1);
-                        LaneInfo lane = ReadLaneInfo(laneSection);
-                        if(lane!=null)
-                            laneGroup.AddLaineInfo(lane);
-                    }
-                }
-            }
-        }
+        //    groupNVC = (NameValueCollection)ConfigurationManager.GetSection(laneGroupName);
+        //    if(groupNVC != null && groupNVC.Keys.Count > 0)
+        //    {
+        //        //< add key = "LaneGroupName" value = "좌측방향" />
+        //        // < add key = "LaneSort" value = "1" />
+        //        //    < add key = "Direction" value = "1" />
+        //        //       < add key = "LaneCount" value = "0" />
+        //        laneGroup.LaneGroupName = groupNVC.GetValues("LaneGroupName")[0].ToString() ;
+        //        laneGroup.LaneSort = int.Parse(groupNVC.GetValues("LaneSort")[0].ToString());
+        //        laneGroup.Direction = int.Parse(groupNVC.GetValues("Direction")[0].ToString());
+        //        laneCount = int.Parse(groupNVC.GetValues("LaneCount")[0].ToString());
+        //        if(laneCount>0)
+        //        {
+        //            for(int i =0;i< laneCount;i++)
+        //            {
+        //                String laneSection = String.Format("{0}Lane/Lane_{1}", laneName, i+1);
+        //                LaneInfo lane = ReadLaneInfo(laneSection);
+        //                if(lane!=null)
+        //                    laneGroup.AddLaneInfo(lane);
+        //            }
+        //        }
+        //    }
+        //}
 
-        public static LaneInfo ReadLaneInfo(String laneSection)
-        {
-            LaneInfo lane = null;
-            NameValueCollection nvc;
-            nvc = (NameValueCollection)ConfigurationManager.GetSection(laneSection);
-            if (nvc != null && nvc.Keys.Count > 0)
-            {
-                lane = new LaneInfo();
-                lane.LaneName = nvc.GetValues("LaneName")[0].ToString();
-                lane.Lane = int.Parse(nvc.GetValues("lane")[0].ToString());
-                lane.Direction = int.Parse(nvc.GetValues("Direction")[0].ToString());
+        //public static LaneInfo ReadLaneInfo(String laneSection)
+        //{
+        //    LaneInfo lane = null;
+        //    NameValueCollection nvc;
+        //    nvc = (NameValueCollection)ConfigurationManager.GetSection(laneSection);
+        //    if (nvc != null && nvc.Keys.Count > 0)
+        //    {
+        //        lane = new LaneInfo();
+        //        lane.LaneName = nvc.GetValues("LaneName")[0].ToString();
+        //        lane.Lane = int.Parse(nvc.GetValues("lane")[0].ToString());
+        //        lane.Direction = int.Parse(nvc.GetValues("Direction")[0].ToString());
 
-            }
-            return lane;
-        }
+        //    }
+        //    return lane;
+        //}
 
         
 
