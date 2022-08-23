@@ -490,6 +490,12 @@ namespace VDSController
         // 과거 로그 파일 삭제(보관주기 이전)
         private async void DeleteExpiredLogFile()
         {
+            String expireDate = DateTime.Now.AddDays(-1*VDSConfig.controllerConfig.LogFilePeriod).ToString("yyyyMMdd");
+            int result;
+            var task1 = Task.Run(() => {
+                return Utility.DeleteOldFiles(Utility.GetLogPath(), expireDate); ;
+            });
+            result = await task1;
 
         }
     }
