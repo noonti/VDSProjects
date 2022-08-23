@@ -55,7 +55,8 @@ namespace VDSController
             item = new ListViewItem(data.DETECT_TIME); // 
 
             item.SubItems.Add(data.LANE.ToString());
-            item.SubItems.Add(data.DIRECTION == 1?"상행선":"하행선");
+            //item.SubItems.Add(data.DIRECTION == 1?"상행선":"하행선");
+            item.SubItems.Add(Utility.GetLaneGroupName(data.DIRECTION));
             item.SubItems.Add(data.LENGTH.ToString());
             item.SubItems.Add(data.SPEED.ToString());
             item.SubItems.Add(data.OCCUPY_TIME.ToString());

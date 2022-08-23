@@ -411,7 +411,8 @@ namespace VDSController
             item = new ListViewItem(trafficDataEvent.detectTime); // 
 
             item.SubItems.Add(trafficDataEvent.lane.ToString());
-            item.SubItems.Add(trafficDataEvent.direction == 1 ? "상행선" : "하행선");
+            //item.SubItems.Add(trafficDataEvent.direction == 1 ? "상행선" : "하행선"); // 1: TO Right  2: TO Left
+            item.SubItems.Add(Utility.GetLaneGroupName(trafficDataEvent.direction));
             item.SubItems.Add(trafficDataEvent.length.ToString());
             item.SubItems.Add(trafficDataEvent.speed.ToString());
             item.SubItems.Add(trafficDataEvent.occupyTime.ToString());
