@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using VDSCommon.API.Model;
 using System.Reflection;
+using System.IO;
 
 namespace VDSCommon
 {
@@ -1134,6 +1135,24 @@ namespace VDSCommon
                     break;
             }
             return result;
+        }
+
+        public static int DeleteOldFiles(String filePath, String expireDate)
+        {
+            int nResult = 0;
+            DirectoryInfo dir = new DirectoryInfo(filePath);
+            DateTime fileCreatedTime;
+            DateTime cmpTime = DateTime.ParseExact(expireDate, "yyyyMMdd", null);
+            foreach(FileInfo file in dir.GetFiles()) 
+            {
+                fileCreatedTime = file.CreationTime;
+                if(file.Extension.CompareTo(".log") ==0 && DateTime.Compare(fileCreatedTime, cmpTime)<0)
+                {
+                    File.Delete(file.FullName);
+                    nResult++;
+                }
+            }
+            return nResult;
         }
     }
 }
