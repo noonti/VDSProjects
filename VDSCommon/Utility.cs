@@ -113,8 +113,8 @@ namespace VDSCommon
 
     public enum MOVE_DIRECTION
     {
-        TO_RIGHT = 1, // 왼쪽에서 오른쪽으로 이동(<---)
-        TO_LEFT = 2   // 오른쪽에서 왼쪽으로 이동(--->)
+        TO_RIGHT = 1, // 왼쪽에서 오른쪽으로 이동(--->)
+        TO_LEFT = 2   // 오른쪽에서 왼쪽으로 이동(<---)
     }
 
     public struct CommuData
@@ -1118,6 +1118,21 @@ namespace VDSCommon
         {
             String result = String.Empty;
             result = JsonConvert.SerializeObject(data);
+            return result;
+        }
+
+        public static String GetLaneGroupName(int direction)
+        {
+            String result = String.Empty;
+            switch (direction)
+            {
+                case (int)MOVE_DIRECTION.TO_RIGHT:
+                    result = VDSConfig.ToRIghtLaneGroup.LaneGroupName;
+                    break;
+                case (int)MOVE_DIRECTION.TO_LEFT:
+                    result = VDSConfig.ToLeftLaneGroup.LaneGroupName;
+                    break;
+            }
             return result;
         }
     }

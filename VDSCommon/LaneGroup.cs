@@ -8,9 +8,11 @@ namespace VDSController
 {
     public class LaneGroup
     {
+
+
         public String LaneGroupName { get; set; }
         public int LaneSort { get; set; } // 1: 오름차순, 2: 내림차순
-        public int Direction { get; set; }// 1: TO Left  2: TO Right
+        public int Direction { get; set; }// 1: TO Right  2: TO Left 
         public List<LaneInfo> LaneList = new List<LaneInfo>();
 
         public int AddLaneInfo(LaneInfo lane)

@@ -180,7 +180,8 @@ namespace VDSWebAPIServer.Forms
             item = new ListViewItem(trafficData.detectTime); // 
 
             item.SubItems.Add(trafficData.lane.ToString());
-            item.SubItems.Add(trafficData.direction == 1 ? "상행선" : "하행선");
+            //item.SubItems.Add(trafficData.direction == 1 ? "상행선" : "하행선");
+            item.SubItems.Add(Utility.GetLaneGroupName(trafficData.DIRECTION));
             item.SubItems.Add(trafficData.length.ToString());
             item.SubItems.Add(trafficData.speed.ToString());
             item.SubItems.Add(trafficData.occupyTime.ToString());
@@ -320,7 +321,8 @@ namespace VDSWebAPIServer.Forms
             item = new ListViewItem(data.DETECT_TIME); // 
 
             item.SubItems.Add(data.LANE.ToString());
-            item.SubItems.Add(data.DIRECTION == 1 ? "상행선" : "하행선");
+            //item.SubItems.Add(data.DIRECTION == 1 ? "상행선" : "하행선");
+            item.SubItems.Add(Utility.GetLaneGroupName(data.DIRECTION));
             item.SubItems.Add(data.LENGTH.ToString());
             item.SubItems.Add(data.SPEED.ToString());
             item.SubItems.Add(data.OCCUPY_TIME.ToString());
