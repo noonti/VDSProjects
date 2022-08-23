@@ -27,6 +27,9 @@ namespace VideoVDSServerSimulator
         DataFrame _prevDataFrame = null;
         Timer _timer = null;
         TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+
+        Random random = new Random();
+
         public Form1()
         {
             InitializeComponent();
@@ -382,7 +385,8 @@ namespace VideoVDSServerSimulator
             
             VDSTrafficDataEvent trafficDataEvent = new VDSTrafficDataEvent();
             //byte _lane = (byte)((DateTime.Now.Millisecond % 4)+1);
-            byte _lane  = (byte)((DateTime.Now.Millisecond % 8) + 1);
+
+            byte _lane = (byte)(random.Next(8)+1 );// ((DateTime.Now.Millisecond % 8) + 1);
             byte _direction = 0;
             if (_lane <5)
                 _direction = (int)MOVE_DIRECTION.TO_LEFT;
