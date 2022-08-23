@@ -55,7 +55,7 @@
             // 
             // ucConfig
             // 
-            this.ucConfig.Location = new System.Drawing.Point(1, 4);
+            this.ucConfig.Location = new System.Drawing.Point(-8, -4);
             this.ucConfig.Name = "ucConfig";
             this.ucConfig.Size = new System.Drawing.Size(1144, 583);
             this.ucConfig.TabIndex = 9;

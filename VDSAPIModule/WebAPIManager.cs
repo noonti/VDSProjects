@@ -31,7 +31,8 @@ namespace VDSAPIModule
 
         private void StopHTTPService()
         {
-            server.CloseAsync().Wait();
+            if(server!=null)
+                server.CloseAsync().Wait();
         }
 
         public int StartService()

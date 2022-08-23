@@ -101,6 +101,10 @@ namespace VDSCommon
                 
 
                 chkAnimation.Checked = controllerConfig.UseAnimation == 1 ? true : false;
+
+                txtTrafficDataPeriod.Text = controllerConfig.TrafficDataPeriod.ToString();
+                txtLogFilePeriod.Text = controllerConfig.LogFilePeriod.ToString();
+
             }
             
         }
@@ -226,6 +230,10 @@ namespace VDSCommon
 
 
                 controllerConfig.UseAnimation = chkAnimation.Checked ? 1 : 0;
+
+                controllerConfig.TrafficDataPeriod = int.Parse(txtTrafficDataPeriod.Text);
+                controllerConfig.LogFilePeriod = int.Parse(txtLogFilePeriod.Text);
+
                 nResult = 1;
             }
             catch (Exception ex)
