@@ -15,6 +15,7 @@ namespace VDSController
     public partial class ucTargetSummaryInfo : UserControl
     {
         Color panelOriginalColor;
+        Color labelOriginalColor;
         DateTime _displayTime = DateTime.Now;
         Timer _currentTimer = null;
 
@@ -41,6 +42,7 @@ namespace VDSController
             //carLane.StartTimer();
 
             panelOriginalColor = splitLane.Panel1.BackColor;
+            labelOriginalColor = lbLane.ForeColor;
             VecycleCount = 0;
 
         }
@@ -58,6 +60,7 @@ namespace VDSController
             {
                 //Console.WriteLine("hide...");
                 splitLane.Panel1.BackColor = panelOriginalColor;
+                lbLane.ForeColor = labelOriginalColor;
             }
             
         }
@@ -80,7 +83,7 @@ namespace VDSController
             VecycleCount++;
             SetVecycleCount(VecycleCount);
             segmentCount.Value = VecycleCount.ToString();
-
+            lbLane.ForeColor = Color.Yellow;
 
             AddRealTimeTrafficDataList(trafficDataEvent);
 

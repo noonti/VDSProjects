@@ -75,6 +75,7 @@
             // 
             this.lbLane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbLane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbLane.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbLane.Location = new System.Drawing.Point(0, 0);
             this.lbLane.Name = "lbLane";
             this.lbLane.Size = new System.Drawing.Size(97, 104);
