@@ -70,6 +70,11 @@ namespace VDSCommon.Config
         // 검지 애니매이션 사용 여부(1:사용 0:미사용)
         public int UseAnimation { get; set; }
 
+        // 데이터삭제 주기(일)
+        public int TrafficDataPeriod { get; set; }
+
+        // 로그 파일 삭제 주기(일)
+        public int LogFilePeriod { get; set; }
 
         // 유지보수 서버 정보
         public String MAServerAddress { get; set; }

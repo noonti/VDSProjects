@@ -54,6 +54,17 @@ namespace VDSDBHandler.DBOperation
         }
 
 
+        public void DeleteExpiredTrafficData(TRAFFIC_DATA input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_EXPIRE_DAY = input.I_EXPIRE_DAY
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_DELETE_EXPIRED_TRAFFIC_DATA", param, out spResult);
+        }
+
+
         public void AddTrafficTestData(TRAFFIC_DATA input, out SP_RESULT spResult)
         {
             var param = new DynamicParameters();
@@ -435,7 +446,6 @@ namespace VDSDBHandler.DBOperation
 
             });
             return _dapperOrm.ReturnSingle<LANE_INFO>("SP_GET_LANE_INFO", param, out spResult);
-
         }
     }
 }

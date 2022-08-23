@@ -38,6 +38,7 @@ namespace VDSCommon.API.Model
         public int I_PAGE_NO { get; set; }
         public int I_PAGE_SIZE { get; set; }
 
+        public int I_EXPIRE_DAY { get; set; }
 
     }
 }

@@ -231,7 +231,13 @@ namespace VDSCommon
             controllerConfig.UseAnimation = value;
 
 
-            // controller config end 
+            if (!int.TryParse(AppConfiguration.GetAppConfig("TRAFFIC_DATA_PERIOD"), out value))
+                value = 30;
+            controllerConfig.TrafficDataPeriod = value;
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("LOG_FILE_PERIOD"), out value))
+                value = 30;
+            controllerConfig.LogFilePeriod = value;
         }
 
         public static void ReadKictConfig()
@@ -541,6 +547,10 @@ namespace VDSCommon
 
 
                 AppConfiguration.SetAppConfig("VDS_USE_ANIMATION", controllerConfig.UseAnimation.ToString());
+
+                AppConfiguration.SetAppConfig("TRAFFIC_DATA_PERIOD", controllerConfig.TrafficDataPeriod.ToString());
+                AppConfiguration.SetAppConfig("LOG_FILE_PERIOD", controllerConfig.LogFilePeriod.ToString());
+
 
                 nResult = 1;
             }

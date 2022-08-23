@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VDSAPIModule;
 using VDSCommon;
+using VDSCommon.API.Model;
 using VDSCommon.DataType;
 using VDSController.Global;
 using VDSDBHandler.DBOperation;
@@ -55,7 +56,6 @@ namespace VDSController
             InitTabPages();
             InitializeManager();
             StartTimer();
-
         }
 
         public void StartSerialManager()
@@ -89,6 +89,11 @@ namespace VDSController
                 tabTarget.SyncTrafficDataCount();
 
                 curDate = now.ToString("yyyyMMdd");
+
+                // 과거 데이터 삭제(보관주기 이전)
+                DeleteExpiredTrafficData();
+                // 과거 로그 파일 삭제(보관주기 이전)
+                DeleteExpiredLogFile();
             }
 
         }
@@ -464,6 +469,28 @@ namespace VDSController
 
                 }, out SP_RESULT spResult).ToList();
             }
+        }
+
+        // 과거 데이터 삭제(보관주기 이전)
+        private async void DeleteExpiredTrafficData()
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            int result;
+            var task1 = Task.Run(() => {
+                db.DeleteExpiredTrafficData(new TRAFFIC_DATA()
+                {
+                    I_EXPIRE_DAY = VDSConfig.controllerConfig.TrafficDataPeriod
+                }, out SP_RESULT spResult);
+                return spResult.RESULT_COUNT;
+            });
+            result = await task1;
+
+            
+        }
+        // 과거 로그 파일 삭제(보관주기 이전)
+        private async void DeleteExpiredLogFile()
+        {
+
         }
     }
 }

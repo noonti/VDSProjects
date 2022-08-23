@@ -126,6 +126,10 @@
             this.txtCenterPeriod = new DarkUI.Controls.DarkTextBox();
             this.darkLabel36 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox14 = new DarkUI.Controls.DarkGroupBox();
+            this.txtVDSNo = new System.Windows.Forms.MaskedTextBox();
+            this.cbVDSGroup = new System.Windows.Forms.ComboBox();
+            this.cbVDSType = new System.Windows.Forms.ComboBox();
+            this.darkLabel49 = new DarkUI.Controls.DarkLabel();
             this.darkLabel37 = new DarkUI.Controls.DarkLabel();
             this.darkLabel30 = new DarkUI.Controls.DarkLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -139,10 +143,12 @@
             this.darkLabel39 = new DarkUI.Controls.DarkLabel();
             this.txtControlPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel41 = new DarkUI.Controls.DarkLabel();
-            this.darkLabel49 = new DarkUI.Controls.DarkLabel();
-            this.cbVDSType = new System.Windows.Forms.ComboBox();
-            this.cbVDSGroup = new System.Windows.Forms.ComboBox();
-            this.txtVDSNo = new System.Windows.Forms.MaskedTextBox();
+            this.txtTrafficDataPeriod = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel50 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel51 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel52 = new DarkUI.Controls.DarkLabel();
+            this.txtLogFilePeriod = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel53 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox1.SuspendLayout();
             this.tabConfing.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -418,6 +424,12 @@
             this.darkGroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.darkGroupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox4.Controls.Add(this.darkLabel52);
+            this.darkGroupBox4.Controls.Add(this.txtLogFilePeriod);
+            this.darkGroupBox4.Controls.Add(this.darkLabel53);
+            this.darkGroupBox4.Controls.Add(this.darkLabel51);
+            this.darkGroupBox4.Controls.Add(this.txtTrafficDataPeriod);
+            this.darkGroupBox4.Controls.Add(this.darkLabel50);
             this.darkGroupBox4.Controls.Add(this.darkLabel11);
             this.darkGroupBox4.Controls.Add(this.chkAnimation);
             this.darkGroupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -1353,6 +1365,45 @@
             this.darkGroupBox14.TabStop = false;
             this.darkGroupBox14.Text = "CSN 정보";
             // 
+            // txtVDSNo
+            // 
+            this.txtVDSNo.Location = new System.Drawing.Point(425, 19);
+            this.txtVDSNo.Mask = "9999999999";
+            this.txtVDSNo.Name = "txtVDSNo";
+            this.txtVDSNo.Size = new System.Drawing.Size(98, 21);
+            this.txtVDSNo.TabIndex = 16;
+            this.txtVDSNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtVDSNo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtVDSNo.ValidatingType = typeof(int);
+            // 
+            // cbVDSGroup
+            // 
+            this.cbVDSGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVDSGroup.FormattingEnabled = true;
+            this.cbVDSGroup.Location = new System.Drawing.Point(235, 18);
+            this.cbVDSGroup.Name = "cbVDSGroup";
+            this.cbVDSGroup.Size = new System.Drawing.Size(121, 23);
+            this.cbVDSGroup.TabIndex = 15;
+            // 
+            // cbVDSType
+            // 
+            this.cbVDSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVDSType.FormattingEnabled = true;
+            this.cbVDSType.Location = new System.Drawing.Point(74, 16);
+            this.cbVDSType.Name = "cbVDSType";
+            this.cbVDSType.Size = new System.Drawing.Size(109, 23);
+            this.cbVDSType.TabIndex = 14;
+            // 
+            // darkLabel49
+            // 
+            this.darkLabel49.AutoSize = true;
+            this.darkLabel49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel49.Location = new System.Drawing.Point(6, 21);
+            this.darkLabel49.Name = "darkLabel49";
+            this.darkLabel49.Size = new System.Drawing.Size(70, 15);
+            this.darkLabel49.TabIndex = 10;
+            this.darkLabel49.Text = "제어기 유형";
+            // 
             // darkLabel37
             // 
             this.darkLabel37.AutoSize = true;
@@ -1495,44 +1546,69 @@
             this.darkLabel41.TabIndex = 2;
             this.darkLabel41.Text = "Control Port";
             // 
-            // darkLabel49
+            // txtTrafficDataPeriod
             // 
-            this.darkLabel49.AutoSize = true;
-            this.darkLabel49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel49.Location = new System.Drawing.Point(6, 21);
-            this.darkLabel49.Name = "darkLabel49";
-            this.darkLabel49.Size = new System.Drawing.Size(70, 15);
-            this.darkLabel49.TabIndex = 10;
-            this.darkLabel49.Text = "제어기 유형";
+            this.txtTrafficDataPeriod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtTrafficDataPeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTrafficDataPeriod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtTrafficDataPeriod.Location = new System.Drawing.Point(359, 21);
+            this.txtTrafficDataPeriod.Name = "txtTrafficDataPeriod";
+            this.txtTrafficDataPeriod.Size = new System.Drawing.Size(49, 21);
+            this.txtTrafficDataPeriod.TabIndex = 2;
+            this.txtTrafficDataPeriod.Text = "30";
+            this.txtTrafficDataPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // cbVDSType
+            // darkLabel50
             // 
-            this.cbVDSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVDSType.FormattingEnabled = true;
-            this.cbVDSType.Location = new System.Drawing.Point(74, 16);
-            this.cbVDSType.Name = "cbVDSType";
-            this.cbVDSType.Size = new System.Drawing.Size(109, 23);
-            this.cbVDSType.TabIndex = 14;
+            this.darkLabel50.AutoSize = true;
+            this.darkLabel50.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel50.Location = new System.Drawing.Point(205, 24);
+            this.darkLabel50.Name = "darkLabel50";
+            this.darkLabel50.Size = new System.Drawing.Size(151, 15);
+            this.darkLabel50.TabIndex = 3;
+            this.darkLabel50.Text = "차량 검지 데이터 보관 일수";
             // 
-            // cbVDSGroup
+            // darkLabel51
             // 
-            this.cbVDSGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVDSGroup.FormattingEnabled = true;
-            this.cbVDSGroup.Location = new System.Drawing.Point(235, 18);
-            this.cbVDSGroup.Name = "cbVDSGroup";
-            this.cbVDSGroup.Size = new System.Drawing.Size(121, 23);
-            this.cbVDSGroup.TabIndex = 15;
+            this.darkLabel51.AutoSize = true;
+            this.darkLabel51.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel51.Location = new System.Drawing.Point(411, 24);
+            this.darkLabel51.Name = "darkLabel51";
+            this.darkLabel51.Size = new System.Drawing.Size(117, 15);
+            this.darkLabel51.TabIndex = 12;
+            this.darkLabel51.Text = "일(이전 데이터 삭제)";
             // 
-            // txtVDSNo
+            // darkLabel52
             // 
-            this.txtVDSNo.Location = new System.Drawing.Point(425, 19);
-            this.txtVDSNo.Mask = "9999999999";
-            this.txtVDSNo.Name = "txtVDSNo";
-            this.txtVDSNo.Size = new System.Drawing.Size(98, 21);
-            this.txtVDSNo.TabIndex = 16;
-            this.txtVDSNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtVDSNo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.txtVDSNo.ValidatingType = typeof(int);
+            this.darkLabel52.AutoSize = true;
+            this.darkLabel52.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel52.Location = new System.Drawing.Point(720, 24);
+            this.darkLabel52.Name = "darkLabel52";
+            this.darkLabel52.Size = new System.Drawing.Size(117, 15);
+            this.darkLabel52.TabIndex = 15;
+            this.darkLabel52.Text = "일(이전 데이터 삭제)";
+            // 
+            // txtLogFilePeriod
+            // 
+            this.txtLogFilePeriod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtLogFilePeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLogFilePeriod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtLogFilePeriod.Location = new System.Drawing.Point(665, 21);
+            this.txtLogFilePeriod.Name = "txtLogFilePeriod";
+            this.txtLogFilePeriod.Size = new System.Drawing.Size(49, 21);
+            this.txtLogFilePeriod.TabIndex = 13;
+            this.txtLogFilePeriod.Text = "30";
+            this.txtLogFilePeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // darkLabel53
+            // 
+            this.darkLabel53.AutoSize = true;
+            this.darkLabel53.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel53.Location = new System.Drawing.Point(553, 24);
+            this.darkLabel53.Name = "darkLabel53";
+            this.darkLabel53.Size = new System.Drawing.Size(109, 15);
+            this.darkLabel53.TabIndex = 14;
+            this.darkLabel53.Text = "로그파일 보관 일수";
             // 
             // ucVDSConfig
             // 
@@ -1696,5 +1772,11 @@
         private System.Windows.Forms.ComboBox cbVDSGroup;
         private System.Windows.Forms.ComboBox cbVDSType;
         private System.Windows.Forms.MaskedTextBox txtVDSNo;
+        private DarkUI.Controls.DarkLabel darkLabel52;
+        private DarkUI.Controls.DarkTextBox txtLogFilePeriod;
+        private DarkUI.Controls.DarkLabel darkLabel53;
+        private DarkUI.Controls.DarkLabel darkLabel51;
+        private DarkUI.Controls.DarkTextBox txtTrafficDataPeriod;
+        private DarkUI.Controls.DarkLabel darkLabel50;
     }
 }
