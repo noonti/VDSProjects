@@ -36,6 +36,7 @@
             this.종료ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.설정ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.환경설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLaneMng = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
@@ -44,7 +45,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
             this.statusTime = new DarkUI.Controls.DarkLabel();
-            this.menuLaneMng = new System.Windows.Forms.ToolStripMenuItem();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -66,13 +66,15 @@
             this.darkMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.darkMenuStrip1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.darkMenuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkMenuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.darkMenuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.darkMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.연결ToolStripMenuItem,
             this.설정ToolStripMenuItem1});
             this.darkMenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.darkMenuStrip1.Name = "darkMenuStrip1";
             this.darkMenuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.darkMenuStrip1.Size = new System.Drawing.Size(1904, 29);
+            this.darkMenuStrip1.Size = new System.Drawing.Size(1904, 46);
             this.darkMenuStrip1.TabIndex = 3;
             this.darkMenuStrip1.Text = "darkMenuStrip1";
             // 
@@ -86,7 +88,7 @@
             this.종료ToolStripMenuItem});
             this.연결ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.연결ToolStripMenuItem.Name = "연결ToolStripMenuItem";
-            this.연결ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
+            this.연결ToolStripMenuItem.Size = new System.Drawing.Size(91, 42);
             this.연결ToolStripMenuItem.Text = "연결";
             // 
             // 시작ToolStripMenuItem
@@ -94,7 +96,7 @@
             this.시작ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.시작ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.시작ToolStripMenuItem.Name = "시작ToolStripMenuItem";
-            this.시작ToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.시작ToolStripMenuItem.Size = new System.Drawing.Size(195, 46);
             this.시작ToolStripMenuItem.Text = "시작";
             this.시작ToolStripMenuItem.Click += new System.EventHandler(this.menuStart_Click);
             // 
@@ -103,7 +105,7 @@
             this.중지ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.중지ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.중지ToolStripMenuItem.Name = "중지ToolStripMenuItem";
-            this.중지ToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.중지ToolStripMenuItem.Size = new System.Drawing.Size(195, 46);
             this.중지ToolStripMenuItem.Text = "중지";
             this.중지ToolStripMenuItem.Click += new System.EventHandler(this.menuStop_Click);
             // 
@@ -113,14 +115,14 @@
             this.toolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.toolStripMenuItem2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(192, 6);
             // 
             // 종료ToolStripMenuItem
             // 
             this.종료ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.종료ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.종료ToolStripMenuItem.Name = "종료ToolStripMenuItem";
-            this.종료ToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.종료ToolStripMenuItem.Size = new System.Drawing.Size(195, 46);
             this.종료ToolStripMenuItem.Text = "종료";
             this.종료ToolStripMenuItem.Click += new System.EventHandler(this.menuQuit_Click);
             // 
@@ -132,7 +134,7 @@
             this.menuLaneMng});
             this.설정ToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.설정ToolStripMenuItem1.Name = "설정ToolStripMenuItem1";
-            this.설정ToolStripMenuItem1.Size = new System.Drawing.Size(54, 25);
+            this.설정ToolStripMenuItem1.Size = new System.Drawing.Size(91, 42);
             this.설정ToolStripMenuItem1.Text = "설정";
             // 
             // 환경설정ToolStripMenuItem
@@ -140,14 +142,23 @@
             this.환경설정ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.환경설정ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.환경설정ToolStripMenuItem.Name = "환경설정ToolStripMenuItem";
-            this.환경설정ToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.환경설정ToolStripMenuItem.Size = new System.Drawing.Size(251, 46);
             this.환경설정ToolStripMenuItem.Text = "환경설정";
             this.환경설정ToolStripMenuItem.Click += new System.EventHandler(this.menuConfig_Click);
+            // 
+            // menuLaneMng
+            // 
+            this.menuLaneMng.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menuLaneMng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menuLaneMng.Name = "menuLaneMng";
+            this.menuLaneMng.Size = new System.Drawing.Size(251, 46);
+            this.menuLaneMng.Text = "차선관리";
+            this.menuLaneMng.Click += new System.EventHandler(this.menuLaneMng_Click);
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 29);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 46);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -158,8 +169,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer2.Size = new System.Drawing.Size(1904, 1012);
-            this.splitContainer2.SplitterDistance = 953;
+            this.splitContainer2.Size = new System.Drawing.Size(1904, 995);
+            this.splitContainer2.SplitterDistance = 936;
             this.splitContainer2.TabIndex = 6;
             // 
             // splitContainer3
@@ -176,8 +187,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.ucTargetSummary);
-            this.splitContainer3.Size = new System.Drawing.Size(1904, 953);
-            this.splitContainer3.SplitterDistance = 55;
+            this.splitContainer3.Size = new System.Drawing.Size(1904, 936);
+            this.splitContainer3.SplitterDistance = 54;
             this.splitContainer3.TabIndex = 6;
             // 
             // darkGroupBox1
@@ -187,7 +198,7 @@
             this.darkGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(1904, 55);
+            this.darkGroupBox1.Size = new System.Drawing.Size(1904, 54);
             this.darkGroupBox1.TabIndex = 0;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "현장 정보";
@@ -199,9 +210,9 @@
             this.lbPlaceName.ForeColor = System.Drawing.Color.Yellow;
             this.lbPlaceName.Location = new System.Drawing.Point(22, 27);
             this.lbPlaceName.Name = "lbPlaceName";
-            this.lbPlaceName.Size = new System.Drawing.Size(180, 24);
+            this.lbPlaceName.Size = new System.Drawing.Size(343, 39);
             this.lbPlaceName.TabIndex = 0;
-            this.lbPlaceName.Text = "춘천고속도로 > 제1지점";
+            this.lbPlaceName.Text = "춘천고속도로 > 제1지점11";
             this.lbPlaceName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucTargetSummary
@@ -209,8 +220,9 @@
             this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 894);
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 878);
             this.ucTargetSummary.TabIndex = 6;
             // 
             // splitContainer1
@@ -236,6 +248,7 @@
             // 
             this.RTUStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RTUStatus.Location = new System.Drawing.Point(0, 0);
+            this.RTUStatus.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.RTUStatus.Name = "RTUStatus";
             this.RTUStatus.Size = new System.Drawing.Size(1725, 50);
             this.RTUStatus.TabIndex = 0;
@@ -250,18 +263,9 @@
             this.statusTime.TabIndex = 0;
             this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // menuLaneMng
-            // 
-            this.menuLaneMng.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.menuLaneMng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.menuLaneMng.Name = "menuLaneMng";
-            this.menuLaneMng.Size = new System.Drawing.Size(180, 26);
-            this.menuLaneMng.Text = "차선관리";
-            this.menuLaneMng.Click += new System.EventHandler(this.menuLaneMng_Click);
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.splitContainer2);
