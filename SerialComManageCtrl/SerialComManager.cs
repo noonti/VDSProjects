@@ -13,13 +13,15 @@ namespace SerialComManageCtrl
 {
     public class SerialComManager : IVDSManager
     {
-        public SerialCom serialCom ;
+        public SerialCom serialCom = null;
         public byte RTUStatus = 0x0;
         public byte RTUPFR = 0x0; // POWER FAIL RESET
 
         public FormSerialDataFrameDelegate _serialDataFrameDelegate = null;
         public Control _control = null;
 
+
+        VDSClient _rtuClient;
         public int SetSerialPort(String portName, int baudRate = 115200, Parity parity = System.IO.Ports.Parity.None, int dataBits = 8, StopBits stopBits = System.IO.Ports.StopBits.None, Handshake handShake = System.IO.Ports.Handshake.None)
         {
             if (serialCom == null)
@@ -28,18 +30,47 @@ namespace SerialComManageCtrl
             return 1;
         }
 
+
+        public int SetTCPPort(String address, int port)
+        {
+            if (_rtuClient == null)
+                _rtuClient = new VDSClient();
+            
+            _rtuClient.SetAddress(address, port, CLIENT_TYPE.VDS_CLIENT, KorExConnectCallback, KorExReadCallback, SendCallback);
+            //_rtuClient.StartConnect();
+
+           
+            return 1;
+        }
         public int StartManager()
         {
-            if (serialCom != null && serialCom.isOpened)
-                serialCom.Close();
-            serialCom.Open();
+            if(_rtuClient==null)
+            {
+                if (serialCom != null && serialCom.isOpened)
+                    serialCom.Close();
+                serialCom.Open();
+            }
+            else
+            {
+                _rtuClient.StartConnect();
+            }
+            
             return 1;
         }
 
         public int StopManager()
         {
-            if (serialCom != null && serialCom.isOpened)
-                serialCom.Close();
+            if (_rtuClient == null)
+            {
+                if (serialCom != null && serialCom.isOpened)
+                    serialCom.Close();
+            }
+            else
+            {
+               //
+            }
+
+            
 
             return 1;
         }
