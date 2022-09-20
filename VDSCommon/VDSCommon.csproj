@@ -109,6 +109,7 @@
     <Compile Include="Config\KorExConfig.cs" />
     <Compile Include="Config\MAConfig.cs" />
     <Compile Include="DataType\TargetSummaryInfo.cs" />
+    <Compile Include="IRTUManager.cs" />
     <Compile Include="IVDSDevice.cs" />
     <Compile Include="IVDSManager.cs" />
     <Compile Include="LaneGroup.cs" />

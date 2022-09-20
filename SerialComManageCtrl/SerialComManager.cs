@@ -22,53 +22,69 @@ namespace SerialComManageCtrl
 
 
         VDSClient _rtuClient;
+
+        IRTUManager rtuManager;
         public int SetSerialPort(String portName, int baudRate = 115200, Parity parity = System.IO.Ports.Parity.None, int dataBits = 8, StopBits stopBits = System.IO.Ports.StopBits.None, Handshake handShake = System.IO.Ports.Handshake.None)
         {
-            if (serialCom == null)
-                serialCom = new SerialCom();
-            serialCom.Init(portName, baudRate , parity , dataBits , stopBits, handShake , new SerialDataReceivedEventHandler(SerialReceivedData));
-            return 1;
+            int nResult = 0;
+            if(rtuManager!=null)
+            {
+                nResult = rtuManager.SetSerialPort(portName, baudRate, parity, dataBits, stopBits, handShake);
+                rtuManager.Init(portName, baudRate, parity, dataBits, stopBits, handShake, new SerialDataReceivedEventHandler(SerialReceivedData));
+            }
+
+            //if (serialCom == null)
+            //    serialCom = new SerialCom();
+            //serialCom.Init(portName, baudRate , parity , dataBits , stopBits, handShake , new SerialDataReceivedEventHandler(SerialReceivedData));
+            return nResult;
         }
 
 
         public int SetTCPPort(String address, int port)
         {
-            if (_rtuClient == null)
-                _rtuClient = new VDSClient();
-            
-            _rtuClient.SetAddress(address, port, CLIENT_TYPE.VDS_CLIENT, KorExConnectCallback, KorExReadCallback, SendCallback);
-            //_rtuClient.StartConnect();
+            if (rtuManager != null)
+                rtuManager.SetTCPPort(address, port);
 
-           
+            //if (_rtuClient == null)
+            //    _rtuClient = new VDSClient();
+            
+            //_rtuClient.SetAddress(address, port, CLIENT_TYPE.VDS_CLIENT, KorExConnectCallback, KorExReadCallback, SendCallback);
+          
             return 1;
         }
         public int StartManager()
         {
-            if(_rtuClient==null)
-            {
-                if (serialCom != null && serialCom.isOpened)
-                    serialCom.Close();
-                serialCom.Open();
-            }
-            else
-            {
-                _rtuClient.StartConnect();
-            }
-            
+            if (rtuManager != null)
+                rtuManager.StartManager();
+
+            //if(_rtuClient==null)
+            //{
+            //    if (serialCom != null && serialCom.isOpened)
+            //        serialCom.Close();
+            //    serialCom.Open();
+            //}
+            //else
+            //{
+            //    _rtuClient.StartConnect();
+            //}
+
             return 1;
         }
 
         public int StopManager()
         {
-            if (_rtuClient == null)
-            {
-                if (serialCom != null && serialCom.isOpened)
-                    serialCom.Close();
-            }
-            else
-            {
-               //
-            }
+            if (rtuManager != null)
+                rtuManager.StopManager();
+
+            //if (_rtuClient == null)
+            //{
+            //    if (serialCom != null && serialCom.isOpened)
+            //        serialCom.Close();
+            //}
+            //else
+            //{
+            //   //
+            //}
 
             
 
