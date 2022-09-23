@@ -217,6 +217,7 @@ namespace MClavisRadarManageCtrl
             catch(Exception ex)
             {
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+                _prevDataFrame = null; // 예외 발생 시 다음 패킷부터는 정상 처리 위해 null 설정
                 nResult = 0;
             }
             
@@ -257,10 +258,16 @@ namespace MClavisRadarManageCtrl
             bool bResult = false;
             int direction = message.Lane_Dir == 0 ? 0 : 1; // 0: 상행(TO RIGHT) 1: 하행(TO LEFT)
             int Lane = message.Lane - 1;
+            if(Lane >=0 && Lane <=15)
+            {
+                if (_lastMClavisMessage[direction, Lane].object_id == message.object_id && _lastMClavisMessage[direction, Lane].State == message.State)
+                    bResult = true;
+            }
+            else
+            {
+                Console.WriteLine($"direction={direction} Lane={Lane} ");
+            }
 
-            if (_lastMClavisMessage[direction, Lane].object_id == message.object_id && _lastMClavisMessage[direction, Lane].State == message.State)
-                bResult = true;
-            
             return bResult;
         }
 
