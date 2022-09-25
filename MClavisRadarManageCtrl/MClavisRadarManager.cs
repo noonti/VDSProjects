@@ -166,7 +166,7 @@ namespace MClavisRadarManageCtrl
                             if(sock == mclavisClient.Client)
                             {
                                 byte[] packet = mclavisClient.Receive(ref remoteEP);
-                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
+                                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
                                 ProcessReceivePacket(packet);
                             }
 
@@ -233,22 +233,20 @@ namespace MClavisRadarManageCtrl
 
             foreach(var message in dataFrame.messageList)
             {
-                if(message.object_id > 0 && message.msgType == MCLAVIS_MESSAGE_TYPE.OBJECT_DATA &&  (message.State == 6 || message.State == 9)
-                    && IsExistMessage(message)==false
-                    ) // state 4 , 5  또는 4,6 인것 항상 존재한다. 차량 속도는 State 4 인것으로,,,차량 길이는 State 6
-                {
-
+                // state 4 , 5  또는 4,6 인것 항상 존재한다. 차량 속도는 State 4 인것으로,,,차량 길이는 State 6
+                if (message.object_id > 0 && message.msgType == MCLAVIS_MESSAGE_TYPE.OBJECT_DATA && IsExistMessage(message) == false
+                    && (message.State == 6 || message.State== 7 || message.State==9 || message.State==10)
+                    )
+                 {
+                    // state : 6 -->  속도, 길이 산출
+                    // state : id:0 , 7 --> 정체 상태(30초), 8: 무차량 상태(30초), lane 값 유효
+                    // state : 9 --> 역주행, lane 값 0으로 고정 
+                    // state : 10 -->차량 정지. lane 값 0 으로 고정 
                     var trafficData = GetTrafficData(message);
                     AddTrafficDataEvent(trafficData);
-                    //String data = dataFrame.GetMClavisMessageInfo(message);
-                    //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"message = {data}"));
-                    //if (_control != null && _formAddUDPData != null)
-                    //    _control.BeginInvoke(_formAddUDPData, new object[] { data });
-                    _lastMClavisMessage[message.Lane_Dir, message.Lane - 1] = message;
+                    _lastMClavisMessage[message.Lane_Dir, message.Lane] = message;
                 }
-                
             }
-
             //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return 1;
         }
@@ -257,8 +255,9 @@ namespace MClavisRadarManageCtrl
         {
             bool bResult = false;
             int direction = message.Lane_Dir == 0 ? 0 : 1; // 0: 상행(TO RIGHT) 1: 하행(TO LEFT)
-            int Lane = message.Lane - 1;
-            if(Lane >=0 && Lane <=15)
+            //int Lane = message.Lane - 1;
+            int Lane = message.Lane;
+            if (Lane >=0 && Lane <=15)
             {
                 if (_lastMClavisMessage[direction, Lane].object_id == message.object_id && _lastMClavisMessage[direction, Lane].State == message.State)
                     bResult = true;
@@ -283,8 +282,17 @@ namespace MClavisRadarManageCtrl
             result.speed = Math.Abs(message.Velocity_X);
             result.vds_type = VDSConfig.GetVDSTypeName();
             result.occupyTime = Utility.GetOccupyTime(Math.Abs(message.Velocity_X), message.Range_X , VDSConfig.controllerConfig.CheckDistance); ;
+
             result.reverseRunYN = message.State == 9?"Y":"N";
-            
+            result.trafficJamYN = message.State == 7 ? "Y" : "N"; // 차량 정체
+            result.StoppedCarYN = message.State == 10 ? "Y" : "N"; // 차량 정지 
+
+
+            // state : 6 -->  속도, 길이 산출
+            // state : id:0 , 7 --> 정체 상태(30초), 8: 무차량 상태(30초), lane 값 유효
+            // state : 9 --> 역주행, lane 값 0으로 고정 
+            // state : 10 -->차량 정지. lane 값 0 으로 고정 
+
             return result;
         }
     }

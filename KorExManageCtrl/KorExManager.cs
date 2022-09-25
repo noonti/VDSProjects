@@ -2820,6 +2820,16 @@ namespace KorExManageCtrl
                 {
                     SendReverseRunNotify(trafficDataEvent);
                 }
+
+                if(trafficDataEvent.StoppedCarYN=="Y") // 정치 차량 발생
+                {
+
+                }
+
+                if(trafficDataEvent.trafficJamYN=="Y") // 정체 발생...
+                {
+
+                }
             }
             catch (Exception ex)
             {
