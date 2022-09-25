@@ -50,8 +50,18 @@ namespace VDSCommon
         /// 
         public static byte IsAVROn { get; set; }
 
+        /// <summary>
+        /// 0: 임계치에 의한 동작모드, 1: 강제제어모드
+        /// </summary>
+        public static byte heaterMode { get; set; }
 
         /// <summary>
+        /// 0: 임계치에 의한 동작모드, 1: 강제제어모드
+        /// </summary>
+        public static byte fanMode { get; set; }
+
+
+        /*/// <summary>
         /// 예약필드(6비트 째 값)
         /// </summary>
         public static byte Reserved6 { get; set; }
@@ -59,7 +69,7 @@ namespace VDSCommon
         /// <summary>
         /// 예약필드(7비트 째 값)
         /// </summary>
-        public static byte Reserved7 { get; set; }
+        public static byte Reserved7 { get; set; }*/
 
 
         /// <summary>
@@ -165,14 +175,15 @@ namespace VDSCommon
         public static byte SetRTSStatus(byte rtuStatus, byte[] deviceInfo )
         {
             RTSStatus = rtuStatus;
-            
+
             /* bit
              * 0 : FRONT DOOR   (Close : 0, Open : 1) 
              * 1 : REAR  DOOR   (Close : 0, Open : 1) 
              * 2 : FAN          (OFF : 0, ON : 1) 
              * 3 : HEATER       (OFF : 0, ON : 1) 
              * 4 : AVR          (OFF : 0, ON : 1) 
-             * 
+             * 5 : HEATER 동작 모드(임계치에 의한 동작모드0 , 강제제어모드: 1)
+             * 6 : FAN 동작 모드(임계치에 의한 동작모드0 , 강제제어모드: 1)
              */
 
             IsLongPowerFail = 0;
@@ -182,6 +193,10 @@ namespace VDSCommon
             IsFanOn = (byte)((RTSStatus & 0x04) >> 2);
             IsHeaterOn = (byte)((RTSStatus & 0x08) >> 3);
             IsAVROn = (byte)((RTSStatus & 0x10) >> 4);
+            
+
+            heaterMode = (byte)((RTSStatus & 0x20) >> 5);
+            fanMode = (byte)((RTSStatus & 0x40) >> 6);
 
             IsReset = 0;
             IsDetectError = 0;
@@ -195,8 +210,8 @@ namespace VDSCommon
                 AVRVoltThreshold = deviceInfo[3]; // DF[3] AVR 전압 임계값
                 AVRAmpThreshold = deviceInfo[4]; // DF[4] AVR 전류 임계값
                 HeaterThreshold = Utility.GetThresholdToInt(deviceInfo[5]); // DF[5] Heater 동작 임계값
-                HumitidyThreshold = deviceInfo[6]; // DF[6] Fan 동작 임계값
-                ReservedThreshold = deviceInfo[7]; // DF[7] Fan 동작 임계값
+                HumitidyThreshold = deviceInfo[6]; // DF[6] 습도계측값
+                ReservedThreshold = deviceInfo[7]; // DF[7] 예비용
             }
 
             Utility.AddLog(LOG_TYPE.LOG_INFO,$"IsLongPowerFail={IsLongPowerFail}, IsShortPowerFail={IsShortPowerFail}, IsFrontDoorOpen={IsFrontDoorOpen}, IsRearDoorOpen={IsRearDoorOpen}, IsFanOn={IsFanOn}, IsHeaterOn={IsHeaterOn}, IsAVROn={IsAVROn}");
@@ -226,8 +241,8 @@ namespace VDSCommon
             result.IsFanOn =  IsFanOn;
             result.IsHeaterOn =  IsHeaterOn;
             result.IsAVROn =  IsAVROn;
-            result.Reserved6 = Reserved6;
-            result.Reserved7 = Reserved7;
+            result.Reserved6 = heaterMode;
+            result.Reserved7 = fanMode;
 
             result.IsReset =  IsReset;
             result.IsDetectError =  IsDetectError;

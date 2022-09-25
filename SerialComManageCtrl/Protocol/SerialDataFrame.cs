@@ -224,6 +224,29 @@ namespace SerialComManageCtrl.Protocol
             return nResult;
         }
 
+        public int SetRTUStatusFrameRequest()
+        {
+            int nResult = 0;
+            try
+            {
+                OpCode = SerialDataFrameDefine.OPCODE_RTU_STATUS;
+                Size = 5;
+                DataSize = 1;
+                Data = new byte[DataSize];
+                Data[0] = 0x0;
+                nResult = 1;
+
+            }
+            catch (Exception ex)
+            {
+                nResult = 0;
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+
+
+            return nResult;
+        }
+
 
         /// <summary>
         /// 카메라 리셋 요청
@@ -235,6 +258,31 @@ namespace SerialComManageCtrl.Protocol
             try
             {
                 OpCode = SerialDataFrameDefine.OPCODE_CAMERA_RESET;
+                Size = 5;
+                DataSize = 1;
+                Data = new byte[DataSize];
+                Data[0] = data;
+                nResult = 1;
+
+            }
+            catch (Exception ex)
+            {
+                nResult = 0;
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            return nResult;
+        }
+
+        /// <summary>
+        /// AC 파워 리셋 요청
+        /// </summary>
+        /// <returns></returns>
+        public int SetACPowerResetFrameRequest(byte data)
+        {
+            int nResult = 0;
+            try
+            {
+                OpCode = SerialDataFrameDefine.OPCODE_CTRL_POWER;
                 Size = 5;
                 DataSize = 1;
                 Data = new byte[DataSize];

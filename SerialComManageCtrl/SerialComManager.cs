@@ -20,6 +20,7 @@ namespace SerialComManageCtrl
         public FormSerialDataFrameDelegate _serialDataFrameDelegate = null;
         public Control _control = null;
 
+        Timer _statusTimer = null;
 
         VDSClient _rtuClient;
 
@@ -57,6 +58,7 @@ namespace SerialComManageCtrl
             if (rtuManager != null)
                 rtuManager.StartManager();
 
+            StartRTUStatusTimer();
             //if(_rtuClient==null)
             //{
             //    if (serialCom != null && serialCom.isOpened)
@@ -73,8 +75,11 @@ namespace SerialComManageCtrl
 
         public int StopManager()
         {
+            StopRTUStatusTimer();
             if (rtuManager != null)
                 rtuManager.StopManager();
+
+            
 
             //if (_rtuClient == null)
             //{
@@ -86,10 +91,37 @@ namespace SerialComManageCtrl
             //   //
             //}
 
-            
 
             return 1;
         }
+
+        private int StartRTUStatusTimer()
+        {
+            if(_statusTimer == null)
+            {
+                _statusTimer = new Timer();
+            }
+            _statusTimer.Interval = 1000; // 1 초마다 상태 체크 
+            _statusTimer.Tick += Status_Timer_Tick;
+            _statusTimer.Start();
+            return 1;
+        }
+
+        private int StopRTUStatusTimer()
+        {
+            if(_statusTimer!=null)
+            {
+                _statusTimer.Stop();
+                _statusTimer = null;
+            }
+            return 1;
+        }
+
+        private void Status_Timer_Tick(object sender, EventArgs e)
+        {
+            RTUStatustRequest();
+        }
+
 
         private void SerialReceivedData(object sender, SerialDataReceivedEventArgs e)
         {
@@ -157,9 +189,15 @@ namespace SerialComManageCtrl
                 case SerialDataFrameDefine.OPCODE_RTU_STATUS:
                     nResult = ProcessRTUStatus(dataFrame);
                     break;
-                case SerialDataFrameDefine.OPCODE_CAMERA_RESET:
-                    nResult = ProcessCameraResetResponse(dataFrame);
+                //case SerialDataFrameDefine.OPCODE_CAMERA_RESET:
+                //    nResult = ProcessCameraResetResponse(dataFrame);
+                //    break;
+
+                case SerialDataFrameDefine.OPCODE_CTRL_POWER:
+                    nResult = ProcessACPowerResetResponse(dataFrame);
                     break;
+
+
                 case SerialDataFrameDefine.OPCODE_FAN_CTRL:
                     nResult = ProcessFanCtrlResponse(dataFrame);
                     break;
@@ -190,17 +228,45 @@ namespace SerialComManageCtrl
             int nResult = 0;
             RTUStatus = dataFrame.Status;
             RTUPFR = dataFrame.Data[0]; // 0bit  PFR ( 0: 정상, 1: RTU 모듈 리셋)
-                                        /* bit
-                                         * 0 : FRONT DOOR   (Close : 0, Open : 1) 
-                                         * 1 : REAR  DOOR   (Close : 0, Open : 1) 
-                                         * 2 : FAN          (OFF : 0, ON : 1) 
-                                         * 3 : HEATER       (OFF : 0, ON : 1) 
-                                         * 4 : AVR          (OFF : 0, ON : 1) 
-                                         * 
-                                         */
+            /* bit
+             * 0 : FRONT DOOR   (Close : 0, Open : 1) 
+             * 1 : REAR  DOOR   (Close : 0, Open : 1) 
+             * 2 : FAN          (OFF : 0, ON : 1) 
+             * 3 : HEATER       (OFF : 0, ON : 1) 
+             * 4 : AVR          (OFF : 0, ON : 1) 
+             * 5 : HEATER 동작 모드(임계치에 의한 동작모드0 , 강제제어모드: 1)
+             * 6 : FAN 동작 모드(임계치에 의한 동작모드0 , 강제제어모드: 1)
+             */
             VDSRackStatus.SetRTSStatus(RTUStatus, dataFrame.Data);
             return nResult;
         }
+
+        /// <summary>
+        /// RUT 상태 요청
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public int RTUStatustRequest(byte data = 0x0)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            int nResult = 0;
+            try
+            {
+                SerialDataFrame rtuStatusRequest = new SerialDataFrame();
+                rtuStatusRequest.SetRTUStatusFrameRequest();
+                byte[] packet = rtuStatusRequest.Serialize();
+                nResult = serialCom.Send(packet);
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return nResult;
+        }
+
 
         /// <summary>
         /// 카메라 전원 리셋 요청
@@ -251,6 +317,61 @@ namespace SerialComManageCtrl
             
             return nResult;
         }
+
+
+        /// <summary>
+        /// AC 전원 리셋 요청
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public int ACPowerResetRequest(byte ac1, byte ac2, byte ac3, byte ac4)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            int nResult = 0;
+            byte data = 0x00;
+            try
+            {
+                data = (byte)( ac1==1?0x01:0 + ac2==1?0x02:0 + ac3==1?0x04:0 + ac4==1?0x08:0  );
+                SerialDataFrame camResetRequest = new SerialDataFrame();
+                camResetRequest.SetCameraResetFrameRequest(data);
+                byte[] packet = camResetRequest.Serialize();
+                nResult = serialCom.Send(packet);
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return nResult;
+        }
+
+
+        /// <summary>
+        /// AC 전원 리셋 응답
+        /// </summary>
+        /// <param name="dataFrame"></param>
+        /// <returns></returns>
+        private int ProcessACPowerResetResponse(SerialDataFrame dataFrame)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            int nResult = 0;
+            try
+            {
+                Utility.AddLog(LOG_TYPE.LOG_INFO, "ProcessACPowerResetResponse....");
+                RTUPFR = dataFrame.Status;
+                nResult = 1;
+            }
+            catch (Exception ex)
+            {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+
+            return nResult;
+        }
+
 
         /// <summary>
         ///  FAN 제어 요청 (0: 구동, 1: 정지)
