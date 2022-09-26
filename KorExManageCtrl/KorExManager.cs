@@ -52,8 +52,9 @@ namespace KorExManageCtrl
 
 
         public VDSServer _korExServer = new VDSServer();
+        SessionContext centerSessionContext = null;
 
-
+        public int _retryCount = 0;
 
         public override int SetVDSDevice(IVDSDevice vdsDevice)
         {
@@ -77,6 +78,7 @@ namespace KorExManageCtrl
             _lastResetCenterData = DateTime.Now;
             _lastResetLocalData = DateTime.Now;
             _lastCheckSession = DateTime.Now;
+            
 
             speedDataStat = new SpeedData[16];
             lengthDataStat = new LengthData[16];
@@ -90,7 +92,9 @@ namespace KorExManageCtrl
             _parameterDownloaded = false;
             _selfSync = true;
 
-            sessionState = KOR_EX_SESSION_STATE.SESSION_OFFLINE;
+            CloseCenterSession();
+
+            //sessionState = KOR_EX_SESSION_STATE.SESSION_OFFLINE;
 
             ReadVDSParameter();
 
@@ -135,6 +139,7 @@ namespace KorExManageCtrl
             _Logger.StopManager();
 
             SaveVDSParameter();
+            CloseCenterSession();
             return 1;
         }
 
@@ -162,13 +167,21 @@ namespace KorExManageCtrl
                 Socket socket = serverSocket.EndAccept(ar);
                 //if (socket.Connected)
                 {
-                    SessionContext vdsClient = new SessionContext();
-                    vdsClient._type = _korExServer._clientType;
-                    vdsClient._socket = socket;
-                    socket.BeginReceive(vdsClient.buffer, 0, SessionContext.BufferSize, 0,
-                        new AsyncCallback(KorExReadCallback), vdsClient);
-                    AddSessionContext(vdsClient);
+                    if (centerSessionContext != null)
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"기존 센터 연결 소켓 삭제"));
+                        CloseCenterSession();
+                    }
+                        
+
+                    centerSessionContext = new SessionContext();
+                    centerSessionContext._type = _korExServer._clientType;
+                    centerSessionContext._socket = socket;
+                    socket.BeginReceive(centerSessionContext.buffer, 0, SessionContext.BufferSize, 0,
+                        new AsyncCallback(KorExReadCallback), centerSessionContext);
+                    //AddSessionContext(vdsClient);
                     _connectionDateTime = DateTime.Now; // 접속 시간  저장
+                    _retryCount = 0;
                     strLog = String.Format($"제어기 접속 accepted");
                     Utility.AddLog(LOG_TYPE.LOG_INFO, strLog);
                 }
@@ -185,6 +198,29 @@ namespace KorExManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
         }
 
+
+        private int CloseCenterSession()
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            int nResult = 0;
+            try
+            {
+                if(centerSessionContext!=null)
+                {
+                    centerSessionContext._socket.Shutdown(SocketShutdown.Both);
+                    centerSessionContext._socket.Close();
+                    centerSessionContext = null;
+                }
+                sessionState = KOR_EX_SESSION_STATE.SESSION_OFFLINE;
+                _retryCount = 0;
+            }
+            catch (Exception ex)
+            {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return nResult;
+        }
 
         private void _period_timer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -972,6 +1008,8 @@ namespace KorExManageCtrl
                         }
                     }
                     _lastCheckSession = DateTime.Now; // 메시지 수신 최종 시간 저장 
+                    _retryCount = 0; // 최종 수신 하였을 경우 재전송 카운트 리셋..
+                    Console.WriteLine($"최종 메시지 수신 시간 {_lastCheckSession}");
                                                       //// Not all data received. Get more.  
                     session._socket.BeginReceive(session.buffer, 0, SessionContext.BufferSize, 0,
                     new AsyncCallback(KorExReadCallback), session);
@@ -979,7 +1017,8 @@ namespace KorExManageCtrl
                 }
                 else
                 {
-                    DeleteSessionContext(session);
+                    //DeleteSessionContext(session);
+                    CloseCenterSession();
                     _selfSync = true;
                 }
             }
@@ -1335,7 +1374,8 @@ namespace KorExManageCtrl
             {
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
 
-                DeleteSessionContext(session);
+                //DeleteSessionContext(session);
+                CloseCenterSession();
                 nResult = 0;
             }
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
@@ -2323,7 +2363,7 @@ namespace KorExManageCtrl
             int nResult = 0;
             try
             {
-
+                _retryCount = 0; 
 
             }
             catch (Exception ex)
@@ -2868,19 +2908,34 @@ namespace KorExManageCtrl
 
         public void CheckSessionTime()
         {
-            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            if (sessionState != KOR_EX_SESSION_STATE.SESSION_ONLINE)
+                return;
 
             DateTime curDate = DateTime.Now;
-            TimeSpan expireTime = new TimeSpan(0, 0, 0, VDSConfig.korExConfig.checkSessionTime, 0); // VDSConfig.CENTER_POLLILNG_PERIOD 초 후에 초기화
+            int expireSecond = 0;
+            if (_retryCount > 0) // check session 을 이미 보낸 상태일 경우 5초 후 재시도
+                expireSecond = 5;
+            else
+                expireSecond = VDSConfig.korExConfig.checkSessionTime;  // 5분 초과 여부 확인
+                //expireSecond = 60;  // 5분 초과 여부 확인
+
+            TimeSpan expireTime = new TimeSpan(0, 0, 0, expireSecond, 0); // VDSConfig.CENTER_POLLILNG_PERIOD 초 후에 초기화
             DateTime checkDate = _lastCheckSession.Add(expireTime);
             if (curDate > checkDate) // 5분 초과되었을 경우 통신 유효성 확인 메시지 전송
             {
-                Console.WriteLine($"_lastCheckSession = {_lastCheckSession.ToString(VDSConfig.RADAR_TIME_FORMAT)}, VDSConfig.CHECK_SESSION_TIME= {VDSConfig.korExConfig.checkSessionTime}, checkDate = {checkDate.ToString(VDSConfig.RADAR_TIME_FORMAT)} , curDate = {curDate.ToString(VDSConfig.RADAR_TIME_FORMAT)}");
-                RequestCheckSession();
-                
-                
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"통신 세션 타임아웃. 최종 패킷 수신시간={_lastCheckSession} 재시도 횟수={_retryCount}"));
+                if (_retryCount<VDSConfig.korExConfig.RETRY_COUNT)
+                {
+                    _retryCount++;
+                    RequestCheckSession();
+                }
+                else
+                {
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"통신 유효성 체크 횟수 초과{VDSConfig.korExConfig.RETRY_COUNT}되어 센터와 연결 종료 "));
+                    CloseCenterSession();
+                }
+
             }
-            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
         }
 
         public int RequestCheckSession()
@@ -2889,6 +2944,8 @@ namespace KorExManageCtrl
             int nResult = 0;
             if(sessionState == KOR_EX_SESSION_STATE.SESSION_ONLINE)
             {
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"통신 유효성 요청 전송 횟수={_retryCount}"));
+
                 ExDataFrame frame = new ExDataFrame();
                 //IExOPData dataFrame = new CheckSessionRequest();
                 SetRequestFrame(ref frame, ExDataFrameDefine.OP_CHECK_SESSION_COMMAND, null);

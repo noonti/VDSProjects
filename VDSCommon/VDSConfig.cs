@@ -26,6 +26,8 @@ namespace VDSCommon
         /// </summary>
         public static int RECONNECT_INTERVAL = 10;// 재접속 시도 간격(초)
 
+        
+
         /// <summary>
         /// DB 수정 시 별도 쓰레드 사용 여부
         /// </summary>

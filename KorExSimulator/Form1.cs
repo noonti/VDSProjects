@@ -843,7 +843,7 @@ namespace KorExSimulator
             ExDataFrame response = MakeKorExRequest(ExDataFrameDefine.OP_CHECK_SESSION_COMMAND, resultData);
 
             byte[] data = response.Serialize();
-            SendByEthernet(_sessionContext, data, data.Length);
+            //SendByEthernet(_sessionContext, data, data.Length);
         }
 
         public int SetResponseFrame(ExDataFrame request, ref ExDataFrame response, byte resultCode)
@@ -1883,7 +1883,8 @@ namespace KorExSimulator
         public void ConnectToController()
         {
             _korExClient.SetAddress(txtAddress.Text, int.Parse(txtPort.Text), CLIENT_TYPE.VDS_CLIENT, KorExConnectCallback, KorExReadCallback, SendCallback);
-            _korExClient.StartConnect();
+            _korExClient.Connect(txtAddress.Text, int.Parse(txtPort.Text), 5);
+            //_korExClient.StartConnect();
         }
 
 

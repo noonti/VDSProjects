@@ -248,14 +248,18 @@ namespace SerialComManageCtrl
         /// <returns></returns>
         public int RTUStatustRequest(byte data = 0x0)
         {
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
             try
             {
-                SerialDataFrame rtuStatusRequest = new SerialDataFrame();
-                rtuStatusRequest.SetRTUStatusFrameRequest();
-                byte[] packet = rtuStatusRequest.Serialize();
-                nResult = serialCom.Send(packet);
+                if(serialCom!=null)
+                {
+                    SerialDataFrame rtuStatusRequest = new SerialDataFrame();
+                    rtuStatusRequest.SetRTUStatusFrameRequest();
+                    byte[] packet = rtuStatusRequest.Serialize();
+                    nResult = serialCom.Send(packet);
+
+                }
 
 
             }
@@ -263,7 +267,7 @@ namespace SerialComManageCtrl
             {
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
             }
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return nResult;
         }
 

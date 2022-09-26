@@ -21,6 +21,7 @@ namespace VDSCommon.Config
         /// </summary>
         public int centerPort = 10000;
 
+        public int RETRY_COUNT = 3; // 재시도 횟수 
 
         public int centerPollingPeriod { get; set; }
         public int localPollingPeriod { get; set; }
