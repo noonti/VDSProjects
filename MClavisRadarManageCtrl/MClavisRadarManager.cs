@@ -278,10 +278,10 @@ namespace MClavisRadarManageCtrl
             result.detectTime = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT);
             result.direction = (byte)(message.Lane_Dir == 0 ? (int)MOVE_DIRECTION.TO_RIGHT : (int)MOVE_DIRECTION.TO_LEFT); // 1: 상행 2: 하행
             result.lane = message.Lane;
-            result.length = (int)(message.Range_X * 100);
-            result.speed = Math.Abs(message.Velocity_X);
+            result.length = (int)(message.Range_X * 100); // m 단위--> cm 단위로 변환
+            result.speed = Math.Abs(message.Velocity_X);  // km/h
             result.vds_type = VDSConfig.GetVDSTypeName();
-            result.occupyTime = Utility.GetOccupyTime(Math.Abs(message.Velocity_X), message.Range_X , VDSConfig.controllerConfig.CheckDistance); ;
+            result.occupyTime = Utility.GetOccupyTime(Math.Abs(message.Velocity_X), message.Range_X , VDSConfig.controllerConfig.CheckDistance); ; // milisecond 
 
             result.reverseRunYN = message.State == 9?"Y":"N";
             result.trafficJamYN = message.State == 7 ? "Y" : "N"; // 차량 정체
