@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VDSCommon;
 using VDSCommon.API.Model;
+using VDSDBHandler.Model;
 
 namespace VDSDBHandler.DBOperation.VDSManage
 {
@@ -103,6 +104,128 @@ namespace VDSDBHandler.DBOperation.VDSManage
             {
             });
             return _dapperOrm.ReturnList<VDS_TYPE>("SP_GET_VDS_TYPE_LIST", param, out spResult).ToList();
+        }
+
+
+
+
+        public void AddSpeedCategory(SPEED_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_CATEGORY_NO = data.CATEGORY_NO,
+                I_SPEED_UNIT = data.SPEED_UNIT,
+                I_FROM_VALUE = data.FROM_VALUE,
+                I_TO_VALUE = data.TO_VALUE
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_SPEED_CATEGORY", param, out spResult);
+        }
+
+
+        public void UpdateSpeedCategory(SPEED_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = data.ID,
+                I_CATEGORY_NO = data.CATEGORY_NO,
+                I_SPEED_UNIT = data.SPEED_UNIT,
+                I_FROM_VALUE = data.FROM_VALUE,
+                I_TO_VALUE = data.TO_VALUE
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_SPEED_CATEGORY", param, out spResult);
+        }
+
+        public void DeleteSpeedCategory(SPEED_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = data.ID,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_DELETE_SPEED_CATEGORY", param, out spResult);
+        }
+
+        public IEnumerable<SPEED_CATEGORY> GetSpeedCategoryList(SPEED_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+
+            });
+            return _dapperOrm.ReturnList<SPEED_CATEGORY>("SP_GET_SPEED_CATEGORY_LIST", param, out spResult).ToList();
+        }
+
+        public SPEED_CATEGORY GetSpeedCategory(SPEED_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = data.ID,
+
+            });
+            return _dapperOrm.ReturnSingle<SPEED_CATEGORY>("SP_GET_SPEED_CATEGORY", param, out spResult);
+        }
+
+
+        public void AddLengthCategory(LENGTH_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_CATEGORY_NO = data.CATEGORY_NO,
+                I_LENGTH_UNIT = data.LENGTH_UNIT,
+                I_FROM_VALUE = data.FROM_VALUE,
+                I_TO_VALUE = data.TO_VALUE
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_LENGTH_CATEGORY", param, out spResult);
+        }
+
+
+        public void UpdateLengthCategory(LENGTH_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = data.ID,
+                I_CATEGORY_NO = data.CATEGORY_NO,
+                I_LENGTH_UNIT = data.LENGTH_UNIT,
+                I_FROM_VALUE = data.FROM_VALUE,
+                I_TO_VALUE = data.TO_VALUE
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_LENGTH_CATEGORY", param, out spResult);
+        }
+
+        public void DeleteLengthCategory(LENGTH_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = data.ID,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_DELETE_LENGTH_CATEGORY", param, out spResult);
+        }
+
+        public IEnumerable<LENGTH_CATEGORY> GetLengthCategoryList(LENGTH_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+
+            });
+            return _dapperOrm.ReturnList<LENGTH_CATEGORY>("SP_GET_LENGTH_CATEGORY_LIST", param, out spResult).ToList();
+        }
+
+        public LENGTH_CATEGORY GetLengthCategory(LENGTH_CATEGORY data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_ID = data.ID,
+
+            });
+            return _dapperOrm.ReturnSingle<LENGTH_CATEGORY>("SP_GET_LENGTH_CATEGORY", param, out spResult);
         }
 
     }
