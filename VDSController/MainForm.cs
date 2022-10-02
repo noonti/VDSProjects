@@ -22,6 +22,7 @@ using VDSCommon.API.Model;
 using VDSCommon.DataType;
 using VDSController.Global;
 using VDSDBHandler.DBOperation;
+using VDSDBHandler.DBOperation.VDSManage;
 using VDSDBHandler.Model;
 using VDSManagerCtrl;
 using VideoVDSManageCtrl;
@@ -47,7 +48,11 @@ namespace VDSController
         public MainForm()
         {
             InitializeComponent();
+            
             VDSConfig.ReadConfig();
+
+            GetSpeedCategory();
+            GetLengthCategory();
 
             GetLaneGroupList();
 
@@ -496,6 +501,32 @@ namespace VDSController
                 return Utility.DeleteOldFiles(Utility.GetLogPath(), expireDate); ;
             });
             result = await task1;
+
+        }
+
+        private void GetSpeedCategory()
+        {
+            CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
+            var speedCategoryList = db.GetSpeedCategoryList(new SPEED_CATEGORY() { }, out SP_RESULT spResult).ToList();
+            foreach(var category in speedCategoryList)
+            {
+                Console.WriteLine($"{category}");
+            }
+            
+
+        }
+
+        private void GetLengthCategory()
+        {
+            CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
+            var lengthCategoryList = db.GetLengthCategoryList(new LENGTH_CATEGORY() { }, out SP_RESULT spResult).ToList();
+            foreach (var category in lengthCategoryList)
+            {
+                Console.WriteLine($"{category}");
+            }
+
+
+
 
         }
     }

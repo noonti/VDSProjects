@@ -148,6 +148,7 @@
     <Compile Include="SerialCom.cs" />
     <Compile Include="SessionContext.cs" />
     <Compile Include="SP_RESULT.cs" />
+    <Compile Include="TrafficCategory.cs" />
     <Compile Include="TrafficDataEvent.cs" />
     <Compile Include="TrafficLane.cs" />
     <Compile Include="ucDateTime.cs">

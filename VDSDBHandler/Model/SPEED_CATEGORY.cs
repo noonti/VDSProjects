@@ -14,8 +14,8 @@ namespace VDSDBHandler.Model
 
 		public String SPEED_UNIT { get; set; }	
 		
-		public float FROM_VALUE { get; set; }
-		public float TO_VALUE { get; set; }
+		public short FROM_VALUE { get; set; }
+		public short TO_VALUE { get; set; }
 		public DateTime REG_DATE { get; set; }
 	}
 }
