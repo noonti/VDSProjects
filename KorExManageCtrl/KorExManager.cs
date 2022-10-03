@@ -12,6 +12,7 @@ using System.Timers;
 using VDSCommon;
 using VDSDBHandler;
 using VDSDBHandler.DBOperation;
+using VDSDBHandler.DBOperation.VDSManage;
 using VDSDBHandler.Model;
 using VDSManagerCtrl;
 
@@ -138,7 +139,7 @@ namespace KorExManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, "******************도로공사 콘트롤러 종료*******************");
             _Logger.StopManager();
 
-            SaveVDSParameter();
+            //SaveVDSParameter();
             CloseCenterSession();
             return 1;
         }
@@ -261,69 +262,74 @@ namespace KorExManageCtrl
                     case 8: // 속도 계산 가능 여부
                     case 9: // 차량 길이 계산 가능 여부
                     case 20: // 역주행 사용 여부 
-                        VDSParam[i] = ReadVDSValue((byte)(i + 1));
+                        VDSParam[i] = ReadVDSValue((byte)(i ));
                         break;
                     case 16: // 차량 길이 계산 가능 여부
-                        VDSParam[i] = ReadOscillationThreshold((byte)(i + 1));
+                        VDSParam[i] = ReadOscillationThreshold((byte)(i ));
                         break;
                     case 19: // 자동 동기화 대기 시간
-                        VDSParam[i] = ReadAutoSyncPeriod((byte)(i + 1));
+                        VDSParam[i] = ReadAutoSyncPeriod((byte)(i ));
                         break;
                 }
             }
+
+           
 
             return nResult;
         }
 
 
-        public int SaveVDSParameter()
-        {
-            int nResult = 0;
-            for (byte i = 0; i < 24; i++)
-            {
-                switch (i)
-                {
-                    case 0: // 차로 지정
-                        SaveLaneConfig((ParamLaneConfig) VDSParam[i]);
-                        break;
-                    case 2: // 수집 주기
-                        SavePollingCycle((PollingCycle)VDSParam[i]);
-                        break;
-                    case 4: // 차량 속도 구분 (속도별 12단계 구분)
-                        SaveSpeedCategory((SpeedCategory)VDSParam[i]);
-                        break;
-                    case 5: // 차량 길이 구분 (dm - decimeter)
-                        SaveLengthCategory((LengthCategory)VDSParam[i]);
-                        break;
-                    case 6: // 속도별 누적치 계산
-                    case 7: // 차량 길이별 누적치 계산
-                    case 8: // 속도 계산 가능 여부
-                    case 9: // 차량 길이 계산 가능 여부
-                    case 20: // 역주행 사용 여부 
-                        SaveVDSValue((VDSValue)VDSParam[i], i);
-                        break;
-                    case 16: // 차량 길이 계산 가능 여부
-                        SaveOscillationThreshold((VDSValue)VDSParam[i],i);
-                        break;
-                    case 19: // 자동 동기화 대기 시간
-                        SaveAutoSyncPeriod((VDSValue)VDSParam[i]);
-                        break;
-                }
-            }
+        //public int SaveVDSParameter()
+        //{
+        //    int nResult = 0;
+        //    for (byte i = 0; i < 24; i++)
+        //    {
+        //        switch (i)
+        //        {
+        //            case 0: // 차로 지정
+        //                SaveLaneConfig((ParamLaneConfig) VDSParam[i]);
+        //                break;
+        //            case 2: // 수집 주기
+        //                SavePollingCycle((PollingCycle)VDSParam[i]);
+        //                break;
+        //            case 4: // 차량 속도 구분 (속도별 12단계 구분)
+        //                SaveSpeedCategory((SpeedCategory)VDSParam[i]);
+        //                break;
+        //            case 5: // 차량 길이 구분 (dm - decimeter)
+        //                SaveLengthCategory((LengthCategory)VDSParam[i]);
+        //                break;
+        //            case 6: // 속도별 누적치 계산
+        //            case 7: // 차량 길이별 누적치 계산
+        //            case 8: // 속도 계산 가능 여부
+        //            case 9: // 차량 길이 계산 가능 여부
+        //            case 20: // 역주행 사용 여부 
+        //                SaveVDSValue((VDSValue)VDSParam[i], i);
+        //                break;
+        //            case 16: // 차량 길이 계산 가능 여부
+        //                SaveOscillationThreshold((VDSValue)VDSParam[i],i);
+        //                break;
+        //            case 19: // 자동 동기화 대기 시간
+        //                SaveAutoSyncPeriod((VDSValue)VDSParam[i]);
+        //                break;
+        //        }
+        //    }
 
-            return nResult;
-        }
+        //    return nResult;
+        //}
 
         public IExOPData ReadLaneConfig()
         {
             IExOPData result = null;
             ParamLaneConfig config = new ParamLaneConfig();
-            int configValue = 0;
-            int.TryParse(AppConfiguration.GetAppConfig("LANE_CONFIG_0"), out configValue);
-            config.laneInfo[0] = (byte)configValue;
 
-            int.TryParse(AppConfiguration.GetAppConfig("LANE_CONFIG_1"), out configValue);
-            config.laneInfo[1] = (byte)configValue;
+            config.laneInfo[0] = VDSConfig.ToRIghtLaneGroup.GetLaneConfig();
+            config.laneInfo[1] = VDSConfig.ToLeftLaneGroup.GetLaneConfig();
+
+            //int.TryParse(AppConfiguration.GetAppConfig("LANE_CONFIG_0"), out configValue);
+            //config.laneInfo[0] = (byte)configValue;
+
+            //int.TryParse(AppConfiguration.GetAppConfig("LANE_CONFIG_1"), out configValue);
+            //config.laneInfo[1] = (byte)configValue;
             result = config;
             return result;
         }
@@ -331,8 +337,12 @@ namespace KorExManageCtrl
 
         public void SaveLaneConfig(ParamLaneConfig config)
         {
-            AppConfiguration.SetAppConfig("LANE_CONFIG_0", config.laneInfo[0].ToString());
-            AppConfiguration.SetAppConfig("LANE_CONFIG_1", config.laneInfo[1].ToString());
+            VDSConfig.ToRIghtLaneGroup.SetLaneConfig(config.laneInfo[0]);
+            VDSConfig.ToLeftLaneGroup.SetLaneConfig(config.laneInfo[1]);
+            
+            // TO DO : DB 저장...해야 한다. 
+
+
         }
 
 
@@ -380,10 +390,10 @@ namespace KorExManageCtrl
             IExOPData result = null;
 
             PollingCycle cycle = new PollingCycle();
-
-            int value = 30;
-            int.TryParse(AppConfiguration.GetAppConfig("POLLING_CYCLE"), out value);
-            cycle.cycle = (byte)value;
+            
+            //int value = 30;
+            //int.TryParse(AppConfiguration.GetAppConfig("POLLING_CYCLE"), out value);
+            cycle.cycle = (byte)VDSConfig.korExConfig.centerPollingPeriod;
 
             result = cycle;
             return result;
@@ -393,6 +403,7 @@ namespace KorExManageCtrl
         public void SavePollingCycle(PollingCycle cycle)
         {
             AppConfiguration.SetAppConfig(String.Format("POLLING_CYCLE"), cycle.cycle.ToString());
+            VDSConfig.korExConfig.centerPollingPeriod = cycle.cycle;
         }
 
         public IExOPData ReadVehiclePulseNumber()
@@ -426,13 +437,19 @@ namespace KorExManageCtrl
         {
             IExOPData result = null;
             SpeedCategory category = new SpeedCategory();
-            for (int i = 0; i < category.category.Length; i++)
+            int i = 0;
+            foreach(var speed in VDSConfig.speedCategoryList)
             {
-                // 스피트 분류 초기값 설정 
-                int speed = (i + 1) * 10;
-                int.TryParse(AppConfiguration.GetAppConfig(String.Format($"SPEED_CATEGORY_{i + 1}")), out speed);
-                category.category[i] = (byte)speed;
+                category.category[i] = (byte)speed.ToValue;
+                i++;
             }
+            //for (int i = 0; i < category.category.Length; i++)
+            //{
+            //    // 스피트 분류 초기값 설정 
+            //    int speed = (i + 1) * 10;
+            //    int.TryParse(AppConfiguration.GetAppConfig(String.Format($"SPEED_CATEGORY_{i + 1}")), out speed);
+            //    category.category[i] = (byte)speed;
+            //}
             result = category;
             return result;
         }
@@ -450,31 +467,39 @@ namespace KorExManageCtrl
         public IExOPData ReadLengthCategory()
         {
             IExOPData result = null;
-            LengthCategory category = new LengthCategory();
-            for (int i = 0; i < category.category.Length; i++)
+            LengthCategory lengthCategory = new LengthCategory();
+
+            int i = 0;
+            foreach(var category in VDSConfig.lengthCategoryList)
             {
-                // dm : m 의 1/10 1 dm = 10 cm = 0.1 m 
-                //LENGTH_CATEGORY[0] = 80; // 80 dm --> 8 m small
-                //LENGTH_CATEGORY[1] = 120; // 120 dm --> 12 m mid 
-                //LENGTH_CATEGORY[2] = 150; // 150 dm --> 15 m big
-                int length = 0;
-                switch (i)
-                {
-                    case 0:
-                        length = 80;
-                        break;
-                    case 1:
-                        length = 120;
-                        break;
-                    case 2:
-                        length = 150;
-                        break;
-                }
-                int.TryParse(AppConfiguration.GetAppConfig(String.Format($"LENGTH_CATEGORY_{i + 1}")), out length);
-                category.category[i] = (byte)length;
+                lengthCategory.category[i] = (byte)category.ToValue;
+                i++;
             }
 
-            result = category;
+            //for (int i = 0; i < category.category.Length; i++)
+            //{
+            //    // dm : m 의 1/10 1 dm = 10 cm = 0.1 m 
+            //    //LENGTH_CATEGORY[0] = 80; // 80 dm --> 8 m small
+            //    //LENGTH_CATEGORY[1] = 120; // 120 dm --> 12 m mid 
+            //    //LENGTH_CATEGORY[2] = 150; // 150 dm --> 15 m big
+            //    int length = 0;
+            //    switch (i)
+            //    {
+            //        case 0:
+            //            length = 80;
+            //            break;
+            //        case 1:
+            //            length = 120;
+            //            break;
+            //        case 2:
+            //            length = 150;
+            //            break;
+            //    }
+            //    int.TryParse(AppConfiguration.GetAppConfig(String.Format($"LENGTH_CATEGORY_{i + 1}")), out length);
+            //    category.category[i] = (byte)length;
+            //}
+
+            result = lengthCategory;
             return result;
         }
 
@@ -490,35 +515,69 @@ namespace KorExManageCtrl
         public IExOPData ReadVDSValue(byte index)
         {
             IExOPData result = null;
-            String sectionName = String.Empty;
+            //String sectionName = String.Empty;
             VDSValue ability = new VDSValue(index);
             int value = 0;
-            switch(index)
+
+            switch (index)
             {
-                case 6:
-                    value = 1;
-                    sectionName = String.Format("SPEED_ACCU_ENABLED");
+                case 6: // index 7 속도 별 누적 치 계산
+                    value = VDSConfig.korexParam.SpeedAccuEnabled;
                     break;
-                case 7:
-                    sectionName = String.Format("LENGTH_ACCU_ENABLED");
+                case 7: // index 8  차량길이 별 누적 치 계산
+                    value = VDSConfig.korexParam.LengthAccuEnabled;
                     break;
-                case 8:
-                    sectionName = String.Format("SPEED_CALCU_ENABLED");
+                case 8:// index 9 속도 계산 가능 여부
+                    value  = VDSConfig.korexParam.speedCalcuEnabled;
                     break;
-                case 9:
-                    sectionName = String.Format("LENGTH_CALCU_ENABLED");
+                case 9:// index 10  차량길이 계산 가능 여부
+                    value = VDSConfig.korexParam.lengthCalcuEnabled;
                     break;
 
-                case 21:
-                    sectionName = String.Format("REVERSE_RUN_ENABLED");
+                case 16:// index 17 Oscillation   임계치
+                    value  = VDSConfig.korexParam.oscillationThreshold;
+                    break;
+
+                case 19:// index 20  Auto   Re-Synchronization Waiting Period
+                    value = VDSConfig.korexParam.autoSyncPeriod;
+                    break;
+
+                case 20: // index 21  역주행 사용 여부
+                    value = VDSConfig.korexParam.reverseRunEnabled;
                     break;
 
             }
 
-            int.TryParse(AppConfiguration.GetAppConfig(sectionName), out value);
+
+            //switch (index)
+            //{
+            //    case 6:
+            //        value = VDSConfig.korexParam.SpeedAccuEnabled;
+            //        //sectionName = String.Format("SPEED_ACCU_ENABLED");
+            //        break;
+            //    case 7:
+            //        value = VDSConfig.korexParam.LengthAccuEnabled;
+            //        //sectionName = String.Format("LENGTH_ACCU_ENABLED");
+            //        break;
+            //    case 8:
+            //        value = VDSConfig.korexParam.speedCalcuEnabled;
+            //        //sectionName = String.Format("SPEED_CALCU_ENABLED");
+            //        break;
+            //    case 9:
+            //        value = VDSConfig.korexParam.lengthCalcuEnabled;
+            //        //sectionName = String.Format("LENGTH_CALCU_ENABLED");
+            //        break;
+
+            //    case 20:
+            //        value = VDSConfig.korexParam.reverseRunEnabled;
+            //        //sectionName = String.Format("REVERSE_RUN_ENABLED");
+            //        break;
+
+            //}
+
+            // int.TryParse(AppConfiguration.GetAppConfig(sectionName), out value);
             ability.value = (byte)value;
             result = ability;
-
             return result;
         }
 
@@ -526,26 +585,36 @@ namespace KorExManageCtrl
         public void SaveVDSValue(VDSValue ability , int index)
         {
             String sectionName = String.Empty;
+            
             switch (index)
             {
-                case 6:
-                    sectionName = String.Format("SPEED_ACCU_ENABLED");
+                case 6: // index 7 속도 별 누적 치 계산
+                    VDSConfig.korexParam.SpeedAccuEnabled = ability.value ;
                     break;
-                case 7:
-                    sectionName = String.Format("LENGTH_ACCU_ENABLED");
+                case 7: // index 8  차량길이 별 누적 치 계산
+                    VDSConfig.korexParam.LengthAccuEnabled = ability.value;
                     break;
-                case 8:
-                    sectionName = String.Format("SPEED_CALCU_ENABLED");
+                case 8:// index 9 속도 계산 가능 여부
+                    VDSConfig.korexParam.speedCalcuEnabled = ability.value;
                     break;
-                case 9:
-                    sectionName = String.Format("LENGTH_CALCU_ENABLED");
+                case 9:// index 10  차량길이 계산 가능 여부
+                    VDSConfig.korexParam.lengthCalcuEnabled = ability.value;
                     break;
-                case 21:
-                    sectionName = String.Format("REVERSE_RUN_ENABLED");
+
+                case 16:// index 17 Oscillation   임계치
+                    VDSConfig.korexParam.oscillationThreshold = ability.value;
+                    break;
+
+                case 19:// index 20  Auto   Re-Synchronization Waiting Period
+                    VDSConfig.korexParam.autoSyncPeriod = ability.value;
+                    break;
+
+                case 20: // index 21  역주행 사용 여부
+                    VDSConfig.korexParam.reverseRunEnabled = ability.value;
                     break;
 
             }
-            AppConfiguration.SetAppConfig(sectionName, ability.value.ToString());
+            SaveKorExParamToDB();
         }
 
         public IExOPData ReadSpeedLoopDimension()
@@ -749,29 +818,7 @@ namespace KorExManageCtrl
         {
             IExOPData result = null;
             VDSValue threshold = new VDSValue((byte)index);
-
-            int value = 0;
-
-            PollingCycle cycle = (PollingCycle)VDSParam[2];
-
-            if (cycle!=null)
-            {
-                switch(cycle.cycle)
-                {
-                    case 20:
-                        value = 30;
-                        break;
-                    case 30:
-                        value = 50;
-                        break;
-                    default:
-                        value = 50;
-                        break;
-                }
-            }
-
-            int.TryParse(AppConfiguration.GetAppConfig("OSCILLATION_THRESHOLD"), out value);
-            threshold.value = (byte)value;
+            threshold.value = (byte) VDSConfig.korexParam.oscillationThreshold;
             result = threshold;
             return result;
         }
@@ -786,9 +833,7 @@ namespace KorExManageCtrl
         {
             IExOPData result;
             VDSValue threshold = new VDSValue((byte)index);
-            int value = 1;
-            int.TryParse(AppConfiguration.GetAppConfig("AUTO_SYNC_PERIOD"), out value);
-            threshold.value = (byte)value;
+            threshold.value = (byte)VDSConfig.korexParam.autoSyncPeriod;
             result = threshold;
             return result;
         }
@@ -2001,6 +2046,9 @@ namespace KorExManageCtrl
                 case 8: // Vehicle Length   Accumulation Disable/Enable : 차량길이 별 누적 치 계산
                 case 9: // Speed   Calculation Disable/Enable : 속도 계산 가능 여부
                 case 10: // Vehicle Length   Calculation Disable/Enable : 차량길이 계산 가능 여부
+                case 17: // Loop Detector   Oscillation Threshold : Oscillation   임계치
+                case 20: // Auto   Re-Synchronization Waiting Period
+                case 21: // 역주행 사용 여부
                     result = ProcessVDSAbilityCommand((VDSValue)(request.param), request.paramIndex - 1);
                     break;
                 //case 11: // Speed Loop   Dimensions : 속도 Loop 간격 및 길이
@@ -2020,19 +2068,19 @@ namespace KorExManageCtrl
 
                 //    result = ProcessStuckThresholdCommand((StuckThreshold)(request.param), request.paramIndex - 1);
                 //    break;
-                case 17: // Loop Detector   Oscillation Threshold : Oscillation   임계치
-                    result = ProcessOscillationThresholdCommand((VDSValue)(request.param), request.paramIndex - 1);
-                    break;
+                //case 17: // Loop Detector   Oscillation Threshold : Oscillation   임계치
+                //    result = ProcessOscillationThresholdCommand((VDSValue)(request.param), request.paramIndex - 1);
+                //    break;
 
-                case 20: // Auto   Re-Synchronization Waiting Period
-                    result = ProcessAutoSyncPeriodCommand((VDSValue)(request.param), request.paramIndex - 1);
-                    break;
+                //case 20: // Auto   Re-Synchronization Waiting Period
+                //    result = ProcessAutoSyncPeriodCommand((VDSValue)(request.param), request.paramIndex - 1);
+                //    break;
 
-                case 21: // 역주행 사용 여부
-                    //result = ProcessSimulationTemplateCommand((SimulationTemplate)(request.param), request.paramIndex - 1);
-                    result = ProcessVDSAbilityCommand((VDSValue)(request.param), request.paramIndex - 1);
+                //case 21: // 역주행 사용 여부
+                //    //result = ProcessSimulationTemplateCommand((SimulationTemplate)(request.param), request.paramIndex - 1);
+                //    result = ProcessVDSAbilityCommand((VDSValue)(request.param), request.paramIndex - 1);
 
-                    break;
+                //    break;
 
                 default:  // 18,19,22,23,24 : reserved 
                     break;
@@ -2377,7 +2425,7 @@ namespace KorExManageCtrl
         }
 
         public int GetParamLength(int paramIndex)
-        {
+        {   
             int result = 0;
             switch (paramIndex)
             {
@@ -2467,6 +2515,7 @@ namespace KorExManageCtrl
                 if (index >= 0 && index < VDSParam.Length && VDSParam[index] != null)
                 {
                     (VDSParam[index] as ParamLaneConfig).laneInfo = config.laneInfo;
+                    SaveLaneConfig((ParamLaneConfig)VDSParam[index]);
                 }
 
             }
@@ -2541,6 +2590,7 @@ namespace KorExManageCtrl
                 if (index >= 0 && index < VDSParam.Length && VDSParam[index] != null)
                 {
                     (VDSParam[index] as PollingCycle).cycle = polling.cycle;
+                    SavePollingCycle((PollingCycle)VDSParam[index]);
                 }
 
                 
@@ -2586,6 +2636,10 @@ namespace KorExManageCtrl
                 if (index >= 0 && index < VDSParam.Length && VDSParam[index] != null)
                 {
                     Array.Copy(category.category, 0, (VDSParam[index] as SpeedCategory).category, 0, 12);
+
+                    // save speed category...
+                    SetSpeedCategory(category);
+                    //
                 }
             }
             catch (Exception ex)
@@ -2606,6 +2660,7 @@ namespace KorExManageCtrl
                 if (index >= 0 && index < VDSParam.Length && VDSParam[index] != null)
                 {
                     Array.Copy(category.category, 0, (VDSParam[index] as LengthCategory).category, 0, 3);
+                    SetLengthCategory(category);
                 }
             }
             catch (Exception ex)
@@ -2628,6 +2683,8 @@ namespace KorExManageCtrl
                 if (index >= 0 && index < VDSParam.Length && VDSParam[index] != null)
                 {
                     (VDSParam[index] as VDSValue).value = ability.value;
+                    SaveVDSValue((VDSValue)VDSParam[index], index);
+
                 }
             }
             catch (Exception ex)
@@ -3229,5 +3286,126 @@ namespace KorExManageCtrl
             return status;
 
         }
+
+        public int SetSpeedCategory(SpeedCategory category)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
+            int result = 0;
+            int i = 0;
+            foreach(var speed in category.category)
+            {
+                if(i+1 < VDSConfig.speedCategoryList.Count)
+                {
+                    VDSConfig.speedCategoryList[i].ToValue = speed;
+                    VDSConfig.speedCategoryList[i + 1].FromValue = (byte)(speed + 1);
+                }
+                else
+                {
+                    VDSConfig.speedCategoryList[i].ToValue = 254;
+                }
+                i++;
+            }
+            // Save To DB...
+            result = SaveSpeedCategoryToDB();
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
+            return result;
+        }
+
+        public int SetLengthCategory(LengthCategory category)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
+            int result = 0;
+            int i = 0;
+            foreach (var length in category.category)
+            {
+                if (i + 1 < VDSConfig.lengthCategoryList.Count)
+                {
+                    VDSConfig.lengthCategoryList[i].ToValue = length;
+                    VDSConfig.lengthCategoryList[i + 1].FromValue = (byte)(length + 1);
+                }
+                else
+                {
+                    VDSConfig.lengthCategoryList[i].ToValue = 254;
+                }
+                i++;
+            }
+            // Save To DB...
+            result = SaveLengthCategoryToDB();
+
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
+            return result;
+        }
+
+        public int SaveSpeedCategoryToDB()
+        {
+            
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
+            int result = 0;
+            CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
+            foreach(var category in VDSConfig.speedCategoryList)
+            {
+                db.UpdateSpeedCategory(new SPEED_CATEGORY()
+                {   
+                    ID = category.Id,
+                    CATEGORY_NO = category.CategoryNo,
+                    SPEED_UNIT = category.CategoryUnit,
+                    FROM_VALUE = category.FromValue,
+                    TO_VALUE = category.ToValue,
+                }, out SP_RESULT spResult);
+                if (spResult.RESULT_COUNT > 0)
+                    result++;
+
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
+            return result;
+
+        }
+        public int SaveLengthCategoryToDB()
+        {
+
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
+            int result = 0;
+            CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
+            foreach (var category in VDSConfig.lengthCategoryList)
+            {
+                db.UpdateLengthCategory(new LENGTH_CATEGORY()
+                {
+                    ID = category.Id,
+                    CATEGORY_NO = category.CategoryNo,
+                    LENGTH_UNIT = category.CategoryUnit,
+                    FROM_VALUE = category.FromValue,
+                    TO_VALUE = category.ToValue,
+                }, out SP_RESULT spResult);
+                if (spResult.RESULT_COUNT > 0)
+                    result++;
+
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
+            return result;
+
+        }
+
+        public int SaveKorExParamToDB()
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
+            int result = 0;
+            CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
+            db.UpdateKorexParameter(new KOREX_PARAMETER()
+            {
+                SPEED_ACCU_ENABLED = VDSConfig.korexParam.SpeedAccuEnabled,
+                LENGTH_ACCU_ENABLED = VDSConfig.korexParam.LengthAccuEnabled,
+                SPEED_CALCU_ENABLED = VDSConfig.korexParam.speedCalcuEnabled,
+                LENGTH_CALCU_ENABLED = VDSConfig.korexParam.lengthCalcuEnabled,
+                REVERSE_RUN_ENABLED = VDSConfig.korexParam.reverseRunEnabled,
+                OSCILLATION_THRESHOLD = VDSConfig.korexParam.oscillationThreshold,
+                AUTO_SYNC_PERIOD = VDSConfig.korexParam.autoSyncPeriod
+
+            }, out SP_RESULT spResult);
+            result = spResult.RESULT_COUNT;
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
+            return result;
+        }
+
+
     }
 }

@@ -44,14 +44,19 @@ namespace VDSCommon
         public static LaneGroup ToLeftLaneGroup = new LaneGroup();
         public static LaneGroup ToRIghtLaneGroup = new LaneGroup();
 
-        public static byte[] SPEED_CATEGORY = new byte[12];
+        public static List<TrafficCategory> speedCategoryList = new List<TrafficCategory>();
+        public static List<TrafficCategory> lengthCategoryList = new List<TrafficCategory>();
 
-        public static byte[] LENGTH_CATEGORY = new byte[3];
+        public static KorexParameter korexParam = new KorexParameter();
+
+        //public static byte[] SPEED_CATEGORY = new byte[12];
+
+        //public static byte[] LENGTH_CATEGORY = new byte[3];
 
 
-        public static byte[] LOOP_NO = new byte[32];
+        //public static byte[] LOOP_NO = new byte[32];
 
-        
+
         public static int ReadConfig()
         {
             int nResult = 0;
@@ -67,21 +72,21 @@ namespace VDSCommon
 
 
                 // 스피드 분류 초기값 설정 
-                for (int i = 0; i < 12; i++)
-                    SPEED_CATEGORY[i] =(byte)( (i + 1) * 10);
+                //for (int i = 0; i < 12; i++)
+                //    SPEED_CATEGORY[i] =(byte)( (i + 1) * 10);
 
                 // dm : m 의 1/10 1 dm = 10 cm = 0.1 m 
-                LENGTH_CATEGORY[0] = 80 ; // 80 dm --> 8 m small
-                LENGTH_CATEGORY[1] = 120; // 120 dm --> 12 m mid 
-                LENGTH_CATEGORY[2] = 150; // 150 dm --> 15 m big
+                //LENGTH_CATEGORY[0] = 80 ; // 80 dm --> 8 m small
+                //LENGTH_CATEGORY[1] = 120; // 120 dm --> 12 m mid 
+                //LENGTH_CATEGORY[2] = 150; // 150 dm --> 15 m big
 
 
                 // LOOP NO 초기값 설정
-                for (int i = 0; i < 16; i++)
-                {
-                    LOOP_NO[i] = (byte)i;
-                    LOOP_NO[i+1] = (byte)(i+1);
-                }
+                //for (int i = 0; i < 16; i++)
+                //{
+                //    LOOP_NO[i] = (byte)i;
+                //    LOOP_NO[i+1] = (byte)(i+1);
+                //}
 
                 nResult = 1;
             }

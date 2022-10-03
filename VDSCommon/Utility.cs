@@ -699,17 +699,44 @@ namespace VDSCommon
         public static VEHICLE_LENGTH_CATEGORY GetVehicleLengthCategory(double length) //단위 : m
         {
             VEHICLE_LENGTH_CATEGORY result = VEHICLE_LENGTH_CATEGORY.CATEGORY_SMALL;
+            int i = 0;
+            foreach(var category in VDSConfig.lengthCategoryList)  // 10cm = 1 dm , 10 dm = 1m  . dm --> m 하기 위해 나누기 10 한다. 1 m = 10 dm
+            {
+                if (length >= (category.FromValue/10) && length <= (category.ToValue/10)) // from , to  값 단위는 dm . m 로 환산 하여 비교 한다. 1 dm = 10
+                {
+                    break;
+                }
+                i++;
+            }
+            switch(i)
+            {
+                case 0:  // small 
+                    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_SMALL;
+                    break;
+                case 1:  // middle
+                    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_MIDDLE;
+                    break;
+                case 2:  // large
+                    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_LARGE;
+                    break;
+                default: // large 
+                    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_LARGE;
+                    break;
+            }
 
-            if(length <= VDSConfig.LENGTH_CATEGORY[0]/10)
-                result = VEHICLE_LENGTH_CATEGORY.CATEGORY_SMALL;
-            else if(length <= VDSConfig.LENGTH_CATEGORY[1]/10)
-                result = VEHICLE_LENGTH_CATEGORY.CATEGORY_MIDDLE;
-            else
-                result = VEHICLE_LENGTH_CATEGORY.CATEGORY_LARGE;
+            //if(length <= VDSConfig.LENGTH_CATEGORY[0]/10)
+            //    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_SMALL;
+            //else if(length <= VDSConfig.LENGTH_CATEGORY[1]/10)
+            //    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_MIDDLE;
+            //else
+            //    result = VEHICLE_LENGTH_CATEGORY.CATEGORY_LARGE;
 
             return result;
 
         }
+
+
+
 
         public static int GetTotalPageCount(int totalCount, int pageSize)
         {
@@ -835,30 +862,41 @@ namespace VDSCommon
         {
             int result = 0;
 
-            if (speed < VDSConfig.SPEED_CATEGORY[0])
-                result = 1;
-            else if (speed < VDSConfig.SPEED_CATEGORY[1])
-                result = 2;
-            else if (speed < VDSConfig.SPEED_CATEGORY[2])
-                result = 3;
-            else if (speed < VDSConfig.SPEED_CATEGORY[3])
-                result = 4;
-            else if (speed < VDSConfig.SPEED_CATEGORY[4])
-                result = 5;
-            else if (speed < VDSConfig.SPEED_CATEGORY[5])
-                result = 6;
-            else if (speed < VDSConfig.SPEED_CATEGORY[6])
-                result = 7;
-            else if (speed < VDSConfig.SPEED_CATEGORY[7])
-                result = 8;
-            else if (speed < VDSConfig.SPEED_CATEGORY[8])
-                result = 9;
-            else if (speed < VDSConfig.SPEED_CATEGORY[9])
-                result = 10;
-            else if (speed < VDSConfig.SPEED_CATEGORY[10])
-                result = 11;
-            else 
-                result = 12;
+            int i = 0;
+            foreach(var category in VDSConfig.speedCategoryList)
+            {
+                if(speed >= category.FromValue && speed <= category.ToValue)
+                {
+                    result = i + 1;
+                    break;
+                }
+                i++;
+            }
+            
+            //if (speed < VDSConfig.SPEED_CATEGORY[0])
+            //    result = 1;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[1])
+            //    result = 2;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[2])
+            //    result = 3;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[3])
+            //    result = 4;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[4])
+            //    result = 5;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[5])
+            //    result = 6;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[6])
+            //    result = 7;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[7])
+            //    result = 8;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[8])
+            //    result = 9;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[9])
+            //    result = 10;
+            //else if (speed < VDSConfig.SPEED_CATEGORY[10])
+            //    result = 11;
+            //else 
+            //    result = 12;
             
             return result;
         }

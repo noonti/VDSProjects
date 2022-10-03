@@ -1132,8 +1132,8 @@ namespace KorExSimulator
         private void button11_Click(object sender, EventArgs e)
         {
             ParamLaneConfig param = new ParamLaneConfig();
-            param.laneInfo[0] = 0x04;
-            param.laneInfo[1] = 0x06;
+            param.laneInfo[0] = 0xFF; //8차선 사용(11111111)
+            param.laneInfo[1] = 0x07; //3차선 사용(00000111)
 
             ParamDownloadRequest request = new ParamDownloadRequest();
             request.paramIndex = 0x01;
@@ -1205,7 +1205,7 @@ namespace KorExSimulator
             ParamDownloadRequest request = new ParamDownloadRequest();
             request.paramIndex = 0x03;
             PollingCycle polling = new PollingCycle();
-            polling.cycle = 40;
+            polling.cycle = 45;
             request.param = polling;
 
             ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_PARAM_DOWNLOAD_COMMAND, request);
@@ -1256,7 +1256,7 @@ namespace KorExSimulator
             SpeedCategory category = new SpeedCategory();
 
             for (int i = 0; i < 12; i++)
-                category.category[i] = (byte)(i * 10 + 1);
+                category.category[i] = (byte)(i * 5 + 1);
 
             request.param = category;
 
@@ -1302,7 +1302,7 @@ namespace KorExSimulator
             ParamDownloadRequest request = new ParamDownloadRequest();
             request.paramIndex = 0x07;
             VDSValue ability = new VDSValue(request.paramIndex);
-            ability.value = 1;
+            ability.value = 2;
             request.param = ability;
 
             ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_PARAM_DOWNLOAD_COMMAND, request);
@@ -1324,7 +1324,7 @@ namespace KorExSimulator
             request.paramIndex = 0x08;
 
             VDSValue ability = new VDSValue(request.paramIndex);
-            ability.value = 2;
+            ability.value = 3;
             request.param = ability;
 
             ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_PARAM_DOWNLOAD_COMMAND, request);
@@ -1345,7 +1345,7 @@ namespace KorExSimulator
             ParamDownloadRequest request = new ParamDownloadRequest();
             request.paramIndex = 0x09;
             VDSValue ability = new VDSValue(request.paramIndex);
-            ability.value = 3;
+            ability.value = 4;
             request.param = ability;
 
             ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_PARAM_DOWNLOAD_COMMAND, request);
@@ -1365,7 +1365,7 @@ namespace KorExSimulator
             request.paramIndex = 0x0A;
 
             VDSValue ability = new VDSValue(request.paramIndex);
-            ability.value = 4;
+            ability.value = 5;
             request.param = ability;
 
             ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_PARAM_DOWNLOAD_COMMAND, request);
@@ -1724,7 +1724,7 @@ namespace KorExSimulator
             request.paramIndex = 21;
 
             VDSValue ability = new VDSValue(request.paramIndex);
-            ability.value = 3;
+            ability.value = 7;
 
 
             request.param = ability;

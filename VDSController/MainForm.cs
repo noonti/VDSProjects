@@ -1,5 +1,6 @@
 ﻿using BenchMarkManageCtrl;
 using DarkUI.Forms;
+using Gma.System.MouseKeyHook;
 using KorExManageCtrl;
 using KorExManageCtrl.VDSProtocol;
 using KorExManageCtrl.VDSProtocol_v2._0;
@@ -48,12 +49,14 @@ namespace VDSController
         public MainForm()
         {
             InitializeComponent();
-            
+
+            Hook.GlobalEvents().KeyDown += GlobalHook_KeyDown;
+
             VDSConfig.ReadConfig();
 
             GetSpeedCategory();
             GetLengthCategory();
-
+            GetKorexParameter();
             GetLaneGroupList();
 
             this.Text = VDSConfig.GetVDSControllerName();
@@ -62,6 +65,11 @@ namespace VDSController
             InitializeManager();
             StartTimer();
         }
+
+        private void GlobalHook_KeyDown(object sender, KeyEventArgs e)
+        {      Console.WriteLine($"Key Down " + e.KeyData);    
+        }
+
 
         public void StartSerialManager()
         {
@@ -506,28 +514,57 @@ namespace VDSController
 
         private void GetSpeedCategory()
         {
+            VDSConfig.speedCategoryList.Clear();
             CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
             var speedCategoryList = db.GetSpeedCategoryList(new SPEED_CATEGORY() { }, out SP_RESULT spResult).ToList();
             foreach(var category in speedCategoryList)
             {
-                Console.WriteLine($"{category}");
+                VDSConfig.speedCategoryList.Add(new TrafficCategory()
+                {   
+                    Id = category.ID,
+                    CategoryNo = category.CATEGORY_NO,
+                    CategoryUnit = category.SPEED_UNIT,
+                    FromValue = (byte)category.FROM_VALUE,
+                    ToValue = (byte)category.TO_VALUE,
+                    CategoryType = 1,
+                });
             }
-            
-
         }
 
         private void GetLengthCategory()
         {
+            VDSConfig.lengthCategoryList.Clear();
+
             CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
             var lengthCategoryList = db.GetLengthCategoryList(new LENGTH_CATEGORY() { }, out SP_RESULT spResult).ToList();
             foreach (var category in lengthCategoryList)
             {
-                Console.WriteLine($"{category}");
+                VDSConfig.lengthCategoryList.Add(new TrafficCategory()
+                {
+                    Id = category.ID,
+                    CategoryNo = category.CATEGORY_NO,
+                    CategoryUnit = category.LENGTH_UNIT,
+                    FromValue = (byte)category.FROM_VALUE,
+                    ToValue = (byte)category.TO_VALUE,
+                    CategoryType = 2,
+                });
             }
+        }
 
-
-
-
+        private void GetKorexParameter()
+        {
+            CommonOperation db = new CommonOperation(VDSConfig.VDS_DB_CONN);
+            var param = db.GetKorexParameter(new KOREX_PARAMETER(), out SP_RESULT spResult);
+            if(param!=null)
+            {
+                VDSConfig.korexParam.SpeedAccuEnabled = param.SPEED_ACCU_ENABLED ;
+                VDSConfig.korexParam.LengthAccuEnabled = param.LENGTH_ACCU_ENABLED;
+                VDSConfig.korexParam.speedCalcuEnabled = param.SPEED_CALCU_ENABLED;
+                VDSConfig.korexParam.lengthCalcuEnabled = param.LENGTH_CALCU_ENABLED;
+                VDSConfig.korexParam.reverseRunEnabled = param.REVERSE_RUN_ENABLED;
+                VDSConfig.korexParam.oscillationThreshold = param.OSCILLATION_THRESHOLD;
+                VDSConfig.korexParam.autoSyncPeriod = param.AUTO_SYNC_PERIOD;
+            }
         }
     }
 }

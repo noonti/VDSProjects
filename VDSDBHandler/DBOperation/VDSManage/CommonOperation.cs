@@ -228,5 +228,49 @@ namespace VDSDBHandler.DBOperation.VDSManage
             return _dapperOrm.ReturnSingle<LENGTH_CATEGORY>("SP_GET_LENGTH_CATEGORY", param, out spResult);
         }
 
+
+        public void AddKorexParameter(KOREX_PARAMETER data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_SPEED_ACCU_ENABLED = data.SPEED_ACCU_ENABLED,
+                I_LENGTH_ACCU_ENABLED = data.LENGTH_ACCU_ENABLED,
+                I_SPEED_CALCU_ENABLED = data.SPEED_CALCU_ENABLED,
+                I_LENGTH_CALCU_ENABLED = data.LENGTH_CALCU_ENABLED,
+                I_REVERSE_RUN_ENABLED = data.REVERSE_RUN_ENABLED,
+                I_OSCILLATION_THRESHOLD = data.OSCILLATION_THRESHOLD,
+                I_AUTO_SYNC_PERIOD = data.AUTO_SYNC_PERIOD,
+
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_KOREX_PARAMETER", param, out spResult);
+        }
+
+
+        public void UpdateKorexParameter(KOREX_PARAMETER data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_SPEED_ACCU_ENABLED = data.SPEED_ACCU_ENABLED,
+                I_LENGTH_ACCU_ENABLED = data.LENGTH_ACCU_ENABLED,
+                I_SPEED_CALCU_ENABLED = data.SPEED_CALCU_ENABLED,
+                I_LENGTH_CALCU_ENABLED = data.LENGTH_CALCU_ENABLED,
+                I_REVERSE_RUN_ENABLED = data.REVERSE_RUN_ENABLED,
+                I_OSCILLATION_THRESHOLD = data.OSCILLATION_THRESHOLD,
+                I_AUTO_SYNC_PERIOD = data.AUTO_SYNC_PERIOD,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_KOREX_PARAMETER", param, out spResult);
+        }
+
+        public KOREX_PARAMETER GetKorexParameter(KOREX_PARAMETER data, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+
+            });
+            return _dapperOrm.ReturnSingle<KOREX_PARAMETER>("SP_GET_KOREX_PARAMETER", param, out spResult);
+        }
     }
 }
