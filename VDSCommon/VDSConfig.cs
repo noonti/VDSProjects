@@ -49,6 +49,8 @@ namespace VDSCommon
 
         public static KorexParameter korexParam = new KorexParameter();
 
+        
+
         //public static byte[] SPEED_CATEGORY = new byte[12];
 
         //public static byte[] LENGTH_CATEGORY = new byte[3];

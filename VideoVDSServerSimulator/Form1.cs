@@ -637,7 +637,7 @@ namespace VideoVDSServerSimulator
         {
             int result = 0;
             Random rand = new Random();
-            result = rand.Next(80, 150);
+            result = rand.Next(300, 1550);
             return result ;
         }
 

@@ -1278,9 +1278,9 @@ namespace KorExSimulator
             ParamDownloadRequest request = new ParamDownloadRequest();
             request.paramIndex = 0x06;
             LengthCategory category = new LengthCategory();
-            category.category[0] = 120;
-            category.category[1] = 130;
-            category.category[2] = 140;
+            category.category[0] = 47;
+            category.category[1] = 135;
+            category.category[2] = 0;
 
             request.param = category;
 

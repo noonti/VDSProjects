@@ -997,6 +997,20 @@ namespace VDSCommon
                 cbData.SelectedIndex = 0;
         }
 
+
+        public static void FillKorofficeComboBox(List<KorexOffice> dataList, ComboBox cbData)
+        {
+            cbData.Items.Clear();
+
+            foreach (var data in dataList)
+            {
+                cbData.Items.Add(data.OfficeName);
+            }
+            if (cbData.Items.Count > 0)
+                cbData.SelectedIndex = 0;
+
+
+        }
         public static int GetCSN(ref byte[] csn)
         {
             int nResult = 0;

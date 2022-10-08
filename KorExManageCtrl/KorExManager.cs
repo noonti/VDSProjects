@@ -98,6 +98,7 @@ namespace KorExManageCtrl
             //sessionState = KOR_EX_SESSION_STATE.SESSION_OFFLINE;
 
             ReadVDSParameter();
+            
 
             StartTimer();
 
@@ -3315,15 +3316,21 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int result = 0;
+            byte prevValue = 0;
             int i = 0;
+            //VDSConfig.lengthCategoryList.Clear();
             foreach (var length in category.category)
             {
                 if (i + 1 < VDSConfig.lengthCategoryList.Count)
                 {
-                    VDSConfig.lengthCategoryList[i].ToValue = length;
-                    VDSConfig.lengthCategoryList[i + 1].FromValue = (byte)(length + 1);
+                    if(length>0)
+                    {
+                        VDSConfig.lengthCategoryList[i].ToValue = length;
+                        VDSConfig.lengthCategoryList[i + 1].FromValue = (byte)(length + 1);
+                    }
+                    
                 }
-                else
+                else // 마지막 것...
                 {
                     VDSConfig.lengthCategoryList[i].ToValue = 254;
                 }

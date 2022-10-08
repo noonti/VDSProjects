@@ -18,8 +18,9 @@ namespace VDSController
         public VDSConfigForm()
         {
             InitializeComponent();
-            ucConfig.SetVDSGrupList(GlobalCommonData.vdsGroupsList);
+            //ucConfig.SetVDSGrupList(GlobalCommonData.vdsGroupsList);
             ucConfig.SetVDSTypeList(GlobalCommonData.vdsTypeList);
+            ucConfig.SetKorexOfficeList(GlobalCommonData.korexOfficeList);
             ucConfig.LoadVDSConfig(VDSConfig.controllerConfig, VDSConfig.kictConfig, VDSConfig.korExConfig);
  
         }

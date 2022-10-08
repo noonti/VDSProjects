@@ -19,7 +19,8 @@ namespace VDSCommon
         KorExConfig korExConfig;
 
         public List<VDS_TYPE> vdsTypeList;
-        public List<VDS_GROUPS> vdsGroupList;
+        //public List<VDS_GROUPS> vdsGroupList;
+        public List<KorexOffice> korexOfficeList;
 
         //public Form parentForm = null;
         public ucVDSConfig()
@@ -38,12 +39,15 @@ namespace VDSCommon
             korExConfig = exConfig;
 
 
-            if (vdsGroupList != null)
-                Utility.FillVDSGroupsComboBox(vdsGroupList, cbVDSGroup);
+            //if (vdsGroupList != null)
+            //    Utility.FillVDSGroupsComboBox(vdsGroupList, cbVDSGroup);
+            if (korexOfficeList != null)
+                Utility.FillKorofficeComboBox(korexOfficeList, cbVDSGroup);
+
+
             if (vdsTypeList != null)
                 Utility.FillVDSTypeComboBox(vdsTypeList, cbVDSType);
-
-
+            
 
             LoadControllerConfig();
             LoadKictConfig();
@@ -135,7 +139,7 @@ namespace VDSCommon
                 //Utility.GetCSN(korExConfig.csn, ref vdsType, ref groupCode, ref vdsNo);
 
                 cbVDSType.SelectedIndex = vdsTypeList.FindIndex(x => x.VDS_TYPE_CODE == korExConfig.vdsType);
-                cbVDSGroup.SelectedIndex = vdsGroupList.FindIndex(x => x.GROUP_CODE == korExConfig.vdsGroup);
+                cbVDSGroup.SelectedIndex = korexOfficeList.FindIndex(x => x.OfficeCode == korExConfig.vdsGroup);
                 txtVDSNo.Text = korExConfig.vdsNo;
                 //vdsNo = Utility.BCDToByte(vdsNo);
                 //groupCode = (UInt16)((korExConfig.csn & 0xFFFF0000) >> 16);
@@ -278,7 +282,7 @@ namespace VDSCommon
                 if(cbVDSType.SelectedIndex>=0)
                     korExConfig.vdsType = vdsTypeList[cbVDSType.SelectedIndex].VDS_TYPE_CODE;
                 if(cbVDSGroup.SelectedIndex>=0)
-                    korExConfig.vdsGroup = vdsGroupList[cbVDSGroup.SelectedIndex].GROUP_CODE;
+                    korExConfig.vdsGroup = korexOfficeList[cbVDSGroup.SelectedIndex].OfficeCode;
                 korExConfig.vdsNo = txtVDSNo.Text;
 
                 korExConfig.csn = Utility.GetCSN(korExConfig.vdsType, korExConfig.vdsGroup, korExConfig.vdsNo);
@@ -337,11 +341,12 @@ namespace VDSCommon
             vdsTypeList = vdsList;
         }
 
-        public void SetVDSGrupList(List<VDS_GROUPS> groupList)
-        {
-            vdsGroupList = groupList;
-        }
+        
 
+        public void SetKorexOfficeList(List<KorexOffice> officeList)
+        {
+            korexOfficeList = officeList;
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
                     }

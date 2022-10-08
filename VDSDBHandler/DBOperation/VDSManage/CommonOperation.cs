@@ -272,5 +272,14 @@ namespace VDSDBHandler.DBOperation.VDSManage
             });
             return _dapperOrm.ReturnSingle<KOREX_PARAMETER>("SP_GET_KOREX_PARAMETER", param, out spResult);
         }
+
+        public IEnumerable<KOREX_OFFICE> GetKorexOfficeList(out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+            });
+            return _dapperOrm.ReturnList<KOREX_OFFICE>("SP_GET_KOREX_OFFICE_LIST", param, out spResult).ToList();
+        }
     }
 }

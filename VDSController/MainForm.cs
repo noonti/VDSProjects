@@ -58,7 +58,8 @@ namespace VDSController
             GetLengthCategory();
             GetKorexParameter();
             GetLaneGroupList();
-
+            
+            
             this.Text = VDSConfig.GetVDSControllerName();
            
             InitTabPages();
@@ -566,5 +567,7 @@ namespace VDSController
                 VDSConfig.korexParam.autoSyncPeriod = param.AUTO_SYNC_PERIOD;
             }
         }
+
+        
     }
 }

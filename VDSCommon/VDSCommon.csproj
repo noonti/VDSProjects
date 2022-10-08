@@ -112,6 +112,7 @@
     <Compile Include="IRTUManager.cs" />
     <Compile Include="IVDSDevice.cs" />
     <Compile Include="IVDSManager.cs" />
+    <Compile Include="KorexOffice.cs" />
     <Compile Include="KorexParameter.cs" />
     <Compile Include="LaneGroup.cs" />
     <Compile Include="LaneInfo.cs" />
