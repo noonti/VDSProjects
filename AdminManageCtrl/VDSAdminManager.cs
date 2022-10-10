@@ -24,7 +24,7 @@ namespace AdminManageCtrl
         private object _lockQueue = new object();
         public ManualResetEvent socketMsgThreadExitEvent = new ManualResetEvent(false);
         bool _bSocketMsgProcessing = false;
-        MADataFrame _prevDataFrame = null;
+        //MADataFrame _prevDataFrame = null;
         public AddMADataEvent _addMADataEvent = null;
 
 
@@ -171,11 +171,15 @@ namespace AdminManageCtrl
                 }
                 else
                 {
+                    // Main form 에 세선 연결 종료 Event 전송
+                    PostMASessionDisConnectEvent(session); 
                     DeleteSessionContext(session);
+                    
                 }
             }
             catch (Exception ex)
             {
+                PostMASessionDisConnectEvent(session);
                 DeleteSessionContext(session);
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
             }
@@ -232,21 +236,21 @@ namespace AdminManageCtrl
             int i = 0;
             while (i < packet.Length)
             {
-                if (_prevDataFrame == null)
+                if (session._prevFrame == null) //_prevDataFrame
                 {
-                    _prevDataFrame = new MADataFrame();
+                    session._prevFrame = new MADataFrame();
                 }
                 else
                 {
                     Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"미완성 패킷 후속 처리 "));
                 }
 
-                i = _prevDataFrame.Deserialize(packet, i);
-                if (_prevDataFrame.bDataCompleted)
+                i = (session._prevFrame as MADataFrame).Deserialize(packet, i);
+                if ((session._prevFrame as MADataFrame).bDataCompleted)
                 {
                     // processDataFrame....
-                    ProcessDataFrame(session, _prevDataFrame);
-                    _prevDataFrame = null;
+                    ProcessDataFrame(session, (session._prevFrame as MADataFrame));
+                    session._prevFrame   = null;
                     nResult++;
                 }
                 else
@@ -554,6 +558,14 @@ namespace AdminManageCtrl
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return nResult;
+        }
+
+        private void PostMASessionDisConnectEvent(SessionContext session)
+        {
+            MADataFrame frame = new MADataFrame();
+            frame.OpCode = MADataFrameDefine.OPCODE_VDS_DISCONNECT;
+            PostMADataEvent(session, frame);
+
         }
     }
     

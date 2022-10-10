@@ -22,6 +22,8 @@ namespace VDSCommon
 
         public String Id = Guid.NewGuid().ToString();
 
+        public object _prevFrame = null;
+
         public SessionContext()
         {
             _type = CLIENT_TYPE.NONE;

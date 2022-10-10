@@ -114,6 +114,9 @@ namespace VDSWebAPIServer.Forms
                     kictConfig = data.kictConfig;
                     korExConfig = data.korExConfig;
 
+                   
+                    ucConfig.SetVDSTypeList(GlobalCommonData.vdsTypeList);
+                    ucConfig.SetKorexOfficeList(GlobalCommonData.korexOfficeList);
                     ucConfig.LoadVDSConfig(controllerConfig, kictConfig, korExConfig);
 
                 }

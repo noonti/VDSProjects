@@ -328,6 +328,9 @@ namespace VDSWebAPIServer
                 case MADataFrameDefine.OPCODE_VDS_CONFIG:
                     ProcessVDSConfig(session, frame);
                     break;
+                case MADataFrameDefine.OPCODE_VDS_DISCONNECT:
+                    ProcessVDSDisConnect(session, frame);
+                    break;
             }
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
@@ -417,6 +420,25 @@ namespace VDSWebAPIServer
             return nResult;
         }
 
+        private int ProcessVDSDisConnect(SessionContext sessionContext, MADataFrame frame)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            int nResult = 0;
+
+            if (sessionContext!=null)
+            {
+                var vdsController = vdsControllerList.Where(x=>x.sessionContext == sessionContext).FirstOrDefault() ;
+                if(vdsController!=null)
+                {
+                    vdsController.LAST_HEARTBEAT_TIME = String.Empty;
+                    vdsController.STATUS = (int)SOCKET_STATUS.DISCONNECTED;
+
+                    PostUpdateVDSController(vdsController.CONTROLLER_ID);
+                }
+            }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return nResult;
+        }
         
         private void button1_Click(object sender, EventArgs e)
         {

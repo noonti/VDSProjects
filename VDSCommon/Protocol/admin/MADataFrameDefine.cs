@@ -30,6 +30,8 @@ namespace VDSCommon.Protocol.admin
 
         public const byte OPCODE_VDS_CONFIG = 0x50;
 
+        public const byte OPCODE_VDS_DISCONNECT = 0x90;
+
 
         public const String COMMAND_TRAFFIC_SEND = "TRAFFIC_DATA_SEND";
         public const String COMMAND_VDS_SERVICE = "VDS_SERVICE";

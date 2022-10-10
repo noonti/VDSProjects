@@ -39,6 +39,7 @@ namespace VDSCommon
             korExConfig = exConfig;
 
 
+           
             //if (vdsGroupList != null)
             //    Utility.FillVDSGroupsComboBox(vdsGroupList, cbVDSGroup);
             if (korexOfficeList != null)
