@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,7 @@ namespace VDSCommon
 
         public int Open()
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
             try
             {
@@ -43,8 +45,10 @@ namespace VDSCommon
             }
             catch(Exception ex)
             {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
                 nResult = 0;
             }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return nResult;
         }
 
@@ -68,6 +72,7 @@ namespace VDSCommon
 
         public int Send(byte[] data)
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
             try
             {
@@ -76,8 +81,10 @@ namespace VDSCommon
             }
             catch(Exception ex)
             {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
                 nResult = 0;
             }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return nResult;
         }
     }

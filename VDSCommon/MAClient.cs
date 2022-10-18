@@ -187,6 +187,7 @@ namespace VDSCommon
         private void CloseMAClient()
         {
             DeleteSessionContext(_sessionContext);
+            _bTrafficDataEventSend = false;
             _status = SOCKET_STATUS.DISCONNECTED;
 
         }

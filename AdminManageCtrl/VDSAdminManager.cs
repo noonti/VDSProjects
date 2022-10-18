@@ -319,6 +319,8 @@ namespace AdminManageCtrl
                 }
 
                 nResult = SendResponse(frame.OpCode, sessionContext, response);
+
+
             }
             else
             {

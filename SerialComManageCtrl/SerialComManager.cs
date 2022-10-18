@@ -34,9 +34,9 @@ namespace SerialComManageCtrl
                 rtuManager.Init(portName, baudRate, parity, dataBits, stopBits, handShake, new SerialDataReceivedEventHandler(SerialReceivedData));
             }
 
-            //if (serialCom == null)
-            //    serialCom = new SerialCom();
-            //serialCom.Init(portName, baudRate , parity , dataBits , stopBits, handShake , new SerialDataReceivedEventHandler(SerialReceivedData));
+            if (serialCom == null)
+                serialCom = new SerialCom();
+            serialCom.Init(portName, baudRate, parity, dataBits, stopBits, handShake, new SerialDataReceivedEventHandler(SerialReceivedData));
             return nResult;
         }
 
@@ -61,9 +61,9 @@ namespace SerialComManageCtrl
             StartRTUStatusTimer();
             //if(_rtuClient==null)
             //{
-            //    if (serialCom != null && serialCom.isOpened)
-            //        serialCom.Close();
-            //    serialCom.Open();
+            if (serialCom != null && serialCom.isOpened)
+                serialCom.Close();
+            serialCom.Open();
             //}
             //else
             //{
@@ -79,12 +79,12 @@ namespace SerialComManageCtrl
             if (rtuManager != null)
                 rtuManager.StopManager();
 
-            
+
 
             //if (_rtuClient == null)
             //{
-            //    if (serialCom != null && serialCom.isOpened)
-            //        serialCom.Close();
+            if (serialCom != null && serialCom.isOpened)
+                serialCom.Close();
             //}
             //else
             //{
@@ -182,6 +182,7 @@ namespace SerialComManageCtrl
 
         private int ProcessDataFrame(SerialDataFrame dataFrame)
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
             byte opCode = (byte)(dataFrame.OpCode - SerialDataFrameDefine.OPCODE_RESPONSE);
             switch (opCode)
@@ -219,7 +220,7 @@ namespace SerialComManageCtrl
             {
                 _control.BeginInvoke(_serialDataFrameDelegate, new object[] { dataFrame});
             }
-                
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return nResult;
         }
 
@@ -248,7 +249,7 @@ namespace SerialComManageCtrl
         /// <returns></returns>
         public int RTUStatustRequest(byte data = 0x0)
         {
-            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
             try
             {
@@ -267,7 +268,7 @@ namespace SerialComManageCtrl
             {
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
             }
-            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return nResult;
         }
 
