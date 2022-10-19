@@ -55,8 +55,8 @@ namespace SerialComManageCtrl
         }
         public int StartManager()
         {
-            if (rtuManager != null)
-                rtuManager.StartManager();
+            //if (rtuManager != null)
+            //    rtuManager.StartManager();
 
             StartRTUStatusTimer();
             //if(_rtuClient==null)
@@ -76,8 +76,8 @@ namespace SerialComManageCtrl
         public int StopManager()
         {
             StopRTUStatusTimer();
-            if (rtuManager != null)
-                rtuManager.StopManager();
+            //if (rtuManager != null)
+            //    rtuManager.StopManager();
 
 
 
