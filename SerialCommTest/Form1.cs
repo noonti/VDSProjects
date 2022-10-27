@@ -125,7 +125,7 @@ namespace SerialCommTest
 
         private void darkButton14_Click(object sender, EventArgs e)
         {
-            serialManager.SetSerialPort(txtPortName.Text);
+            serialManager.SetSerialPort(txtPortName.Text, int.Parse(txtBaudRate.Text));
             serialManager.SetFormSerialDataFrameDelegate(this, new FormSerialDataFrameDelegate(ucRTUStatus.ProcessSerialDataFrame));
             _Logger.StartManager();
             serialManager.StartManager();
@@ -520,6 +520,11 @@ namespace SerialCommTest
         private void ucRTUStatusBar1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void darkButton1_Click_1(object sender, EventArgs e)
+        {
+            serialManager.RTUStatustRequest();
         }
     }
 

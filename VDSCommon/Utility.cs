@@ -756,12 +756,25 @@ namespace VDSCommon
         public static byte GetLRCCode(byte[] packet, int startIndex, int endIndex)
         {
             byte result = 0;
+            /* 기존 LRC 체크 
             for (int i = startIndex; i <= endIndex; i++)
             {
                 result = (byte)((result + packet[i]) & 0xFF);
 
             }
             result = (byte)(((result ^ 0xFF) + 1) & 0xFF);
+            */
+
+            /*
+             *  BnB RTU LRC 체크 모듈 
+             */
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                //result = (byte)((result + packet[i]) & 0xFF);
+                result ^= packet[i];
+
+            }
+
             return result;
         }
 

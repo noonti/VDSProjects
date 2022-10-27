@@ -119,7 +119,7 @@ namespace SerialComManageCtrl
 
         private void Status_Timer_Tick(object sender, EventArgs e)
         {
-            RTUStatustRequest();
+            //RTUStatustRequest(); avogadro
         }
 
 
@@ -141,7 +141,7 @@ namespace SerialComManageCtrl
             SerialDataFrame dataFrame = null;
             int i = 0;
 
-            Utility.PrintHexaString(packet, length);
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Serial Data= {Utility.PrintHexaString(packet, length)} "));
 
             while (i < length)
             {

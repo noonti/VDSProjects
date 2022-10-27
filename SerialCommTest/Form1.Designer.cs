@@ -65,6 +65,7 @@
             this.lbResult = new System.Windows.Forms.Label();
             this.lbRequest = new System.Windows.Forms.Label();
             this.ucRTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
+            this.darkButton1 = new DarkUI.Controls.DarkButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -109,7 +110,7 @@
             this.txtBaudRate.Name = "txtBaudRate";
             this.txtBaudRate.Size = new System.Drawing.Size(100, 21);
             this.txtBaudRate.TabIndex = 3;
-            this.txtBaudRate.Text = "115200";
+            this.txtBaudRate.Text = "9600";
             // 
             // label2
             // 
@@ -126,7 +127,7 @@
             this.txtPortName.Name = "txtPortName";
             this.txtPortName.Size = new System.Drawing.Size(100, 21);
             this.txtPortName.TabIndex = 1;
-            this.txtPortName.Text = "COM11";
+            this.txtPortName.Text = "COM1";
             // 
             // label1
             // 
@@ -476,12 +477,24 @@
             this.ucRTUStatus.TabIndex = 26;
             this.ucRTUStatus.Load += new System.EventHandler(this.ucRTUStatusBar1_Load);
             // 
+            // darkButton1
+            // 
+            this.darkButton1.Location = new System.Drawing.Point(624, 91);
+            this.darkButton1.Name = "darkButton1";
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton1.Size = new System.Drawing.Size(204, 25);
+            this.darkButton1.TabIndex = 21;
+            this.darkButton1.Text = "상태 요청";
+            this.darkButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(1169, 385);
+            this.Controls.Add(this.darkButton1);
             this.Controls.Add(this.ucRTUStatus);
             this.Controls.Add(this.lbRequest);
             this.Controls.Add(this.lbResult);
@@ -557,6 +570,7 @@
         private System.Windows.Forms.Label lbResult;
         private System.Windows.Forms.Label lbRequest;
         private SerialComManageCtrl.ucRTUStatusBar ucRTUStatus;
+        private DarkUI.Controls.DarkButton darkButton1;
     }
 }
 

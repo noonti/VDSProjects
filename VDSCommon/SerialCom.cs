@@ -76,6 +76,7 @@ namespace VDSCommon
             int nResult = 0;
             try
             {
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" send Serial Data= {Utility.PrintHexaString(data, data.Length)} "));
                 serialPort.Write(data, 0, data.Length);
                 nResult = data.Length;
             }
