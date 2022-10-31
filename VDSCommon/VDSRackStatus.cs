@@ -174,7 +174,7 @@ namespace VDSCommon
 
         public static byte SetRTSStatus(byte rtuStatus, byte[] deviceInfo )
         {
-            RTSStatus = rtuStatus;
+            RTSStatus = deviceInfo[0];// rtuStatus;
 
             /* bit
              * 0 : FRONT DOOR   (Close : 0, Open : 1) 

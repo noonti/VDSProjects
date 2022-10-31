@@ -119,7 +119,7 @@ namespace SerialComManageCtrl
 
         private void Status_Timer_Tick(object sender, EventArgs e)
         {
-            //RTUStatustRequest(); avogadro
+            RTUStatustRequest(); 
         }
 
 
@@ -141,7 +141,7 @@ namespace SerialComManageCtrl
             SerialDataFrame dataFrame = null;
             int i = 0;
 
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Serial Data= {Utility.PrintHexaString(packet, length)} "));
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Serial Data= {Utility.PrintHexaString(packet, length)} length={length} "));
 
             while (i < length)
             {
@@ -155,6 +155,7 @@ namespace SerialComManageCtrl
                 }
 
                 i = dataFrame.Deserialize(packet, i);
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"시리얼 패킷 데이터 완성 여부: dataFrame.bHeaderCompleted={dataFrame.bHeaderCompleted}, dataFrame.bDataCompleted = {dataFrame.bDataCompleted} "));
                 if (dataFrame.bDataCompleted)
                 {
                     // processDataFrame....
@@ -164,7 +165,7 @@ namespace SerialComManageCtrl
                     }
                     else // LRC error
                     {
-                        Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"DataFrame 패킷 LRC 체크 실패"));
+                        Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"DataFrame 패킷 LRC 체크 실패 i={i}, packet.Length={packet.Length}"));
                     }
                         
                     dataFrame = null;
