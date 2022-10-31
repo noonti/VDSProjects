@@ -41,10 +41,10 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.lbPlaceName = new DarkUI.Controls.DarkLabel();
-            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
             this.statusTime = new DarkUI.Controls.DarkLabel();
+            this.ucTargetSummary = new VDSController.tabTargetSummary();
+            this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -169,7 +169,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
             this.splitContainer2.Size = new System.Drawing.Size(1904, 1012);
-            this.splitContainer2.SplitterDistance = 951;
+            this.splitContainer2.SplitterDistance = 928;
             this.splitContainer2.TabIndex = 6;
             // 
             // splitContainer3
@@ -186,8 +186,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.ucTargetSummary);
-            this.splitContainer3.Size = new System.Drawing.Size(1904, 951);
-            this.splitContainer3.SplitterDistance = 54;
+            this.splitContainer3.Size = new System.Drawing.Size(1904, 928);
+            this.splitContainer3.SplitterDistance = 51;
             this.splitContainer3.TabIndex = 6;
             // 
             // darkGroupBox1
@@ -197,7 +197,7 @@
             this.darkGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(1904, 54);
+            this.darkGroupBox1.Size = new System.Drawing.Size(1904, 51);
             this.darkGroupBox1.TabIndex = 0;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "현장 정보";
@@ -215,22 +215,12 @@
             this.lbPlaceName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbPlaceName.Visible = false;
             // 
-            // ucTargetSummary
-            // 
-            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
-            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
-            this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 893);
-            this.ucTargetSummary.TabIndex = 6;
-            // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 7);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -240,18 +230,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusTime);
-            this.splitContainer1.Size = new System.Drawing.Size(1904, 50);
+            this.splitContainer1.Size = new System.Drawing.Size(1904, 80);
             this.splitContainer1.SplitterDistance = 1725;
             this.splitContainer1.TabIndex = 6;
-            // 
-            // RTUStatus
-            // 
-            this.RTUStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RTUStatus.Location = new System.Drawing.Point(0, 0);
-            this.RTUStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.RTUStatus.Name = "RTUStatus";
-            this.RTUStatus.Size = new System.Drawing.Size(1725, 50);
-            this.RTUStatus.TabIndex = 0;
             // 
             // statusTime
             // 
@@ -259,9 +240,29 @@
             this.statusTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.statusTime.Location = new System.Drawing.Point(0, 0);
             this.statusTime.Name = "statusTime";
-            this.statusTime.Size = new System.Drawing.Size(175, 50);
+            this.statusTime.Size = new System.Drawing.Size(175, 80);
             this.statusTime.TabIndex = 0;
             this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ucTargetSummary
+            // 
+            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTargetSummary.Name = "ucTargetSummary";
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 873);
+            this.ucTargetSummary.TabIndex = 6;
+            // 
+            // RTUStatus
+            // 
+            this.RTUStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.RTUStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RTUStatus.Location = new System.Drawing.Point(0, 0);
+            this.RTUStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.RTUStatus.Name = "RTUStatus";
+            this.RTUStatus.Size = new System.Drawing.Size(1725, 80);
+            this.RTUStatus.TabIndex = 0;
             // 
             // MainForm
             // 

@@ -64,8 +64,8 @@
             this.darkButton10 = new DarkUI.Controls.DarkButton();
             this.lbResult = new System.Windows.Forms.Label();
             this.lbRequest = new System.Windows.Forms.Label();
-            this.ucRTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
             this.darkButton1 = new DarkUI.Controls.DarkButton();
+            this.ucRTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -468,15 +468,6 @@
             this.lbRequest.TabIndex = 25;
             this.lbRequest.Text = "[]";
             // 
-            // ucRTUStatus
-            // 
-            this.ucRTUStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucRTUStatus.Location = new System.Drawing.Point(0, 331);
-            this.ucRTUStatus.Name = "ucRTUStatus";
-            this.ucRTUStatus.Size = new System.Drawing.Size(1169, 54);
-            this.ucRTUStatus.TabIndex = 26;
-            this.ucRTUStatus.Load += new System.EventHandler(this.ucRTUStatusBar1_Load);
-            // 
             // darkButton1
             // 
             this.darkButton1.Location = new System.Drawing.Point(624, 91);
@@ -487,6 +478,15 @@
             this.darkButton1.Text = "상태 요청";
             this.darkButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click_1);
+            // 
+            // ucRTUStatus
+            // 
+            this.ucRTUStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ucRTUStatus.Location = new System.Drawing.Point(0, 331);
+            this.ucRTUStatus.Name = "ucRTUStatus";
+            this.ucRTUStatus.Size = new System.Drawing.Size(1169, 54);
+            this.ucRTUStatus.TabIndex = 26;
+            this.ucRTUStatus.Load += new System.EventHandler(this.ucRTUStatusBar1_Load);
             // 
             // Form1
             // 

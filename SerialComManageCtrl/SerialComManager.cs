@@ -126,10 +126,13 @@ namespace SerialComManageCtrl
         private void SerialReceivedData(object sender, SerialDataReceivedEventArgs e)
         {
             byte[] buffer = new byte[VDSConfig.PACKET_SIZE];
+            byte[] packet;
             if (serialCom.isOpened)
             {
                 int readCount = serialCom.serialPort.Read(buffer, 0, VDSConfig.PACKET_SIZE);
-                ProcessReceivePacket(buffer, readCount);
+                packet = new byte[readCount];
+                Array.Copy(buffer, 0, packet, 0, readCount);
+                ProcessReceivePacket(packet, readCount);
             }
         }
 
@@ -637,7 +640,10 @@ namespace SerialComManageCtrl
             _control = control;
         }
 
-
+        public void RTUStatustTest(byte[] packet, int length)
+        {
+            ProcessReceivePacket(packet, length);
+        }
     }
 
 }

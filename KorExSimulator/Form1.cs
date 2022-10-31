@@ -1944,8 +1944,8 @@ namespace KorExSimulator
         private void button39_Click(object sender, EventArgs e)
         {
             SetTemperatureRequest request = new SetTemperatureRequest();
-            request.fanTemperature = (byte)(int.Parse(txtFan.Text));
-            request.heaterTemperature = (byte)(int.Parse(txtHeater.Text));
+            request.fanTemperature = Utility.GetThresholdToByte(int.Parse(txtFan.Text));
+            request.heaterTemperature = Utility.GetThresholdToByte(int.Parse(txtHeater.Text));
 
             ExDataFrame frame = MakeKorExRequest(ExDataFrameDefine.OP_SET_TEMPERATURE_COMMAND, request);
 

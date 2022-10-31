@@ -50,11 +50,11 @@ namespace SerialComManageCtrl
             ledHeater.SetOn(rackStatus.IsHeaterOn == 1 ? 1 : 0); //동작시 On
             ledAVR.SetOn(rackStatus.IsAVROn == 1 ? 1 : 0); //동작시 On
             lbTemperature.Text = String.Format($"{rackStatus.Temperature} °C");
-            lbFanThreshold.Text = String.Format($"{rackStatus.FanThreshold}");
-            lbAVRVolt.Text = String.Format($"{rackStatus.AVRVoltThreshold}");
-            lbAVRAmp.Text = String.Format($"{rackStatus.AVRAmpThreshold}");
-            lbHeaterThreshold.Text = String.Format($"{rackStatus.HeaterThreshold}");
-            lbHumidity.Text = String.Format($"{rackStatus.HumitidyThreshold}");
+            lbFanThreshold.Text = String.Format($"{rackStatus.FanThreshold} °C");
+            //lbAVRVolt.Text = String.Format($"{rackStatus.AVRVoltThreshold}");
+            //lbAVRAmp.Text = String.Format($"{rackStatus.AVRAmpThreshold}");
+            lbHeaterThreshold.Text = String.Format($"{rackStatus.HeaterThreshold} °C");
+            lbHumidity.Text = String.Format($"{rackStatus.HumitidyThreshold} %");
 
 
             return nResult;

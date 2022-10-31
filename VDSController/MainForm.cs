@@ -392,8 +392,15 @@ namespace VDSController
                 SetTemperatureRequest request = (SetTemperatureRequest)(workData.frame.opData);
                 if(serialManager!=null)
                 {
-                    serialManager.SetHeaterThresholdRequest(request.heaterTemperature);
-                    serialManager.SetFanThresholdRequest(request.fanTemperature);
+                    int threshold = Utility.GetThresholdToInt(request.heaterTemperature);
+                    serialManager.SetHeaterThresholdRequest(threshold);
+
+                    threshold = Utility.GetThresholdToInt(request.fanTemperature);
+                    serialManager.SetFanThresholdRequest(threshold);
+
+                    //serialManager.SetHeaterThresholdRequest(request.heaterTemperature);
+                    //serialManager.SetFanThresholdRequest(request.fanTemperature);
+
                 }
             }
             return nResult;
