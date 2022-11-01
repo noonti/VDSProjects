@@ -46,9 +46,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.statusTime = new DarkUI.Controls.DarkLabel();
-            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.ucServerLed = new VDSCommon.ucLEDLight();
             this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
+            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -291,16 +291,6 @@
             this.statusTime.TabIndex = 0;
             this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ucTargetSummary
-            // 
-            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
-            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
-            this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
-            this.ucTargetSummary.TabIndex = 6;
-            // 
             // ucServerLed
             // 
             this.ucServerLed.Location = new System.Drawing.Point(52, 20);
@@ -318,6 +308,16 @@
             this.RTUStatus.Size = new System.Drawing.Size(1624, 55);
             this.RTUStatus.TabIndex = 1;
             // 
+            // ucTargetSummary
+            // 
+            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTargetSummary.Name = "ucTargetSummary";
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
+            this.ucTargetSummary.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -329,6 +329,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VDS Controller";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
