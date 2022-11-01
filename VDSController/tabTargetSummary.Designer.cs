@@ -44,6 +44,7 @@ namespace VDSController
             this.gbxLeft = new DarkUI.Controls.DarkGroupBox();
             this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
             this.btnSetTime = new DarkUI.Controls.DarkButton();
+            this.ucStartDate = new VDSController.ucDateTimePicker();
             this.lbServiceStartTime = new DarkUI.Controls.DarkLabel();
             this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.lbLastCountTime_ = new DarkUI.Controls.DarkLabel();
@@ -62,10 +63,13 @@ namespace VDSController
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
             this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
             this.cbLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton3 = new DarkUI.Controls.DarkButton();
             this.darkLabel2 = new DarkUI.Controls.DarkLabel();
+            this.ucEndTime = new VDSController.ucDateTimePicker();
+            this.ucStartTime = new VDSController.ucDateTimePicker();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lvTrafficStat = new VDSCommon.ListViewEx();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -80,6 +84,8 @@ namespace VDSController
             this.cbTrafficLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton4 = new DarkUI.Controls.DarkButton();
             this.darkLabel4 = new DarkUI.Controls.DarkLabel();
+            this.ucTrafficEndTime = new VDSController.ucDateTimePicker();
+            this.ucTrafficStartTime = new VDSController.ucDateTimePicker();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.lvSpeedStat = new VDSCommon.ListViewEx();
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -100,15 +106,9 @@ namespace VDSController
             this.cbSpeedLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton5 = new DarkUI.Controls.DarkButton();
             this.darkLabel5 = new DarkUI.Controls.DarkLabel();
-            this.timerSliding = new System.Windows.Forms.Timer(this.components);
-            this.ucStartDate = new VDSController.ucDateTimePicker();
-            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
-            this.ucEndTime = new VDSController.ucDateTimePicker();
-            this.ucStartTime = new VDSController.ucDateTimePicker();
-            this.ucTrafficEndTime = new VDSController.ucDateTimePicker();
-            this.ucTrafficStartTime = new VDSController.ucDateTimePicker();
             this.ucSpeedEndTime = new VDSController.ucDateTimePicker();
             this.ucSpeedStartTime = new VDSController.ucDateTimePicker();
+            this.timerSliding = new System.Windows.Forms.Timer(this.components);
             this.pnPlayer.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.tabTrafficInfo.SuspendLayout();
@@ -290,6 +290,17 @@ namespace VDSController
             this.btnSetTime.Size = new System.Drawing.Size(60, 32);
             this.btnSetTime.TabIndex = 2;
             this.btnSetTime.Text = "SET";
+            this.btnSetTime.Visible = false;
+            // 
+            // ucStartDate
+            // 
+            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
+            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucStartDate.Name = "ucStartDate";
+            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
+            this.ucStartDate.TabIndex = 4;
+            this.ucStartDate.Visible = false;
             // 
             // lbServiceStartTime
             // 
@@ -339,6 +350,7 @@ namespace VDSController
             this.darkLabel1.Size = new System.Drawing.Size(105, 20);
             this.darkLabel1.TabIndex = 0;
             this.darkLabel1.Text = "카운트 시작시간: ";
+            this.darkLabel1.Visible = false;
             // 
             // tabPage3
             // 
@@ -457,6 +469,16 @@ namespace VDSController
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "차량 검지 정보 조회";
             // 
+            // ucCenterTrafficData
+            // 
+            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
+            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
+            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
+            this.ucCenterTrafficData.TabIndex = 1;
+            // 
             // darkGroupBox3
             // 
             this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -502,6 +524,20 @@ namespace VDSController
             this.darkLabel2.Size = new System.Drawing.Size(14, 15);
             this.darkLabel2.TabIndex = 27;
             this.darkLabel2.Text = "~";
+            // 
+            // ucEndTime
+            // 
+            this.ucEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucEndTime.Name = "ucEndTime";
+            this.ucEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucEndTime.TabIndex = 2;
+            // 
+            // ucStartTime
+            // 
+            this.ucStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucStartTime.Name = "ucStartTime";
+            this.ucStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucStartTime.TabIndex = 1;
             // 
             // tabPage4
             // 
@@ -630,6 +666,20 @@ namespace VDSController
             this.darkLabel4.Size = new System.Drawing.Size(14, 15);
             this.darkLabel4.TabIndex = 27;
             this.darkLabel4.Text = "~";
+            // 
+            // ucTrafficEndTime
+            // 
+            this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucTrafficEndTime.Name = "ucTrafficEndTime";
+            this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucTrafficEndTime.TabIndex = 2;
+            // 
+            // ucTrafficStartTime
+            // 
+            this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucTrafficStartTime.Name = "ucTrafficStartTime";
+            this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucTrafficStartTime.TabIndex = 1;
             // 
             // tabPage5
             // 
@@ -801,57 +851,6 @@ namespace VDSController
             this.darkLabel5.TabIndex = 27;
             this.darkLabel5.Text = "~";
             // 
-            // timerSliding
-            // 
-            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
-            // 
-            // ucStartDate
-            // 
-            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
-            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucStartDate.Name = "ucStartDate";
-            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
-            this.ucStartDate.TabIndex = 4;
-            // 
-            // ucCenterTrafficData
-            // 
-            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
-            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
-            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
-            this.ucCenterTrafficData.TabIndex = 1;
-            // 
-            // ucEndTime
-            // 
-            this.ucEndTime.Location = new System.Drawing.Point(418, 27);
-            this.ucEndTime.Name = "ucEndTime";
-            this.ucEndTime.Size = new System.Drawing.Size(258, 27);
-            this.ucEndTime.TabIndex = 2;
-            // 
-            // ucStartTime
-            // 
-            this.ucStartTime.Location = new System.Drawing.Point(212, 27);
-            this.ucStartTime.Name = "ucStartTime";
-            this.ucStartTime.Size = new System.Drawing.Size(258, 27);
-            this.ucStartTime.TabIndex = 1;
-            // 
-            // ucTrafficEndTime
-            // 
-            this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
-            this.ucTrafficEndTime.Name = "ucTrafficEndTime";
-            this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
-            this.ucTrafficEndTime.TabIndex = 2;
-            // 
-            // ucTrafficStartTime
-            // 
-            this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
-            this.ucTrafficStartTime.Name = "ucTrafficStartTime";
-            this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
-            this.ucTrafficStartTime.TabIndex = 1;
-            // 
             // ucSpeedEndTime
             // 
             this.ucSpeedEndTime.Location = new System.Drawing.Point(418, 27);
@@ -865,6 +864,10 @@ namespace VDSController
             this.ucSpeedStartTime.Name = "ucSpeedStartTime";
             this.ucSpeedStartTime.Size = new System.Drawing.Size(258, 27);
             this.ucSpeedStartTime.TabIndex = 1;
+            // 
+            // timerSliding
+            // 
+            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
             // 
             // tabTargetSummary
             // 
