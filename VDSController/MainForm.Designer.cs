@@ -40,15 +40,15 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
-            this.lbPlaceName = new DarkUI.Controls.DarkLabel();
-            this.ucTargetSummary = new VDSController.tabTargetSummary();
+            this.lbSiteName = new DarkUI.Controls.DarkLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.statusTime = new DarkUI.Controls.DarkLabel();
+            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.ucServerLed = new VDSCommon.ucLEDLight();
             this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
-            this.statusTime = new DarkUI.Controls.DarkLabel();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -202,7 +202,7 @@
             // darkGroupBox1
             // 
             this.darkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.darkGroupBox1.Controls.Add(this.lbPlaceName);
+            this.darkGroupBox1.Controls.Add(this.lbSiteName);
             this.darkGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.darkGroupBox1.Name = "darkGroupBox1";
@@ -211,28 +211,17 @@
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "현장 정보";
             // 
-            // lbPlaceName
+            // lbSiteName
             // 
-            this.lbPlaceName.AutoSize = true;
-            this.lbPlaceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPlaceName.ForeColor = System.Drawing.Color.Yellow;
-            this.lbPlaceName.Location = new System.Drawing.Point(22, 27);
-            this.lbPlaceName.Name = "lbPlaceName";
-            this.lbPlaceName.Size = new System.Drawing.Size(115, 24);
-            this.lbPlaceName.TabIndex = 0;
-            this.lbPlaceName.Text = "ㅇㄴㅁㄹㄴㅇㄹ";
-            this.lbPlaceName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbPlaceName.Visible = false;
-            // 
-            // ucTargetSummary
-            // 
-            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
-            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
-            this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
-            this.ucTargetSummary.TabIndex = 6;
+            this.lbSiteName.AutoSize = true;
+            this.lbSiteName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSiteName.ForeColor = System.Drawing.Color.Yellow;
+            this.lbSiteName.Location = new System.Drawing.Point(22, 27);
+            this.lbSiteName.Name = "lbSiteName";
+            this.lbSiteName.Size = new System.Drawing.Size(16, 24);
+            this.lbSiteName.TabIndex = 0;
+            this.lbSiteName.Text = " ";
+            this.lbSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // splitContainer1
             // 
@@ -292,6 +281,26 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "연결";
             // 
+            // statusTime
+            // 
+            this.statusTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statusTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.statusTime.Location = new System.Drawing.Point(0, 0);
+            this.statusTime.Name = "statusTime";
+            this.statusTime.Size = new System.Drawing.Size(175, 55);
+            this.statusTime.TabIndex = 0;
+            this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ucTargetSummary
+            // 
+            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTargetSummary.Name = "ucTargetSummary";
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
+            this.ucTargetSummary.TabIndex = 6;
+            // 
             // ucServerLed
             // 
             this.ucServerLed.Location = new System.Drawing.Point(52, 20);
@@ -308,16 +317,6 @@
             this.RTUStatus.Name = "RTUStatus";
             this.RTUStatus.Size = new System.Drawing.Size(1624, 55);
             this.RTUStatus.TabIndex = 1;
-            // 
-            // statusTime
-            // 
-            this.statusTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statusTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.statusTime.Location = new System.Drawing.Point(0, 0);
-            this.statusTime.Name = "statusTime";
-            this.statusTime.Size = new System.Drawing.Size(175, 55);
-            this.statusTime.TabIndex = 0;
-            this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -375,7 +374,7 @@
         private DarkUI.Controls.DarkLabel statusTime;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private DarkUI.Controls.DarkGroupBox darkGroupBox1;
-        private DarkUI.Controls.DarkLabel lbPlaceName;
+        private DarkUI.Controls.DarkLabel lbSiteName;
         private tabTargetSummary ucTargetSummary;
         private System.Windows.Forms.ToolStripMenuItem menuLaneMng;
         private System.Windows.Forms.SplitContainer splitContainer4;

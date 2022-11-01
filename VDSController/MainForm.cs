@@ -187,6 +187,7 @@ namespace VDSController
                 apiManager = new WebAPIManager();
 
             GlobalCommonData.GetCommonData();
+            lbSiteName.Text = Utility.GetVDSSiteName(GlobalCommonData.korexOfficeList);
             return 1;
         }
 

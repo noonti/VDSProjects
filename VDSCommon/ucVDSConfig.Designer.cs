@@ -49,6 +49,12 @@
             this.rdgKorEx = new DarkUI.Controls.DarkRadioButton();
             this.rdgKICT = new DarkUI.Controls.DarkRadioButton();
             this.darkGroupBox4 = new DarkUI.Controls.DarkGroupBox();
+            this.darkLabel52 = new DarkUI.Controls.DarkLabel();
+            this.txtLogFilePeriod = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel53 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel51 = new DarkUI.Controls.DarkLabel();
+            this.txtTrafficDataPeriod = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel50 = new DarkUI.Controls.DarkLabel();
             this.darkLabel11 = new DarkUI.Controls.DarkLabel();
             this.chkAnimation = new DarkUI.Controls.DarkCheckBox();
             this.darkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
@@ -143,12 +149,8 @@
             this.darkLabel39 = new DarkUI.Controls.DarkLabel();
             this.txtControlPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel41 = new DarkUI.Controls.DarkLabel();
-            this.txtTrafficDataPeriod = new DarkUI.Controls.DarkTextBox();
-            this.darkLabel50 = new DarkUI.Controls.DarkLabel();
-            this.darkLabel51 = new DarkUI.Controls.DarkLabel();
-            this.darkLabel52 = new DarkUI.Controls.DarkLabel();
-            this.txtLogFilePeriod = new DarkUI.Controls.DarkTextBox();
-            this.darkLabel53 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel54 = new DarkUI.Controls.DarkLabel();
+            this.txtSiteName = new DarkUI.Controls.DarkTextBox();
             this.darkGroupBox1.SuspendLayout();
             this.tabConfing.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -439,6 +441,70 @@
             this.darkGroupBox4.TabIndex = 13;
             this.darkGroupBox4.TabStop = false;
             this.darkGroupBox4.Text = "기타";
+            // 
+            // darkLabel52
+            // 
+            this.darkLabel52.AutoSize = true;
+            this.darkLabel52.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel52.Location = new System.Drawing.Point(720, 24);
+            this.darkLabel52.Name = "darkLabel52";
+            this.darkLabel52.Size = new System.Drawing.Size(117, 15);
+            this.darkLabel52.TabIndex = 15;
+            this.darkLabel52.Text = "일(이전 데이터 삭제)";
+            // 
+            // txtLogFilePeriod
+            // 
+            this.txtLogFilePeriod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtLogFilePeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLogFilePeriod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtLogFilePeriod.Location = new System.Drawing.Point(665, 21);
+            this.txtLogFilePeriod.Name = "txtLogFilePeriod";
+            this.txtLogFilePeriod.Size = new System.Drawing.Size(49, 21);
+            this.txtLogFilePeriod.TabIndex = 13;
+            this.txtLogFilePeriod.Text = "30";
+            this.txtLogFilePeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // darkLabel53
+            // 
+            this.darkLabel53.AutoSize = true;
+            this.darkLabel53.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel53.Location = new System.Drawing.Point(553, 24);
+            this.darkLabel53.Name = "darkLabel53";
+            this.darkLabel53.Size = new System.Drawing.Size(109, 15);
+            this.darkLabel53.TabIndex = 14;
+            this.darkLabel53.Text = "로그파일 보관 일수";
+            // 
+            // darkLabel51
+            // 
+            this.darkLabel51.AutoSize = true;
+            this.darkLabel51.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel51.Location = new System.Drawing.Point(411, 24);
+            this.darkLabel51.Name = "darkLabel51";
+            this.darkLabel51.Size = new System.Drawing.Size(117, 15);
+            this.darkLabel51.TabIndex = 12;
+            this.darkLabel51.Text = "일(이전 데이터 삭제)";
+            // 
+            // txtTrafficDataPeriod
+            // 
+            this.txtTrafficDataPeriod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtTrafficDataPeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTrafficDataPeriod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtTrafficDataPeriod.Location = new System.Drawing.Point(359, 21);
+            this.txtTrafficDataPeriod.Name = "txtTrafficDataPeriod";
+            this.txtTrafficDataPeriod.Size = new System.Drawing.Size(49, 21);
+            this.txtTrafficDataPeriod.TabIndex = 2;
+            this.txtTrafficDataPeriod.Text = "30";
+            this.txtTrafficDataPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // darkLabel50
+            // 
+            this.darkLabel50.AutoSize = true;
+            this.darkLabel50.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel50.Location = new System.Drawing.Point(205, 24);
+            this.darkLabel50.Name = "darkLabel50";
+            this.darkLabel50.Size = new System.Drawing.Size(151, 15);
+            this.darkLabel50.TabIndex = 3;
+            this.darkLabel50.Text = "차량 검지 데이터 보관 일수";
             // 
             // darkLabel11
             // 
@@ -1351,6 +1417,8 @@
             // darkGroupBox14
             // 
             this.darkGroupBox14.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox14.Controls.Add(this.txtSiteName);
+            this.darkGroupBox14.Controls.Add(this.darkLabel54);
             this.darkGroupBox14.Controls.Add(this.txtVDSNo);
             this.darkGroupBox14.Controls.Add(this.cbVDSGroup);
             this.darkGroupBox14.Controls.Add(this.cbVDSType);
@@ -1546,69 +1614,25 @@
             this.darkLabel41.TabIndex = 2;
             this.darkLabel41.Text = "Control Port";
             // 
-            // txtTrafficDataPeriod
+            // darkLabel54
             // 
-            this.txtTrafficDataPeriod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.txtTrafficDataPeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTrafficDataPeriod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtTrafficDataPeriod.Location = new System.Drawing.Point(359, 21);
-            this.txtTrafficDataPeriod.Name = "txtTrafficDataPeriod";
-            this.txtTrafficDataPeriod.Size = new System.Drawing.Size(49, 21);
-            this.txtTrafficDataPeriod.TabIndex = 2;
-            this.txtTrafficDataPeriod.Text = "30";
-            this.txtTrafficDataPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.darkLabel54.AutoSize = true;
+            this.darkLabel54.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel54.Location = new System.Drawing.Point(543, 21);
+            this.darkLabel54.Name = "darkLabel54";
+            this.darkLabel54.Size = new System.Drawing.Size(43, 15);
+            this.darkLabel54.TabIndex = 17;
+            this.darkLabel54.Text = "현장명";
             // 
-            // darkLabel50
+            // txtSiteName
             // 
-            this.darkLabel50.AutoSize = true;
-            this.darkLabel50.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel50.Location = new System.Drawing.Point(205, 24);
-            this.darkLabel50.Name = "darkLabel50";
-            this.darkLabel50.Size = new System.Drawing.Size(151, 15);
-            this.darkLabel50.TabIndex = 3;
-            this.darkLabel50.Text = "차량 검지 데이터 보관 일수";
-            // 
-            // darkLabel51
-            // 
-            this.darkLabel51.AutoSize = true;
-            this.darkLabel51.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel51.Location = new System.Drawing.Point(411, 24);
-            this.darkLabel51.Name = "darkLabel51";
-            this.darkLabel51.Size = new System.Drawing.Size(117, 15);
-            this.darkLabel51.TabIndex = 12;
-            this.darkLabel51.Text = "일(이전 데이터 삭제)";
-            // 
-            // darkLabel52
-            // 
-            this.darkLabel52.AutoSize = true;
-            this.darkLabel52.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel52.Location = new System.Drawing.Point(720, 24);
-            this.darkLabel52.Name = "darkLabel52";
-            this.darkLabel52.Size = new System.Drawing.Size(117, 15);
-            this.darkLabel52.TabIndex = 15;
-            this.darkLabel52.Text = "일(이전 데이터 삭제)";
-            // 
-            // txtLogFilePeriod
-            // 
-            this.txtLogFilePeriod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.txtLogFilePeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLogFilePeriod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtLogFilePeriod.Location = new System.Drawing.Point(665, 21);
-            this.txtLogFilePeriod.Name = "txtLogFilePeriod";
-            this.txtLogFilePeriod.Size = new System.Drawing.Size(49, 21);
-            this.txtLogFilePeriod.TabIndex = 13;
-            this.txtLogFilePeriod.Text = "30";
-            this.txtLogFilePeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // darkLabel53
-            // 
-            this.darkLabel53.AutoSize = true;
-            this.darkLabel53.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel53.Location = new System.Drawing.Point(553, 24);
-            this.darkLabel53.Name = "darkLabel53";
-            this.darkLabel53.Size = new System.Drawing.Size(109, 15);
-            this.darkLabel53.TabIndex = 14;
-            this.darkLabel53.Text = "로그파일 보관 일수";
+            this.txtSiteName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtSiteName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtSiteName.Location = new System.Drawing.Point(592, 19);
+            this.txtSiteName.Name = "txtSiteName";
+            this.txtSiteName.Size = new System.Drawing.Size(290, 21);
+            this.txtSiteName.TabIndex = 18;
             // 
             // ucVDSConfig
             // 
@@ -1778,5 +1802,7 @@
         private DarkUI.Controls.DarkLabel darkLabel51;
         private DarkUI.Controls.DarkTextBox txtTrafficDataPeriod;
         private DarkUI.Controls.DarkLabel darkLabel50;
+        private DarkUI.Controls.DarkTextBox txtSiteName;
+        private DarkUI.Controls.DarkLabel darkLabel54;
     }
 }

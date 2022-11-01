@@ -31,6 +31,8 @@ namespace VDSCommon.Config
         public String vdsGroup { get; set; }
         public String vdsNo { get; set; }
 
+        public String siteName { get; set; }
+
         public int sensorCount { get; set; }
         public int powerSupplyCount { get; set; }
         public int boardCount { get; set; }

@@ -142,6 +142,7 @@ namespace VDSCommon
                 cbVDSType.SelectedIndex = vdsTypeList.FindIndex(x => x.VDS_TYPE_CODE == korExConfig.vdsType);
                 cbVDSGroup.SelectedIndex = korexOfficeList.FindIndex(x => x.OfficeCode == korExConfig.vdsGroup);
                 txtVDSNo.Text = korExConfig.vdsNo;
+                txtSiteName.Text = korExConfig.siteName;
                 //vdsNo = Utility.BCDToByte(vdsNo);
                 //groupCode = (UInt16)((korExConfig.csn & 0xFFFF0000) >> 16);
                 //serialNo = (UInt16)((korExConfig.csn & 0x0000FFFF));
@@ -285,6 +286,8 @@ namespace VDSCommon
                 if(cbVDSGroup.SelectedIndex>=0)
                     korExConfig.vdsGroup = korexOfficeList[cbVDSGroup.SelectedIndex].OfficeCode;
                 korExConfig.vdsNo = txtVDSNo.Text;
+                korExConfig.siteName = txtSiteName.Text;
+
 
                 korExConfig.csn = Utility.GetCSN(korExConfig.vdsType, korExConfig.vdsGroup, korExConfig.vdsNo);
 

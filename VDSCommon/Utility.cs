@@ -1219,6 +1219,21 @@ namespace VDSCommon
             }
             return nResult;
         }
+
+        public static String GetVDSSiteName(List<KorexOffice> officeList)
+        {
+            String result = String.Empty;
+            var office = officeList.Where(x => x.OfficeCode == VDSConfig.korExConfig.vdsGroup).FirstOrDefault();
+            if(office!=null)
+            {
+                result = String.Format($"{office.OfficeName} >> {VDSConfig.korExConfig.siteName}({VDSConfig.korExConfig.vdsNo})");
+            }
+            else
+            {
+                result = String.Format($"{VDSConfig.korExConfig.siteName}({VDSConfig.korExConfig.vdsNo})");
+            }
+            return result;
+        }
     }
 }
 

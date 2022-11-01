@@ -333,6 +333,8 @@ namespace VDSCommon
             if (String.IsNullOrEmpty(korExConfig.vdsNo))
                 korExConfig.vdsNo = "0000000001";
 
+            korExConfig.siteName = AppConfiguration.GetAppConfig("SITE_NAME");
+            
             korExConfig.csn = Utility.GetCSN(korExConfig.vdsType, korExConfig.vdsGroup, korExConfig.vdsNo);
 
             value = 0;
@@ -601,8 +603,8 @@ namespace VDSCommon
                 AppConfiguration.SetAppConfig("VDS_KIND", korExConfig.vdsType);
                 AppConfiguration.SetAppConfig("VDS_GROUP", korExConfig.vdsGroup);
                 AppConfiguration.SetAppConfig("VDS_NO", korExConfig.vdsNo);
+                AppConfiguration.SetAppConfig("SITE_NAME", korExConfig.siteName);
 
-              
                 AppConfiguration.SetAppConfig("KOR_EX_CENTER_ADDRESS", korExConfig.centerAddress);
                 AppConfiguration.SetAppConfig("KOR_EX_CENTER_PORT", korExConfig.centerPort.ToString());
 
