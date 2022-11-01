@@ -3413,6 +3413,20 @@ namespace KorExManageCtrl
             return result;
         }
 
-
+        public override SOCKET_STATUS GetCenterServerStatus()
+        {
+            SOCKET_STATUS result = SOCKET_STATUS.DISCONNECTED;
+            switch(sessionState)
+            {
+                case KOR_EX_SESSION_STATE.SESSION_OFFLINE:
+                    result = SOCKET_STATUS.DISCONNECTED;
+                    break;
+                case KOR_EX_SESSION_STATE.SESSION_INIT:
+                case KOR_EX_SESSION_STATE.SESSION_ONLINE:
+                    result = SOCKET_STATUS.CONNECTED;
+                    break;
+            }
+            return result ;
+        }
     }
 }

@@ -43,8 +43,11 @@
             this.lbPlaceName = new DarkUI.Controls.DarkLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.statusTime = new DarkUI.Controls.DarkLabel();
-            this.ucTargetSummary = new VDSController.tabTargetSummary();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
+            this.ucServerLed = new VDSCommon.ucLEDLight();
+            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -59,6 +62,11 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkMenuStrip1
@@ -169,7 +177,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
             this.splitContainer2.Size = new System.Drawing.Size(1904, 1012);
-            this.splitContainer2.SplitterDistance = 928;
+            this.splitContainer2.SplitterDistance = 946;
             this.splitContainer2.TabIndex = 6;
             // 
             // splitContainer3
@@ -186,7 +194,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.ucTargetSummary);
-            this.splitContainer3.Size = new System.Drawing.Size(1904, 928);
+            this.splitContainer3.Size = new System.Drawing.Size(1904, 946);
             this.splitContainer3.SplitterDistance = 51;
             this.splitContainer3.TabIndex = 6;
             // 
@@ -225,12 +233,12 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.RTUStatus);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer4);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusTime);
-            this.splitContainer1.Size = new System.Drawing.Size(1904, 80);
+            this.splitContainer1.Size = new System.Drawing.Size(1904, 62);
             this.splitContainer1.SplitterDistance = 1725;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -240,19 +248,38 @@
             this.statusTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.statusTime.Location = new System.Drawing.Point(0, 0);
             this.statusTime.Name = "statusTime";
-            this.statusTime.Size = new System.Drawing.Size(175, 80);
+            this.statusTime.Size = new System.Drawing.Size(175, 62);
             this.statusTime.TabIndex = 0;
             this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ucTargetSummary
+            // splitContainer4
             // 
-            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
-            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
-            this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 873);
-            this.ucTargetSummary.TabIndex = 6;
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.groupBox1);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.RTUStatus);
+            this.splitContainer4.Size = new System.Drawing.Size(1725, 62);
+            this.splitContainer4.SplitterDistance = 97;
+            this.splitContainer4.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ucServerLed);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Window;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(97, 62);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "수집서버 상태";
             // 
             // RTUStatus
             // 
@@ -261,8 +288,26 @@
             this.RTUStatus.Location = new System.Drawing.Point(0, 0);
             this.RTUStatus.Margin = new System.Windows.Forms.Padding(5);
             this.RTUStatus.Name = "RTUStatus";
-            this.RTUStatus.Size = new System.Drawing.Size(1725, 80);
-            this.RTUStatus.TabIndex = 0;
+            this.RTUStatus.Size = new System.Drawing.Size(1624, 62);
+            this.RTUStatus.TabIndex = 1;
+            // 
+            // ucServerLed
+            // 
+            this.ucServerLed.Location = new System.Drawing.Point(3, 27);
+            this.ucServerLed.Name = "ucServerLed";
+            this.ucServerLed.Size = new System.Drawing.Size(90, 30);
+            this.ucServerLed.TabIndex = 0;
+            this.ucServerLed.Title = "연결";
+            // 
+            // ucTargetSummary
+            // 
+            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTargetSummary.Name = "ucTargetSummary";
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 891);
+            this.ucTargetSummary.TabIndex = 6;
             // 
             // MainForm
             // 
@@ -295,6 +340,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,13 +361,16 @@
         private System.Windows.Forms.ToolStripMenuItem 환경설정ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private SerialComManageCtrl.ucRTUStatusBar RTUStatus;
         private DarkUI.Controls.DarkLabel statusTime;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private DarkUI.Controls.DarkGroupBox darkGroupBox1;
         private DarkUI.Controls.DarkLabel lbPlaceName;
         private tabTargetSummary ucTargetSummary;
         private System.Windows.Forms.ToolStripMenuItem menuLaneMng;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private VDSCommon.ucLEDLight ucServerLed;
+        private SerialComManageCtrl.ucRTUStatusBar RTUStatus;
     }
 }
 

@@ -148,11 +148,9 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtPort);
             this.groupBox2.Controls.Add(this.txtAddress);
-            this.groupBox2.Location = new System.Drawing.Point(19, 9);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox2.Location = new System.Drawing.Point(12, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(1194, 1242);
+            this.groupBox2.Size = new System.Drawing.Size(760, 710);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "VDS 제어";
@@ -160,47 +158,42 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(501, 296);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Location = new System.Drawing.Point(319, 169);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 21);
+            this.label7.Size = new System.Drawing.Size(69, 12);
             this.label7.TabIndex = 50;
             this.label7.Text = "Heater 온도";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(317, 296);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Location = new System.Drawing.Point(202, 169);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 21);
+            this.label5.Size = new System.Drawing.Size(54, 12);
             this.label5.TabIndex = 49;
             this.label5.Text = "Fan 온도";
             // 
             // txtHeater
             // 
-            this.txtHeater.Location = new System.Drawing.Point(616, 289);
-            this.txtHeater.Margin = new System.Windows.Forms.Padding(5);
+            this.txtHeater.Location = new System.Drawing.Point(392, 165);
             this.txtHeater.Name = "txtHeater";
-            this.txtHeater.Size = new System.Drawing.Size(84, 32);
+            this.txtHeater.Size = new System.Drawing.Size(55, 21);
             this.txtHeater.TabIndex = 48;
             this.txtHeater.Text = "5";
             // 
             // txtFan
             // 
-            this.txtFan.Location = new System.Drawing.Point(412, 289);
-            this.txtFan.Margin = new System.Windows.Forms.Padding(5);
+            this.txtFan.Location = new System.Drawing.Point(262, 165);
             this.txtFan.Name = "txtFan";
-            this.txtFan.Size = new System.Drawing.Size(84, 32);
+            this.txtFan.Size = new System.Drawing.Size(55, 21);
             this.txtFan.TabIndex = 47;
             this.txtFan.Text = "36";
             // 
             // button39
             // 
-            this.button39.Location = new System.Drawing.Point(717, 287);
-            this.button39.Margin = new System.Windows.Forms.Padding(5);
+            this.button39.Location = new System.Drawing.Point(456, 164);
             this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(310, 40);
+            this.button39.Size = new System.Drawing.Size(197, 23);
             this.button39.TabIndex = 46;
             this.button39.Text = "Fan/Heater 온도 설정";
             this.button39.UseVisualStyleBackColor = true;
@@ -208,10 +201,9 @@
             // 
             // button38
             // 
-            this.button38.Location = new System.Drawing.Point(20, 276);
-            this.button38.Margin = new System.Windows.Forms.Padding(5);
+            this.button38.Location = new System.Drawing.Point(13, 158);
             this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(195, 40);
+            this.button38.Size = new System.Drawing.Size(124, 23);
             this.button38.TabIndex = 45;
             this.button38.Text = "상태 정보";
             this.button38.UseVisualStyleBackColor = true;
@@ -219,11 +211,10 @@
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(592, 231);
-            this.txtTime.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTime.Location = new System.Drawing.Point(377, 132);
             this.txtTime.Mask = "00:00:00.00";
             this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(112, 32);
+            this.txtTime.Size = new System.Drawing.Size(73, 21);
             this.txtTime.TabIndex = 44;
             // 
             // chkSysTime
@@ -231,10 +222,9 @@
             this.chkSysTime.AutoSize = true;
             this.chkSysTime.Checked = true;
             this.chkSysTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSysTime.Location = new System.Drawing.Point(717, 236);
-            this.chkSysTime.Margin = new System.Windows.Forms.Padding(5);
+            this.chkSysTime.Location = new System.Drawing.Point(456, 135);
             this.chkSysTime.Name = "chkSysTime";
-            this.chkSysTime.Size = new System.Drawing.Size(148, 25);
+            this.chkSysTime.Size = new System.Drawing.Size(88, 16);
             this.chkSysTime.TabIndex = 43;
             this.chkSysTime.Text = "시스템 시간";
             this.chkSysTime.UseVisualStyleBackColor = true;
@@ -242,18 +232,16 @@
             // dtPicker
             // 
             this.dtPicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtPicker.Location = new System.Drawing.Point(349, 231);
-            this.dtPicker.Margin = new System.Windows.Forms.Padding(5);
+            this.dtPicker.Location = new System.Drawing.Point(222, 132);
             this.dtPicker.Name = "dtPicker";
-            this.dtPicker.Size = new System.Drawing.Size(237, 32);
+            this.dtPicker.Size = new System.Drawing.Size(152, 21);
             this.dtPicker.TabIndex = 42;
             // 
             // button37
             // 
-            this.button37.Location = new System.Drawing.Point(864, 231);
-            this.button37.Margin = new System.Windows.Forms.Padding(5);
+            this.button37.Location = new System.Drawing.Point(550, 132);
             this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(165, 40);
+            this.button37.Size = new System.Drawing.Size(105, 23);
             this.button37.TabIndex = 41;
             this.button37.Text = "검지기 시각 설정";
             this.button37.UseVisualStyleBackColor = true;
@@ -261,10 +249,9 @@
             // 
             // button36
             // 
-            this.button36.Location = new System.Drawing.Point(20, 226);
-            this.button36.Margin = new System.Windows.Forms.Padding(5);
+            this.button36.Location = new System.Drawing.Point(13, 129);
             this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(195, 40);
+            this.button36.Size = new System.Drawing.Size(124, 23);
             this.button36.TabIndex = 40;
             this.button36.Text = "개별 데이터 전송";
             this.button36.UseVisualStyleBackColor = true;
@@ -272,10 +259,9 @@
             // 
             // button35
             // 
-            this.button35.Location = new System.Drawing.Point(836, 180);
-            this.button35.Margin = new System.Windows.Forms.Padding(5);
+            this.button35.Location = new System.Drawing.Point(532, 103);
             this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(195, 40);
+            this.button35.Size = new System.Drawing.Size(124, 23);
             this.button35.TabIndex = 39;
             this.button35.Text = "버전 정보";
             this.button35.UseVisualStyleBackColor = true;
@@ -283,10 +269,9 @@
             // 
             // button34
             // 
-            this.button34.Location = new System.Drawing.Point(632, 180);
-            this.button34.Margin = new System.Windows.Forms.Padding(5);
+            this.button34.Location = new System.Drawing.Point(402, 103);
             this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(195, 40);
+            this.button34.Size = new System.Drawing.Size(124, 23);
             this.button34.TabIndex = 38;
             this.button34.Text = "일련번호 전송";
             this.button34.UseVisualStyleBackColor = true;
@@ -294,10 +279,9 @@
             // 
             // button33
             // 
-            this.button33.Location = new System.Drawing.Point(427, 180);
-            this.button33.Margin = new System.Windows.Forms.Padding(5);
+            this.button33.Location = new System.Drawing.Point(272, 103);
             this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(195, 40);
+            this.button33.Size = new System.Drawing.Size(124, 23);
             this.button33.TabIndex = 37;
             this.button33.Text = "메시지 에코 확인";
             this.button33.UseVisualStyleBackColor = true;
@@ -305,10 +289,9 @@
             // 
             // button32
             // 
-            this.button32.Location = new System.Drawing.Point(223, 180);
-            this.button32.Margin = new System.Windows.Forms.Padding(5);
+            this.button32.Location = new System.Drawing.Point(142, 103);
             this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(195, 40);
+            this.button32.Size = new System.Drawing.Size(124, 23);
             this.button32.TabIndex = 36;
             this.button32.Text = "제어기 메모리 상태";
             this.button32.UseVisualStyleBackColor = true;
@@ -316,10 +299,9 @@
             // 
             // button31
             // 
-            this.button31.Location = new System.Drawing.Point(19, 180);
-            this.button31.Margin = new System.Windows.Forms.Padding(5);
+            this.button31.Location = new System.Drawing.Point(12, 103);
             this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(195, 40);
+            this.button31.Size = new System.Drawing.Size(124, 23);
             this.button31.TabIndex = 35;
             this.button31.Text = "제어기 온라인 상태";
             this.button31.UseVisualStyleBackColor = true;
@@ -328,19 +310,17 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(867, 38);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Location = new System.Drawing.Point(552, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(201, 21);
+            this.label6.Size = new System.Drawing.Size(115, 12);
             this.label6.TabIndex = 34;
             this.label6.Text = "속도/길이 요청 차선";
             // 
             // txtLane
             // 
-            this.txtLane.Location = new System.Drawing.Point(1072, 32);
-            this.txtLane.Margin = new System.Windows.Forms.Padding(5);
+            this.txtLane.Location = new System.Drawing.Point(682, 18);
             this.txtLane.Name = "txtLane";
-            this.txtLane.Size = new System.Drawing.Size(57, 32);
+            this.txtLane.Size = new System.Drawing.Size(38, 21);
             this.txtLane.TabIndex = 33;
             this.txtLane.Text = "1";
             this.txtLane.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -348,29 +328,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(831, 40);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(529, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 21);
+            this.label2.Size = new System.Drawing.Size(17, 12);
             this.label2.TabIndex = 32;
             this.label2.Text = "초";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(652, 40);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(415, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 21);
+            this.label1.Size = new System.Drawing.Size(69, 12);
             this.label1.TabIndex = 31;
             this.label1.Text = "동기화 주기";
             // 
             // txtPeriod
             // 
-            this.txtPeriod.Location = new System.Drawing.Point(765, 33);
-            this.txtPeriod.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPeriod.Location = new System.Drawing.Point(487, 19);
             this.txtPeriod.Name = "txtPeriod";
-            this.txtPeriod.Size = new System.Drawing.Size(57, 32);
+            this.txtPeriod.Size = new System.Drawing.Size(38, 21);
             this.txtPeriod.TabIndex = 30;
             this.txtPeriod.Text = "30";
             this.txtPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -379,21 +356,18 @@
             // 
             this.groupBox5.Controls.Add(this.button30);
             this.groupBox5.Controls.Add(this.cbParam);
-            this.groupBox5.Location = new System.Drawing.Point(20, 520);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox5.Location = new System.Drawing.Point(13, 297);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox5.Size = new System.Drawing.Size(1150, 72);
+            this.groupBox5.Size = new System.Drawing.Size(732, 41);
             this.groupBox5.TabIndex = 29;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "파라메터 업로드";
             // 
             // button30
             // 
-            this.button30.Location = new System.Drawing.Point(214, 24);
-            this.button30.Margin = new System.Windows.Forms.Padding(5);
+            this.button30.Location = new System.Drawing.Point(136, 14);
             this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(195, 40);
+            this.button30.Size = new System.Drawing.Size(124, 23);
             this.button30.TabIndex = 23;
             this.button30.Text = "업로드 요청";
             this.button30.UseVisualStyleBackColor = true;
@@ -415,10 +389,9 @@
             "17",
             "20",
             "21"});
-            this.cbParam.Location = new System.Drawing.Point(14, 28);
-            this.cbParam.Margin = new System.Windows.Forms.Padding(5);
+            this.cbParam.Location = new System.Drawing.Point(9, 16);
             this.cbParam.Name = "cbParam";
-            this.cbParam.Size = new System.Drawing.Size(188, 29);
+            this.cbParam.Size = new System.Drawing.Size(121, 20);
             this.cbParam.TabIndex = 0;
             // 
             // groupBox1
@@ -441,21 +414,18 @@
             this.groupBox1.Controls.Add(this.button15);
             this.groupBox1.Controls.Add(this.button13);
             this.groupBox1.Controls.Add(this.button11);
-            this.groupBox1.Location = new System.Drawing.Point(25, 318);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Location = new System.Drawing.Point(16, 182);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(1150, 194);
+            this.groupBox1.Size = new System.Drawing.Size(732, 111);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "파라메터 다운로드";
             // 
             // button29
             // 
-            this.button29.Location = new System.Drawing.Point(9, 136);
-            this.button29.Margin = new System.Windows.Forms.Padding(5);
+            this.button29.Location = new System.Drawing.Point(6, 78);
             this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(195, 40);
+            this.button29.Size = new System.Drawing.Size(124, 23);
             this.button29.TabIndex = 40;
             this.button29.Text = "역주행 사용여부";
             this.button29.UseVisualStyleBackColor = true;
@@ -463,10 +433,9 @@
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(828, 86);
-            this.button28.Margin = new System.Windows.Forms.Padding(5);
+            this.button28.Location = new System.Drawing.Point(527, 49);
             this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(195, 40);
+            this.button28.Size = new System.Drawing.Size(124, 23);
             this.button28.TabIndex = 39;
             this.button28.Text = "Auto Sync Period";
             this.button28.UseVisualStyleBackColor = true;
@@ -475,10 +444,9 @@
             // button14
             // 
             this.button14.Enabled = false;
-            this.button14.Location = new System.Drawing.Point(229, 136);
-            this.button14.Margin = new System.Windows.Forms.Padding(5);
+            this.button14.Location = new System.Drawing.Point(146, 78);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(82, 40);
+            this.button14.Size = new System.Drawing.Size(52, 23);
             this.button14.TabIndex = 25;
             this.button14.Text = "차량감응시간(4)";
             this.button14.UseVisualStyleBackColor = true;
@@ -487,10 +455,9 @@
             // button12
             // 
             this.button12.Enabled = false;
-            this.button12.Location = new System.Drawing.Point(322, 136);
-            this.button12.Margin = new System.Windows.Forms.Padding(5);
+            this.button12.Location = new System.Drawing.Point(205, 78);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(102, 40);
+            this.button12.Size = new System.Drawing.Size(65, 23);
             this.button12.TabIndex = 23;
             this.button12.Text = "속도 검지루프 지정(2)";
             this.button12.UseVisualStyleBackColor = true;
@@ -498,10 +465,9 @@
             // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(622, 86);
-            this.button27.Margin = new System.Windows.Forms.Padding(5);
+            this.button27.Location = new System.Drawing.Point(396, 49);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(195, 40);
+            this.button27.Size = new System.Drawing.Size(124, 23);
             this.button27.TabIndex = 38;
             this.button27.Text = "Oscillation 임계치";
             this.button27.UseVisualStyleBackColor = true;
@@ -510,10 +476,9 @@
             // button26
             // 
             this.button26.Enabled = false;
-            this.button26.Location = new System.Drawing.Point(542, 136);
-            this.button26.Margin = new System.Windows.Forms.Padding(5);
+            this.button26.Location = new System.Drawing.Point(345, 78);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(101, 40);
+            this.button26.Size = new System.Drawing.Size(64, 23);
             this.button26.TabIndex = 37;
             this.button26.Text = "Stuck On/OFF 임계치";
             this.button26.UseVisualStyleBackColor = true;
@@ -522,10 +487,9 @@
             // button21
             // 
             this.button21.Enabled = false;
-            this.button21.Location = new System.Drawing.Point(407, 136);
-            this.button21.Margin = new System.Windows.Forms.Padding(5);
+            this.button21.Location = new System.Drawing.Point(259, 78);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(126, 40);
+            this.button21.Size = new System.Drawing.Size(80, 23);
             this.button21.TabIndex = 32;
             this.button21.Text = "속도 Loop 간격";
             this.button21.UseVisualStyleBackColor = true;
@@ -534,10 +498,9 @@
             // button25
             // 
             this.button25.Enabled = false;
-            this.button25.Location = new System.Drawing.Point(1014, 136);
-            this.button25.Margin = new System.Windows.Forms.Padding(5);
+            this.button25.Location = new System.Drawing.Point(645, 78);
             this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(127, 40);
+            this.button25.Size = new System.Drawing.Size(81, 23);
             this.button25.TabIndex = 36;
             this.button25.Text = "유고 임계치";
             this.button25.UseVisualStyleBackColor = true;
@@ -546,10 +509,9 @@
             // button24
             // 
             this.button24.Enabled = false;
-            this.button24.Location = new System.Drawing.Point(636, 136);
-            this.button24.Margin = new System.Windows.Forms.Padding(5);
+            this.button24.Location = new System.Drawing.Point(405, 78);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(195, 40);
+            this.button24.Size = new System.Drawing.Size(124, 23);
             this.button24.TabIndex = 35;
             this.button24.Text = "차량길이 임계치";
             this.button24.UseVisualStyleBackColor = true;
@@ -558,10 +520,9 @@
             // button23
             // 
             this.button23.Enabled = false;
-            this.button23.Location = new System.Drawing.Point(809, 136);
-            this.button23.Margin = new System.Windows.Forms.Padding(5);
+            this.button23.Location = new System.Drawing.Point(515, 78);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(195, 40);
+            this.button23.Size = new System.Drawing.Size(124, 23);
             this.button23.TabIndex = 34;
             this.button23.Text = "속도 임계치";
             this.button23.UseVisualStyleBackColor = true;
@@ -569,10 +530,9 @@
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(416, 86);
-            this.button20.Margin = new System.Windows.Forms.Padding(5);
+            this.button20.Location = new System.Drawing.Point(265, 49);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(195, 40);
+            this.button20.Size = new System.Drawing.Size(124, 23);
             this.button20.TabIndex = 31;
             this.button20.Text = "길이계산여부(10)";
             this.button20.UseVisualStyleBackColor = true;
@@ -580,10 +540,9 @@
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(212, 86);
-            this.button19.Margin = new System.Windows.Forms.Padding(5);
+            this.button19.Location = new System.Drawing.Point(135, 49);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(195, 40);
+            this.button19.Size = new System.Drawing.Size(124, 23);
             this.button19.TabIndex = 30;
             this.button19.Text = "속도계산여부(9)";
             this.button19.UseVisualStyleBackColor = true;
@@ -591,10 +550,9 @@
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(8, 86);
-            this.button18.Margin = new System.Windows.Forms.Padding(5);
+            this.button18.Location = new System.Drawing.Point(5, 49);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(195, 40);
+            this.button18.Size = new System.Drawing.Size(124, 23);
             this.button18.TabIndex = 29;
             this.button18.Text = "길이누적여부(8)";
             this.button18.UseVisualStyleBackColor = true;
@@ -602,10 +560,9 @@
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(828, 35);
-            this.button17.Margin = new System.Windows.Forms.Padding(5);
+            this.button17.Location = new System.Drawing.Point(527, 20);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(195, 40);
+            this.button17.Size = new System.Drawing.Size(124, 23);
             this.button17.TabIndex = 28;
             this.button17.Text = "속도누적여부(7)";
             this.button17.UseVisualStyleBackColor = true;
@@ -613,10 +570,9 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(622, 35);
-            this.button16.Margin = new System.Windows.Forms.Padding(5);
+            this.button16.Location = new System.Drawing.Point(396, 20);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(195, 40);
+            this.button16.Size = new System.Drawing.Size(124, 23);
             this.button16.TabIndex = 27;
             this.button16.Text = "차량길이구분(6)";
             this.button16.UseVisualStyleBackColor = true;
@@ -624,10 +580,9 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(418, 35);
-            this.button15.Margin = new System.Windows.Forms.Padding(5);
+            this.button15.Location = new System.Drawing.Point(266, 20);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(195, 40);
+            this.button15.Size = new System.Drawing.Size(124, 23);
             this.button15.TabIndex = 26;
             this.button15.Text = "차량속도구분(5)";
             this.button15.UseVisualStyleBackColor = true;
@@ -635,10 +590,9 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(214, 35);
-            this.button13.Margin = new System.Windows.Forms.Padding(5);
+            this.button13.Location = new System.Drawing.Point(136, 20);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(195, 40);
+            this.button13.Size = new System.Drawing.Size(124, 23);
             this.button13.TabIndex = 24;
             this.button13.Text = "Polling Cycle(3)";
             this.button13.UseVisualStyleBackColor = true;
@@ -646,10 +600,9 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(9, 35);
-            this.button11.Margin = new System.Windows.Forms.Padding(5);
+            this.button11.Location = new System.Drawing.Point(6, 20);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(195, 40);
+            this.button11.Size = new System.Drawing.Size(124, 23);
             this.button11.TabIndex = 22;
             this.button11.Text = "차로 지정(1)";
             this.button11.UseVisualStyleBackColor = true;
@@ -657,10 +610,9 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(836, 130);
-            this.button10.Margin = new System.Windows.Forms.Padding(5);
+            this.button10.Location = new System.Drawing.Point(532, 74);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(195, 40);
+            this.button10.Size = new System.Drawing.Size(124, 23);
             this.button10.TabIndex = 27;
             this.button10.Text = "제어기 초기화";
             this.button10.UseVisualStyleBackColor = true;
@@ -668,10 +620,9 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(632, 130);
-            this.button9.Margin = new System.Windows.Forms.Padding(5);
+            this.button9.Location = new System.Drawing.Point(402, 74);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(195, 40);
+            this.button9.Size = new System.Drawing.Size(124, 23);
             this.button9.TabIndex = 26;
             this.button9.Text = "제어기 리셋";
             this.button9.UseVisualStyleBackColor = true;
@@ -680,10 +631,9 @@
             // button8
             // 
             this.button8.Enabled = false;
-            this.button8.Location = new System.Drawing.Point(427, 130);
-            this.button8.Margin = new System.Windows.Forms.Padding(5);
+            this.button8.Location = new System.Drawing.Point(272, 74);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(195, 40);
+            this.button8.Size = new System.Drawing.Size(124, 23);
             this.button8.TabIndex = 25;
             this.button8.Text = "제어기 상태 수집";
             this.button8.UseVisualStyleBackColor = true;
@@ -692,10 +642,9 @@
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(223, 130);
-            this.button7.Margin = new System.Windows.Forms.Padding(5);
+            this.button7.Location = new System.Drawing.Point(142, 74);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(195, 40);
+            this.button7.Size = new System.Drawing.Size(124, 23);
             this.button7.TabIndex = 24;
             this.button7.Text = "교통상태 임계치";
             this.button7.UseVisualStyleBackColor = true;
@@ -704,10 +653,9 @@
             // button6
             // 
             this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(836, 79);
-            this.button6.Margin = new System.Windows.Forms.Padding(5);
+            this.button6.Location = new System.Drawing.Point(532, 45);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(195, 40);
+            this.button6.Size = new System.Drawing.Size(124, 23);
             this.button6.TabIndex = 23;
             this.button6.Text = "길이 데이터 수집";
             this.button6.UseVisualStyleBackColor = true;
@@ -715,10 +663,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(632, 79);
-            this.button5.Margin = new System.Windows.Forms.Padding(5);
+            this.button5.Location = new System.Drawing.Point(402, 45);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(195, 40);
+            this.button5.Size = new System.Drawing.Size(124, 23);
             this.button5.TabIndex = 22;
             this.button5.Text = "속도 데이터 수집";
             this.button5.UseVisualStyleBackColor = true;
@@ -726,10 +673,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(19, 130);
-            this.button4.Margin = new System.Windows.Forms.Padding(5);
+            this.button4.Location = new System.Drawing.Point(12, 74);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(195, 40);
+            this.button4.Size = new System.Drawing.Size(124, 23);
             this.button4.TabIndex = 21;
             this.button4.Text = "누적 교통량 데이터";
             this.button4.UseVisualStyleBackColor = true;
@@ -737,10 +683,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(427, 79);
-            this.button3.Margin = new System.Windows.Forms.Padding(5);
+            this.button3.Location = new System.Drawing.Point(272, 45);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(195, 40);
+            this.button3.Size = new System.Drawing.Size(124, 23);
             this.button3.TabIndex = 20;
             this.button3.Text = "교통 데이터 수집";
             this.button3.UseVisualStyleBackColor = true;
@@ -748,10 +693,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(223, 79);
-            this.button2.Margin = new System.Windows.Forms.Padding(5);
+            this.button2.Location = new System.Drawing.Point(142, 45);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 40);
+            this.button2.Size = new System.Drawing.Size(124, 23);
             this.button2.TabIndex = 19;
             this.button2.Text = "제어기 동기화";
             this.button2.UseVisualStyleBackColor = true;
@@ -759,10 +703,9 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(471, 32);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(5);
+            this.btnStart.Location = new System.Drawing.Point(300, 18);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(118, 40);
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 18;
             this.btnStart.Text = "Connect";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -770,10 +713,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(19, 79);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Location = new System.Drawing.Point(12, 45);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 40);
+            this.button1.Size = new System.Drawing.Size(124, 23);
             this.button1.TabIndex = 17;
             this.button1.Text = "CSN인증";
             this.button1.UseVisualStyleBackColor = true;
@@ -784,8 +726,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(19, 598);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(5);
+            this.splitContainer1.Location = new System.Drawing.Point(12, 342);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -795,9 +736,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer1.Size = new System.Drawing.Size(1157, 623);
-            this.splitContainer1.SplitterDistance = 573;
-            this.splitContainer1.SplitterWidth = 6;
+            this.splitContainer1.Size = new System.Drawing.Size(736, 356);
+            this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.TabIndex = 15;
             // 
             // groupBox3
@@ -806,10 +746,8 @@
             this.groupBox3.Controls.Add(this.button22);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox3.Size = new System.Drawing.Size(573, 623);
+            this.groupBox3.Size = new System.Drawing.Size(364, 356);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "송신 정보";
@@ -818,21 +756,19 @@
             // 
             this.lbxSend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbxSend.FormattingEnabled = true;
-            this.lbxSend.ItemHeight = 21;
-            this.lbxSend.Location = new System.Drawing.Point(5, 30);
-            this.lbxSend.Margin = new System.Windows.Forms.Padding(5);
+            this.lbxSend.ItemHeight = 12;
+            this.lbxSend.Location = new System.Drawing.Point(3, 17);
             this.lbxSend.Name = "lbxSend";
             this.lbxSend.ScrollAlwaysVisible = true;
-            this.lbxSend.Size = new System.Drawing.Size(563, 588);
+            this.lbxSend.Size = new System.Drawing.Size(358, 336);
             this.lbxSend.TabIndex = 0;
             // 
             // button22
             // 
             this.button22.Enabled = false;
-            this.button22.Location = new System.Drawing.Point(409, 0);
-            this.button22.Margin = new System.Windows.Forms.Padding(5);
+            this.button22.Location = new System.Drawing.Point(260, 0);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(195, 40);
+            this.button22.Size = new System.Drawing.Size(124, 23);
             this.button22.TabIndex = 33;
             this.button22.Text = "교통량 임계치";
             this.button22.UseVisualStyleBackColor = true;
@@ -843,10 +779,8 @@
             this.groupBox4.Controls.Add(this.lbxReceive);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox4.Size = new System.Drawing.Size(578, 623);
+            this.groupBox4.Size = new System.Drawing.Size(368, 356);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "수신 정보";
@@ -855,62 +789,57 @@
             // 
             this.lbxReceive.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbxReceive.FormattingEnabled = true;
-            this.lbxReceive.ItemHeight = 21;
-            this.lbxReceive.Location = new System.Drawing.Point(5, 30);
-            this.lbxReceive.Margin = new System.Windows.Forms.Padding(5);
+            this.lbxReceive.ItemHeight = 12;
+            this.lbxReceive.Location = new System.Drawing.Point(3, 17);
             this.lbxReceive.Name = "lbxReceive";
             this.lbxReceive.ScrollAlwaysVisible = true;
-            this.lbxReceive.Size = new System.Drawing.Size(568, 588);
+            this.lbxReceive.Size = new System.Drawing.Size(362, 336);
             this.lbxReceive.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(314, 38);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Location = new System.Drawing.Point(200, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 21);
+            this.label3.Size = new System.Drawing.Size(27, 12);
             this.label3.TabIndex = 14;
             this.label3.Text = "Port";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 38);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(7, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 21);
+            this.label4.Size = new System.Drawing.Size(67, 12);
             this.label4.TabIndex = 13;
             this.label4.Text = "IP Address";
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(366, 32);
-            this.txtPort.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPort.Location = new System.Drawing.Point(233, 18);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(84, 32);
+            this.txtPort.Size = new System.Drawing.Size(55, 21);
             this.txtPort.TabIndex = 12;
             this.txtPort.Text = "30100";
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(126, 32);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(5);
+            this.txtAddress.Location = new System.Drawing.Point(80, 18);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(155, 32);
+            this.txtAddress.Size = new System.Drawing.Size(100, 21);
             this.txtAddress.TabIndex = 11;
             this.txtAddress.Text = "127.0.0.1";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 1253);
+            this.ClientSize = new System.Drawing.Size(772, 606);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);

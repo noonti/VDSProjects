@@ -695,5 +695,11 @@ namespace VDSManagerCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return 1;
         }
+
+        public virtual SOCKET_STATUS GetCenterServerStatus()
+        {
+            return SOCKET_STATUS.DISCONNECTED;
+        }
+
     }
 }

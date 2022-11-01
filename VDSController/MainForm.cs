@@ -61,7 +61,8 @@ namespace VDSController
             
             
             this.Text = VDSConfig.GetVDSControllerName();
-           
+            ucServerLed.SetBlinkType(0);
+
             InitTabPages();
             InitializeManager();
             StartTimer();
@@ -109,7 +110,7 @@ namespace VDSController
                 // 과거 로그 파일 삭제(보관주기 이전)
                 DeleteExpiredLogFile();
             }
-
+            DisplayServerStatus();
         }
         public void InitTabPages()
         {
@@ -575,6 +576,24 @@ namespace VDSController
             }
         }
 
-        
+        private void DisplayServerStatus()
+        {
+            if (vdsManager != null)
+            {
+                SOCKET_STATUS status = vdsManager.GetCenterServerStatus();
+                switch (status)
+                {
+                    case SOCKET_STATUS.CONNECTED:
+                        ucServerLed.SetOn(1);
+                        break;
+                    default:
+                        ucServerLed.SetOn(0);
+                        break;
+                }
+            }
+            else
+                ucServerLed.SetOn(0);
+        }
+
     }
 }
