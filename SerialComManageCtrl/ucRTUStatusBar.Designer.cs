@@ -38,6 +38,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.ledAVR = new VDSCommon.ucLEDLight();
             this.ledHeater = new VDSCommon.ucLEDLight();
             this.ledFan = new VDSCommon.ucLEDLight();
@@ -72,6 +77,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label9);
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.ledAVR);
             this.splitContainer1.Panel1.Controls.Add(this.ledHeater);
             this.splitContainer1.Panel1.Controls.Add(this.ledFan);
@@ -96,7 +106,7 @@
             // lbHumidity
             // 
             this.lbHumidity.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbHumidity.Location = new System.Drawing.Point(495, 14);
+            this.lbHumidity.Location = new System.Drawing.Point(495, 6);
             this.lbHumidity.Name = "lbHumidity";
             this.lbHumidity.Size = new System.Drawing.Size(53, 12);
             this.lbHumidity.TabIndex = 23;
@@ -106,7 +116,7 @@
             // lbHeaterThreshold
             // 
             this.lbHeaterThreshold.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbHeaterThreshold.Location = new System.Drawing.Point(367, 14);
+            this.lbHeaterThreshold.Location = new System.Drawing.Point(367, 6);
             this.lbHeaterThreshold.Name = "lbHeaterThreshold";
             this.lbHeaterThreshold.Size = new System.Drawing.Size(53, 12);
             this.lbHeaterThreshold.TabIndex = 22;
@@ -116,7 +126,7 @@
             // lbFanThreshold
             // 
             this.lbFanThreshold.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbFanThreshold.Location = new System.Drawing.Point(227, 14);
+            this.lbFanThreshold.Location = new System.Drawing.Point(227, 6);
             this.lbFanThreshold.Name = "lbFanThreshold";
             this.lbFanThreshold.Size = new System.Drawing.Size(53, 12);
             this.lbFanThreshold.TabIndex = 19;
@@ -126,7 +136,7 @@
             // lbTemperature
             // 
             this.lbTemperature.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbTemperature.Location = new System.Drawing.Point(71, 14);
+            this.lbTemperature.Location = new System.Drawing.Point(71, 6);
             this.lbTemperature.Name = "lbTemperature";
             this.lbTemperature.Size = new System.Drawing.Size(53, 12);
             this.lbTemperature.TabIndex = 18;
@@ -137,7 +147,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.Window;
-            this.label8.Location = new System.Drawing.Point(425, 14);
+            this.label8.Location = new System.Drawing.Point(425, 6);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 17;
@@ -147,7 +157,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.Window;
-            this.label7.Location = new System.Drawing.Point(285, 14);
+            this.label7.Location = new System.Drawing.Point(285, 6);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 16;
@@ -157,7 +167,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(129, 14);
+            this.label4.Location = new System.Drawing.Point(129, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 12);
             this.label4.TabIndex = 13;
@@ -167,60 +177,104 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(13, 14);
+            this.label3.Location = new System.Drawing.Point(13, 6);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 12;
             this.label3.Text = "함체온도";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(6, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "통신상태";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Window;
+            this.label2.Location = new System.Drawing.Point(101, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "앞문열림";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(202, 6);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "뒷문열림";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Window;
+            this.label6.Location = new System.Drawing.Point(298, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 12);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Fan";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.Window;
+            this.label9.Location = new System.Drawing.Point(361, 6);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 48;
+            this.label9.Text = "Heater";
+            // 
             // ledAVR
             // 
-            this.ledAVR.Location = new System.Drawing.Point(479, 5);
+            this.ledAVR.Location = new System.Drawing.Point(556, 1);
             this.ledAVR.Name = "ledAVR";
-            this.ledAVR.Size = new System.Drawing.Size(83, 30);
+            this.ledAVR.Size = new System.Drawing.Size(20, 23);
             this.ledAVR.TabIndex = 43;
-            this.ledAVR.Title = "AVR";
             this.ledAVR.Visible = false;
             // 
             // ledHeater
             // 
-            this.ledHeater.Location = new System.Drawing.Point(392, 5);
+            this.ledHeater.Location = new System.Drawing.Point(407, 1);
             this.ledHeater.Name = "ledHeater";
-            this.ledHeater.Size = new System.Drawing.Size(83, 30);
+            this.ledHeater.Size = new System.Drawing.Size(20, 23);
             this.ledHeater.TabIndex = 42;
-            this.ledHeater.Title = "Heater";
             // 
             // ledFan
             // 
-            this.ledFan.Location = new System.Drawing.Point(302, 5);
+            this.ledFan.Location = new System.Drawing.Point(326, 1);
             this.ledFan.Name = "ledFan";
-            this.ledFan.Size = new System.Drawing.Size(83, 30);
+            this.ledFan.Size = new System.Drawing.Size(20, 23);
             this.ledFan.TabIndex = 41;
-            this.ledFan.Title = "Fan";
             // 
             // ledRearGate
             // 
-            this.ledRearGate.Location = new System.Drawing.Point(219, 5);
+            this.ledRearGate.Location = new System.Drawing.Point(257, 1);
             this.ledRearGate.Name = "ledRearGate";
-            this.ledRearGate.Size = new System.Drawing.Size(83, 30);
+            this.ledRearGate.Size = new System.Drawing.Size(20, 23);
             this.ledRearGate.TabIndex = 40;
-            this.ledRearGate.Title = "뒷문열림";
             // 
             // ledFrontGate
             // 
-            this.ledFrontGate.Location = new System.Drawing.Point(130, 5);
+            this.ledFrontGate.Location = new System.Drawing.Point(156, 1);
             this.ledFrontGate.Name = "ledFrontGate";
-            this.ledFrontGate.Size = new System.Drawing.Size(83, 30);
+            this.ledFrontGate.Size = new System.Drawing.Size(20, 23);
             this.ledFrontGate.TabIndex = 39;
-            this.ledFrontGate.Title = "앞문열림";
             // 
             // ucBlinkLight
             // 
-            this.ucBlinkLight.Location = new System.Drawing.Point(43, 5);
+            this.ucBlinkLight.Location = new System.Drawing.Point(62, 1);
             this.ucBlinkLight.Name = "ucBlinkLight";
-            this.ucBlinkLight.Size = new System.Drawing.Size(83, 30);
+            this.ucBlinkLight.Size = new System.Drawing.Size(20, 23);
             this.ucBlinkLight.TabIndex = 38;
-            this.ucBlinkLight.Title = "통신상태";
             // 
             // ucRTUStatusBar
             // 
@@ -232,6 +286,7 @@
             this.Size = new System.Drawing.Size(1200, 62);
             this.groupBox1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -258,5 +313,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -28,27 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbTitle = new System.Windows.Forms.Label();
             this.ledLight = new VDSCommon.LedBulb();
             this.SuspendLayout();
             // 
-            // lbTitle
-            // 
-            this.lbTitle.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbTitle.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbTitle.Location = new System.Drawing.Point(3, 3);
-            this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(52, 23);
-            this.lbTitle.TabIndex = 0;
-            this.lbTitle.Text = "label1";
-            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // ledLight
             // 
-            this.ledLight.Location = new System.Drawing.Point(61, 4);
+            this.ledLight.Location = new System.Drawing.Point(0, 3);
             this.ledLight.Name = "ledLight";
             this.ledLight.On = false;
-            this.ledLight.Size = new System.Drawing.Size(19, 23);
+            this.ledLight.Size = new System.Drawing.Size(20, 23);
             this.ledLight.TabIndex = 1;
             this.ledLight.Text = "ledBulb1";
             // 
@@ -57,16 +45,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ledLight);
-            this.Controls.Add(this.lbTitle);
             this.Name = "ucLEDLight";
-            this.Size = new System.Drawing.Size(83, 30);
+            this.Size = new System.Drawing.Size(20, 23);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbTitle;
         private LedBulb ledLight;
     }
 }

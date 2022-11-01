@@ -14,19 +14,19 @@ namespace VDSCommon
     {
         int _blinkType;
 
-        [Category("Title"), Description("제목")]
-        public String Title
-        {
-            get
-            {
-                return this.lbTitle.Text;
-            }
-            set
-            {
-                this.lbTitle.Text = value;
-            }
+        //[Category("Title"), Description("제목")]
+        //public String Title
+        //{
+        //    get
+        //    {
+        //        return this.lbTitle.Text;
+        //    }
+        //    set
+        //    {
+        //        this.lbTitle.Text = value;
+        //    }
 
-        }
+        //}
 
 
         public ucLEDLight()

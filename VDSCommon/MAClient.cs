@@ -168,7 +168,6 @@ namespace VDSCommon
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
-            String strLog;
             try
             {
                 session._socket.Shutdown(SocketShutdown.Both);
