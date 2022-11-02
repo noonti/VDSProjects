@@ -41,14 +41,14 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.lbSiteName = new DarkUI.Controls.DarkLabel();
+            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.statusTime = new DarkUI.Controls.DarkLabel();
             this.ucServerLed = new VDSCommon.ucLEDLight();
             this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
-            this.ucTargetSummary = new VDSController.tabTargetSummary();
+            this.statusTime = new DarkUI.Controls.DarkLabel();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -150,7 +150,7 @@
             this.환경설정ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.환경설정ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.환경설정ToolStripMenuItem.Name = "환경설정ToolStripMenuItem";
-            this.환경설정ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.환경설정ToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.환경설정ToolStripMenuItem.Text = "환경설정";
             this.환경설정ToolStripMenuItem.Click += new System.EventHandler(this.menuConfig_Click);
             // 
@@ -159,7 +159,7 @@
             this.menuLaneMng.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menuLaneMng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menuLaneMng.Name = "menuLaneMng";
-            this.menuLaneMng.Size = new System.Drawing.Size(144, 26);
+            this.menuLaneMng.Size = new System.Drawing.Size(180, 26);
             this.menuLaneMng.Text = "차선관리";
             this.menuLaneMng.Click += new System.EventHandler(this.menuLaneMng_Click);
             // 
@@ -223,6 +223,16 @@
             this.lbSiteName.Text = " ";
             this.lbSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ucTargetSummary
+            // 
+            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTargetSummary.Name = "ucTargetSummary";
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
+            this.ucTargetSummary.TabIndex = 6;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -281,16 +291,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "연결";
             // 
-            // statusTime
-            // 
-            this.statusTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statusTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.statusTime.Location = new System.Drawing.Point(0, 0);
-            this.statusTime.Name = "statusTime";
-            this.statusTime.Size = new System.Drawing.Size(175, 55);
-            this.statusTime.TabIndex = 0;
-            this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // ucServerLed
             // 
             this.ucServerLed.Location = new System.Drawing.Point(52, 20);
@@ -308,15 +308,15 @@
             this.RTUStatus.Size = new System.Drawing.Size(1624, 55);
             this.RTUStatus.TabIndex = 1;
             // 
-            // ucTargetSummary
+            // statusTime
             // 
-            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
-            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
-            this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
-            this.ucTargetSummary.TabIndex = 6;
+            this.statusTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statusTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.statusTime.Location = new System.Drawing.Point(0, 0);
+            this.statusTime.Name = "statusTime";
+            this.statusTime.Size = new System.Drawing.Size(175, 55);
+            this.statusTime.TabIndex = 0;
+            this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -332,6 +332,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MainForm_PreviewKeyDown);
             this.darkMenuStrip1.ResumeLayout(false);

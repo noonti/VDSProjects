@@ -312,6 +312,12 @@ namespace VDSController
 
         private void menuConfig_Click(object sender, EventArgs e)
         {
+            if(CheckLogin()==false)
+            {
+                MessageBox.Show("관리자 아이디 또는 비밀번호를 확인하세요", "로그인 실패", MessageBoxButtons.OK);
+                return;
+            }
+
             VDSConfigForm configForm = new VDSConfigForm();
             if(configForm.ShowDialog() == DialogResult.OK)
             {
@@ -410,6 +416,12 @@ namespace VDSController
 
         private void menuLaneMng_Click(object sender, EventArgs e)
         {
+            if (CheckLogin() == false)
+            {
+                MessageBox.Show("관리자 아이디 또는 비밀번호를 확인하세요", "로그인 실패", MessageBoxButtons.OK);
+                return;
+            }
+
             LaneManageForm laneManageForm = new LaneManageForm();
             if(laneManageForm.ShowDialog() == DialogResult.OK)
             {
@@ -596,5 +608,32 @@ namespace VDSController
                 ucServerLed.SetOn(0);
         }
 
+        private Boolean CheckLogin()
+        {
+            Boolean result = false;
+
+            LoginForm logForm = new LoginForm();
+            if (logForm.ShowDialog() == DialogResult.OK)
+            {
+                UserInfoOperation userOp = new UserInfoOperation(VDSConfig.VDS_DB_CONN);
+                userOp.CheckLogin(new USER_INFO()
+                {
+                    USER_ID = logForm.userId,
+                    PASSWD = logForm.passwd
+
+                }, out SP_RESULT spResult);
+
+                if (spResult.RESULT_COUNT > 0)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.Icon = Icon.FromHandle(Properties.Resources.radar.GetHicon());
+        }
     }
 }
