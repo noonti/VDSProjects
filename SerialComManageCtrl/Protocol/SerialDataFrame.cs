@@ -29,6 +29,8 @@ namespace SerialComManageCtrl.Protocol
         public bool isResponse;
         public bool isLRCOK;
 
+        public byte[] packetData = null;
+
         public SerialDataFrame()
         {
             Init();
@@ -114,10 +116,11 @@ namespace SerialComManageCtrl.Protocol
                     {
                         bDataCompleted = true;
                     }
-                    if(i< packet.Length) // LRC
+                    if(i< packet.Length && bDataCompleted) // LRC
                     {
                         LRC = packet[i];
-                        isLRCOK = CheckLRCCode(packet,startIdx,i - 1, LRC);
+                        packetData = GetPacketData(LRC);
+                        isLRCOK = CheckLRCCode(packetData, 0,packetData.Length -2, LRC);
                         i++;
 
                     }
@@ -609,6 +612,23 @@ namespace SerialComManageCtrl.Protocol
            return  (byte)(((op2 & 0x01) << 4) + (op1 & 0x01));
         }
 
-        
+
+        public byte[] GetPacketData(byte lrc)
+        {
+            byte[] result = null;
+            int index = 0;
+            int size = SerialDataFrameDefine.FRAME_HEADER_SIZE + DataSize + 1 + (isResponse == true ? 1 : 0);
+            result = new byte[size];
+            Array.Copy(header, 0, result, index, header.Length);
+            index += header.Length;
+            if (isResponse)
+                result[index++] = Status;
+            Array.Copy(Data, 0, result, index, DataSize);
+            index += DataSize;
+            result[index++] = lrc;
+            return result;
+        }
+
+
     }
 }

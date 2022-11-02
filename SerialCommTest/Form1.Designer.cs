@@ -66,6 +66,9 @@
             this.lbRequest = new System.Windows.Forms.Label();
             this.darkButton1 = new DarkUI.Controls.DarkButton();
             this.ucRTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
+            this.darkButton2 = new DarkUI.Controls.DarkButton();
+            this.darkButton5 = new DarkUI.Controls.DarkButton();
+            this.darkButton7 = new DarkUI.Controls.DarkButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -481,6 +484,7 @@
             // 
             // ucRTUStatus
             // 
+            this.ucRTUStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.ucRTUStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ucRTUStatus.Location = new System.Drawing.Point(0, 331);
             this.ucRTUStatus.Name = "ucRTUStatus";
@@ -488,12 +492,48 @@
             this.ucRTUStatus.TabIndex = 26;
             this.ucRTUStatus.Load += new System.EventHandler(this.ucRTUStatusBar1_Load);
             // 
+            // darkButton2
+            // 
+            this.darkButton2.Location = new System.Drawing.Point(848, 91);
+            this.darkButton2.Name = "darkButton2";
+            this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton2.Size = new System.Drawing.Size(204, 25);
+            this.darkButton2.TabIndex = 27;
+            this.darkButton2.Text = "미완성 패킷1";
+            this.darkButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click_2);
+            // 
+            // darkButton5
+            // 
+            this.darkButton5.Location = new System.Drawing.Point(848, 122);
+            this.darkButton5.Name = "darkButton5";
+            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton5.Size = new System.Drawing.Size(204, 25);
+            this.darkButton5.TabIndex = 28;
+            this.darkButton5.Text = "미완성 패킷2";
+            this.darkButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click_1);
+            // 
+            // darkButton7
+            // 
+            this.darkButton7.Location = new System.Drawing.Point(848, 60);
+            this.darkButton7.Name = "darkButton7";
+            this.darkButton7.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton7.Size = new System.Drawing.Size(204, 25);
+            this.darkButton7.TabIndex = 29;
+            this.darkButton7.Text = "완성 패킷";
+            this.darkButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton7.Click += new System.EventHandler(this.darkButton7_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(1169, 385);
+            this.Controls.Add(this.darkButton7);
+            this.Controls.Add(this.darkButton5);
+            this.Controls.Add(this.darkButton2);
             this.Controls.Add(this.darkButton1);
             this.Controls.Add(this.ucRTUStatus);
             this.Controls.Add(this.lbRequest);
@@ -571,6 +611,9 @@
         private System.Windows.Forms.Label lbRequest;
         private SerialComManageCtrl.ucRTUStatusBar ucRTUStatus;
         private DarkUI.Controls.DarkButton darkButton1;
+        private DarkUI.Controls.DarkButton darkButton2;
+        private DarkUI.Controls.DarkButton darkButton5;
+        private DarkUI.Controls.DarkButton darkButton7;
     }
 }
 

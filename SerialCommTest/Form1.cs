@@ -529,6 +529,33 @@ namespace SerialCommTest
 
         private void darkButton2_Click_1(object sender, EventArgs e)
         {
+            
+        }
+
+        private void darkButton5_Click_1(object sender, EventArgs e)
+        {
+
+            byte[] packet = new byte[12];
+            int index = 0;
+            //packet[index++] = 0x7E;
+            packet[index++] = 0x0D;
+            packet[index++] = 0x81;
+            packet[index++] = 0x00;
+            packet[index++] = 0x61;
+            packet[index++] = 0x1F;
+            packet[index++] = 0x33;
+            packet[index++] = 0x00;
+            packet[index++] = 0x00;
+            packet[index++] = 0x2B;
+            packet[index++] = 0x1B;
+            packet[index++] = 0xFF;
+            packet[index++] = 0x70;
+
+            serialManager.RTUStatustTest(packet, packet.Length);
+        }
+
+        private void darkButton2_Click_2(object sender, EventArgs e)
+        {
             byte[] packet = new byte[1];
             int index = 0;
             packet[index++] = 0x7E;
@@ -545,7 +572,28 @@ namespace SerialCommTest
             //packet[index++] = 0xFF;
             //packet[index++] = 0x70;
 
-            serialManager.RTUStatustTest(packet, 1);
+            serialManager.RTUStatustTest(packet, packet.Length);
+        }
+
+        private void darkButton7_Click_1(object sender, EventArgs e)
+        {
+            byte[] packet = new byte[13];
+            int index = 0;
+            packet[index++] = 0x7E;
+            packet[index++] = 0x0D;
+            packet[index++] = 0x81;
+            packet[index++] = 0x00;
+            packet[index++] = 0x61;
+            packet[index++] = 0x1F;
+            packet[index++] = 0x33;
+            packet[index++] = 0x00;
+            packet[index++] = 0x00;
+            packet[index++] = 0x2B;
+            packet[index++] = 0x1B;
+            packet[index++] = 0xFF;
+            packet[index++] = 0x70;
+
+            serialManager.RTUStatustTest(packet, packet.Length);
         }
     }
 

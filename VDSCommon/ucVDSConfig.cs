@@ -54,7 +54,15 @@ namespace VDSCommon
             LoadKictConfig();
             LoadKorExConfig();
 
-            
+            //switch(controllerConfig.ProtocolType)
+            //{
+            //    case 1: // 건기연
+            //        tabConfing.TabPages[2];
+            //        break;
+            //    case 2: // 도로공사
+            //        break;
+            //}
+                
         }
 
         public void LoadControllerConfig()

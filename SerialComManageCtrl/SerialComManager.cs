@@ -25,6 +25,8 @@ namespace SerialComManageCtrl
         VDSClient _rtuClient;
 
         IRTUManager rtuManager;
+
+        SerialDataFrame prevDataFrame = null;
         public int SetSerialPort(String portName, int baudRate = 115200, Parity parity = System.IO.Ports.Parity.None, int dataBits = 8, StopBits stopBits = System.IO.Ports.StopBits.None, Handshake handShake = System.IO.Ports.Handshake.None)
         {
             int nResult = 0;
@@ -141,37 +143,37 @@ namespace SerialComManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
-            SerialDataFrame dataFrame = null;
+            
             int i = 0;
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Serial Data= {Utility.PrintHexaString(packet, length)} length={length} "));
 
             while (i < length)
             {
-                if (dataFrame == null)
+                if (prevDataFrame == null)
                 {
-                    dataFrame = new SerialDataFrame();
+                    prevDataFrame = new SerialDataFrame();
                 }
                 else
                 {
                     Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"미완성 패킷 후속 처리 "));
                 }
 
-                i = dataFrame.Deserialize(packet, i);
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"시리얼 패킷 데이터 완성 여부: dataFrame.bHeaderCompleted={dataFrame.bHeaderCompleted}, dataFrame.bDataCompleted = {dataFrame.bDataCompleted} "));
-                if (dataFrame.bDataCompleted)
+                i = prevDataFrame.Deserialize(packet, i);
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"시리얼 패킷 데이터 완성 여부: dataFrame.bHeaderCompleted={prevDataFrame.bHeaderCompleted}, dataFrame.bDataCompleted = {prevDataFrame.bDataCompleted} "));
+                if (prevDataFrame.bDataCompleted)
                 {
                     // processDataFrame....
-                    if(dataFrame.isLRCOK)
+                    if(prevDataFrame.isLRCOK)
                     {
-                        ProcessDataFrame(dataFrame);
+                        ProcessDataFrame(prevDataFrame);
                     }
                     else // LRC error
                     {
                         Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"DataFrame 패킷 LRC 체크 실패 i={i}, packet.Length={packet.Length}"));
                     }
-                        
-                    dataFrame = null;
+
+                    prevDataFrame = null;
                     nResult++;
                 }
                 else
