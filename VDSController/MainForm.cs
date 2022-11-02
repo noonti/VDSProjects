@@ -633,7 +633,7 @@ namespace VDSController
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Icon = Icon.FromHandle(Properties.Resources.radar.GetHicon());
+            //this.Icon = Icon.FromHandle(Properties.Resources.radar.GetHicon());
         }
     }
 }
