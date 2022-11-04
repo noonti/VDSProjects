@@ -314,7 +314,8 @@ namespace VDSController
         {
             if(CheckLogin()==false)
             {
-                MessageBox.Show("관리자 아이디 또는 비밀번호를 확인하세요", "로그인 실패", MessageBoxButtons.OK);
+                //MessageBox.Show("관리자 아이디 또는 비밀번호를 확인하세요", "로그인 실패", MessageBoxButtons.OK);
+                Utility.ShowMessageBox("로그인 실패", "관리자 아이디 또는 비밀번호를 확인하세요", 1);
                 return;
             }
 
@@ -418,7 +419,7 @@ namespace VDSController
         {
             if (CheckLogin() == false)
             {
-                MessageBox.Show("관리자 아이디 또는 비밀번호를 확인하세요", "로그인 실패", MessageBoxButtons.OK);
+                Utility.ShowMessageBox("로그인 실패", "관리자 아이디 또는 비밀번호를 확인하세요", 1);
                 return;
             }
 
@@ -433,7 +434,8 @@ namespace VDSController
         private void SaveConfigAndClose()
         {
             VDSConfig.SaveConfig();
-            MessageBox.Show("설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다");
+            //MessageBox.Show("설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다");
+            Utility.ShowMessageBox("설정 변경", "설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다", 1);
             Close();
         }
 

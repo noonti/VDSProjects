@@ -131,7 +131,8 @@ namespace VDSController
 
             if(ucConfig.SetVDSConfig()==0)
             {
-                MessageBox.Show("입력값을 확인하세요");
+                // MessageBox.Show("입력값을 확인하세요");
+                Utility.ShowMessageBox("입력 오류", "입력값을 확인하세요", 1);
                 return;
             }
             DialogResult = DialogResult.OK; 

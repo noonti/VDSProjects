@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VDSCommon;
 using VDSCommon.API.Model;
 using VDSCommon.Protocol.admin;
 using VDSWebAPIServer.Common;
@@ -63,7 +64,8 @@ namespace VDSWebAPIServer.Forms
             }
             else
             {
-                MessageBox.Show("영상보기에 실패하였습니다", "오류");
+                //MessageBox.Show("영상보기에 실패하였습니다", "오류");
+                Utility.ShowMessageBox("오류", "영상보기에 실패하였습니다", 1);
             }
 
         }

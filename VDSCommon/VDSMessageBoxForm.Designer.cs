@@ -36,7 +36,7 @@
             // 
             // btnYes
             // 
-            this.btnYes.Location = new System.Drawing.Point(74, 60);
+            this.btnYes.Location = new System.Drawing.Point(83, 60);
             this.btnYes.Name = "btnYes";
             this.btnYes.Padding = new System.Windows.Forms.Padding(5);
             this.btnYes.Size = new System.Drawing.Size(103, 28);
@@ -48,16 +48,16 @@
             // lbMessage
             // 
             this.lbMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lbMessage.Location = new System.Drawing.Point(3, 22);
+            this.lbMessage.Location = new System.Drawing.Point(6, 22);
             this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Size = new System.Drawing.Size(343, 23);
+            this.lbMessage.Size = new System.Drawing.Size(365, 23);
             this.lbMessage.TabIndex = 1;
             this.lbMessage.Text = "삭제하시겠습니까?";
             this.lbMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnNo
             // 
-            this.btnNo.Location = new System.Drawing.Point(183, 60);
+            this.btnNo.Location = new System.Drawing.Point(192, 60);
             this.btnNo.Name = "btnNo";
             this.btnNo.Padding = new System.Windows.Forms.Padding(5);
             this.btnNo.Size = new System.Drawing.Size(103, 28);
@@ -68,7 +68,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(133, 60);
+            this.btnOk.Location = new System.Drawing.Point(142, 60);
             this.btnOk.Name = "btnOk";
             this.btnOk.Padding = new System.Windows.Forms.Padding(5);
             this.btnOk.Size = new System.Drawing.Size(103, 28);
@@ -81,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 100);
+            this.ClientSize = new System.Drawing.Size(377, 101);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.lbMessage);

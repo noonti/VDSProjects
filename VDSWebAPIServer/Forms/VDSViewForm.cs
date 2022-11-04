@@ -263,7 +263,8 @@ namespace VDSWebAPIServer.Forms
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             if (controllerConfig == null)
             {
-                MessageBox.Show("VDS 설정 정보가 없습니다", "오류");
+                //MessageBox.Show("VDS 설정 정보가 없습니다", "오류");
+                Utility.ShowMessageBox("오류", "VDS 설정 정보가 없습니다", 1);
                 return;
             }
                 
@@ -297,7 +298,9 @@ namespace VDSWebAPIServer.Forms
             {
                 lbPageInfo.Text = String.Format($"0/0");
                 Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"VDS ID={selectedVDSCtrl.ID} 조회 API(url={url} 실패. http code={statusCode}"));
-                MessageBox.Show("조회 요청에 실패하였습니다. VDS 제어기 연결 상태를 확인하세요", "오류");
+                //MessageBox.Show("조회 요청에 실패하였습니다. VDS 제어기 연결 상태를 확인하세요", "오류");
+                Utility.ShowMessageBox("오류", "조회 요청에 실패하였습니다. VDS 제어기 연결 상태를 확인하세요", 1);
+                
             }
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
@@ -340,7 +343,8 @@ namespace VDSWebAPIServer.Forms
         {
             if (lvTrafficDataStat.Items.Count ==0)
             {
-                MessageBox.Show("조회 결과가 없습니다", "정보");
+                //MessageBox.Show("조회 결과가 없습니다", "정보");
+                Utility.ShowMessageBox("정보", "조회 결과가 없습니다", 1);
                 return;
             }
 
@@ -353,7 +357,8 @@ namespace VDSWebAPIServer.Forms
             {
                 fileName = saveFileDialog.FileName;
                 SaveTrafficDataToCSV(fileName);
-                MessageBox.Show(fileName + "에 저장하였습니다", "저장");
+                //MessageBox.Show(fileName + "에 저장하였습니다", "저장");
+                Utility.ShowMessageBox("저장", fileName + "에 저장하였습니다", 1);
             }
         }
 
@@ -383,7 +388,8 @@ namespace VDSWebAPIServer.Forms
                 currentPage++;
             else
             {
-                MessageBox.Show("마지막 페이지입니다", "정보", MessageBoxButtons.OK);
+                //MessageBox.Show("마지막 페이지입니다", "정보", MessageBoxButtons.OK);
+                Utility.ShowMessageBox("정보", "마지막 페이지입니다", 1);
                 return;
             }
             SearchTrafficData(currentPage, GlobalCommonData.PAGE_SIZE);

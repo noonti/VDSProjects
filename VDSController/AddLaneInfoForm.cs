@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VDSCommon;
 using VDSDBHandler.Model;
 
 namespace VDSController
@@ -30,7 +31,8 @@ namespace VDSController
         {
             if(String.IsNullOrEmpty(txtLaneName.Text))
             {
-                MessageBox.Show("입력오류", "차선명을 입력하세요");
+                //MessageBox.Show("", "");
+                Utility.ShowMessageBox("입력오류", "차선명을 입력하세요", 1);
                 return;
             }
 
@@ -38,7 +40,8 @@ namespace VDSController
 
             if (cbLane.SelectedIndex == -1)
             {
-                MessageBox.Show("입력오류", "차선을 선택하세요");
+                //MessageBox.Show("입력오류", "차선을 선택하세요");
+                Utility.ShowMessageBox("입력오류", "차선을 선택하세요", 1);
                 return;
             }
             lane = int.Parse(cbLane.Text);
