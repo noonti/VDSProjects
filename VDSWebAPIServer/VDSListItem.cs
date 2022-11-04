@@ -54,140 +54,140 @@ namespace VDSWebAPIServer
 
         }
 
-        public void SetControl()
-        {
-            int index = 7;
+        //public void SetControl()
+        //{
+        //    int index = 7;
 
-            return;
-            // 통신상태 LED
-            //onlineLed.Parent = _parentControl;
-            //ListViewSubItem subItem = null;
-            //subItem = SubItems[index++];
-            //Rectangle rt = new Rectangle();
-            //rt = subItem.Bounds;
-            //onlineLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
-            //controlList.Add(onlineLed);
+        //    return;
+        //    // 통신상태 LED
+        //    //onlineLed.Parent = _parentControl;
+        //    //ListViewSubItem subItem = null;
+        //    //subItem = SubItems[index++];
+        //    //Rectangle rt = new Rectangle();
+        //    //rt = subItem.Bounds;
+        //    //onlineLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //    //controlList.Add(onlineLed);
 
-            ListViewSubItem subItem = null;
-            subItem = SubItems[index++];
-            subItem.Text = "";
+        //    ListViewSubItem subItem = null;
+        //    subItem = SubItems[index++];
+        //    subItem.Text = "";
 
 
-            fontLed.Parent = _parentControl;
-            subItem = null;
-            subItem = SubItems[index++];
-            Rectangle rt = new Rectangle();
-            rt = subItem.Bounds;
-            fontLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
-            controlList.Add(fontLed);
+        //    fontLed.Parent = _parentControl;
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    Rectangle rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    fontLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //    controlList.Add(fontLed);
 
-            rearLed.Parent = _parentControl;
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            rearLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
-            controlList.Add(rearLed);
+        //    rearLed.Parent = _parentControl;
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    rearLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //    controlList.Add(rearLed);
 
-            fanLed.Parent = _parentControl;
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            fanLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
-            controlList.Add(fanLed);
+        //    fanLed.Parent = _parentControl;
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    fanLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //    controlList.Add(fanLed);
 
-            heaterLed.Parent = _parentControl;
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            heaterLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
-            controlList.Add(heaterLed);
+        //    heaterLed.Parent = _parentControl;
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    heaterLed.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //    controlList.Add(heaterLed);
 
 
           
-            index++;// 함체온도 스킵
+        //    index++;// 함체온도 스킵
 
 
-            rtspStreamingBtn.Parent = _parentControl;
-            rtspStreamingBtn.Font = new Font("굴림",9);
-            rtspStreamingBtn.Text = "영상보기";
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            rtspStreamingBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
-            controlList.Add(rtspStreamingBtn);
+        //    rtspStreamingBtn.Parent = _parentControl;
+        //    rtspStreamingBtn.Font = new Font("굴림",9);
+        //    rtspStreamingBtn.Text = "영상보기";
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    rtspStreamingBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
+        //    controlList.Add(rtspStreamingBtn);
 
 
-            remoteConfigBtn.Parent = _parentControl;
-            remoteConfigBtn.Font = new Font("굴림", 9);
-            remoteConfigBtn.Text = "원격설정";
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            remoteConfigBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
-            controlList.Add(remoteConfigBtn);
+        //    remoteConfigBtn.Parent = _parentControl;
+        //    remoteConfigBtn.Font = new Font("굴림", 9);
+        //    remoteConfigBtn.Text = "원격설정";
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    remoteConfigBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
+        //    controlList.Add(remoteConfigBtn);
 
 
-            modifyBtn.Parent = _parentControl;
-            modifyBtn.Font = new Font("굴림", 9);
-            modifyBtn.Text = "수정";
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            modifyBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
-            controlList.Add(modifyBtn);
+        //    modifyBtn.Parent = _parentControl;
+        //    modifyBtn.Font = new Font("굴림", 9);
+        //    modifyBtn.Text = "수정";
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    modifyBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
+        //    controlList.Add(modifyBtn);
 
 
-            deleteBtn.Parent = _parentControl;
-            deleteBtn.Font = new Font("굴림", 9);
-            deleteBtn.Text = "삭제";
-            subItem = null;
-            subItem = SubItems[index++];
-            rt = new Rectangle();
-            rt = subItem.Bounds;
-            deleteBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
-            controlList.Add(deleteBtn);
+        //    deleteBtn.Parent = _parentControl;
+        //    deleteBtn.Font = new Font("굴림", 9);
+        //    deleteBtn.Text = "삭제";
+        //    subItem = null;
+        //    subItem = SubItems[index++];
+        //    rt = new Rectangle();
+        //    rt = subItem.Bounds;
+        //    deleteBtn.SetBounds(rt.X, rt.Y, 80, rt.Height);
+        //    controlList.Add(deleteBtn);
 
 
 
-            // 최종 수신 시간 
-            // 앞문 열림 LED
-            // 뒷문 열림 LED
-            // Fan    LED
-            // Heater  LED 
-            // 함체 온도 TExt
-            // 영상보기 button
-            // 원격 설정 button  
-            // 수정 button 
-            // 삭제 button 
+        //    // 최종 수신 시간 
+        //    // 앞문 열림 LED
+        //    // 뒷문 열림 LED
+        //    // Fan    LED
+        //    // Heater  LED 
+        //    // 함체 온도 TExt
+        //    // 영상보기 button
+        //    // 원격 설정 button  
+        //    // 수정 button 
+        //    // 삭제 button 
 
-            //SubItems.Add(vdsController.MODIFY_DATE);
-            //SubItems.Add(vdsController.REG_DATE);
+        //    //SubItems.Add(vdsController.MODIFY_DATE);
+        //    //SubItems.Add(vdsController.REG_DATE);
 
-            //ProgressBar pb = new ProgressBar();
-            //pb.Minimum = 0;
-            //pb.Maximum = 100;
-            //pb.Value = 30;
-            //pb.Parent = lvView;
-            //ListViewItem.ListViewSubItem ps = null;
-            //ps = item.SubItems[3];
-            //Rectangle rt = new Rectangle();
-            //rt = ps.Bounds;
-            //pb.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //    //ProgressBar pb = new ProgressBar();
+        //    //pb.Minimum = 0;
+        //    //pb.Maximum = 100;
+        //    //pb.Value = 30;
+        //    //pb.Parent = lvView;
+        //    //ListViewItem.ListViewSubItem ps = null;
+        //    //ps = item.SubItems[3];
+        //    //Rectangle rt = new Rectangle();
+        //    //rt = ps.Bounds;
+        //    //pb.SetBounds(rt.X, rt.Y, 100, rt.Height);
 
 
-            //LedBulb led = new LedBulb();
-            //led.Parent = lvView;
-            //ps = item.SubItems[4];
-            //rt = new Rectangle();
-            //rt = ps.Bounds;
-            //led.SetBounds(rt.X, rt.Y, 100, rt.Height);
-        }
+        //    //LedBulb led = new LedBulb();
+        //    //led.Parent = lvView;
+        //    //ps = item.SubItems[4];
+        //    //rt = new Rectangle();
+        //    //rt = ps.Bounds;
+        //    //led.SetBounds(rt.X, rt.Y, 100, rt.Height);
+        //}
 
         public void DisposeControl()
         {

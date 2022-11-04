@@ -203,7 +203,7 @@ namespace VDSWebAPIServer
             item = new VDSListItem(vdsController, lvView); 
             item.Tag = vdsController;
             lvView.Items.Add(item);
-            item.SetControl();
+            //item.SetControl();
             UpdateVDSControllerList(vdsController.CONTROLLER_ID);
 
 
