@@ -10,7 +10,7 @@ namespace KorExManageCtrl.VDSProtocol
     public class CheckSessionRequest : ExRequest, IExOPData
     {
         
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = 0;
             try
@@ -28,7 +28,7 @@ namespace KorExManageCtrl.VDSProtocol
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result;
             try

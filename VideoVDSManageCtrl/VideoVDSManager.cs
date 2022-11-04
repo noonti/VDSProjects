@@ -204,7 +204,6 @@ namespace VideoVDSManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
 
             int nResult = 1;
-            String strLog;
             try
             {
                 // Begin sending the data to the remote device.  
@@ -247,7 +246,6 @@ namespace VideoVDSManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
-            String strLog;
             try
             {
                 session._socket.Shutdown(SocketShutdown.Both);
@@ -608,7 +606,6 @@ namespace VideoVDSManageCtrl
         public int StopWorkThread()
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
-            String strLog;
             _bSocketMsgProcessing = false;
 
             socketMsgThreadExitEvent.WaitOne();
@@ -681,7 +678,6 @@ namespace VideoVDSManageCtrl
         public int AddTrafficDataEvent(TrafficDataEvent trafficDataEvent)
         {
             int nResult = 0;
-            String strLog;
             if (_addTrafficDataEvent != null && trafficDataEvent!=null)
             {
                 trafficDataEvent.vds_type = VDSConfig.GetVDSTypeName();

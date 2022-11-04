@@ -35,7 +35,7 @@ namespace VDSWebAPIServer.Forms
 
 
 
-        protected virtual bool DoubleBuffered { get; set; }
+        //protected virtual bool DoubleBuffered { get; set; }
 
         public ControllerConfig controllerConfig ;
         public KictConfig kictConfig ;

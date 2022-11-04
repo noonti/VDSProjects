@@ -24,7 +24,6 @@ namespace VDSCommon.VitualKeyboard
 
 
         private Control _target = null;
-        private IntPtr _handle;
 
 
         private List<ucKeyButton>[] _buttons = new List<ucKeyButton>[5];

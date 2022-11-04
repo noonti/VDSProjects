@@ -66,6 +66,7 @@ namespace VDSCommon
             catch (Exception ex)
             {
                 nResult = 0;
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
             }
             return nResult;
         }

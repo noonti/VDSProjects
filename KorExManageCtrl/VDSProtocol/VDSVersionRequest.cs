@@ -12,7 +12,7 @@ namespace KorExManageCtrl.VDSProtocol
         public byte baseNumber;
         public byte counter;
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = 0;
             idx = base.Deserialize(packet);
@@ -20,7 +20,7 @@ namespace KorExManageCtrl.VDSProtocol
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result;
             try

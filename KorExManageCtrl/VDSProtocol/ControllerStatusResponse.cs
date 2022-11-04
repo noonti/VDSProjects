@@ -15,7 +15,7 @@ namespace KorExManageCtrl.VDSProtocol
         public ushort boardStatus; // 비트별로 정상 :0 , 비정상 : 1
 
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = 0;
             byte[] status = new byte[2];
@@ -32,7 +32,7 @@ namespace KorExManageCtrl.VDSProtocol
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result = null;//= new byte[9]; ;
             byte[] status;

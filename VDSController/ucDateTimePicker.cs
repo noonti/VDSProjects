@@ -44,7 +44,7 @@ namespace VDSController
             }
             catch(Exception ex)
             {
-
+                Console.WriteLine(ex.StackTrace.ToString());
             }
         }
 

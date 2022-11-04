@@ -185,7 +185,7 @@ namespace VDSController
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("aaa");
+                        Console.WriteLine(ex.StackTrace.ToString());
                     }
                 }
                 );

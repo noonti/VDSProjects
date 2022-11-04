@@ -22,9 +22,8 @@ namespace SerialComManageCtrl
 
         Timer _statusTimer = null;
 
-        VDSClient _rtuClient;
 
-        IRTUManager rtuManager;
+        IRTUManager rtuManager = null;
 
         SerialDataFrame prevDataFrame = null;
         public int SetSerialPort(String portName, int baudRate = 115200, Parity parity = System.IO.Ports.Parity.None, int dataBits = 8, StopBits stopBits = System.IO.Ports.StopBits.None, Handshake handShake = System.IO.Ports.Handshake.None)

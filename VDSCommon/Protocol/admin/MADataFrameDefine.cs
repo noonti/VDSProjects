@@ -74,8 +74,6 @@ namespace VDSCommon.Protocol.admin
                 //            break;
                 //    }
 
-
-                    break;
                 case OPCODE_HEARTBEAT:
                     switch (reqeustType)
                     {

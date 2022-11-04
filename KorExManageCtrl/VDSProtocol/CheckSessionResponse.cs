@@ -10,14 +10,14 @@ namespace KorExManageCtrl.VDSProtocol
     public class CheckSessionResponse : ExResponse, IExOPData
     {
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = base.Deserialize(packet);
             return idx;
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result;
             try

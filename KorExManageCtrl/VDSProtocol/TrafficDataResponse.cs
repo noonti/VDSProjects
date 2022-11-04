@@ -14,7 +14,7 @@ namespace KorExManageCtrl.VDSProtocol
         public DetectorInfo detector = new DetectorInfo();
 
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = 0;
             byte[] data;
@@ -31,7 +31,7 @@ namespace KorExManageCtrl.VDSProtocol
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result = null;//= new byte[9]; ;
             try

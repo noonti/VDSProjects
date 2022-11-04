@@ -44,7 +44,7 @@ namespace VDSCommon
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.StackTrace.ToString());
             }
         }
 

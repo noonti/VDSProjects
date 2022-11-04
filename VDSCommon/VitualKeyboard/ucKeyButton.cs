@@ -12,9 +12,7 @@ namespace VDSCommon.VitualKeyboard
 {
     public partial class ucKeyButton : UserControl
     {
-        Control target = null;
-        bool bFocused = false;
-        byte virtualKey;
+        //Control target = null;
 
         Keys key;
 
@@ -34,7 +32,7 @@ namespace VDSCommon.VitualKeyboard
 
         private void DrawSelection(bool focused)
         {
-            int margin = 5;
+            //int margin = 5;
 
             //if (this.Width > 0 && this.Height > 0)
             //{

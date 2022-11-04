@@ -14,7 +14,6 @@ namespace RadarManageCtrl
         public RECEIVER_STATE state;
         public byte[] data = new byte[VDSConfig.PACKET_SIZE];
         public int dataSize;
-        UInt16 crc = 0;
         int nMalformedPckt;
         public RadarPacket()
         {
@@ -39,7 +38,7 @@ namespace RadarManageCtrl
                     break;
 
                     case RECEIVER_STATE.S_BEGIN:
-                        crc = 0;
+                        //crc = 0;
                         if (c == PacketDefine.MARK_BEGIN)
                             state = RECEIVER_STATE.S_MARKB;
                         else

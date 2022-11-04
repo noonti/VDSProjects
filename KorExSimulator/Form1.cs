@@ -31,7 +31,7 @@ namespace KorExSimulator
         ExDataFrame _prevDataFrame = null;
         Timer syncTimer;
 
-        SOCKET_STATUS _status = SOCKET_STATUS.DISCONNECTED;
+        //SOCKET_STATUS _status = SOCKET_STATUS.DISCONNECTED;
         public Form1()
         {
             InitializeComponent();
@@ -128,7 +128,7 @@ namespace KorExSimulator
             }
             catch (Exception ex)
             {
-                _status = SOCKET_STATUS.DISCONNECTED;
+                //_status = SOCKET_STATUS.DISCONNECTED;
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
             }
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));

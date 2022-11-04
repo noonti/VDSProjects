@@ -72,6 +72,7 @@ namespace VDSWebAPIServer.Forms
             catch(Exception ex)
             {
                 nResult = 0;
+                Console.WriteLine(ex.StackTrace.ToString());
             }
             return nResult;
         }

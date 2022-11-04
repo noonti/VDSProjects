@@ -253,6 +253,7 @@ namespace VDSCommon
             catch (Exception ex)
             {
                 nResult = 0;
+                Console.WriteLine(ex.StackTrace.ToString());
             }
 
 
@@ -274,6 +275,7 @@ namespace VDSCommon
             catch(Exception ex)
             {
                 nResult = 0;
+                Console.WriteLine(ex.StackTrace.ToString());
             }
             
 
@@ -319,6 +321,7 @@ namespace VDSCommon
             catch (Exception ex)
             {
                 nResult = 0;
+                Console.WriteLine(ex.StackTrace.ToString());
             }
             return nResult;
         }

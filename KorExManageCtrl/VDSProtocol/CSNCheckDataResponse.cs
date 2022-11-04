@@ -15,7 +15,7 @@ namespace KorExManageCtrl.VDSProtocol
         {
         }
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = base.Deserialize(packet);
             Array.Copy(packet, idx, csn, 0, 8);
@@ -24,7 +24,7 @@ namespace KorExManageCtrl.VDSProtocol
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result;
             byte[] data;

@@ -46,7 +46,6 @@ namespace MClavisRadarManageCtrl
         public int AddTrafficDataEvent(TrafficDataEvent trafficDataEvent)
         {
             int nResult = 0;
-            String strLog;
             if (_addTrafficDataEvent != null && trafficDataEvent != null)
             {
                 trafficDataEvent.vds_type = VDSConfig.GetVDSTypeName(); ;
