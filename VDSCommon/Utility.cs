@@ -1233,6 +1233,17 @@ namespace VDSCommon
             }
             return result;
         }
+
+        public static DialogResult ShowMessageBox(String title, String message, int mode)
+        {
+            DialogResult result = DialogResult.OK;
+            VDSMessageBoxForm msgBoxForm = new VDSMessageBoxForm();
+
+            msgBoxForm.SetMessage(title, message, mode);
+            result = msgBoxForm.ShowDialog();
+            return result;
+
+        }
     }
 }
 

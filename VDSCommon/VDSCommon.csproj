@@ -182,6 +182,12 @@
     <Compile Include="VDSConfig.cs" />
     <Compile Include="VDSLog.cs" />
     <Compile Include="VDSLogger.cs" />
+    <Compile Include="VDSMessageBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VDSMessageBoxForm.Designer.cs">
+      <DependentUpon>VDSMessageBoxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VDSRackStatus.cs" />
     <Compile Include="VDSServer.cs" />
     <Compile Include="VDSSyncClient.cs" />
@@ -218,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucVDSConfig.resx">
       <DependentUpon>ucVDSConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VDSMessageBoxForm.resx">
+      <DependentUpon>VDSMessageBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VitualKeyboard\ucKeyButton.resx">
       <DependentUpon>ucKeyButton.cs</DependentUpon>

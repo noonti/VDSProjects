@@ -145,7 +145,7 @@ namespace SerialComManageCtrl
             
             int i = 0;
 
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Serial Data= {Utility.PrintHexaString(packet, length)} length={length} "));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Serial Data= {Utility.PrintHexaString(packet, length)} length={length} "));
 
             while (i < length)
             {
@@ -159,7 +159,7 @@ namespace SerialComManageCtrl
                 }
 
                 i = prevDataFrame.Deserialize(packet, i);
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"시리얼 패킷 데이터 완성 여부: dataFrame.bHeaderCompleted={prevDataFrame.bHeaderCompleted}, dataFrame.bDataCompleted = {prevDataFrame.bDataCompleted} "));
+                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"시리얼 패킷 데이터 완성 여부: dataFrame.bHeaderCompleted={prevDataFrame.bHeaderCompleted}, dataFrame.bDataCompleted = {prevDataFrame.bDataCompleted} "));
                 if (prevDataFrame.bDataCompleted)
                 {
                     // processDataFrame....
