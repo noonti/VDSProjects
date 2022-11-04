@@ -698,7 +698,6 @@ namespace YSESimulator
             int i;
             list.Items.Clear();
             String value;
-            String temp;
             value = String.Format($"시간: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ff")} ");
             list.Items.Add(value);
             //temp = Utility.ByteToString(address);

@@ -18,7 +18,6 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
         public int Deserialize(byte[] packet)
         {
             int idx = 0;
-            byte[] data;
             frameNo = packet[idx++];
             Array.Copy(packet, idx, errorInfo, 0, 4);
             idx += 4;

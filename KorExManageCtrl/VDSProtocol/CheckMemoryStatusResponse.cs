@@ -11,18 +11,16 @@ namespace KorExManageCtrl.VDSProtocol
     {
        
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
             int idx = base.Deserialize(packet);
             return idx;
         }
 
 
-        public byte[] Serialize()
+        new public byte[] Serialize()
         {
             byte[] result;
-            byte[] data;
-            int idx = 0;
             try
             {
                 result = base.Serialize();

@@ -42,7 +42,6 @@ namespace VDSController
         //슬라이딩 메뉴가 보이는/접히는 속도 조절
         const int STEP_SLIDING = 10;
         //최초 슬라이딩 메뉴 크기
-        int _posSliding = 200;
 
 
         public tabTargetSummary()
@@ -121,7 +120,6 @@ namespace VDSController
         public int AddTargetInfo(TrafficDataEvent trafficDataEvent)
         {
 
-            int index = -1;
 
             foreach(var targetSummary in ucTargetSummaryInfo)
             {

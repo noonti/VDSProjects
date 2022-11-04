@@ -18,7 +18,6 @@ namespace KorExManageCtrl.VDSProtocol
         public int Deserialize(byte[] packet)
         {
             int idx = 0;
-            byte[] data;
             byte[] status = new byte[2];
 
             idx = base.Deserialize(packet);

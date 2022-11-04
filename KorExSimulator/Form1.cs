@@ -26,11 +26,12 @@ namespace KorExSimulator
         VDSClient _korExClient = new VDSClient();
         //private VDSLogger _Logger = new VDSLogger();
         SessionContext _sessionContext;
-        SOCKET_STATUS _status;
         DisplayDataDelegate _displayDataDelegate = null;
 
         ExDataFrame _prevDataFrame = null;
         Timer syncTimer;
+
+        SOCKET_STATUS _status = SOCKET_STATUS.DISCONNECTED;
         public Form1()
         {
             InitializeComponent();
@@ -114,7 +115,6 @@ namespace KorExSimulator
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
-            String strLog;
             try
             {
                 _sessionContext = session;
@@ -330,7 +330,6 @@ namespace KorExSimulator
         {
             list.Items.Clear();
             String value;
-            String temp;
             if (frame != null)
             {
                 value = String.Format($"시간: {frame.txTime.ToString("yyyy-MM-dd HH:mm:ss.ff")} ");
@@ -445,7 +444,6 @@ namespace KorExSimulator
         {
             ControllerStatusResponse ctrlStatus = (ControllerStatusResponse)frame.opData;
             String value;
-            int count = 0;
             if (ctrlStatus != null)
             {
                 value = String.Format($"powerSupplyCount:{ctrlStatus.powerSupplyCount}, status={ctrlStatus.powerSupplyStatus}");
@@ -464,7 +462,6 @@ namespace KorExSimulator
         {
             CheckOnlineStatusResponse statusResponse = (CheckOnlineStatusResponse)frame.opData;
             String value;
-            int count = 0;
             if (statusResponse != null)
             {
 
@@ -478,7 +475,6 @@ namespace KorExSimulator
         {
             EchoMessageResponse echoResponse = (EchoMessageResponse)frame.opData;
             String value;
-            int count = 0;
             if (echoResponse != null)
             {
                
@@ -492,7 +488,6 @@ namespace KorExSimulator
         {
             CheckSeqNoResponse seqResponse = (CheckSeqNoResponse)frame.opData;
             String value;
-            int count = 0;
             if (seqResponse != null)
             {
                 for(int i=0;i< seqResponse.seqList.Length;i++)
@@ -510,7 +505,6 @@ namespace KorExSimulator
         {
             VDSVersionResponse versionResponse = (VDSVersionResponse)frame.opData;
             String value;
-            int count = 0;
             if (versionResponse != null)
             {
 
@@ -529,7 +523,6 @@ namespace KorExSimulator
         {
             IndivTrafficDataResponse indivResponse = (IndivTrafficDataResponse)frame.opData;
             String value;
-            int count = 0;
             if (indivResponse != null)
             {
                 value = String.Format($"timeFrameNo:{indivResponse.timeFrameNo}");
@@ -556,7 +549,6 @@ namespace KorExSimulator
         {
             ReverseRunRequest reverseRun = (ReverseRunRequest)frame.opData;
             String value;
-            int count = 0;
             if (reverseRun != null)
             {
 
@@ -644,7 +636,6 @@ namespace KorExSimulator
         {
             SetErrorThresholdResponse thresholdResponse = (SetErrorThresholdResponse)frame.opData;
             String value;
-            int count = 0;
             if (thresholdResponse != null)
             {
                 value = String.Format($"resultCode:{thresholdResponse.resultCode}");

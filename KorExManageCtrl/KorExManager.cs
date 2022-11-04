@@ -1405,7 +1405,6 @@ namespace KorExManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
 
             int nResult = 1;
-            String strLog;
             try
             {
                 // Begin sending the data to the remote device.  
@@ -1460,7 +1459,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 // Sync Message 받았을 때는 응답메시지는 보내지 않는다.
@@ -1507,7 +1505,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            TimeSpan ts;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1577,7 +1574,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1669,7 +1665,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1728,7 +1723,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1821,7 +1815,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1851,7 +1844,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1885,7 +1877,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1914,7 +1905,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -1950,7 +1940,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            DateTime curDate;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -2332,7 +2321,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            TimeSpan ts;
             try
             {
                 //Console.WriteLine("역주행 응답 메시지 처리 완료");
@@ -2352,7 +2340,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            TimeSpan ts;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -2375,7 +2362,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int nResult = 0;
-            TimeSpan ts;
             try
             {
                 ExDataFrame response = new ExDataFrame();
@@ -2906,7 +2892,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
-            String strLog;
             try
             {
                 // 도로공사 관련 처리 추가
@@ -3232,7 +3217,17 @@ namespace KorExManageCtrl
                 if (totalTrafficCount > 0)
                 {
                     lane.speed = (byte)(lane.totalSpeed / (totalTrafficCount)); // 평균 속도
-                    lane.occupyRatio =(UInt16)((lane.totalOccupyTime / (totalTrafficCount))*1000); // 평균 점유시간-->%
+
+                    //lane.occupyRatio =(UInt16)((lane.totalOccupyTime / (totalTrafficCount))*1000); // 평균 점유시간-->%
+                    // 점유율 = 차선별 총 점유시간/polling 시간 
+                    
+                    TimeSpan ts = _currentSyncDateTime - _prevSyncDateTime;
+                    if(ts.TotalMilliseconds>0)
+                        lane.occupyRatio = (UInt16) ((lane.totalOccupyTime / ts.TotalMilliseconds) *10000); //
+                    else
+                        lane.occupyRatio = 0;
+
+
                     lane.carLength = (byte)(lane.totalLength / (totalTrafficCount));        // 평균 차량 길이
                 }
                 else
@@ -3316,7 +3311,6 @@ namespace KorExManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리"));
             int result = 0;
-            byte prevValue = 0;
             int i = 0;
             //VDSConfig.lengthCategoryList.Clear();
             foreach (var length in category.category)

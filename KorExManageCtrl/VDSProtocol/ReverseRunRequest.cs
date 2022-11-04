@@ -25,7 +25,6 @@ namespace KorExManageCtrl.VDSProtocol
         public byte[] Serialize()
         {
             byte[] result;
-            byte[] data;
             byte[] reverseInfo;
             int idx = 0;
             try

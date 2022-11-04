@@ -102,7 +102,6 @@ namespace AdminManageCtrl
         public int StopWorkThread()
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
-            String strLog;
             _bSocketMsgProcessing = false;
 
             socketMsgThreadExitEvent.WaitOne();
@@ -432,7 +431,6 @@ namespace AdminManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
 
             int nResult = 1;
-            String strLog;
             try
             {
                 // Begin sending the data to the remote device.  

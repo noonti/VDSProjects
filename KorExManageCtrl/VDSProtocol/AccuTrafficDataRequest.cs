@@ -7,12 +7,12 @@ using VDSCommon;
 
 namespace KorExManageCtrl.VDSProtocol
 {
-    public class AccuTrafficDataRequest : ExRequest, IExOPData
+    public class AccuTrafficDataRequest : IExOPData //ExRequest, 
     {
         public int Deserialize(byte[] packet)
         {
             int idx = 0;
-            idx = base.Deserialize(packet);
+            //idx = base.Deserialize(packet);
             return idx;
 
         }
@@ -20,11 +20,10 @@ namespace KorExManageCtrl.VDSProtocol
 
         public byte[] Serialize()
         {
-            byte[] result;
-            int idx = 0;
+            byte[] result = null;
             try
             {
-                result = base.Serialize();
+                //result = base.Serialize();
 
             }
             catch (Exception ex)

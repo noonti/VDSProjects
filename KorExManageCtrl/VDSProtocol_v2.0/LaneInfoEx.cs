@@ -43,10 +43,15 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
             middleTrafficCount = packet[idx++];
             smallTrafficCount = packet[idx++];
             speed = packet[idx++];
-            byte[] value = new byte[2];
-            Array.Copy(packet, idx, value, 0, 2);
-            idx += 2;
-            occupyRatio = Utility.toLittleEndianInt16(value);
+
+            // occupyRatio : 9999 100 으로 나눈 몫: , 나머지: 소수점 2자리 
+            occupyRatio = (UInt16)(packet[idx++] * 100 + packet[idx++]);
+            
+            // 아래 평균값으로 점유율 계산한 경우 big endian 저장
+            //byte[] value = new byte[2];
+            //Array.Copy(packet, idx, value, 0, 2);
+            //idx += 2;
+            //occupyRatio = Utility.toLittleEndianInt16(value);
 
             carLength = packet[idx++];
 
@@ -64,9 +69,14 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
                 result[idx++] = smallTrafficCount;
                 result[idx++] = speed;
 
-                byte[] value = Utility.toBigEndianInt16(occupyRatio);
-                Array.Copy(value, 0, result, idx, value.Length);
-                idx += value.Length;
+                // occupyRatio : 9999 100 으로 나눈 몫: , 나머지: 소수점 2자리 
+                result[idx++] = (byte)(occupyRatio/100);
+                result[idx++] = (byte)(occupyRatio % 100);
+
+                // 아래 평균값으로 점유율 계산한 경우 big endian 저장
+                //byte[] value = Utility.toBigEndianInt16(occupyRatio);
+                //Array.Copy(value, 0, result, idx, value.Length);
+                //idx += value.Length;
 
                 result[idx++] = carLength;
             }

@@ -60,7 +60,6 @@ namespace VideoVDSServerSimulator
         {
             // Get the socket that handles the client request.  
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().Name} 처리 "));
-            String strLog;
             try
             {
                 // Create the state object.  
@@ -330,7 +329,6 @@ namespace VideoVDSServerSimulator
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
 
             int nResult = 1;
-            String strLog;
             try
             {
                 // Begin sending the data to the remote device.  

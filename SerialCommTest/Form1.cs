@@ -20,7 +20,6 @@ namespace SerialCommTest
         SerialCom rtuPort = new SerialCom();
         private VDSLogger _Logger = new VDSLogger();
 
-        SerialDataFrame _lastRequestDataFrame = null;
 
         public Form1()
         {

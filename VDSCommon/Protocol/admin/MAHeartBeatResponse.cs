@@ -19,7 +19,7 @@ namespace VDSCommon.Protocol.admin
             base.SetProperty(data);
         }
 
-        public int Deserialize(byte[] packet)
+        new public int Deserialize(byte[] packet)
         {
 
             int nResult = 0;
@@ -41,7 +41,8 @@ namespace VDSCommon.Protocol.admin
 
         }
 
-        public byte[] Serialize()
+        
+        new public byte[] Serialize()
         {
             byte[] result;
             try

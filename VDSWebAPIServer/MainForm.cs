@@ -51,7 +51,6 @@ namespace VDSWebAPIServer
         Timer timer = null;
 
         int currentPage = 1;
-        int totalPage = 1;
 
         bool firstActivated = false;
 
@@ -384,7 +383,6 @@ namespace VDSWebAPIServer
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int nResult = 0;
             MAHeartBeatRequest request;
-            MAHeartBeatResponse response;
 
             if (frame != null && frame.opDataFrame != null)
             {

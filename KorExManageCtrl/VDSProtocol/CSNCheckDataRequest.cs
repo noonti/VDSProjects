@@ -20,14 +20,11 @@ namespace KorExManageCtrl.VDSProtocol
 
         public byte[] Serialize()
         {
-            byte[] result ;
             try
             {
-                //result = base.Serialize();
             }
             catch (Exception ex)
             {
-                result = null;
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
 
             }

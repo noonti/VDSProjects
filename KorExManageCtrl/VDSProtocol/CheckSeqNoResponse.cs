@@ -26,7 +26,6 @@ namespace KorExManageCtrl.VDSProtocol
         public byte[] Serialize()
         {
             byte[] result;
-            byte[] data;
 
             int idx = 0;
             try

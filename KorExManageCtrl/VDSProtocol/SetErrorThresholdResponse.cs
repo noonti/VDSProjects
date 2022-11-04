@@ -17,7 +17,6 @@ namespace KorExManageCtrl.VDSProtocol
         public int Deserialize(byte[] packet)
         {
             int idx = 0;
-            byte[] data;
             idx = base.Deserialize(packet);
             threshold = packet[idx++];
             return idx;
