@@ -384,9 +384,9 @@ namespace VideoVDSServerSimulator
             VDSTrafficDataEvent trafficDataEvent = new VDSTrafficDataEvent();
             //byte _lane = (byte)((DateTime.Now.Millisecond % 4)+1);
 
-            byte _lane = (byte)(random.Next(8)+1 );// ((DateTime.Now.Millisecond % 8) + 1);
+            byte _lane = (byte)(random.Next(4)+1 );// ((DateTime.Now.Millisecond % 8) + 1);
             byte _direction = 0;
-            if (_lane <5)
+            if (_lane <3)
                 _direction = (int)MOVE_DIRECTION.TO_LEFT;
             else
                 _direction = (int)MOVE_DIRECTION.TO_RIGHT;
@@ -403,8 +403,8 @@ namespace VideoVDSServerSimulator
                 occupyTime = GetRandomOccupyTime(),
                 loop1OccupyTime = 200,
                 loop2OccupyTime = 300,
-                reverseRunYN = DateTime.Now.Second % 2 == 0? "N":"Y",
-                //reverseRunYN = "N" ,
+                //reverseRunYN = DateTime.Now.Second % 2 == 0? "N":"Y",
+                reverseRunYN = "N" ,
                 vehicleGap = 12,
                 detectTime = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT),
                

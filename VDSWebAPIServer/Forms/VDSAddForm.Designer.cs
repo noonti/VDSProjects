@@ -71,7 +71,7 @@
             this.darkGroupBox1.Controls.Add(this.darkLabel1);
             this.darkGroupBox1.Location = new System.Drawing.Point(8, 8);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(909, 147);
+            this.darkGroupBox1.Size = new System.Drawing.Size(909, 133);
             this.darkGroupBox1.TabIndex = 2;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "제어기 기본정보";
@@ -81,16 +81,17 @@
             this.txtControllerId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.txtControllerId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtControllerId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtControllerId.Location = new System.Drawing.Point(548, 31);
+            this.txtControllerId.Location = new System.Drawing.Point(548, 28);
             this.txtControllerId.Name = "txtControllerId";
             this.txtControllerId.Size = new System.Drawing.Size(120, 21);
             this.txtControllerId.TabIndex = 2;
+            this.txtControllerId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rdgProtocol2_KeyDown);
             // 
             // darkLabel4
             // 
             this.darkLabel4.AutoSize = true;
             this.darkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel4.Location = new System.Drawing.Point(526, 35);
+            this.darkLabel4.Location = new System.Drawing.Point(526, 32);
             this.darkLabel4.Name = "darkLabel4";
             this.darkLabel4.Size = new System.Drawing.Size(16, 12);
             this.darkLabel4.TabIndex = 12;
@@ -149,6 +150,7 @@
             this.rdgVDSType3.Size = new System.Drawing.Size(83, 16);
             this.rdgVDSType3.TabIndex = 2;
             this.rdgVDSType3.Text = "하이브리드";
+            this.rdgVDSType3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rdgProtocol2_KeyDown);
             // 
             // rdgVDSType2
             // 
@@ -192,6 +194,7 @@
             this.rdgProtocol2.TabIndex = 1;
             this.rdgProtocol2.TabStop = true;
             this.rdgProtocol2.Text = "도로공사";
+            this.rdgProtocol2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rdgProtocol2_KeyDown);
             // 
             // rdgProtocol1
             // 
@@ -207,16 +210,17 @@
             this.txtIPAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.txtIPAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIPAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtIPAddress.Location = new System.Drawing.Point(752, 33);
+            this.txtIPAddress.Location = new System.Drawing.Point(752, 28);
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(140, 21);
             this.txtIPAddress.TabIndex = 3;
+            this.txtIPAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rdgProtocol2_KeyDown);
             // 
             // darkLabel3
             // 
             this.darkLabel3.AutoSize = true;
             this.darkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel3.Location = new System.Drawing.Point(675, 37);
+            this.darkLabel3.Location = new System.Drawing.Point(675, 32);
             this.darkLabel3.Name = "darkLabel3";
             this.darkLabel3.Size = new System.Drawing.Size(67, 12);
             this.darkLabel3.TabIndex = 4;
@@ -231,6 +235,7 @@
             this.txtControllerName.Name = "txtControllerName";
             this.txtControllerName.Size = new System.Drawing.Size(212, 21);
             this.txtControllerName.TabIndex = 1;
+            this.txtControllerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rdgProtocol2_KeyDown);
             // 
             // darkLabel2
             // 
@@ -250,6 +255,7 @@
             this.cbVDSGroups.Name = "cbVDSGroups";
             this.cbVDSGroups.Size = new System.Drawing.Size(165, 22);
             this.cbVDSGroups.TabIndex = 0;
+            this.cbVDSGroups.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rdgProtocol2_KeyDown);
             // 
             // darkLabel1
             // 
@@ -263,20 +269,20 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(269, 178);
+            this.btnSave.Location = new System.Drawing.Point(363, 147);
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(5);
-            this.btnSave.Size = new System.Drawing.Size(186, 39);
+            this.btnSave.Size = new System.Drawing.Size(75, 31);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "확인";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // darkButton1
             // 
-            this.darkButton1.Location = new System.Drawing.Point(480, 178);
+            this.darkButton1.Location = new System.Drawing.Point(491, 147);
             this.darkButton1.Name = "darkButton1";
             this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton1.Size = new System.Drawing.Size(186, 39);
+            this.darkButton1.Size = new System.Drawing.Size(75, 31);
             this.darkButton1.TabIndex = 14;
             this.darkButton1.Text = "취소";
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click_1);
@@ -285,7 +291,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 237);
+            this.ClientSize = new System.Drawing.Size(936, 187);
             this.Controls.Add(this.darkButton1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.darkGroupBox1);

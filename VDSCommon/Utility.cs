@@ -1205,12 +1205,12 @@ namespace VDSCommon
         {
             int nResult = 0;
             DirectoryInfo dir = new DirectoryInfo(filePath);
-            DateTime fileCreatedTime;
+            DateTime fileLastUpdatedTime;
             DateTime cmpTime = DateTime.ParseExact(expireDate, "yyyyMMdd", null);
             foreach(FileInfo file in dir.GetFiles()) 
             {
-                fileCreatedTime = file.CreationTime;
-                if(file.Extension.CompareTo(".log") ==0 && DateTime.Compare(fileCreatedTime, cmpTime)<0)
+                fileLastUpdatedTime = file.LastWriteTime;
+                if(file.Extension.CompareTo(".log") ==0 && DateTime.Compare(fileLastUpdatedTime, cmpTime)<0)
                 {
                     File.Delete(file.FullName);
                     nResult++;

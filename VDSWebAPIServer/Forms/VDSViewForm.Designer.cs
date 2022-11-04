@@ -43,6 +43,7 @@ namespace VDSWebAPIServer.Forms
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lbTotalCount = new DarkUI.Controls.DarkLabel();
             this.lbPageInfo = new DarkUI.Controls.DarkLabel();
             this.darkButton6 = new DarkUI.Controls.DarkButton();
             this.darkButton5 = new DarkUI.Controls.DarkButton();
@@ -94,7 +95,6 @@ namespace VDSWebAPIServer.Forms
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.darkGroupBox4 = new DarkUI.Controls.DarkGroupBox();
             this.darkButton2 = new DarkUI.Controls.DarkButton();
-            this.lbTotalCount = new DarkUI.Controls.DarkLabel();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -237,6 +237,18 @@ namespace VDSWebAPIServer.Forms
             this.columnHeader20.Text = "센터 전송 여부";
             this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader20.Width = 100;
+            // 
+            // lbTotalCount
+            // 
+            this.lbTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotalCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.lbTotalCount.Location = new System.Drawing.Point(13, 395);
+            this.lbTotalCount.Name = "lbTotalCount";
+            this.lbTotalCount.Size = new System.Drawing.Size(126, 11);
+            this.lbTotalCount.TabIndex = 34;
+            this.lbTotalCount.Text = "조회결과수: 0";
+            this.lbTotalCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbPageInfo
             // 
@@ -398,7 +410,7 @@ namespace VDSWebAPIServer.Forms
             this.txtControllerId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.txtControllerId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtControllerId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtControllerId.Location = new System.Drawing.Point(790, 27);
+            this.txtControllerId.Location = new System.Drawing.Point(790, 28);
             this.txtControllerId.Name = "txtControllerId";
             this.txtControllerId.Size = new System.Drawing.Size(202, 21);
             this.txtControllerId.TabIndex = 2;
@@ -407,7 +419,7 @@ namespace VDSWebAPIServer.Forms
             // 
             this.darkLabel4.AutoSize = true;
             this.darkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel4.Location = new System.Drawing.Point(768, 31);
+            this.darkLabel4.Location = new System.Drawing.Point(768, 32);
             this.darkLabel4.Name = "darkLabel4";
             this.darkLabel4.Size = new System.Drawing.Size(16, 12);
             this.darkLabel4.TabIndex = 12;
@@ -768,18 +780,6 @@ namespace VDSWebAPIServer.Forms
             this.darkButton2.TabIndex = 0;
             this.darkButton2.Text = "닫기";
             this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click);
-            // 
-            // lbTotalCount
-            // 
-            this.lbTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbTotalCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lbTotalCount.Location = new System.Drawing.Point(13, 395);
-            this.lbTotalCount.Name = "lbTotalCount";
-            this.lbTotalCount.Size = new System.Drawing.Size(126, 11);
-            this.lbTotalCount.TabIndex = 34;
-            this.lbTotalCount.Text = "조회결과수: 0";
-            this.lbTotalCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // VDSViewForm
             // 

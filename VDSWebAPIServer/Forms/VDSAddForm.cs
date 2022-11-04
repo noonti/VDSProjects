@@ -217,5 +217,20 @@ namespace VDSWebAPIServer.Forms
         {
             DialogResult = DialogResult.Cancel;
         }
+
+        private void rdgProtocol2_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    btnSave_Click(sender, e);
+                    break;
+                case Keys.Escape:
+                    darkButton1_Click_1(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

@@ -40,14 +40,14 @@
             this.txtDBAddress = new DarkUI.Controls.DarkTextBox();
             this.darkLabel18 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox8 = new DarkUI.Controls.DarkGroupBox();
+            this.txtPort = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel2 = new DarkUI.Controls.DarkLabel();
             this.txtAPIPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel14 = new DarkUI.Controls.DarkLabel();
             this.txtIPAddress = new DarkUI.Controls.DarkTextBox();
             this.darkLabel1 = new DarkUI.Controls.DarkLabel();
             this.darkButton2 = new DarkUI.Controls.DarkButton();
             this.darkButton1 = new DarkUI.Controls.DarkButton();
-            this.txtPort = new DarkUI.Controls.DarkTextBox();
-            this.darkLabel2 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox5.SuspendLayout();
             this.darkGroupBox8.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,7 @@
             this.txtDBPasswd.Size = new System.Drawing.Size(102, 21);
             this.txtDBPasswd.TabIndex = 4;
             this.txtDBPasswd.Text = "1234";
+            this.txtDBPasswd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel21
             // 
@@ -104,6 +105,7 @@
             this.txtDBUserId.Size = new System.Drawing.Size(102, 21);
             this.txtDBUserId.TabIndex = 3;
             this.txtDBUserId.Text = "vds";
+            this.txtDBUserId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel20
             // 
@@ -125,6 +127,7 @@
             this.txtDBName.Size = new System.Drawing.Size(75, 21);
             this.txtDBName.TabIndex = 2;
             this.txtDBName.Text = "vdsdb";
+            this.txtDBName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel19
             // 
@@ -147,6 +150,7 @@
             this.txtDBPort.TabIndex = 1;
             this.txtDBPort.Text = "3306";
             this.txtDBPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDBPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel17
             // 
@@ -168,6 +172,7 @@
             this.txtDBAddress.Size = new System.Drawing.Size(185, 21);
             this.txtDBAddress.TabIndex = 0;
             this.txtDBAddress.Text = "127.0.0.1";
+            this.txtDBAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel18
             // 
@@ -196,6 +201,27 @@
             this.darkGroupBox8.TabStop = false;
             this.darkGroupBox8.Text = "VDS 제어프로그램 설정";
             // 
+            // txtPort
+            // 
+            this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtPort.Location = new System.Drawing.Point(250, 22);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(102, 21);
+            this.txtPort.TabIndex = 9;
+            this.txtPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
+            // 
+            // darkLabel2
+            // 
+            this.darkLabel2.AutoSize = true;
+            this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel2.Location = new System.Drawing.Point(217, 25);
+            this.darkLabel2.Name = "darkLabel2";
+            this.darkLabel2.Size = new System.Drawing.Size(29, 15);
+            this.darkLabel2.TabIndex = 10;
+            this.darkLabel2.Text = "Port";
+            // 
             // txtAPIPort
             // 
             this.txtAPIPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
@@ -205,6 +231,7 @@
             this.txtAPIPort.Name = "txtAPIPort";
             this.txtAPIPort.Size = new System.Drawing.Size(102, 21);
             this.txtAPIPort.TabIndex = 7;
+            this.txtAPIPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel14
             // 
@@ -225,6 +252,7 @@
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(128, 21);
             this.txtIPAddress.TabIndex = 0;
+            this.txtIPAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIPAddress_KeyDown);
             // 
             // darkLabel1
             // 
@@ -255,26 +283,6 @@
             this.darkButton1.TabIndex = 13;
             this.darkButton1.Text = "확인";
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click);
-            // 
-            // txtPort
-            // 
-            this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.txtPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtPort.Location = new System.Drawing.Point(250, 22);
-            this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(102, 21);
-            this.txtPort.TabIndex = 9;
-            // 
-            // darkLabel2
-            // 
-            this.darkLabel2.AutoSize = true;
-            this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(217, 25);
-            this.darkLabel2.Name = "darkLabel2";
-            this.darkLabel2.Size = new System.Drawing.Size(29, 15);
-            this.darkLabel2.TabIndex = 10;
-            this.darkLabel2.Text = "Port";
             // 
             // AdminConfigForm
             // 

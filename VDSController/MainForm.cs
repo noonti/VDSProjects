@@ -100,7 +100,7 @@ namespace VDSController
             DateTime now = DateTime.Now;
             if (curDate.CompareTo(now.ToString("yyyyMMdd")) !=0 ) // 날짜가 다르면 카운터 리셋
             {
-                //tabTarget.ResetVecycleCount();
+                tabTarget.ResetVecycleCount();
                 tabTarget.SyncTrafficDataCount();
 
                 curDate = now.ToString("yyyyMMdd");

@@ -1554,7 +1554,7 @@ namespace KorExManageCtrl
                     {
                         ID = Guid.NewGuid().ToString(),
                         PARENT_ID = parentId,
-                        LANE = i,
+                        LANE = i+1,
                         LARGE_COUNT = laneInfo.largeTrafficCount,
                         MIDDLE_COUNT = laneInfo.middleTrafficCount,
                         SMALL_COUNT = laneInfo.smallTrafficCount,
@@ -1638,7 +1638,7 @@ namespace KorExManageCtrl
                     {
                         ID = Guid.NewGuid().ToString(),
                         PARENT_ID = parentId,
-                        LANE = i,
+                        LANE = i + 1,
                         CATEGORY_1_COUNT = sData.speedCategory[0],
                         CATEGORY_2_COUNT = sData.speedCategory[1],
                         CATEGORY_3_COUNT = sData.speedCategory[2],

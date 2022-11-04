@@ -76,5 +76,20 @@ namespace VDSWebAPIServer.Forms
             }
             return nResult;
         }
+
+        private void txtIPAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    darkButton1_Click(sender, e);
+                    break;
+                case Keys.Escape:
+                    darkButton2_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

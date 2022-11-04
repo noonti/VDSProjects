@@ -64,6 +64,7 @@
             this.txtPASSWD.PasswordChar = '*';
             this.txtPASSWD.Size = new System.Drawing.Size(177, 21);
             this.txtPASSWD.TabIndex = 1;
+            this.txtPASSWD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUSER_ID_KeyDown);
             // 
             // darkLabel2
             // 
@@ -84,6 +85,7 @@
             this.txtUSER_ID.Name = "txtUSER_ID";
             this.txtUSER_ID.Size = new System.Drawing.Size(177, 21);
             this.txtUSER_ID.TabIndex = 0;
+            this.txtUSER_ID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUSER_ID_KeyDown);
             // 
             // darkLabel1
             // 
@@ -137,6 +139,8 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "로그인";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginForm_KeyDown);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LoginForm_PreviewKeyDown);
             this.darkGroupBox1.ResumeLayout(false);
             this.darkGroupBox1.PerformLayout();
             this.darkGroupBox2.ResumeLayout(false);

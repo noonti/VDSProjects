@@ -46,5 +46,30 @@ namespace VDSController
         {
             DialogResult = DialogResult.Cancel;
         }
+
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void LoginForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            
+        }
+
+        private void txtUSER_ID_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                    darkButton1_Click(sender, e);
+                    break;
+                case Keys.Escape:
+                    darkButton2_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
