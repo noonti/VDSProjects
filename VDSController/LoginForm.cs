@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VDSCommon;
 
 namespace VDSController
 {
@@ -25,7 +26,7 @@ namespace VDSController
         {
             if (String.IsNullOrEmpty(txtUSER_ID.Text))
             {
-                MessageBox.Show("아이디를 입력하세요", "입력", MessageBoxButtons.OK);
+                Utility.ShowMessageBox("아이디 입력", "아이디를 입력하세요", 1);
                 return;
             }
 
@@ -33,7 +34,7 @@ namespace VDSController
 
             if (String.IsNullOrEmpty(txtPASSWD.Text))
             {
-                MessageBox.Show("비밀번호를 입력하세요", "입력", MessageBoxButtons.OK);
+                Utility.ShowMessageBox("비밀번호 입력", "비밀번호를 입력하세요", 1);
                 return;
             }
 

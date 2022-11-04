@@ -246,7 +246,6 @@ namespace VDSWebAPIServer
                 }
                 else
                 {
-                    //MessageBox.Show("수정할 제어기를 선택하세요", "오류", MessageBoxButtons.OK);
                     Utility.ShowMessageBox("오류", "수정할 제어기를 선택하세요", 1);
                 }
             }
@@ -293,7 +292,6 @@ namespace VDSWebAPIServer
                     }
                     else
                     {
-                        //MessageBox.Show("삭제할 제어기를 선택하세요", "오류", MessageBoxButtons.OK);
                         Utility.ShowMessageBox("오류", "삭제할 제어기를 선택하세요", 1);
                     }
                 }
@@ -786,7 +784,6 @@ namespace VDSWebAPIServer
             if (configForm.ShowDialog() == DialogResult.OK)
             {
                 SaveMAConfig();
-                //MessageBox.Show("설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다");
                 Utility.ShowMessageBox("설정 변경", "설정이 변경되었습니다. 프로그램을 다시 실행 시 적용됩니다", 1);
 
                 Close();
@@ -820,7 +817,6 @@ namespace VDSWebAPIServer
                     }
                     else
                     {
-                        //MessageBox.Show("원격연결할 제어기를 선택하세요", "오류", MessageBoxButtons.OK);
                         Utility.ShowMessageBox("오류", "원격연결할 제어기를 선택하세요", 1);
                     }
                 }
@@ -855,7 +851,6 @@ namespace VDSWebAPIServer
                     }
                     else
                     {
-                        //MessageBox.Show("제어기를 선택하세요", "오류", MessageBoxButtons.OK);
                         Utility.ShowMessageBox("오류", "제어기를 선택하세요", 1);
                     }
                 }
@@ -889,7 +884,6 @@ namespace VDSWebAPIServer
                 }
                 else
                 {
-                    //MessageBox.Show("관리자 아이디 또는 비밀번호를 확인하세요", "로그인 실패", MessageBoxButtons.OK);
                     Utility.ShowMessageBox("로그인 실패", "관리자 아이디 또는 비밀번호를 확인하세요", 1);
                     this.Close();
                 }
@@ -919,7 +913,6 @@ namespace VDSWebAPIServer
             }
             else
             {
-                //MessageBox.Show("사용자 관리 권한이 없습니다", "권한오류");
                 Utility.ShowMessageBox("권한오류", "사용자 관리 권한이 없습니다", 1);
             }
 

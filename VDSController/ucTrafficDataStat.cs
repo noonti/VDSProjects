@@ -93,7 +93,6 @@ namespace VDSController
             {
                 fileName = saveFileDialog.FileName;
                 SaveTrafficDataToCSV(fileName);
-                //MessageBox.Show(fileName + "에 저장하였습니다", "저장");
                 Utility.ShowMessageBox("저장", fileName + "에 저장하였습니다", 1);
             }
             

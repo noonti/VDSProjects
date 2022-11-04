@@ -39,28 +39,24 @@ namespace VDSWebAPIServer.Forms
             VDS_CONTROLLER result = null;
             if (cbVDSGroups.SelectedIndex<0)
             {
-                //MessageBox.Show("소속그룹을 선택하세요", "입력 확인");
                 Utility.ShowMessageBox("입력 확인", "소속그룹을 선택하세요", 1);
                 return null;
             }
 
             if (String.IsNullOrEmpty(txtControllerName.Text))
             {
-                //MessageBox.Show("제어기명을 입력하세요", "입력 확인");
                 Utility.ShowMessageBox("입력 확인", "제어기명을 입력하세요", 1);
                 return null;
             }
 
             if (String.IsNullOrEmpty(txtControllerId.Text))
             {
-                //MessageBox.Show("ID를 입력하세요", "입력 확인");
                 Utility.ShowMessageBox("입력 확인", "ID를 입력하세요", 1);
                 return null;
             }
 
             if (String.IsNullOrEmpty(txtIPAddress.Text))
             {
-                //MessageBox.Show("IP Address를 입력하세요", "입력 확인");
                 Utility.ShowMessageBox("입력 확인", "IP Address를 입력하세요", 1);
                 return null;
             }
@@ -92,13 +88,11 @@ namespace VDSWebAPIServer.Forms
             vdsCtrlOp.AddVDSController(ref vdsCtrl, out SP_RESULT spResult);
             if (spResult.RESULT_CODE.CompareTo("500") == 0)
             {
-                // MessageBox.Show(spResult.ERROR_MESSAGE, "오류", MessageBoxButtons.OK);
                 Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                 result = false;
             }
             else
             {
-                //MessageBox.Show("제어기 추가에 성공하였습니다", "저장", MessageBoxButtons.OK);
                 Utility.ShowMessageBox("저장", "제어기 추가에 성공하였습니다", 1);
                 result = true;
             }
@@ -118,7 +112,6 @@ namespace VDSWebAPIServer.Forms
             }
             else
             {
-                //MessageBox.Show("제어기 수정에 성공하였습니다", "저장", MessageBoxButtons.OK);
                 Utility.ShowMessageBox("저장", "제어기 수정에 성공하였습니다", 1);
                 result = true;
             }

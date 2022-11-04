@@ -31,14 +31,12 @@ namespace VDSController
         {
             if(String.IsNullOrEmpty(txtLeftLaneGroupName.Text))
             {
-                //MessageBox.Show("행선지명을 입력하세요", "입력오류");
                 Utility.ShowMessageBox("입력오류", "행선지명을 입력하세요", 1);
                 return;
             }
 
             if(cbLeftSortKind.SelectedIndex <0)
             {
-                //MessageBox.Show("정렬 방식을 선택하세요", "입력오류");
                 Utility.ShowMessageBox("입력오류", "정렬 방식을 선택하세요", 1);
                 return;
             }
@@ -60,14 +58,12 @@ namespace VDSController
         {
             if (String.IsNullOrEmpty(txtRightLaneGroupName.Text))
             {
-                //MessageBox.Show("행선지명을 입력하세요", "입력오류");
                 Utility.ShowMessageBox("입력오류", "행선지명을 입력하세요", 1);
                 return;
             }
 
             if (cbRightSortKind.SelectedIndex < 0)
             {
-                //MessageBox.Show("정렬 방식을 선택하세요","입력오류");
                 Utility.ShowMessageBox("입력오류", "정렬 방식을 선택하세요", 1);
                 return;
             }
@@ -110,13 +106,11 @@ namespace VDSController
             {
                 if(spResult.RESULT_CODE.CompareTo("100")==0)
                 {
-                    //MessageBox.Show("저장에 성공하였습니다", "저장");
                     Utility.ShowMessageBox("저장", "저장에 성공하였습니다", 1);
 
                 }
                 else
                 {
-                    //MessageBox.Show(spResult.ERROR_MESSAGE, "오류");
                     Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                 }
 
@@ -205,13 +199,11 @@ namespace VDSController
             {
                 if (spResult.RESULT_CODE.CompareTo("100") == 0)
                 {
-                    //MessageBox.Show("저장에 성공하였습니다", "저장");
                     Utility.ShowMessageBox("저장", "저장에 성공하였습니다", 1);
                     result = true;
                 }
                 else
                 {
-                    //MessageBox.Show(spResult.ERROR_MESSAGE, "오류");
                     Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                 }
             }

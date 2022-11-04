@@ -64,7 +64,6 @@ namespace VDSWebAPIServer.Forms
             }
             else
             {
-                //MessageBox.Show("영상보기에 실패하였습니다", "오류");
                 Utility.ShowMessageBox("오류", "영상보기에 실패하였습니다", 1);
             }
 

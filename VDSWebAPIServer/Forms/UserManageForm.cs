@@ -72,7 +72,6 @@ namespace VDSWebAPIServer.Forms
 
             if (spResult.RESULT_CODE.CompareTo("500") == 0)
             {
-                //MessageBox.Show(spResult.ERROR_MESSAGE, "오류", MessageBoxButtons.OK);
                 Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                 return;
             }
@@ -80,7 +79,6 @@ namespace VDSWebAPIServer.Forms
             {
                 if (spResult.RESULT_COUNT == 0)
                 {
-                    //MessageBox.Show("조건에 맞는 데이터가 없습니다", "정보", MessageBoxButtons.OK);
                     Utility.ShowMessageBox("조회결과", "조건에 맞는 데이터가 없습니다", 1);
                     return;
                 }
@@ -187,7 +185,6 @@ namespace VDSWebAPIServer.Forms
             USER_INFO result = new USER_INFO();
             if (!rdgUser_TYPE_1.Checked && !rdgUser_TYPE_2.Checked)
             {
-                // MessageBox.Show("사용자 유형을 선택하세요");
                 Utility.ShowMessageBox("입력", "사용자 유형을 선택하세요", 1);
                 return null;
             }
@@ -200,7 +197,6 @@ namespace VDSWebAPIServer.Forms
 
             if (String.IsNullOrEmpty(txtUSER_ID.Text))
             {
-                //MessageBox.Show("아이디를 입력하세요");
                 Utility.ShowMessageBox("입력", "아이디를 입력하세요", 1);
                 return null;
             }
@@ -209,7 +205,6 @@ namespace VDSWebAPIServer.Forms
 
             if (String.IsNullOrEmpty(txtPASSWD.Text))
             {
-                //MessageBox.Show("비밀번호를 입력하세요");
                 Utility.ShowMessageBox("입력", "비밀번호를 입력하세요", 1);
                 return null;
             }
@@ -218,7 +213,6 @@ namespace VDSWebAPIServer.Forms
 
             if (String.IsNullOrEmpty(txtUSER_NAME.Text))
             {
-                //MessageBox.Show("이름을 입력하세요");
                 Utility.ShowMessageBox("입력", "이름을 입력하세요", 1);
                 return null;
             }
@@ -244,7 +238,7 @@ namespace VDSWebAPIServer.Forms
             {
                 if (spResult.RESULT_CODE.CompareTo("500") == 0)
                 {
-                    MessageBox.Show(spResult.ERROR_MESSAGE);
+                    Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                 }
 
                 result = false;
@@ -265,12 +259,10 @@ namespace VDSWebAPIServer.Forms
             {
                 if (spResult.RESULT_CODE.CompareTo("100") == 0 && spResult.RESULT_COUNT == 0)
                 {
-                    //MessageBox.Show("회원 정보가 존재하지 않습니다");
                     Utility.ShowMessageBox("정보", "회원 정보가 존재하지 않습니다", 1);
                 }
                 else if (spResult.RESULT_CODE.CompareTo("500") == 0)
                 {
-                    //MessageBox.Show(spResult.ERROR_MESSAGE);
                     Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                 }
 
@@ -302,7 +294,6 @@ namespace VDSWebAPIServer.Forms
 
                         if (spResult.RESULT_CODE.CompareTo("500") == 0)
                         {
-                            //MessageBox.Show(spResult.ERROR_MESSAGE, "오류", MessageBoxButtons.OK);
                             Utility.ShowMessageBox("오류", spResult.ERROR_MESSAGE, 1);
                             return;
                         }
@@ -390,7 +381,6 @@ namespace VDSWebAPIServer.Forms
             {
                 if (spResult.RESULT_CODE.CompareTo("100") == 0 && spResult.RESULT_COUNT == 0)
                 {
-                    //MessageBox.Show("회원 정보가 존재하지 않습니다");
                     Utility.ShowMessageBox("정보", "회원 정보가 존재하지 않습니다", 1);
                 }
                 else if (spResult.RESULT_CODE.CompareTo("500") == 0)
@@ -443,7 +433,6 @@ namespace VDSWebAPIServer.Forms
                 currentPage--;
             else
             {
-                //MessageBox.Show("첫번째 페이지입니다", "정보", MessageBoxButtons.OK);
                 Utility.ShowMessageBox("정보", "첫번째 페이지입니다", 1);
                 return;
             }
@@ -457,7 +446,6 @@ namespace VDSWebAPIServer.Forms
                 currentPage++;
             else
             {
-                //MessageBox.Show("마지막 페이지입니다", "정보", MessageBoxButtons.OK);
                 Utility.ShowMessageBox("정보", "마지막 페이지입니다", 1);
                 return;
             }

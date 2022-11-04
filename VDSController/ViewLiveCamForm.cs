@@ -24,7 +24,6 @@ namespace VDSController
 
             if (frmMain != null)
             {
-                //MessageBox.Show("카메라는 최대 2시간 후 자동 종료 됩니다. ", "안내");
                 Utility.ShowMessageBox("안내", "카메라는 최대 2시간 후 자동 종료 됩니다.", 1);
                 frmMain.StartLiveCamera();
                 wbLiveCam.Refresh();
