@@ -534,43 +534,47 @@ namespace SerialCommTest
         private void darkButton5_Click_1(object sender, EventArgs e)
         {
 
-            byte[] packet = new byte[12];
+            byte[] packet = new byte[11];
             int index = 0;
-            //packet[index++] = 0x7E;
-            packet[index++] = 0x0D;
+            /*packet[index++] = 0x7E;
+            packet[index++] = 0x0D;*/
             packet[index++] = 0x81;
             packet[index++] = 0x00;
-            packet[index++] = 0x61;
-            packet[index++] = 0x1F;
-            packet[index++] = 0x33;
+            packet[index++] = 0x03;
+            packet[index++] = 0x16;
+            packet[index++] = 0x1E;
+            packet[index++] = 0x00;
+            
             packet[index++] = 0x00;
             packet[index++] = 0x00;
-            packet[index++] = 0x2B;
-            packet[index++] = 0x1B;
+            packet[index++] = 0x2E;
             packet[index++] = 0xFF;
-            packet[index++] = 0x70;
+            packet[index++] = 0x28;
 
             serialManager.RTUStatustTest(packet, packet.Length);
         }
 
         private void darkButton2_Click_2(object sender, EventArgs e)
         {
-            byte[] packet = new byte[1];
+            byte[] packet = new byte[2];
             int index = 0;
-            packet[index++] = 0x7E;
-            //packet[index++] = 0x0D;
-            //packet[index++] = 0x81;
-            //packet[index++] = 0x00;
-            //packet[index++] = 0x61;
-            //packet[index++] = 0x1F;
-            //packet[index++] = 0x33;
-            //packet[index++] = 0x00;
-            //packet[index++] = 0x00;
-            //packet[index++] = 0x2B;
-            //packet[index++] = 0x1B;
-            //packet[index++] = 0xFF;
-            //packet[index++] = 0x70;
+            //0x7E 0x0D 0x81 0x00 0x03 0x16 0x1E 0x00 0x00 0x00 0x2E 0xFF 0x28
 
+            packet[index++] = 0x7E;
+            packet[index++] = 0x0D;
+            /*packet[index++] = 0x81;
+            packet[index++] = 0x00;
+            packet[index++] = 0x03;
+            packet[index++] = 0x16;
+            packet[index++] = 0x1E;
+            packet[index++] = 0x00;
+            
+            /*packet[index++] = 0x00;
+            packet[index++] = 0x00;
+            packet[index++] = 0x2E;
+            packet[index++] = 0xFF;
+            packet[index++] = 0x28;
+            */
             serialManager.RTUStatustTest(packet, packet.Length);
         }
 
@@ -582,15 +586,17 @@ namespace SerialCommTest
             packet[index++] = 0x0D;
             packet[index++] = 0x81;
             packet[index++] = 0x00;
-            packet[index++] = 0x61;
-            packet[index++] = 0x1F;
-            packet[index++] = 0x33;
+            packet[index++] = 0x03;
+            packet[index++] = 0x16;
+            packet[index++] = 0x1E;
+            packet[index++] = 0x00;
+
             packet[index++] = 0x00;
             packet[index++] = 0x00;
-            packet[index++] = 0x2B;
-            packet[index++] = 0x1B;
+            packet[index++] = 0x2E;
             packet[index++] = 0xFF;
-            packet[index++] = 0x70;
+            packet[index++] = 0x28;
+            
 
             serialManager.RTUStatustTest(packet, packet.Length);
         }

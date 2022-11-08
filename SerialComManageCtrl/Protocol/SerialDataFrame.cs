@@ -24,6 +24,7 @@ namespace SerialComManageCtrl.Protocol
         public int ReadHeaderCount;
         public int ReadDataCount;
         public bool bHeaderCompleted;
+        public bool bStatusCompleted;
         public bool bDataCompleted;
 
         public bool isResponse;
@@ -45,6 +46,7 @@ namespace SerialComManageCtrl.Protocol
             ReadDataCount = 0;
             bHeaderCompleted = false;
             bDataCompleted = false;
+            bStatusCompleted = false;
             isResponse = false;
             isLRCOK = false;
         }
@@ -95,8 +97,12 @@ namespace SerialComManageCtrl.Protocol
                 Data = new byte[DataSize]; // header(3) + LRC(1) 뺀 나머지 할당 
                 bHeaderCompleted = true;
             }
-            if (i < packet.Length && isResponse)
+            if (i < packet.Length && isResponse && !bStatusCompleted)
+            {
                 Status = packet[i++];
+                bStatusCompleted = true;
+            }
+                
 
             if (i < packet.Length && !bDataCompleted) // Header 완성되었을 경우
             {
@@ -116,7 +122,7 @@ namespace SerialComManageCtrl.Protocol
                     {
                         bDataCompleted = true;
                     }
-                    if(i< packet.Length && bDataCompleted) // LRC
+                    if(i < packet.Length && bDataCompleted) // LRC
                     {
                         LRC = packet[i];
                         packetData = GetPacketData(LRC);
