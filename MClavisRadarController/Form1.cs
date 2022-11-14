@@ -33,7 +33,7 @@ namespace MClavisRadarController
 
         int serverPort = 45555;
         int clientPort = 45175;
-
+         
         Timer _timer = null;
 
         public Form1()
