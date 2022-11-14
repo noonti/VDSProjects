@@ -48,6 +48,7 @@ namespace MClavisRadarManageCtrl.Protocol
                 while(i<data.Length)
                 {
                     message = new MCLAVIS_MESSAGE();
+                    message.DETECT_TIME = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT);
                     message.msgId = new byte[2];
                     Array.Copy(data, i, message.msgId, 0, 2);
                     i += 2;

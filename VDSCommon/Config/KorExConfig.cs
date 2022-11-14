@@ -42,5 +42,9 @@ namespace VDSCommon.Config
         public int releaseYear { get; set; }
         public int releaseMonth { get; set; }
         public int releaseDay { get; set; }
+
+
+        public int invserseTime { get; set; }
+        public int inverseDistance { get; set; }
     }
 }

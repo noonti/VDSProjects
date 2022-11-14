@@ -22,6 +22,8 @@ namespace MClavisRadarManageCtrl.Protocol
         public double Range_Y ; //[m]
         public double Range_X ; //[m]
 
+        public String DETECT_TIME;
+
     }
 
 
@@ -41,8 +43,13 @@ namespace MClavisRadarManageCtrl.Protocol
         public static byte[] END_SEQUENCE = { 0xEA, 0xEB, 0xEC, 0xED };
 
         public static int MESSAGE_SIZE = 11;
+    }
 
-
-
+    public enum MCLAVIS_INVERSE_PHASE
+    {
+        INVERSE_PROGRESS = 1, // 역주행 진행중 
+        INVERSE_COMPLETE = 2, // 역주행 완료
+        INVSERSE_EXPIRE = 3 // 역주행 만료(역주행 아님)
+        
     }
 }

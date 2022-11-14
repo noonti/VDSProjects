@@ -171,6 +171,10 @@ namespace VDSCommon
                 txtReleaseYear.Text = korExConfig.releaseYear.ToString();
                 txtReleaseMonth.Text = korExConfig.releaseMonth.ToString();
                 txtReleaesDay.Text = korExConfig.releaseDay.ToString();
+
+                txtInverseTime.Text = korExConfig.invserseTime.ToString();
+                txtInverseDistance.Text = korExConfig.inverseDistance.ToString();
+                
             }
             
 
@@ -315,6 +319,10 @@ namespace VDSCommon
                 korExConfig.releaseMonth = int.Parse(txtReleaseMonth.Text);
                 korExConfig.releaseDay = int.Parse(txtReleaesDay.Text);
 
+                korExConfig.invserseTime = int.Parse(txtInverseTime.Text);
+                korExConfig.inverseDistance = int.Parse(txtInverseDistance.Text);
+
+
 
                 nResult = 1;
             }
@@ -367,6 +375,11 @@ namespace VDSCommon
                     }
 
         private void cbVDSGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkTextBox4_TextChanged(object sender, EventArgs e)
         {
 
         }

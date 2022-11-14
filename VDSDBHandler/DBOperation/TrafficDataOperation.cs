@@ -447,5 +447,24 @@ namespace VDSDBHandler.DBOperation
             });
             return _dapperOrm.ReturnSingle<LANE_INFO>("SP_GET_LANE_INFO", param, out spResult);
         }
+
+
+        public void AddRadarObjectData(RADAR_OBJECT_DATA input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_DETECT_TIME = input.DETECT_TIME,
+                I_ID = input.ID,
+                I_STATE = input.STATE,
+                I_DIRECTION = input.DIRECTION,
+                I_LANE = input.LANE,
+                I_YY = input.YY,
+                I_XX = input.XX,
+                I_Y = input.Y,
+                I_X = input.X,
+            });
+            _dapperOrm.ExecuteWithoutReturn("SP_ADD_RADAR_OBJECT_DATA", param, out spResult);
+        }
     }
 }

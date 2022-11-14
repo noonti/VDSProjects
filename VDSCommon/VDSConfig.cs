@@ -384,6 +384,18 @@ namespace VDSCommon
                 value = 4;
             korExConfig.releaseDay = value;
 
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_TIME"), out value))
+                value = 5;
+            korExConfig.invserseTime = value;
+
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_DISTANCE"), out value))
+                value = 100;
+            korExConfig.inverseDistance = value;
+
+
+
             // korExConfig end 
 
         }
@@ -624,7 +636,8 @@ namespace VDSCommon
                 AppConfiguration.SetAppConfig("KOR_EX_RELEASE_MONTH", korExConfig.releaseMonth.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_RELEASE_DAY", korExConfig.releaseDay.ToString());
 
-
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_TIME", korExConfig.invserseTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_DISTANCE", korExConfig.inverseDistance.ToString());
 
                 nResult = 1;
             }
