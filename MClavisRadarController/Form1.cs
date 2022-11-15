@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VDSCommon;
+using VDSDBHandler;
+using VDSDBHandler.DBOperation;
 
 namespace MClavisRadarController
 {
@@ -36,6 +38,13 @@ namespace MClavisRadarController
          
         Timer _timer = null;
 
+        List<RADAR_OBJECT_DATA> radarDataList = new List<RADAR_OBJECT_DATA>();
+        List<MCLAVIS_MESSAGE> inverseMessageList = new List<MCLAVIS_MESSAGE>();
+
+        int processIndex = 0;
+
+        TrafficDataOperation db = new TrafficDataOperation(String.Format($"Server=127.0.0.1;Port=3306;Database=vdsdb;Uid=VDS;Pwd=1234;SSL Mode=None"));
+
         public Form1()
         {
             InitializeComponent();
@@ -43,6 +52,26 @@ namespace MClavisRadarController
             Utility._addLog = _Logger.AddLog;
 
             _formAddUDPData = new FormAddUDPData(AddUDPData);
+
+            radarDataList = db.GetRadarObjectDataList(new RADAR_OBJECT_DATA()
+            { STATE = 9 }, out SP_RESULT spResult).ToList();
+
+            foreach(var radarData in radarDataList)
+            {
+                inverseMessageList.Add(new MCLAVIS_MESSAGE()
+                {
+                    object_id = (byte)radarData.ID,
+                    State = (byte)radarData.STATE,
+                    Lane_Dir = (byte)radarData.DIRECTION,
+                    Lane = (byte)radarData.LANE,
+                    Velocity_Y = radarData.YY,
+                    Velocity_X = radarData.XX ,
+                    Range_Y = radarData.Y ,
+                    Range_X = radarData.X ,
+                    DETECT_TIME = radarData.DETECT_TIME
+
+                });
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -227,6 +256,14 @@ namespace MClavisRadarController
                 mClavisRadarManager.StopDevice();
 
             _Logger.StopManager();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //radarDataList
+            mClavisRadarManager.ProcessRadarInverseDetect(inverseMessageList[processIndex++]);
+
+
         }
     }
 }

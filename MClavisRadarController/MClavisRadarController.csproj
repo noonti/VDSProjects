@@ -90,6 +90,10 @@
       <Project>{e418e921-6a72-4651-bf99-a77d7ab683de}</Project>
       <Name>VDSCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VDSDBHandler\VDSDBHandler.csproj">
+      <Project>{9de65190-bf5e-4903-897a-2fea49133b5f}</Project>
+      <Name>VDSDBHandler</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

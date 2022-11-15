@@ -410,7 +410,7 @@ namespace MClavisRadarManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int result = 1;
-            MCLAVIS_INVERSE_PHASE invsersePhase = MCLAVIS_INVERSE_PHASE.INVERSE_PROGRESS;
+            //MCLAVIS_INVERSE_PHASE invsersePhase = MCLAVIS_INVERSE_PHASE.INVERSE_PROGRESS;
             // id  로 최종 역주행 정보 가져와서 역주행 정보 업데이트 한다. 
             // 역주행 판단 기준(시간 , 거리)를 충족하면 역주행 DB 에 추가 하고 기타 작업 한다. 
             if (message.object_id>=1 && message.object_id<=63)
@@ -470,8 +470,8 @@ namespace MClavisRadarManageCtrl
             int result = 0;
             for (int i = 1; i < 63; i++)
             {
-                ProcessInverseMessage(_inverseMessage_0[i], 0);
-                ProcessInverseMessage(_inverseMessage_1[i], 1);
+                //ProcessInverseMessage(_inverseMessage_0[i], 0);
+                //ProcessInverseMessage(_inverseMessage_1[i], 1);
             }
             return result;
         }
@@ -498,7 +498,8 @@ namespace MClavisRadarManageCtrl
                 else               // 역주행 종료로 간주
                 {
                     double distance = Math.Abs(lastMessage.Range_X - firstMessage.Range_X);
-                    if(distance >= VDSConfig.korExConfig.inverseDistance) // 일정 거리 이상인 역주행 발생
+                    //if(distance >= VDSConfig.korExConfig.inverseDistance) // 일정 거리 이상인 역주행 발생
+                    if (distance >= 50) // 일정 거리 이상인 역주행 발생
                     {
 
                     }
