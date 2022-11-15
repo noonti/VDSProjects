@@ -466,5 +466,19 @@ namespace VDSDBHandler.DBOperation
             });
             _dapperOrm.ExecuteWithoutReturn("SP_ADD_RADAR_OBJECT_DATA", param, out spResult);
         }
+
+        public IEnumerable<RADAR_OBJECT_DATA> GetRadarObjectDataList(RADAR_OBJECT_DATA input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_STATE = input.STATE,
+                I_DIRECTION = input.DIRECTION
+
+            });
+            return _dapperOrm.ReturnList<RADAR_OBJECT_DATA>("SP_GET_RADAR_OBJECT_DATA_LIST", param, out spResult).ToList();
+
+        }
+
     }
 }
