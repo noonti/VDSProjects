@@ -58,8 +58,6 @@ namespace VDSController
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -109,6 +107,11 @@ namespace VDSController
             this.ucSpeedEndTime = new VDSController.ucDateTimePicker();
             this.ucSpeedStartTime = new VDSController.ucDateTimePicker();
             this.timerSliding = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdgAll = new System.Windows.Forms.RadioButton();
+            this.rdgInverse = new System.Windows.Forms.RadioButton();
+            this.rdgStop = new System.Windows.Forms.RadioButton();
             this.pnPlayer.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.tabTrafficInfo.SuspendLayout();
@@ -123,6 +126,7 @@ namespace VDSController
             this.darkGroupBox5.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.darkGroupBox6.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnPlayer
@@ -382,9 +386,8 @@ namespace VDSController
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
             this.columnHeader9,
+            this.columnHeader33,
             this.columnHeader10});
             this.lvTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvTrafficData.FullRowSelect = true;
@@ -433,18 +436,6 @@ namespace VDSController
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 100;
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "루프1 점유시간(ms)";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 100;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "루프2 점유시간(ms)";
-            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 100;
-            // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "역주행 여부";
@@ -482,6 +473,7 @@ namespace VDSController
             // darkGroupBox3
             // 
             this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox3.Controls.Add(this.groupBox1);
             this.darkGroupBox3.Controls.Add(this.cbLane);
             this.darkGroupBox3.Controls.Add(this.darkButton3);
             this.darkGroupBox3.Controls.Add(this.darkLabel2);
@@ -499,18 +491,18 @@ namespace VDSController
             // 
             this.cbLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cbLane.FormattingEnabled = true;
-            this.cbLane.Location = new System.Drawing.Point(19, 29);
+            this.cbLane.Location = new System.Drawing.Point(6, 26);
             this.cbLane.Name = "cbLane";
-            this.cbLane.Size = new System.Drawing.Size(187, 22);
+            this.cbLane.Size = new System.Drawing.Size(70, 22);
             this.cbLane.TabIndex = 0;
             // 
             // darkButton3
             // 
             this.darkButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton3.Location = new System.Drawing.Point(627, 22);
+            this.darkButton3.Location = new System.Drawing.Point(659, 21);
             this.darkButton3.Name = "darkButton3";
             this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton3.Size = new System.Drawing.Size(128, 32);
+            this.darkButton3.Size = new System.Drawing.Size(96, 32);
             this.darkButton3.TabIndex = 3;
             this.darkButton3.Text = "조회";
             this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
@@ -519,7 +511,7 @@ namespace VDSController
             // 
             this.darkLabel2.AutoSize = true;
             this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(398, 34);
+            this.darkLabel2.Location = new System.Drawing.Point(260, 32);
             this.darkLabel2.Name = "darkLabel2";
             this.darkLabel2.Size = new System.Drawing.Size(14, 15);
             this.darkLabel2.TabIndex = 27;
@@ -527,16 +519,18 @@ namespace VDSController
             // 
             // ucEndTime
             // 
-            this.ucEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucEndTime.Location = new System.Drawing.Point(276, 24);
+            this.ucEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucEndTime.Name = "ucEndTime";
-            this.ucEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucEndTime.Size = new System.Drawing.Size(180, 27);
             this.ucEndTime.TabIndex = 2;
             // 
             // ucStartTime
             // 
-            this.ucStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucStartTime.Location = new System.Drawing.Point(82, 24);
+            this.ucStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucStartTime.Name = "ucStartTime";
-            this.ucStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucStartTime.Size = new System.Drawing.Size(181, 27);
             this.ucStartTime.TabIndex = 1;
             // 
             // tabPage4
@@ -670,6 +664,7 @@ namespace VDSController
             // ucTrafficEndTime
             // 
             this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucTrafficEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucTrafficEndTime.Name = "ucTrafficEndTime";
             this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
             this.ucTrafficEndTime.TabIndex = 2;
@@ -677,6 +672,7 @@ namespace VDSController
             // ucTrafficStartTime
             // 
             this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucTrafficStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucTrafficStartTime.Name = "ucTrafficStartTime";
             this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
             this.ucTrafficStartTime.TabIndex = 1;
@@ -854,6 +850,7 @@ namespace VDSController
             // ucSpeedEndTime
             // 
             this.ucSpeedEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucSpeedEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucSpeedEndTime.Name = "ucSpeedEndTime";
             this.ucSpeedEndTime.Size = new System.Drawing.Size(258, 27);
             this.ucSpeedEndTime.TabIndex = 2;
@@ -861,6 +858,7 @@ namespace VDSController
             // ucSpeedStartTime
             // 
             this.ucSpeedStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucSpeedStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucSpeedStartTime.Name = "ucSpeedStartTime";
             this.ucSpeedStartTime.Size = new System.Drawing.Size(258, 27);
             this.ucSpeedStartTime.TabIndex = 1;
@@ -868,6 +866,56 @@ namespace VDSController
             // timerSliding
             // 
             this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
+            // 
+            // columnHeader33
+            // 
+            this.columnHeader33.Text = "정지 여부";
+            this.columnHeader33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader33.Width = 100;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdgStop);
+            this.groupBox1.Controls.Add(this.rdgInverse);
+            this.groupBox1.Controls.Add(this.rdgAll);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Location = new System.Drawing.Point(459, 17);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(194, 39);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "조건";
+            // 
+            // rdgAll
+            // 
+            this.rdgAll.AutoSize = true;
+            this.rdgAll.Checked = true;
+            this.rdgAll.Location = new System.Drawing.Point(10, 13);
+            this.rdgAll.Name = "rdgAll";
+            this.rdgAll.Size = new System.Drawing.Size(49, 19);
+            this.rdgAll.TabIndex = 0;
+            this.rdgAll.Text = "모두";
+            this.rdgAll.UseVisualStyleBackColor = true;
+            // 
+            // rdgInverse
+            // 
+            this.rdgInverse.AutoSize = true;
+            this.rdgInverse.Location = new System.Drawing.Point(68, 13);
+            this.rdgInverse.Name = "rdgInverse";
+            this.rdgInverse.Size = new System.Drawing.Size(61, 19);
+            this.rdgInverse.TabIndex = 1;
+            this.rdgInverse.Text = "역주행";
+            this.rdgInverse.UseVisualStyleBackColor = true;
+            // 
+            // rdgStop
+            // 
+            this.rdgStop.AutoSize = true;
+            this.rdgStop.Location = new System.Drawing.Point(139, 13);
+            this.rdgStop.Name = "rdgStop";
+            this.rdgStop.Size = new System.Drawing.Size(49, 19);
+            this.rdgStop.TabIndex = 2;
+            this.rdgStop.Text = "정지";
+            this.rdgStop.UseVisualStyleBackColor = true;
             // 
             // tabTargetSummary
             // 
@@ -898,6 +946,8 @@ namespace VDSController
             this.tabPage5.ResumeLayout(false);
             this.darkGroupBox6.ResumeLayout(false);
             this.darkGroupBox6.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -930,8 +980,6 @@ namespace VDSController
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.TabPage tabPage2;
@@ -981,5 +1029,10 @@ namespace VDSController
         private System.Windows.Forms.ColumnHeader columnHeader30;
         private System.Windows.Forms.ColumnHeader columnHeader31;
         private System.Windows.Forms.ColumnHeader columnHeader32;
+        private System.Windows.Forms.ColumnHeader columnHeader33;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdgStop;
+        private System.Windows.Forms.RadioButton rdgInverse;
+        private System.Windows.Forms.RadioButton rdgAll;
     }
 }

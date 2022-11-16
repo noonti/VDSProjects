@@ -60,9 +60,10 @@ namespace VDSController
             item.SubItems.Add(data.LENGTH.ToString());
             item.SubItems.Add(data.SPEED.ToString());
             item.SubItems.Add(data.OCCUPY_TIME.ToString());
-            item.SubItems.Add(data.LOOP1_OCCUPY_TIME.ToString());
-            item.SubItems.Add(data.LOOP2_OCCUPY_TIME.ToString());
+            //item.SubItems.Add(data.LOOP1_OCCUPY_TIME.ToString());
+            //item.SubItems.Add(data.LOOP2_OCCUPY_TIME.ToString());
             item.SubItems.Add(data.REVERSE_RUN_YN);
+            item.SubItems.Add(data.STOP_YN);
             item.SubItems.Add(data.REPORT_YN);
             lvTrafficData.Items.Add(item);
         }
@@ -72,11 +73,11 @@ namespace VDSController
             bool result = false;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false, System.Text.Encoding.Default))
             {
-                file.WriteLine("ID, 차선, 방향, 길이, 속도, 차량종류, 점유시간, 점유시간1, 점유시간2, 역주행여부, 차두거리,검지시간, 등록일");
+                file.WriteLine("검지시간, 차선, 방향, 길이, 속도, 점유시간, 역주행여부, 정지여부");
 
                 foreach(var trafficData in trafficDataList)
                 {
-                    file.WriteLine($"{trafficData.ID}, {trafficData.LANE}, {trafficData.DIRECTION}, {trafficData.LENGTH}, {trafficData.SPEED}, {trafficData.VEHICLE_CLASS}, {trafficData.OCCUPY_TIME}, {trafficData.LOOP1_OCCUPY_TIME}, {trafficData.LOOP2_OCCUPY_TIME}, {trafficData.REVERSE_RUN_YN}, {trafficData.VEHICLE_GAP},{trafficData.DETECT_TIME}, {trafficData.REG_DATE}");
+                    file.WriteLine($"{trafficData.DETECT_TIME}, {trafficData.LANE}, {trafficData.DIRECTION}, {trafficData.LENGTH}, {trafficData.SPEED},  {trafficData.OCCUPY_TIME}, {trafficData.REVERSE_RUN_YN},{trafficData.STOP_YN}");
                 }
             }
             return result;

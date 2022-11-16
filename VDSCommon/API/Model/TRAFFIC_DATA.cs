@@ -26,6 +26,7 @@ namespace VDSCommon.API.Model
 
         public String DETECT_TIME { get; set; }
         public String REPORT_YN { get; set; }
+        public String STOP_YN { get; set; }
         public DateTime REG_DATE { get; set; }
         public DateTime MODIFY_DATE { get; set; }
 

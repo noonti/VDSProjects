@@ -320,7 +320,7 @@ namespace VDSManagerCtrl
             {
                 strLog = String.Format($"실시간 검지 정보 ID={trafficDataEvent.id},LANE={trafficDataEvent.lane}, DIRECTION={trafficDataEvent.direction}, LENGTH={trafficDataEvent.length}, SPEED={trafficDataEvent.speed}"
                         + $" CLASS = {trafficDataEvent.vehicle_class}, OCCUPY_TIME ={trafficDataEvent.occupyTime }, LOOP1={trafficDataEvent.loop1OccupyTime},LOOP2={trafficDataEvent.loop2OccupyTime} "
-                        + $" REVERSEYN={trafficDataEvent.reverseRunYN }, VEHICLE_GAP ={trafficDataEvent.vehicleGap}, DETECT_TIME = {trafficDataEvent.detectTime} ");
+                        + $" REVERSEYN={trafficDataEvent.reverseRunYN },STOP_YN={trafficDataEvent.StoppedCarYN}, VEHICLE_GAP ={trafficDataEvent.vehicleGap}, DETECT_TIME = {trafficDataEvent.detectTime} ");
 
                 Utility.AddLog(LOG_TYPE.LOG_INFO, strLog);
 
@@ -339,6 +339,7 @@ namespace VDSManagerCtrl
                     LOOP1_OCCUPY_TIME = trafficDataEvent.loop1OccupyTime,
                     LOOP2_OCCUPY_TIME = trafficDataEvent.loop2OccupyTime,
                     REVERSE_RUN_YN = trafficDataEvent.reverseRunYN,
+                    STOP_YN = trafficDataEvent.StoppedCarYN,
                     VEHICLE_GAP = trafficDataEvent.vehicleGap,
                     DETECT_TIME = trafficDataEvent.detectTime,
                     REPORT_YN = trafficDataEvent.reportYN,

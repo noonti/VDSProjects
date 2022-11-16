@@ -41,10 +41,9 @@ namespace VDSController
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.darkGroupBox2.SuspendLayout();
             this.darkGroupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -55,9 +54,11 @@ namespace VDSController
             this.darkGroupBox2.Controls.Add(this.lbTotalCount);
             this.darkGroupBox2.Controls.Add(this.darkButton1);
             this.darkGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.darkGroupBox2.Location = new System.Drawing.Point(0, 743);
+            this.darkGroupBox2.Location = new System.Drawing.Point(0, 929);
+            this.darkGroupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkGroupBox2.Name = "darkGroupBox2";
-            this.darkGroupBox2.Size = new System.Drawing.Size(943, 76);
+            this.darkGroupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox2.Size = new System.Drawing.Size(1078, 95);
             this.darkGroupBox2.TabIndex = 2;
             this.darkGroupBox2.TabStop = false;
             // 
@@ -66,9 +67,9 @@ namespace VDSController
             this.lbTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTotalCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lbTotalCount.Location = new System.Drawing.Point(6, 12);
+            this.lbTotalCount.Location = new System.Drawing.Point(7, 15);
             this.lbTotalCount.Name = "lbTotalCount";
-            this.lbTotalCount.Size = new System.Drawing.Size(797, 37);
+            this.lbTotalCount.Size = new System.Drawing.Size(911, 46);
             this.lbTotalCount.TabIndex = 23;
             this.lbTotalCount.Text = "전체 갯수:  0";
             this.lbTotalCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -76,10 +77,11 @@ namespace VDSController
             // darkButton1
             // 
             this.darkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton1.Location = new System.Drawing.Point(809, 12);
+            this.darkButton1.Location = new System.Drawing.Point(925, 15);
+            this.darkButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkButton1.Name = "darkButton1";
-            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton1.Size = new System.Drawing.Size(128, 32);
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton1.Size = new System.Drawing.Size(146, 40);
             this.darkButton1.TabIndex = 0;
             this.darkButton1.Text = "CSV 저장";
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click);
@@ -90,8 +92,10 @@ namespace VDSController
             this.darkGroupBox3.Controls.Add(this.lvTrafficData);
             this.darkGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox3.Location = new System.Drawing.Point(0, 0);
+            this.darkGroupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkGroupBox3.Name = "darkGroupBox3";
-            this.darkGroupBox3.Size = new System.Drawing.Size(943, 743);
+            this.darkGroupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox3.Size = new System.Drawing.Size(1078, 929);
             this.darkGroupBox3.TabIndex = 3;
             this.darkGroupBox3.TabStop = false;
             // 
@@ -104,18 +108,18 @@ namespace VDSController
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
             this.columnHeader9,
+            this.columnHeader11,
             this.columnHeader10});
             this.lvTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvTrafficData.FullRowSelect = true;
             this.lvTrafficData.GridLines = true;
             this.lvTrafficData.HideSelection = false;
-            this.lvTrafficData.Location = new System.Drawing.Point(3, 17);
+            this.lvTrafficData.Location = new System.Drawing.Point(3, 22);
+            this.lvTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvTrafficData.MultiSelect = false;
             this.lvTrafficData.Name = "lvTrafficData";
-            this.lvTrafficData.Size = new System.Drawing.Size(937, 723);
+            this.lvTrafficData.Size = new System.Drawing.Size(1072, 903);
             this.lvTrafficData.TabIndex = 0;
             this.lvTrafficData.UseCompatibleStateImageBehavior = false;
             this.lvTrafficData.View = System.Windows.Forms.View.Details;
@@ -155,18 +159,6 @@ namespace VDSController
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 100;
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "루프1 점유시간(ms)";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 100;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "루프2 점유시간(ms)";
-            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 100;
-            // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "역주행 여부";
@@ -175,19 +167,28 @@ namespace VDSController
             // 
             // columnHeader10
             // 
+            this.columnHeader10.DisplayIndex = 8;
             this.columnHeader10.Text = "센터 전송 여부";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 100;
             // 
+            // columnHeader11
+            // 
+            this.columnHeader11.DisplayIndex = 7;
+            this.columnHeader11.Text = "정지 여부";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader11.Width = 100;
+            // 
             // ucTrafficDataStat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.Controls.Add(this.darkGroupBox3);
             this.Controls.Add(this.darkGroupBox2);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucTrafficDataStat";
-            this.Size = new System.Drawing.Size(943, 819);
+            this.Size = new System.Drawing.Size(1078, 1024);
             this.darkGroupBox2.ResumeLayout(false);
             this.darkGroupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -204,11 +205,10 @@ namespace VDSController
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private DarkUI.Controls.DarkLabel lbTotalCount;
         private DarkUI.Controls.DarkButton darkButton1;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
     }
 }

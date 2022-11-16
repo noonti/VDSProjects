@@ -46,6 +46,7 @@ namespace VDSDBHandler.DBOperation
                 I_LOOP1_OCCUPY_TIME = input.LOOP1_OCCUPY_TIME,
                 I_LOOP2_OCCUPY_TIME = input.LOOP2_OCCUPY_TIME,
                 I_REVERSE_RUN_YN = input.REVERSE_RUN_YN,
+                I_STOP_YN = input.STOP_YN,
                 I_VEHICLE_GAP = input.VEHICLE_GAP,
                 I_DETECT_TIME = input.DETECT_TIME,
                 I_REPORT_YN = input.REPORT_YN,
@@ -109,6 +110,8 @@ namespace VDSDBHandler.DBOperation
                 I_LANE = input.LANE,
                 I_DIRECTION = input.DIRECTION,
                 I_REPORT_YN = input.I_REPORT_YN,
+                I_REVERSE_RUN_YN = input.REVERSE_RUN_YN,
+                I_STOP_YN = input.STOP_YN,
 
             });
             return _dapperOrm.ReturnList<TRAFFIC_DATA>("SP_GET_TRAFFIC_DATA_LIST", param, out spResult).ToList();
@@ -125,6 +128,8 @@ namespace VDSDBHandler.DBOperation
                 I_LANE = input.LANE,
                 I_DIRECTION = input.DIRECTION,
                 I_REPORT_YN = input.I_REPORT_YN,
+                I_REVERSE_RUN_YN = input.REVERSE_RUN_YN,
+                I_STOP_YN = input.STOP_YN,
                 I_PAGE_NO = input.I_PAGE_NO,
                 I_PAGE_SIZE = input.I_PAGE_SIZE
 

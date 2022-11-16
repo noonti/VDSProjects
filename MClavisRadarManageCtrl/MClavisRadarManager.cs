@@ -40,6 +40,10 @@ namespace MClavisRadarManageCtrl
         private object _inverseMessageLock = new object();
         List<MCLAVIS_MESSAGE>[] _inverseMessage_0 = new List<MCLAVIS_MESSAGE>[64]; // 0: 다가옴 (상행)
         List<MCLAVIS_MESSAGE>[] _inverseMessage_1 = new List<MCLAVIS_MESSAGE>[64]; // 1: 멀어짐(하행)
+
+        List<MCLAVIS_MESSAGE>[] _stopMessage_0 = new List<MCLAVIS_MESSAGE>[64]; // 0: 다가옴 (상행)
+        List<MCLAVIS_MESSAGE>[] _stopMessage_1 = new List<MCLAVIS_MESSAGE>[64]; // 1: 멀어짐(하행)
+
         private System.Timers.Timer _timer = null;
 
         public MClavisRadarManager()
@@ -53,6 +57,10 @@ namespace MClavisRadarManageCtrl
             {
                 _inverseMessage_0[i] = new List<MCLAVIS_MESSAGE>();
                 _inverseMessage_1[i] = new List<MCLAVIS_MESSAGE>();
+
+                _stopMessage_0[i] = new List<MCLAVIS_MESSAGE>();
+                _stopMessage_1[i] = new List<MCLAVIS_MESSAGE>();
+                
             }
                 
         }
@@ -160,6 +168,7 @@ namespace MClavisRadarManageCtrl
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             ProcessInverseMessageList();
+            ProcessStopMessageList();
         }
 
         public int StartWorkThread()
@@ -456,9 +465,14 @@ namespace MClavisRadarManageCtrl
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int result = 1;
-
-            // id  로 최종 정지 정보 가져와서 역주행 정보 업데이트 한다. 
-            // 역주행 판단 기준(시간 , 거리)를 충족하면 역주행 DB 에 추가 하고 기타 작업 한다. 
+            if (message.object_id >= 1 && message.object_id <= 63)
+            {
+                AddStopMClavisMessage(message);
+            }
+            else
+            {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"역주행 정보 오류(Track Id = {message.object_id})"));
+            }
 
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
@@ -470,8 +484,19 @@ namespace MClavisRadarManageCtrl
             int result = 0;
             for (int i = 1; i < 63; i++)
             {
-                //ProcessInverseMessage(_inverseMessage_0[i], 0);
-                //ProcessInverseMessage(_inverseMessage_1[i], 1);
+                ProcessInverseMessage(_inverseMessage_0[i], 0);
+                ProcessInverseMessage(_inverseMessage_1[i], 1);
+            }
+            return result;
+        }
+
+        private int ProcessStopMessageList()
+        {
+            int result = 0;
+            for (int i = 1; i < 63; i++)
+            {
+                ProcessStopMessage(_stopMessage_0[i], 0);
+                ProcessStopMessage(_stopMessage_1[i], 1);
             }
             return result;
         }
@@ -501,13 +526,46 @@ namespace MClavisRadarManageCtrl
                     //if(distance >= VDSConfig.korExConfig.inverseDistance) // 일정 거리 이상인 역주행 발생
                     if (distance >= 50) // 일정 거리 이상인 역주행 발생
                     {
+                        var trafficData = GetTrafficData(firstMessage);
+                        AddTrafficDataEvent(trafficData);
 
                     }
                     else // 역주행 발생하였으나 일정거리 이하로 무시함
                     {
 
                     }
-                    // 의미 있는 역주행의 경우
+                    messageList.Clear();
+                }
+            }
+            return result;
+        }
+
+        private int ProcessStopMessage(List<MCLAVIS_MESSAGE> messageList, int direction)
+        {
+            // Stop 메시지 처리 
+
+            int result = 0;
+            if (messageList.Count == 0)
+                return 0;
+
+            DateTime currentDate = DateTime.Now;
+            // direction :  0: 다가옴 1: 멀어짐
+            lock (_inverseMessageLock)
+            {
+                MCLAVIS_MESSAGE firstMessage = messageList.First();
+                MCLAVIS_MESSAGE lastMessage = messageList.Last();
+                TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                double passedMiliSeconds = ts.TotalMilliseconds;
+                
+                // 최종 정지 정보 수신 후 경과 시간이 1초 초과 한 경우 정지 종료로 간주
+                if (passedMiliSeconds < 1 * 1000) // 정지 진행중으로 간주
+                {
+                    // 아무일도 하지 않는다. 
+                }
+                else               // 정지 종료로 간주
+                {
+                    var trafficData = GetTrafficData(firstMessage);
+                    AddTrafficDataEvent(trafficData);
                     messageList.Clear();
                 }
             }
@@ -559,6 +617,20 @@ namespace MClavisRadarManageCtrl
             }
             return index;
         }
+
+
+        public int AddStopMClavisMessage(MCLAVIS_MESSAGE message)
+        {
+            List<MCLAVIS_MESSAGE>[] messageList = message.Lane_Dir == 0 ? _stopMessage_0 : _stopMessage_1;
+            int index = GetStopMClavisMessageId(messageList, message);
+            lock (_inverseMessageLock)
+            {
+                if (index >= 0)
+                    messageList[index].Add(message);
+            }
+            return index;
+        }
+
         public int GetInverseMClavisMessageId(List<MCLAVIS_MESSAGE>[] messageList, MCLAVIS_MESSAGE message)
         {
             int result = -1;
@@ -597,6 +669,54 @@ namespace MClavisRadarManageCtrl
                         break;
                 }
                 if (result == -1) // 편입할 정보를 찾지 못할 경우 신규 역주행 정보 할당 
+                    result = message.object_id;
+            }
+            return result;
+        }
+
+        public int GetStopMClavisMessageId(List<MCLAVIS_MESSAGE>[] messageList, MCLAVIS_MESSAGE message)
+        {
+            int result = -1;
+            int i = 1;
+            MCLAVIS_MESSAGE lastMessage;
+            int direction = message.Lane_Dir; // 0: 다가옴 1: 멀어짐. 역주행은 0: 거리가 멀어짐. 1: 거리가 가까워짐
+            if (messageList[message.object_id].Count > 0) // 이미 정지 정보가 할당 되었을 경우 해당 Id 에 추가한다. 
+                result = message.object_id;
+            else
+            {
+                for (i = 1; i < 63; i++)
+                {
+                    if (messageList[i].Count > 0)
+                    {
+                        lastMessage = messageList[i].Last();
+                        if (lastMessage.DETECT_TIME.CompareTo(message.DETECT_TIME) < 0) // 추가되는 정지 정보가 마지막 정지 정보보다 최신일 경우만 체크
+                        {
+                            TimeSpan ts = DateTime.ParseExact(message.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                            if (ts.TotalMilliseconds < 1000) // 저장된 최종 정지 정보와의 차이가 1초 이내일 경우만 체크 
+                            {
+                                if(Math.Abs(message.Range_X - lastMessage.Range_X)<1) // 1미터 이내 차이일 경우 같은 정지로 간주한다. 
+                                {
+                                    result = i;
+                                    break;
+                                }
+                                //switch (direction)
+                                //{
+                                //    case 0: // 다가옴. 역주행은 거리가 증가함
+                                //        if (Math.Abs(lastMessage.Range_X) < Math.Abs(message.Range_X))
+                                //            result = i;
+                                //        break;
+                                //    case 1: // 멀어짐. 역주행은 거리가 감소함
+                                //        if (Math.Abs(lastMessage.Range_X) > Math.Abs(message.Range_X))
+                                //            result = i;
+                                //        break;
+                                //}
+                            }
+                        }
+                    }
+                    if (result > 0)
+                        break;
+                }
+                if (result == -1) // 편입할 정보를 찾지 못할 경우 신규 정지 정보 할당 
                     result = message.object_id;
             }
             return result;

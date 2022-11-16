@@ -382,6 +382,8 @@ namespace VDSController
                 I_START_DATE = startDate,
                 I_END_DATE = endDate,
                 //I_REPORT_YN = "Y",
+                REVERSE_RUN_YN = rdgInverse.Checked? "Y":null,
+                STOP_YN = rdgStop.Checked?"Y":null,
                 LANE = lane,
 
             };
@@ -414,9 +416,10 @@ namespace VDSController
             item.SubItems.Add(trafficDataEvent.length.ToString());
             item.SubItems.Add(trafficDataEvent.speed.ToString());
             item.SubItems.Add(trafficDataEvent.occupyTime.ToString());
-            item.SubItems.Add(trafficDataEvent.loop1OccupyTime.ToString());
-            item.SubItems.Add(trafficDataEvent.loop2OccupyTime.ToString());
+            //item.SubItems.Add(trafficDataEvent.loop1OccupyTime.ToString());
+            //item.SubItems.Add(trafficDataEvent.loop2OccupyTime.ToString());
             item.SubItems.Add(trafficDataEvent.reverseRunYN);
+            item.SubItems.Add(trafficDataEvent.StoppedCarYN);
             item.SubItems.Add(trafficDataEvent.reportYN!=null? trafficDataEvent.reportYN : "N");
             lvTrafficData.Items.Insert(0,item);
 

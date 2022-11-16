@@ -108,6 +108,7 @@ namespace VDSController
             //item.SubItems.Add(trafficDataEvent.loop1OccupyTime.ToString());
             //item.SubItems.Add(trafficDataEvent.loop2OccupyTime.ToString());
             item.SubItems.Add(trafficDataEvent.reverseRunYN);
+            item.SubItems.Add(trafficDataEvent.StoppedCarYN);
             item.SubItems.Add(trafficDataEvent.reportYN != null ? trafficDataEvent.reportYN : "N");
             lvTrafficData.Items.Insert(0, item);
 
