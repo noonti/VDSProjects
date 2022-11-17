@@ -535,6 +535,12 @@ namespace MClavisRadarManageCtrl
                     if (distance >= VDSConfig.korExConfig.inverseCheckDistance) // 일정 거리 이상인 역주행 발생
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 종료 ******"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
 
@@ -697,13 +703,35 @@ namespace MClavisRadarManageCtrl
                                         if (Math.Abs(lastMessage.Range_X) < Math.Abs(message.Range_X)
                                             && Math.Abs(message.Range_X - lastMessage.Range_X) < diffAverageDistance // 평균 거리차이 보다 작을 경우 동일 역주행으로 판단
                                             )
+                                        {
                                             result = i;
+                                            
+                                        }
+                                        else
+                                        {
+                                            if (Math.Abs(lastMessage.Range_X) >= Math.Abs(message.Range_X))
+                                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 오브젝트 Id={message.object_id}, 최종 수신 오브젝트 id={lastMessage.object_id}   방향(direction) = {direction} , Math.Abs(lastMessage.Range_X)={Math.Abs(lastMessage.Range_X)} , Math.Abs(message.Range_X)={Math.Abs(message.Range_X)} 거리차이={Math.Abs(message.Range_X - lastMessage.Range_X)}. 상행 역주행은 거리 증가해야 하나 거리 감소"));
+                                            else
+                                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 오브젝트 Id={message.object_id}, 최종 수신 오브젝트 id={lastMessage.object_id}   방향(direction) = {direction} , Math.Abs(lastMessage.Range_X)={Math.Abs(lastMessage.Range_X)} , Math.Abs(message.Range_X)={Math.Abs(message.Range_X)} 거리차이={Math.Abs(message.Range_X - lastMessage.Range_X)} 거리차이 평균값({diffAverageDistance}) 이상"));
+
+                                        }
+                                            
                                         break;
                                     case 1: // 멀어짐. 역주행은 거리가 감소함
                                         if (Math.Abs(lastMessage.Range_X) > Math.Abs(message.Range_X)
                                             && Math.Abs(message.Range_X - lastMessage.Range_X) < diffAverageDistance  // 평균 거리차이 보다 작을 경우 동일 역주행으로 판단
                                             )
+                                        {
                                             result = i;
+                                        }
+                                        else
+                                        {
+                                            if(Math.Abs(lastMessage.Range_X) <= Math.Abs(message.Range_X))
+                                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 오브젝트 Id={message.object_id}, 최종 수신 오브젝트 id={lastMessage.object_id}   방향(direction) = {direction} , Math.Abs(lastMessage.Range_X)={Math.Abs(lastMessage.Range_X)} , Math.Abs(message.Range_X)={Math.Abs(message.Range_X)} 거리차이={Math.Abs(message.Range_X - lastMessage.Range_X)}. 하행 역주행은 거리 감소해야 하나 거리 증가"));
+                                            else
+                                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 오브젝트 Id={message.object_id}, 최종 수신 오브젝트 id={lastMessage.object_id}   방향(direction) = {direction} , Math.Abs(lastMessage.Range_X)={Math.Abs(lastMessage.Range_X)} , Math.Abs(message.Range_X)={Math.Abs(message.Range_X)} 거리차이={Math.Abs(message.Range_X - lastMessage.Range_X)} 거리차이 평균값({diffAverageDistance}) 이상"));
+                                        }
+                                            
                                         break;
                                 }
                                 Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"방향(direction) = {direction} , Math.Abs(lastMessage.Range_X)={Math.Abs(lastMessage.Range_X)} , Math.Abs(message.Range_X)={Math.Abs(message.Range_X)} result={result}"));
