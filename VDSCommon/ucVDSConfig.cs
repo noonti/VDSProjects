@@ -172,9 +172,13 @@ namespace VDSCommon
                 txtReleaseMonth.Text = korExConfig.releaseMonth.ToString();
                 txtReleaesDay.Text = korExConfig.releaseDay.ToString();
 
-                txtInverseTime.Text = korExConfig.invserseTime.ToString();
-                txtInverseDistance.Text = korExConfig.inverseDistance.ToString();
-                
+                txtInverseGapTime.Text = korExConfig.inverseGapTime.ToString();
+                txtInverseTime.Text = korExConfig.inverseCheckTime.ToString();
+                txtInverseDistance.Text = korExConfig.inverseCheckDistance.ToString();
+
+                txtStopGapTime.Text = korExConfig.stopGapTime.ToString();
+                txtStopGapDistance.Text = korExConfig.stopGapDistance.ToString();
+                txtStopTime.Text = korExConfig.stopCheckTime.ToString();
             }
             
 
@@ -319,10 +323,13 @@ namespace VDSCommon
                 korExConfig.releaseMonth = int.Parse(txtReleaseMonth.Text);
                 korExConfig.releaseDay = int.Parse(txtReleaesDay.Text);
 
-                korExConfig.invserseTime = int.Parse(txtInverseTime.Text);
-                korExConfig.inverseDistance = int.Parse(txtInverseDistance.Text);
+                korExConfig.inverseGapTime = int.Parse(txtInverseGapTime.Text);
+                korExConfig.inverseCheckTime = int.Parse(txtInverseTime.Text);
+                korExConfig.inverseCheckDistance = int.Parse(txtInverseDistance.Text);
 
-
+                korExConfig.stopGapTime = int.Parse(txtStopGapTime.Text);
+                korExConfig.stopGapDistance = int.Parse(txtStopGapDistance.Text);
+                korExConfig.stopCheckTime = int.Parse(txtStopTime.Text);
 
                 nResult = 1;
             }

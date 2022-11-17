@@ -90,6 +90,10 @@ namespace VDSController
                 cbLane.Items.Add(data);
             }
             cbLane.Items.Insert(0, "전체");
+            cbLane.SelectedIndex = 0;
+
+            ucStartTime.SetDateTime(DateTime.Now.AddHours(-1).ToString("yyyyMMddHHmmss"));
+            ucEndTime.SetDateTime(DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         private void SetUcTrgetInfo(List<LaneInfo>laneList, GroupBox gbx, PictureBox[] pbxList)

@@ -385,16 +385,32 @@ namespace VDSCommon
             korExConfig.releaseDay = value;
 
 
-            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_TIME"), out value))
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_GAP_TIME"), out value))
+                value = 1;
+            korExConfig.inverseGapTime = value;
+
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_CHECK_TIME"), out value))
                 value = 5;
-            korExConfig.invserseTime = value;
+            korExConfig.inverseCheckTime = value;
 
 
-            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_DISTANCE"), out value))
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_CHECK_DISTANCE"), out value))
                 value = 100;
-            korExConfig.inverseDistance = value;
+            korExConfig.inverseCheckDistance = value;
 
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_STOP_GAP_TIME"), out value))
+                value = 1;
+            korExConfig.stopGapTime = value;
 
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_STOP_CHECK_TIME"), out value))
+                value = 1;
+            korExConfig.stopCheckTime = value;
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_STOP_GAP_DISTANCE"), out value))
+                value = 1;
+            korExConfig.stopGapDistance = value;
 
             // korExConfig end 
 
@@ -636,8 +652,16 @@ namespace VDSCommon
                 AppConfiguration.SetAppConfig("KOR_EX_RELEASE_MONTH", korExConfig.releaseMonth.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_RELEASE_DAY", korExConfig.releaseDay.ToString());
 
-                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_TIME", korExConfig.invserseTime.ToString());
-                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_DISTANCE", korExConfig.inverseDistance.ToString());
+
+                
+
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_GAP_TIME", korExConfig.inverseGapTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_CHECK_TIME", korExConfig.inverseCheckTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_CHECK_DISTANCE", korExConfig.inverseCheckDistance.ToString());
+
+                AppConfiguration.SetAppConfig("KOR_EX_STOP_GAP_TIME", korExConfig.stopGapTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_STOP_CHECK_TIME", korExConfig.stopCheckTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_STOP_GAP_DISTANCE", korExConfig.stopGapDistance.ToString());
 
                 nResult = 1;
             }

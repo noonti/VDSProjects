@@ -455,7 +455,7 @@ namespace MClavisRadarManageCtrl
             }
             else
             {
-                Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"역주행 정보 오류(Track Id = {message.object_id})"));
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"역주행 정보 오류(object Id = {message.object_id}) 가 1과 63 범위 밖" ));
             }
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
@@ -503,6 +503,7 @@ namespace MClavisRadarManageCtrl
 
         private int ProcessInverseMessage(List<MCLAVIS_MESSAGE> messageList, int direction)
         {
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int result = 0;
             if (messageList.Count == 0)
                 return 0;
@@ -515,33 +516,43 @@ namespace MClavisRadarManageCtrl
                 MCLAVIS_MESSAGE lastMessage = messageList.Last();
                 TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                 double passedMiliSeconds = ts.TotalMilliseconds;
+
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 역주행 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
+
+
                 // 최종 역주행 정보 수신 후 경과 시간이 5초 초과 한 경우 역주행 수집 종료로 간주
-                if(passedMiliSeconds < 5*1000) // 역주행 진행으로 간주
+                if (passedMiliSeconds < VDSConfig.korExConfig.inverseCheckTime *1000) // 역주행 진행으로 간주
                 {
                     // 아무일도 하지 않는다. 
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 역주행 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second 로 {VDSConfig.korExConfig.inverseCheckTime}초 이내. 역주행 아직 진행중...."));
                 }
                 else               // 역주행 종료로 간주
                 {
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신 역주행 시간 이후{VDSConfig.korExConfig.inverseCheckTime}초 경과로 역주행 종료로 간주 "));
                     double distance = Math.Abs(lastMessage.Range_X - firstMessage.Range_X);
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m "));
                     //if(distance >= VDSConfig.korExConfig.inverseDistance) // 일정 거리 이상인 역주행 발생
-                    if (distance >= 50) // 일정 거리 이상인 역주행 발생
+                    if (distance >= VDSConfig.korExConfig.inverseCheckDistance) // 일정 거리 이상인 역주행 발생
                     {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
 
                     }
                     else // 역주행 발생하였으나 일정거리 이하로 무시함
                     {
-
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리(50m) 미만이므로 역주행으로 판단 안함"));
                     }
                     messageList.Clear();
                 }
             }
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
         }
 
         private int ProcessStopMessage(List<MCLAVIS_MESSAGE> messageList, int direction)
         {
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             // Stop 메시지 처리 
 
             int result = 0;
@@ -556,89 +567,112 @@ namespace MClavisRadarManageCtrl
                 MCLAVIS_MESSAGE lastMessage = messageList.Last();
                 TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                 double passedMiliSeconds = ts.TotalMilliseconds;
-                
+
+
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 정지 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
                 // 최종 정지 정보 수신 후 경과 시간이 1초 초과 한 경우 정지 종료로 간주
-                if (passedMiliSeconds < 1 * 1000) // 정지 진행중으로 간주
+                if (passedMiliSeconds < VDSConfig.korExConfig.stopCheckTime * 1000) // 정지 진행중으로 간주
                 {
                     // 아무일도 하지 않는다. 
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 정지 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second 로 {VDSConfig.korExConfig.stopCheckTime}초 이내. 정지 아직 진행중...."));
                 }
                 else               // 정지 종료로 간주
                 {
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신 역주행 시간 이후 {VDSConfig.korExConfig.stopCheckTime}초 경과로 정지 종료로 간주 "));
                     var trafficData = GetTrafficData(firstMessage);
                     AddTrafficDataEvent(trafficData);
                     messageList.Clear();
                 }
             }
+           // Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
         }
 
-        public MCLAVIS_INVERSE_PHASE GetInverseRunPhase(List<MCLAVIS_MESSAGE> invserseMessageList)
-        {
-            MCLAVIS_INVERSE_PHASE result = MCLAVIS_INVERSE_PHASE.INVERSE_PROGRESS;
-            MCLAVIS_MESSAGE firstMessage = invserseMessageList.First();
-            MCLAVIS_MESSAGE lastMessage = invserseMessageList.Last();
+        //public MCLAVIS_INVERSE_PHASE GetInverseRunPhase(List<MCLAVIS_MESSAGE> invserseMessageList)
+        //{
+        //    MCLAVIS_INVERSE_PHASE result = MCLAVIS_INVERSE_PHASE.INVERSE_PROGRESS;
+        //    MCLAVIS_MESSAGE firstMessage = invserseMessageList.First();
+        //    MCLAVIS_MESSAGE lastMessage = invserseMessageList.Last();
 
 
-            DateTime currentDate = DateTime.Now;
-            TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME,VDSConfig.RADAR_TIME_FORMAT, null);
-            double passedSeconds = ts.TotalSeconds;
-            double passedDistance = Math.Abs(lastMessage.Range_X - firstMessage.Range_X);
+        //    DateTime currentDate = DateTime.Now;
+        //    TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME,VDSConfig.RADAR_TIME_FORMAT, null);
+        //    double passedSeconds = ts.TotalSeconds;
+        //    double passedDistance = Math.Abs(lastMessage.Range_X - firstMessage.Range_X);
             
-            // 역주행 유예시간 이내 이고 이동거리가 임계치 이내인경우  : 진행중 
-            // 역주행 유예시간 이내 이고 이동거리가 임계치 이상인경우  : 완료
-            // 역주행 유예시간 이상 이고 이동거리가 임계치 이내인 경우 : 역주행 아님 
-            // 역주행 유예시간 이상 이고 이동거리가 임계치 이상인 경우 : 역주행 아님
+        //    // 역주행 유예시간 이내 이고 이동거리가 임계치 이내인경우  : 진행중 
+        //    // 역주행 유예시간 이내 이고 이동거리가 임계치 이상인경우  : 완료
+        //    // 역주행 유예시간 이상 이고 이동거리가 임계치 이내인 경우 : 역주행 아님 
+        //    // 역주행 유예시간 이상 이고 이동거리가 임계치 이상인 경우 : 역주행 아님
 
 
-            if (passedSeconds <= VDSConfig.korExConfig.invserseTime) // 역주행 판단 시간 이내인 경우
-            {
-                if(passedDistance < VDSConfig.korExConfig.inverseDistance) // 이동거리가 임계치 이내인 경우 (역주행 진행중)
-                    result = MCLAVIS_INVERSE_PHASE.INVERSE_PROGRESS;
-                else 
-                    result = MCLAVIS_INVERSE_PHASE.INVERSE_COMPLETE;       // 이동거리가 임계치 이상인 경우 (역주행)
+        //    if (passedSeconds <= VDSConfig.korExConfig.invserseTime) // 역주행 판단 시간 이내인 경우
+        //    {
+        //        if(passedDistance < VDSConfig.korExConfig.inverseDistance) // 이동거리가 임계치 이내인 경우 (역주행 진행중)
+        //            result = MCLAVIS_INVERSE_PHASE.INVERSE_PROGRESS;
+        //        else 
+        //            result = MCLAVIS_INVERSE_PHASE.INVERSE_COMPLETE;       // 이동거리가 임계치 이상인 경우 (역주행)
 
-            }
-            else                                                    // 역주행 판단 시간 이상인 경우 
-            {
-                result = MCLAVIS_INVERSE_PHASE.INVSERSE_EXPIRE;
-            }
-            return result;
+        //    }
+        //    else                                                    // 역주행 판단 시간 이상인 경우 
+        //    {
+        //        result = MCLAVIS_INVERSE_PHASE.INVSERSE_EXPIRE;
+        //    }
+        //    return result;
 
-        }
+        //}
 
         public int AddInverseMClavisMessage(MCLAVIS_MESSAGE message)
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+
             List<MCLAVIS_MESSAGE>[] messageList = message.Lane_Dir == 0 ? _inverseMessage_0 : _inverseMessage_1;
             int index = GetInverseMClavisMessageId(messageList, message);
             lock (_inverseMessageLock)
             {
                 if (index >= 0)
+                {
                     messageList[index].Add(message);
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 id={index} 에 역주행 정보 추가. 역주행 리스트 갯수 messageList[index] = {messageList[index].Count}"));
+                }
+                    
             }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return index;
         }
 
 
         public int AddStopMClavisMessage(MCLAVIS_MESSAGE message)
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             List<MCLAVIS_MESSAGE>[] messageList = message.Lane_Dir == 0 ? _stopMessage_0 : _stopMessage_1;
             int index = GetStopMClavisMessageId(messageList, message);
             lock (_inverseMessageLock)
             {
                 if (index >= 0)
+                {
                     messageList[index].Add(message);
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"정지 id={index} 에 정지 정보 추가. 정지 리스트 갯수 messageList[index] = {messageList[index].Count}"));
+                }
+                    
             }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return index;
         }
 
         public int GetInverseMClavisMessageId(List<MCLAVIS_MESSAGE>[] messageList, MCLAVIS_MESSAGE message)
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int result = -1;
             int i = 1;
             MCLAVIS_MESSAGE lastMessage;
             int direction = message.Lane_Dir; // 0: 다가옴 1: 멀어짐. 역주행은 0: 거리가 멀어짐. 1: 거리가 가까워짐
             if (messageList[message.object_id].Count > 0) // 이미 역주행 정보가 할당 되었을 경우 해당 Id 에 추가한다. 
+            {
                 result = message.object_id;
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 리스트 갯수 messageList[message.object_id].Count = {messageList[message.object_id].Count} 이므로 이미 할당된 역주행 id 리턴"));
+            }
+                
             else
             {
                 for (i = 1; i < 63; i++)
@@ -649,19 +683,30 @@ namespace MClavisRadarManageCtrl
                         if(lastMessage.DETECT_TIME.CompareTo(message.DETECT_TIME) < 0) // 추가되는 역주행정보가 마지막 역주행 정보보다 최신일 경우만 체크
                         {
                             TimeSpan ts = DateTime.ParseExact(message.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
-                            if(ts.TotalMilliseconds <1000) // 저장된 최종 역주행 정보와의 차이가 1초 이내일 경우만 체크 
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 역주행 시간={message.DETECT_TIME}, 최종 역주행 시간={lastMessage.DETECT_TIME} . 경과 시간 = {ts.TotalMilliseconds} mili second. 동일 역주행 판단 기준 시간={VDSConfig.korExConfig.inverseGapTime} 초"));
+                            if (ts.TotalMilliseconds <VDSConfig.korExConfig.inverseGapTime * 1000) // 저장된 최종 역주행 정보와의 차이가 1초 이내일 경우만 체크 
                             {
+
+                                // 거리 차이의 평균 구하고
+                                // 그 평균과의 오차가 10% 이내인 경우 동일한 역주행으로 취급한다. 
+                                double diffAverageDistance = GetInverseAverageDistanceDiff(messageList[i]); 
+                                diffAverageDistance = diffAverageDistance * 1.1; // // 10% 인정 오차 추가
                                 switch (direction)
                                 {
                                     case 0: // 다가옴. 역주행은 거리가 증가함
-                                        if (Math.Abs(lastMessage.Range_X) < Math.Abs(message.Range_X))
+                                        if (Math.Abs(lastMessage.Range_X) < Math.Abs(message.Range_X)
+                                            && Math.Abs(message.Range_X - lastMessage.Range_X) < diffAverageDistance // 평균 거리차이 보다 작을 경우 동일 역주행으로 판단
+                                            )
                                             result = i;
                                         break;
                                     case 1: // 멀어짐. 역주행은 거리가 감소함
-                                        if (Math.Abs(lastMessage.Range_X) > Math.Abs(message.Range_X))
+                                        if (Math.Abs(lastMessage.Range_X) > Math.Abs(message.Range_X)
+                                            && Math.Abs(message.Range_X - lastMessage.Range_X) < diffAverageDistance  // 평균 거리차이 보다 작을 경우 동일 역주행으로 판단
+                                            )
                                             result = i;
                                         break;
                                 }
+                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"방향(direction) = {direction} , Math.Abs(lastMessage.Range_X)={Math.Abs(lastMessage.Range_X)} , Math.Abs(message.Range_X)={Math.Abs(message.Range_X)} result={result}"));
                             }
                         }
                     }
@@ -669,19 +714,46 @@ namespace MClavisRadarManageCtrl
                         break;
                 }
                 if (result == -1) // 편입할 정보를 찾지 못할 경우 신규 역주행 정보 할당 
+                {
                     result = message.object_id;
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"편입할 역주행 정보 찾지 못함. 해당 아이디({result})에 할당"));
+                }
+                    
             }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return result;
+        }
+
+        public double GetInverseAverageDistanceDiff(List<MCLAVIS_MESSAGE> messageList)
+        {
+            double result = 0;
+            double sum = 0;
+            double prevDistance = 0;
+            int count = 0;
+            foreach(var message in messageList)
+            {
+                sum += (Math.Abs(message.Range_X-prevDistance));
+                prevDistance = message.Range_X;
+                count++;
+            }
+
+            if(count>0)
+                result = sum / count;
             return result;
         }
 
         public int GetStopMClavisMessageId(List<MCLAVIS_MESSAGE>[] messageList, MCLAVIS_MESSAGE message)
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int result = -1;
             int i = 1;
             MCLAVIS_MESSAGE lastMessage;
             int direction = message.Lane_Dir; // 0: 다가옴 1: 멀어짐. 역주행은 0: 거리가 멀어짐. 1: 거리가 가까워짐
             if (messageList[message.object_id].Count > 0) // 이미 정지 정보가 할당 되었을 경우 해당 Id 에 추가한다. 
+            {
                 result = message.object_id;
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"정지 리스트 갯수 messageList[message.object_id].Count = {messageList[message.object_id].Count} 이므로 이미 할당된 정지 id 리턴"));
+            }
             else
             {
                 for (i = 1; i < 63; i++)
@@ -692,24 +764,16 @@ namespace MClavisRadarManageCtrl
                         if (lastMessage.DETECT_TIME.CompareTo(message.DETECT_TIME) < 0) // 추가되는 정지 정보가 마지막 정지 정보보다 최신일 경우만 체크
                         {
                             TimeSpan ts = DateTime.ParseExact(message.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
-                            if (ts.TotalMilliseconds < 1000) // 저장된 최종 정지 정보와의 차이가 1초 이내일 경우만 체크 
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 정지 시간={message.DETECT_TIME}, 최종 정지 시간={lastMessage.DETECT_TIME} . 경과 시간 = {ts.TotalMilliseconds} mili second , 동일 정지 정보 판단 기준 시기={VDSConfig.korExConfig.stopGapTime} 초"));
+                            if (ts.TotalMilliseconds < VDSConfig.korExConfig.stopGapTime *1000) // 저장된 최종 정지 정보와의 차이가 1초 이내일 경우만 체크 
                             {
-                                if(Math.Abs(message.Range_X - lastMessage.Range_X)<1) // 1미터 이내 차이일 경우 같은 정지로 간주한다. 
+                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재 정지 거리={message.Range_X}, 최종 정지 시간={lastMessage.Range_X} . 차이 = {Math.Abs(message.Range_X - lastMessage.Range_X)} m "));
+                                if (Math.Abs(message.Range_X - lastMessage.Range_X) < VDSConfig.korExConfig.stopGapDistance) // 1미터 이내 차이일 경우 같은 정지로 간주한다. 
                                 {
                                     result = i;
                                     break;
                                 }
-                                //switch (direction)
-                                //{
-                                //    case 0: // 다가옴. 역주행은 거리가 증가함
-                                //        if (Math.Abs(lastMessage.Range_X) < Math.Abs(message.Range_X))
-                                //            result = i;
-                                //        break;
-                                //    case 1: // 멀어짐. 역주행은 거리가 감소함
-                                //        if (Math.Abs(lastMessage.Range_X) > Math.Abs(message.Range_X))
-                                //            result = i;
-                                //        break;
-                                //}
+                               
                             }
                         }
                     }
@@ -717,8 +781,13 @@ namespace MClavisRadarManageCtrl
                         break;
                 }
                 if (result == -1) // 편입할 정보를 찾지 못할 경우 신규 정지 정보 할당 
+                {
                     result = message.object_id;
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"편입할 정지 정보 찾지 못함. 해당 아이디({result})에 할당"));
+                }
+                    
             }
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
         }
     }

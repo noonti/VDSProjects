@@ -59,10 +59,15 @@ namespace VDSController
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
             this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdgStop = new System.Windows.Forms.RadioButton();
+            this.rdgInverse = new System.Windows.Forms.RadioButton();
+            this.rdgAll = new System.Windows.Forms.RadioButton();
             this.cbLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton3 = new DarkUI.Controls.DarkButton();
             this.darkLabel2 = new DarkUI.Controls.DarkLabel();
@@ -107,11 +112,6 @@ namespace VDSController
             this.ucSpeedEndTime = new VDSController.ucDateTimePicker();
             this.ucSpeedStartTime = new VDSController.ucDateTimePicker();
             this.timerSliding = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdgAll = new System.Windows.Forms.RadioButton();
-            this.rdgInverse = new System.Windows.Forms.RadioButton();
-            this.rdgStop = new System.Windows.Forms.RadioButton();
             this.pnPlayer.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.tabTrafficInfo.SuspendLayout();
@@ -122,11 +122,11 @@ namespace VDSController
             this.darkGroupBox4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.darkGroupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.darkGroupBox5.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.darkGroupBox6.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnPlayer
@@ -442,6 +442,12 @@ namespace VDSController
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader9.Width = 100;
             // 
+            // columnHeader33
+            // 
+            this.columnHeader33.Text = "정지 여부";
+            this.columnHeader33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader33.Width = 100;
+            // 
             // columnHeader10
             // 
             this.columnHeader10.Text = "센터 전송 여부";
@@ -487,13 +493,57 @@ namespace VDSController
             this.darkGroupBox3.TabStop = false;
             this.darkGroupBox3.Text = "조회 조건";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdgStop);
+            this.groupBox1.Controls.Add(this.rdgInverse);
+            this.groupBox1.Controls.Add(this.rdgAll);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Location = new System.Drawing.Point(459, 17);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(194, 39);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "조건";
+            // 
+            // rdgStop
+            // 
+            this.rdgStop.AutoSize = true;
+            this.rdgStop.Location = new System.Drawing.Point(139, 13);
+            this.rdgStop.Name = "rdgStop";
+            this.rdgStop.Size = new System.Drawing.Size(49, 19);
+            this.rdgStop.TabIndex = 2;
+            this.rdgStop.Text = "정지";
+            this.rdgStop.UseVisualStyleBackColor = true;
+            // 
+            // rdgInverse
+            // 
+            this.rdgInverse.AutoSize = true;
+            this.rdgInverse.Location = new System.Drawing.Point(68, 13);
+            this.rdgInverse.Name = "rdgInverse";
+            this.rdgInverse.Size = new System.Drawing.Size(61, 19);
+            this.rdgInverse.TabIndex = 1;
+            this.rdgInverse.Text = "역주행";
+            this.rdgInverse.UseVisualStyleBackColor = true;
+            // 
+            // rdgAll
+            // 
+            this.rdgAll.AutoSize = true;
+            this.rdgAll.Checked = true;
+            this.rdgAll.Location = new System.Drawing.Point(10, 13);
+            this.rdgAll.Name = "rdgAll";
+            this.rdgAll.Size = new System.Drawing.Size(49, 19);
+            this.rdgAll.TabIndex = 0;
+            this.rdgAll.TabStop = true;
+            this.rdgAll.Text = "모두";
+            this.rdgAll.UseVisualStyleBackColor = true;
+            // 
             // cbLane
             // 
-            this.cbLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cbLane.FormattingEnabled = true;
             this.cbLane.Location = new System.Drawing.Point(6, 26);
             this.cbLane.Name = "cbLane";
-            this.cbLane.Size = new System.Drawing.Size(70, 22);
+            this.cbLane.Size = new System.Drawing.Size(70, 24);
             this.cbLane.TabIndex = 0;
             // 
             // darkButton3
@@ -867,56 +917,6 @@ namespace VDSController
             // 
             this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
             // 
-            // columnHeader33
-            // 
-            this.columnHeader33.Text = "정지 여부";
-            this.columnHeader33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader33.Width = 100;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rdgStop);
-            this.groupBox1.Controls.Add(this.rdgInverse);
-            this.groupBox1.Controls.Add(this.rdgAll);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Location = new System.Drawing.Point(459, 17);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(194, 39);
-            this.groupBox1.TabIndex = 28;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "조건";
-            // 
-            // rdgAll
-            // 
-            this.rdgAll.AutoSize = true;
-            this.rdgAll.Checked = true;
-            this.rdgAll.Location = new System.Drawing.Point(10, 13);
-            this.rdgAll.Name = "rdgAll";
-            this.rdgAll.Size = new System.Drawing.Size(49, 19);
-            this.rdgAll.TabIndex = 0;
-            this.rdgAll.Text = "모두";
-            this.rdgAll.UseVisualStyleBackColor = true;
-            // 
-            // rdgInverse
-            // 
-            this.rdgInverse.AutoSize = true;
-            this.rdgInverse.Location = new System.Drawing.Point(68, 13);
-            this.rdgInverse.Name = "rdgInverse";
-            this.rdgInverse.Size = new System.Drawing.Size(61, 19);
-            this.rdgInverse.TabIndex = 1;
-            this.rdgInverse.Text = "역주행";
-            this.rdgInverse.UseVisualStyleBackColor = true;
-            // 
-            // rdgStop
-            // 
-            this.rdgStop.AutoSize = true;
-            this.rdgStop.Location = new System.Drawing.Point(139, 13);
-            this.rdgStop.Name = "rdgStop";
-            this.rdgStop.Size = new System.Drawing.Size(49, 19);
-            this.rdgStop.TabIndex = 2;
-            this.rdgStop.Text = "정지";
-            this.rdgStop.UseVisualStyleBackColor = true;
-            // 
             // tabTargetSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -940,14 +940,14 @@ namespace VDSController
             this.tabPage2.ResumeLayout(false);
             this.darkGroupBox3.ResumeLayout(false);
             this.darkGroupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.darkGroupBox5.ResumeLayout(false);
             this.darkGroupBox5.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.darkGroupBox6.ResumeLayout(false);
             this.darkGroupBox6.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }

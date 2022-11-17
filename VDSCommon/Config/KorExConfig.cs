@@ -43,8 +43,13 @@ namespace VDSCommon.Config
         public int releaseMonth { get; set; }
         public int releaseDay { get; set; }
 
+        public int inverseGapTime { get; set; }
+        public int inverseCheckTime { get; set; }
+        public int inverseCheckDistance { get; set; }
 
-        public int invserseTime { get; set; }
-        public int inverseDistance { get; set; }
+        public int stopGapTime { get; set; }
+        public int stopCheckTime { get; set; }
+        public int stopGapDistance { get; set; }
+        
     }
 }
