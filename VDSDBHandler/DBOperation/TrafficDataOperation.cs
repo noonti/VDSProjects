@@ -49,6 +49,7 @@ namespace VDSDBHandler.DBOperation
                 I_STOP_YN = input.STOP_YN,
                 I_VEHICLE_GAP = input.VEHICLE_GAP,
                 I_DETECT_TIME = input.DETECT_TIME,
+                I_DETECT_DISTANCE = input.DETECT_DISTANCE,
                 I_REPORT_YN = input.REPORT_YN,
             });
             _dapperOrm.ExecuteWithoutReturn("SP_ADD_TRAFFIC_DATA", param, out spResult);
