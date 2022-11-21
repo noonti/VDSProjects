@@ -21,6 +21,8 @@ namespace VDSCommon
 
         public int occupyTime { get; set; } // milisecond 
 
+        public double detectDistance { get; set; }
+
         public int loop1OccupyTime { get; set; }
         public int loop2OccupyTime { get; set; }
 

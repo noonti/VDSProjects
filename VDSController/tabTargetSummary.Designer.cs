@@ -44,7 +44,6 @@ namespace VDSController
             this.gbxLeft = new DarkUI.Controls.DarkGroupBox();
             this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
             this.btnSetTime = new DarkUI.Controls.DarkButton();
-            this.ucStartDate = new VDSController.ucDateTimePicker();
             this.lbServiceStartTime = new DarkUI.Controls.DarkLabel();
             this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.lbLastCountTime_ = new DarkUI.Controls.DarkLabel();
@@ -62,7 +61,6 @@ namespace VDSController
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
             this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdgStop = new System.Windows.Forms.RadioButton();
@@ -71,8 +69,23 @@ namespace VDSController
             this.cbLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton3 = new DarkUI.Controls.DarkButton();
             this.darkLabel2 = new DarkUI.Controls.DarkLabel();
-            this.ucEndTime = new VDSController.ucDateTimePicker();
-            this.ucStartTime = new VDSController.ucDateTimePicker();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.lvOutBreakData = new VDSCommon.ListViewEx();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader37 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.darkGroupBox8 = new DarkUI.Controls.DarkGroupBox();
+            this.lbOutBreakCount = new DarkUI.Controls.DarkLabel();
+            this.darkButton7 = new DarkUI.Controls.DarkButton();
+            this.darkGroupBox7 = new DarkUI.Controls.DarkGroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdgOutbreakStop = new System.Windows.Forms.RadioButton();
+            this.rdgOutbreakInverse = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.darkButton6 = new DarkUI.Controls.DarkButton();
+            this.darkLabel6 = new DarkUI.Controls.DarkLabel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lvTrafficStat = new VDSCommon.ListViewEx();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -87,8 +100,6 @@ namespace VDSController
             this.cbTrafficLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton4 = new DarkUI.Controls.DarkButton();
             this.darkLabel4 = new DarkUI.Controls.DarkLabel();
-            this.ucTrafficEndTime = new VDSController.ucDateTimePicker();
-            this.ucTrafficStartTime = new VDSController.ucDateTimePicker();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.lvSpeedStat = new VDSCommon.ListViewEx();
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -109,9 +120,17 @@ namespace VDSController
             this.cbSpeedLane = new DarkUI.Controls.DarkComboBox();
             this.darkButton5 = new DarkUI.Controls.DarkButton();
             this.darkLabel5 = new DarkUI.Controls.DarkLabel();
+            this.timerSliding = new System.Windows.Forms.Timer(this.components);
+            this.ucStartDate = new VDSController.ucDateTimePicker();
+            this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
+            this.ucEndTime = new VDSController.ucDateTimePicker();
+            this.ucStartTime = new VDSController.ucDateTimePicker();
+            this.ucOutBreakEndTime = new VDSController.ucDateTimePicker();
+            this.ucOutBreakStartTime = new VDSController.ucDateTimePicker();
+            this.ucTrafficEndTime = new VDSController.ucDateTimePicker();
+            this.ucTrafficStartTime = new VDSController.ucDateTimePicker();
             this.ucSpeedEndTime = new VDSController.ucDateTimePicker();
             this.ucSpeedStartTime = new VDSController.ucDateTimePicker();
-            this.timerSliding = new System.Windows.Forms.Timer(this.components);
             this.pnPlayer.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.tabTrafficInfo.SuspendLayout();
@@ -123,6 +142,10 @@ namespace VDSController
             this.tabPage2.SuspendLayout();
             this.darkGroupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.darkGroupBox8.SuspendLayout();
+            this.darkGroupBox7.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.darkGroupBox5.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -208,6 +231,7 @@ namespace VDSController
             this.tabTrafficInfo.Controls.Add(this.tabPage1);
             this.tabTrafficInfo.Controls.Add(this.tabPage3);
             this.tabTrafficInfo.Controls.Add(this.tabPage2);
+            this.tabTrafficInfo.Controls.Add(this.tabPage6);
             this.tabTrafficInfo.Controls.Add(this.tabPage4);
             this.tabTrafficInfo.Controls.Add(this.tabPage5);
             this.tabTrafficInfo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -295,16 +319,6 @@ namespace VDSController
             this.btnSetTime.TabIndex = 2;
             this.btnSetTime.Text = "SET";
             this.btnSetTime.Visible = false;
-            // 
-            // ucStartDate
-            // 
-            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
-            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucStartDate.Name = "ucStartDate";
-            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
-            this.ucStartDate.TabIndex = 4;
-            this.ucStartDate.Visible = false;
             // 
             // lbServiceStartTime
             // 
@@ -466,16 +480,6 @@ namespace VDSController
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "차량 검지 정보 조회";
             // 
-            // ucCenterTrafficData
-            // 
-            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
-            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
-            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
-            this.ucCenterTrafficData.TabIndex = 1;
-            // 
             // darkGroupBox3
             // 
             this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -505,6 +509,7 @@ namespace VDSController
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "조건";
+            this.groupBox1.Visible = false;
             // 
             // rdgStop
             // 
@@ -540,10 +545,11 @@ namespace VDSController
             // 
             // cbLane
             // 
+            this.cbLane.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cbLane.FormattingEnabled = true;
             this.cbLane.Location = new System.Drawing.Point(6, 26);
             this.cbLane.Name = "cbLane";
-            this.cbLane.Size = new System.Drawing.Size(70, 24);
+            this.cbLane.Size = new System.Drawing.Size(70, 22);
             this.cbLane.TabIndex = 0;
             // 
             // darkButton3
@@ -567,21 +573,185 @@ namespace VDSController
             this.darkLabel2.TabIndex = 27;
             this.darkLabel2.Text = "~";
             // 
-            // ucEndTime
+            // tabPage6
             // 
-            this.ucEndTime.Location = new System.Drawing.Point(276, 24);
-            this.ucEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucEndTime.Name = "ucEndTime";
-            this.ucEndTime.Size = new System.Drawing.Size(180, 27);
-            this.ucEndTime.TabIndex = 2;
+            this.tabPage6.Controls.Add(this.lvOutBreakData);
+            this.tabPage6.Controls.Add(this.darkGroupBox8);
+            this.tabPage6.Controls.Add(this.darkGroupBox7);
+            this.tabPage6.Location = new System.Drawing.Point(4, 24);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(767, 630);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "돌발정보 조회";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // ucStartTime
+            // lvOutBreakData
             // 
-            this.ucStartTime.Location = new System.Drawing.Point(82, 24);
-            this.ucStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucStartTime.Name = "ucStartTime";
-            this.ucStartTime.Size = new System.Drawing.Size(181, 27);
-            this.ucStartTime.TabIndex = 1;
+            this.lvOutBreakData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader34,
+            this.columnHeader35,
+            this.columnHeader36,
+            this.columnHeader37});
+            this.lvOutBreakData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvOutBreakData.FullRowSelect = true;
+            this.lvOutBreakData.GridLines = true;
+            this.lvOutBreakData.HideSelection = false;
+            this.lvOutBreakData.Location = new System.Drawing.Point(0, 65);
+            this.lvOutBreakData.MultiSelect = false;
+            this.lvOutBreakData.Name = "lvOutBreakData";
+            this.lvOutBreakData.Size = new System.Drawing.Size(767, 489);
+            this.lvOutBreakData.TabIndex = 4;
+            this.lvOutBreakData.UseCompatibleStateImageBehavior = false;
+            this.lvOutBreakData.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "일련 번호";
+            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader8.Width = 70;
+            // 
+            // columnHeader34
+            // 
+            this.columnHeader34.Text = "이벤트 검지 일자";
+            this.columnHeader34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader34.Width = 120;
+            // 
+            // columnHeader35
+            // 
+            this.columnHeader35.Text = "이벤트 검지 시간";
+            this.columnHeader35.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader35.Width = 120;
+            // 
+            // columnHeader36
+            // 
+            this.columnHeader36.Text = "이벤트 검지 종류";
+            this.columnHeader36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader36.Width = 120;
+            // 
+            // columnHeader37
+            // 
+            this.columnHeader37.Text = "이벤트 검지 거리";
+            this.columnHeader37.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader37.Width = 120;
+            // 
+            // darkGroupBox8
+            // 
+            this.darkGroupBox8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox8.Controls.Add(this.lbOutBreakCount);
+            this.darkGroupBox8.Controls.Add(this.darkButton7);
+            this.darkGroupBox8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.darkGroupBox8.Location = new System.Drawing.Point(0, 554);
+            this.darkGroupBox8.Name = "darkGroupBox8";
+            this.darkGroupBox8.Size = new System.Drawing.Size(767, 76);
+            this.darkGroupBox8.TabIndex = 3;
+            this.darkGroupBox8.TabStop = false;
+            // 
+            // lbOutBreakCount
+            // 
+            this.lbOutBreakCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbOutBreakCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.lbOutBreakCount.Location = new System.Drawing.Point(6, 12);
+            this.lbOutBreakCount.Name = "lbOutBreakCount";
+            this.lbOutBreakCount.Size = new System.Drawing.Size(621, 37);
+            this.lbOutBreakCount.TabIndex = 23;
+            this.lbOutBreakCount.Text = "전체 갯수:  0";
+            this.lbOutBreakCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // darkButton7
+            // 
+            this.darkButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton7.Location = new System.Drawing.Point(633, 12);
+            this.darkButton7.Name = "darkButton7";
+            this.darkButton7.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton7.Size = new System.Drawing.Size(128, 32);
+            this.darkButton7.TabIndex = 0;
+            this.darkButton7.Text = "CSV 저장";
+            this.darkButton7.Click += new System.EventHandler(this.darkButton7_Click);
+            // 
+            // darkGroupBox7
+            // 
+            this.darkGroupBox7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox7.Controls.Add(this.groupBox2);
+            this.darkGroupBox7.Controls.Add(this.darkButton6);
+            this.darkGroupBox7.Controls.Add(this.darkLabel6);
+            this.darkGroupBox7.Controls.Add(this.ucOutBreakEndTime);
+            this.darkGroupBox7.Controls.Add(this.ucOutBreakStartTime);
+            this.darkGroupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.darkGroupBox7.Location = new System.Drawing.Point(0, 0);
+            this.darkGroupBox7.Name = "darkGroupBox7";
+            this.darkGroupBox7.Size = new System.Drawing.Size(767, 65);
+            this.darkGroupBox7.TabIndex = 1;
+            this.darkGroupBox7.TabStop = false;
+            this.darkGroupBox7.Text = "조회 조건";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rdgOutbreakStop);
+            this.groupBox2.Controls.Add(this.rdgOutbreakInverse);
+            this.groupBox2.Controls.Add(this.radioButton3);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Location = new System.Drawing.Point(399, 18);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(194, 39);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "조건";
+            this.groupBox2.Visible = false;
+            // 
+            // rdgOutbreakStop
+            // 
+            this.rdgOutbreakStop.AutoSize = true;
+            this.rdgOutbreakStop.Location = new System.Drawing.Point(139, 13);
+            this.rdgOutbreakStop.Name = "rdgOutbreakStop";
+            this.rdgOutbreakStop.Size = new System.Drawing.Size(49, 19);
+            this.rdgOutbreakStop.TabIndex = 2;
+            this.rdgOutbreakStop.Text = "정지";
+            this.rdgOutbreakStop.UseVisualStyleBackColor = true;
+            // 
+            // rdgOutbreakInverse
+            // 
+            this.rdgOutbreakInverse.AutoSize = true;
+            this.rdgOutbreakInverse.Location = new System.Drawing.Point(68, 13);
+            this.rdgOutbreakInverse.Name = "rdgOutbreakInverse";
+            this.rdgOutbreakInverse.Size = new System.Drawing.Size(61, 19);
+            this.rdgOutbreakInverse.TabIndex = 1;
+            this.rdgOutbreakInverse.Text = "역주행";
+            this.rdgOutbreakInverse.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Location = new System.Drawing.Point(10, 13);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(49, 19);
+            this.radioButton3.TabIndex = 0;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "모두";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // darkButton6
+            // 
+            this.darkButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton6.Location = new System.Drawing.Point(665, 21);
+            this.darkButton6.Name = "darkButton6";
+            this.darkButton6.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton6.Size = new System.Drawing.Size(96, 32);
+            this.darkButton6.TabIndex = 3;
+            this.darkButton6.Text = "조회";
+            this.darkButton6.Click += new System.EventHandler(this.darkButton6_Click);
+            // 
+            // darkLabel6
+            // 
+            this.darkLabel6.AutoSize = true;
+            this.darkLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel6.Location = new System.Drawing.Point(193, 33);
+            this.darkLabel6.Name = "darkLabel6";
+            this.darkLabel6.Size = new System.Drawing.Size(14, 15);
+            this.darkLabel6.TabIndex = 27;
+            this.darkLabel6.Text = "~";
             // 
             // tabPage4
             // 
@@ -710,22 +880,6 @@ namespace VDSController
             this.darkLabel4.Size = new System.Drawing.Size(14, 15);
             this.darkLabel4.TabIndex = 27;
             this.darkLabel4.Text = "~";
-            // 
-            // ucTrafficEndTime
-            // 
-            this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
-            this.ucTrafficEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucTrafficEndTime.Name = "ucTrafficEndTime";
-            this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
-            this.ucTrafficEndTime.TabIndex = 2;
-            // 
-            // ucTrafficStartTime
-            // 
-            this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
-            this.ucTrafficStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucTrafficStartTime.Name = "ucTrafficStartTime";
-            this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
-            this.ucTrafficStartTime.TabIndex = 1;
             // 
             // tabPage5
             // 
@@ -897,6 +1051,78 @@ namespace VDSController
             this.darkLabel5.TabIndex = 27;
             this.darkLabel5.Text = "~";
             // 
+            // timerSliding
+            // 
+            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
+            // 
+            // ucStartDate
+            // 
+            this.ucStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucStartDate.Location = new System.Drawing.Point(417, 7);
+            this.ucStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucStartDate.Name = "ucStartDate";
+            this.ucStartDate.Size = new System.Drawing.Size(255, 34);
+            this.ucStartDate.TabIndex = 4;
+            this.ucStartDate.Visible = false;
+            // 
+            // ucCenterTrafficData
+            // 
+            this.ucCenterTrafficData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ucCenterTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCenterTrafficData.Location = new System.Drawing.Point(3, 68);
+            this.ucCenterTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucCenterTrafficData.Name = "ucCenterTrafficData";
+            this.ucCenterTrafficData.Size = new System.Drawing.Size(761, 559);
+            this.ucCenterTrafficData.TabIndex = 1;
+            // 
+            // ucEndTime
+            // 
+            this.ucEndTime.Location = new System.Drawing.Point(276, 24);
+            this.ucEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucEndTime.Name = "ucEndTime";
+            this.ucEndTime.Size = new System.Drawing.Size(180, 27);
+            this.ucEndTime.TabIndex = 2;
+            // 
+            // ucStartTime
+            // 
+            this.ucStartTime.Location = new System.Drawing.Point(82, 24);
+            this.ucStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucStartTime.Name = "ucStartTime";
+            this.ucStartTime.Size = new System.Drawing.Size(181, 27);
+            this.ucStartTime.TabIndex = 1;
+            // 
+            // ucOutBreakEndTime
+            // 
+            this.ucOutBreakEndTime.Location = new System.Drawing.Point(213, 24);
+            this.ucOutBreakEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucOutBreakEndTime.Name = "ucOutBreakEndTime";
+            this.ucOutBreakEndTime.Size = new System.Drawing.Size(180, 27);
+            this.ucOutBreakEndTime.TabIndex = 2;
+            // 
+            // ucOutBreakStartTime
+            // 
+            this.ucOutBreakStartTime.Location = new System.Drawing.Point(6, 24);
+            this.ucOutBreakStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucOutBreakStartTime.Name = "ucOutBreakStartTime";
+            this.ucOutBreakStartTime.Size = new System.Drawing.Size(181, 27);
+            this.ucOutBreakStartTime.TabIndex = 1;
+            // 
+            // ucTrafficEndTime
+            // 
+            this.ucTrafficEndTime.Location = new System.Drawing.Point(418, 27);
+            this.ucTrafficEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucTrafficEndTime.Name = "ucTrafficEndTime";
+            this.ucTrafficEndTime.Size = new System.Drawing.Size(258, 27);
+            this.ucTrafficEndTime.TabIndex = 2;
+            // 
+            // ucTrafficStartTime
+            // 
+            this.ucTrafficStartTime.Location = new System.Drawing.Point(212, 27);
+            this.ucTrafficStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucTrafficStartTime.Name = "ucTrafficStartTime";
+            this.ucTrafficStartTime.Size = new System.Drawing.Size(258, 27);
+            this.ucTrafficStartTime.TabIndex = 1;
+            // 
             // ucSpeedEndTime
             // 
             this.ucSpeedEndTime.Location = new System.Drawing.Point(418, 27);
@@ -912,10 +1138,6 @@ namespace VDSController
             this.ucSpeedStartTime.Name = "ucSpeedStartTime";
             this.ucSpeedStartTime.Size = new System.Drawing.Size(258, 27);
             this.ucSpeedStartTime.TabIndex = 1;
-            // 
-            // timerSliding
-            // 
-            this.timerSliding.Tick += new System.EventHandler(this.timerSliding_Tick);
             // 
             // tabTargetSummary
             // 
@@ -942,6 +1164,12 @@ namespace VDSController
             this.darkGroupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.darkGroupBox8.ResumeLayout(false);
+            this.darkGroupBox7.ResumeLayout(false);
+            this.darkGroupBox7.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.darkGroupBox5.ResumeLayout(false);
             this.darkGroupBox5.PerformLayout();
@@ -1034,5 +1262,24 @@ namespace VDSController
         private System.Windows.Forms.RadioButton rdgStop;
         private System.Windows.Forms.RadioButton rdgInverse;
         private System.Windows.Forms.RadioButton rdgAll;
+        private System.Windows.Forms.TabPage tabPage6;
+        private DarkUI.Controls.DarkGroupBox darkGroupBox7;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rdgOutbreakStop;
+        private System.Windows.Forms.RadioButton rdgOutbreakInverse;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private DarkUI.Controls.DarkButton darkButton6;
+        private DarkUI.Controls.DarkLabel darkLabel6;
+        private ucDateTimePicker ucOutBreakEndTime;
+        private ucDateTimePicker ucOutBreakStartTime;
+        private ListViewEx lvOutBreakData;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader34;
+        private System.Windows.Forms.ColumnHeader columnHeader35;
+        private System.Windows.Forms.ColumnHeader columnHeader36;
+        private System.Windows.Forms.ColumnHeader columnHeader37;
+        private DarkUI.Controls.DarkGroupBox darkGroupBox8;
+        private DarkUI.Controls.DarkLabel lbOutBreakCount;
+        private DarkUI.Controls.DarkButton darkButton7;
     }
 }

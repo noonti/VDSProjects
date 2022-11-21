@@ -400,6 +400,13 @@ namespace VDSCommon
                 value = 100;
             korExConfig.inverseCheckDistance = value;
 
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_MIN_TIME"), out value))
+                value = 5;
+            korExConfig.inverseMinTime = value;
+
+
+
             if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_STOP_GAP_TIME"), out value))
                 value = 1;
             korExConfig.stopGapTime = value;
@@ -662,6 +669,9 @@ namespace VDSCommon
                 AppConfiguration.SetAppConfig("KOR_EX_INVERSE_GAP_TIME", korExConfig.inverseGapTime.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_INVERSE_CHECK_TIME", korExConfig.inverseCheckTime.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_INVERSE_CHECK_DISTANCE", korExConfig.inverseCheckDistance.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_MIN_TIME", korExConfig.inverseMinTime.ToString());
+
+
 
                 AppConfiguration.SetAppConfig("KOR_EX_STOP_GAP_TIME", korExConfig.stopGapTime.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_STOP_CHECK_TIME", korExConfig.stopCheckTime.ToString());

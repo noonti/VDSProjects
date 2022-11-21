@@ -496,6 +496,7 @@ namespace VDSController
 
         public async void SearchTrafficStat(TRAFFIC_STAT data)
         {
+
             TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
             SP_RESULT spResult;
             var task1 = Task.Run(() =>
@@ -590,5 +591,127 @@ namespace VDSController
             SearchSpeedStat(data);
 
         }
-    }
+
+        private void darkButton6_Click(object sender, EventArgs e)
+        {
+
+            String startDate = ucOutBreakStartTime.GetDateTimeFormat();
+            String endDate = ucOutBreakEndTime.GetDateTimeFormat();
+            
+
+            TRAFFIC_DATA data = new TRAFFIC_DATA()
+            {
+                I_START_DATE = startDate,
+                I_END_DATE = endDate,
+                REVERSE_RUN_YN = rdgOutbreakInverse.Checked ? "Y" : null,
+                STOP_YN = rdgOutbreakStop.Checked ? "Y" : null,
+
+            };
+            SearchOutBreakData(data);
+        }
+
+        public async void SearchOutBreakData(TRAFFIC_DATA data)
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            SP_RESULT spResult;
+            var task1 = Task.Run(() =>
+            {
+                return db.GetOutBreakDataList(data, out spResult).ToList();
+            });
+
+            var trafficDataList = await task1;
+            AddOutBreakDataResult(trafficDataList);
+        }
+
+        public void AddOutBreakDataResult(List<TRAFFIC_DATA> trafficDataList)
+        {
+
+            lvOutBreakData.Items.Clear();
+            ListViewItem item;
+            DateTime detectTime;
+            int i = 1;
+            lbOutBreakCount.Text = String.Format($"전체 갯수:  {trafficDataList.Count}");
+            foreach (var trafficData in trafficDataList)
+            {
+
+                //일련 번호, 이벤트 검지일자,이벤트 검지 시간,이벤트 검지 종류 ,이벤트 검지거리,영상번호(보유시)
+                item = new ListViewItem($"{i}"); // 
+                //item.SubItems.Add(String.Format($"{i}")); // 일련번호
+
+                detectTime = DateTime.ParseExact(trafficData.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                item.SubItems.Add(detectTime.ToString("yyyy-MM-dd")); // 이벤트 검지일자
+                item.SubItems.Add(detectTime.ToString("HH:mm:ss.ff")); // 이벤트 검지 시간
+                if(trafficData.REVERSE_RUN_YN == "Y")
+                {
+                    item.SubItems.Add("역주행"); // 이벤트 검지 종류
+                }else if (trafficData.STOP_YN == "Y")
+                {
+                    item.SubItems.Add("정지"); // 이벤트 검지 종류
+                }
+                else
+                {
+                    item.SubItems.Add(" - "); // 이벤트 검지 종류
+                }
+                item.SubItems.Add(String.Format($"{trafficData.DETECT_DISTANCE}")); //이벤트 검지거리
+                item.Tag = trafficData;
+                lvOutBreakData.Items.Add(item);
+                i++;
+
+            }
+        }
+
+        private void darkButton7_Click(object sender, EventArgs e)
+        {
+            String fileName = String.Empty;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "저장경로 및 파일명을 입력하세요";
+            saveFileDialog.OverwritePrompt = true;
+            saveFileDialog.Filter = "CSV file(*.csv)|*.csv";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileName = saveFileDialog.FileName;
+                SaveTrafficDataToCSV(fileName);
+                Utility.ShowMessageBox("저장", fileName + "에 저장하였습니다", 1);
+            }
+        }
+
+
+
+        public bool SaveTrafficDataToCSV(String fileName)
+        {
+
+            bool result = false;
+            String outbreakType = String.Empty;
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false, System.Text.Encoding.Default))
+            {
+                file.WriteLine("일련 번호, 이벤트 검지일자,이벤트 검지 시간,이벤트 검지 종류 ,이벤트 검지거리");
+
+                for (int i = 0; i < lvOutBreakData.Items.Count; i++)
+                {
+                    var trafficData = (TRAFFIC_DATA)lvOutBreakData.Items[i].Tag;
+                    if (trafficData != null)
+                    {
+                        DateTime detectTime = DateTime.ParseExact(trafficData.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                        if (trafficData.REVERSE_RUN_YN == "Y")
+                        {
+                            outbreakType = "역주행"; // 이벤트 검지 종류
+                        }
+                        else if (trafficData.STOP_YN == "Y")
+                        {
+                            outbreakType = "정지"; // 이벤트 검지 종류
+                        }
+                        else
+                        {
+                            outbreakType = " - "; // 이벤트 검지 종류
+                        }
+
+                        file.WriteLine($"{i+1}, {detectTime.ToString("yyyy-MM-dd")}, {detectTime.ToString("HH:mm:ss.ff")}, {outbreakType}, {trafficData.DETECT_DISTANCE}");
+                    }
+
+                }
+            }
+            return result;
+        }
+
+           }
 }

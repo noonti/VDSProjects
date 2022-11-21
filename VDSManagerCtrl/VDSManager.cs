@@ -342,6 +342,7 @@ namespace VDSManagerCtrl
                     STOP_YN = trafficDataEvent.StoppedCarYN,
                     VEHICLE_GAP = trafficDataEvent.vehicleGap,
                     DETECT_TIME = trafficDataEvent.detectTime,
+                    DETECT_DISTANCE = trafficDataEvent.detectDistance,
                     REPORT_YN = trafficDataEvent.reportYN,
 
                 };

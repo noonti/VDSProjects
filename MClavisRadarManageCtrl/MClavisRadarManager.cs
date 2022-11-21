@@ -167,8 +167,8 @@ namespace MClavisRadarManageCtrl
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            ProcessInverseMessageList();
-            ProcessStopMessageList();
+            //ProcessInverseMessageList();
+            //ProcessStopMessageList();
         }
 
         public int StartWorkThread()
@@ -356,7 +356,7 @@ namespace MClavisRadarManageCtrl
             result.speed = Math.Abs(message.Velocity_X);  // km/h
             result.vds_type = VDSConfig.GetVDSTypeName();
             result.occupyTime = Utility.GetOccupyTime(Math.Abs(message.Velocity_X), message.Range_X, VDSConfig.controllerConfig.CheckDistance); ; // milisecond 
-
+            result.detectDistance = message.Range_X; // 검지 거리
             result.reverseRunYN = message.State == 9 ? "Y" : "N";
             result.trafficJamYN = message.State == 7 ? "Y" : "N"; // 차량 정체
             result.StoppedCarYN = message.State == 10 ? "Y" : "N"; // 차량 정지 
@@ -479,7 +479,7 @@ namespace MClavisRadarManageCtrl
             return result;
         }
 
-        private int ProcessInverseMessageList()
+        public int ProcessInverseMessageList()
         {
             int result = 0;
             for (int i = 1; i < 63; i++)
@@ -490,7 +490,7 @@ namespace MClavisRadarManageCtrl
             return result;
         }
 
-        private int ProcessStopMessageList()
+        public int ProcessStopMessageList()
         {
             int result = 0;
             for (int i = 1; i < 63; i++)
@@ -555,12 +555,16 @@ namespace MClavisRadarManageCtrl
            
 #else
                 double distance = Math.Abs(lastMessage.Range_X - firstMessage.Range_X);
+                TimeSpan inverseTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                double duration = inverseTs.TotalMilliseconds;
+
 
                 // 역주행 주행 거리가 일정거리 이상일 경우 처리 
                 // 1. 역주행 정보 수신 후 경과 시간이 특정 시간 초과한 경우 
                 if (passedMiliSeconds < VDSConfig.korExConfig.inverseCheckTime * 1000) // 유효 시간 초과 하지 않은 경우 
                 {
-                    if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance)
+                    //if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance)
+                    if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.inverseMinTime * 1000)
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
@@ -584,8 +588,9 @@ namespace MClavisRadarManageCtrl
                     Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신 역주행 시간 이후{VDSConfig.korExConfig.inverseCheckTime}초 경과로 역주행 종료로 간주 "));
                     Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m "));
 
-                    if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance) // 역주행 유효 주행거리 이상이고 아직 처리되지 않은 메시지의 경우 역주행 정보 추가
-                    {
+                    //if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance) // 역주행 유효 주행거리 이상이고 아직 처리되지 않은 메시지의 경우 역주행 정보 추가
+                    if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.inverseMinTime * 1000)
+                        {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m). 처리여부={firstMessage.processOutbreakYN} 이므로 역주행 정보 추가"));
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
                         foreach (var message in messageList)
@@ -660,7 +665,7 @@ namespace MClavisRadarManageCtrl
 
                     TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                     double duration = stopTs.TotalMilliseconds;
-                    if(firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime)
+                    if(firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime * 1000)
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
                         foreach (var message in messageList)
@@ -687,7 +692,7 @@ namespace MClavisRadarManageCtrl
                     Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신된 정지 시간 이후 {VDSConfig.korExConfig.stopCheckTime}초 경과로 정지 종료로 간주 "));
                     TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                     double duration = stopTs.TotalMilliseconds;
-                    if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime)
+                    if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime * 1000)
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
                         foreach (var message in messageList)

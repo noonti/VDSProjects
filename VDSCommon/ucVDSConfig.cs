@@ -175,6 +175,7 @@ namespace VDSCommon
                 txtInverseGapTime.Text = korExConfig.inverseGapTime.ToString();
                 txtInverseTime.Text = korExConfig.inverseCheckTime.ToString();
                 txtInverseDistance.Text = korExConfig.inverseCheckDistance.ToString();
+                txtInverseMinTime.Text = korExConfig.inverseMinTime.ToString();
 
                 txtStopGapTime.Text = korExConfig.stopGapTime.ToString();
                 txtStopGapDistance.Text = korExConfig.stopGapDistance.ToString();
@@ -328,6 +329,8 @@ namespace VDSCommon
                 korExConfig.inverseGapTime = int.Parse(txtInverseGapTime.Text);
                 korExConfig.inverseCheckTime = int.Parse(txtInverseTime.Text);
                 korExConfig.inverseCheckDistance = int.Parse(txtInverseDistance.Text);
+                korExConfig.inverseMinTime = int.Parse(txtInverseMinTime.Text);
+
 
                 korExConfig.stopGapTime = int.Parse(txtStopGapTime.Text);
                 korExConfig.stopGapDistance = int.Parse(txtStopGapDistance.Text);

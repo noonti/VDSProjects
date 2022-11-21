@@ -485,5 +485,25 @@ namespace VDSDBHandler.DBOperation
 
         }
 
+
+        public IEnumerable<TRAFFIC_DATA> GetOutBreakDataList(TRAFFIC_DATA input, out SP_RESULT spResult)
+        {
+            var param = new DynamicParameters();
+            param.AddDynamicParams(new
+            {
+                I_START_DATE = input.I_START_DATE,
+                I_END_DATE = input.I_END_DATE,
+                I_LANE = input.LANE,
+                I_DIRECTION = input.DIRECTION,
+                I_REPORT_YN = input.I_REPORT_YN,
+                I_REVERSE_RUN_YN = input.REVERSE_RUN_YN,
+                I_STOP_YN = input.STOP_YN,
+
+            });
+            return _dapperOrm.ReturnList<TRAFFIC_DATA>("SP_GET_OUTBREAK_DATA_LIST", param, out spResult).ToList();
+
+        }
+
+
     }
 }

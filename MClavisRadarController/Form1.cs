@@ -73,6 +73,17 @@ namespace MClavisRadarController
 
                 });
             }
+            VDSConfig.korExConfig = new VDSCommon.Config.KorExConfig();
+            VDSConfig.korExConfig.inverseGapTime = 1;
+            VDSConfig.korExConfig.inverseCheckDistance = 5;
+            VDSConfig.korExConfig.inverseCheckTime = 5;
+
+            VDSConfig.korExConfig.stopGapTime = 1;
+            VDSConfig.korExConfig.stopGapDistance = 1;
+            VDSConfig.korExConfig.stopCheckTime = 1;
+            VDSConfig.korExConfig.stopMinTime = 3;
+            
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -269,7 +280,7 @@ namespace MClavisRadarController
 
         private void button5_Click(object sender, EventArgs e)
         {
-            mClavisRadarManager.StartTimer();
+            mClavisRadarManager.ProcessInverseMessageList();
         }
     }
 }

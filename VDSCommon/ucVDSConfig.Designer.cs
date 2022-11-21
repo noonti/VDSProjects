@@ -174,6 +174,9 @@
             this.darkLabel67 = new DarkUI.Controls.DarkLabel();
             this.txtStopMinTime = new DarkUI.Controls.DarkTextBox();
             this.darkLabel68 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel69 = new DarkUI.Controls.DarkLabel();
+            this.txtInverseMinTime = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel70 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox1.SuspendLayout();
             this.tabConfing.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1178,6 +1181,9 @@
             // darkGroupBox18
             // 
             this.darkGroupBox18.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox18.Controls.Add(this.darkLabel69);
+            this.darkGroupBox18.Controls.Add(this.txtInverseMinTime);
+            this.darkGroupBox18.Controls.Add(this.darkLabel70);
             this.darkGroupBox18.Controls.Add(this.darkLabel55);
             this.darkGroupBox18.Controls.Add(this.txtInverseGapTime);
             this.darkGroupBox18.Controls.Add(this.darkLabel60);
@@ -1252,6 +1258,7 @@
             // darkLabel56
             // 
             this.darkLabel56.AutoSize = true;
+            this.darkLabel56.Enabled = false;
             this.darkLabel56.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.darkLabel56.Location = new System.Drawing.Point(203, 86);
             this.darkLabel56.Name = "darkLabel56";
@@ -1263,6 +1270,7 @@
             // 
             this.txtInverseDistance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.txtInverseDistance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInverseDistance.Enabled = false;
             this.txtInverseDistance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.txtInverseDistance.Location = new System.Drawing.Point(156, 83);
             this.txtInverseDistance.Name = "txtInverseDistance";
@@ -1275,6 +1283,7 @@
             // darkLabel58
             // 
             this.darkLabel58.AutoSize = true;
+            this.darkLabel58.Enabled = false;
             this.darkLabel58.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.darkLabel58.Location = new System.Drawing.Point(32, 86);
             this.darkLabel58.Name = "darkLabel58";
@@ -1929,6 +1938,38 @@
             this.darkLabel68.TabIndex = 22;
             this.darkLabel68.Text = "정지 인정 최소 시간";
             // 
+            // darkLabel69
+            // 
+            this.darkLabel69.AutoSize = true;
+            this.darkLabel69.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel69.Location = new System.Drawing.Point(209, 116);
+            this.darkLabel69.Name = "darkLabel69";
+            this.darkLabel69.Size = new System.Drawing.Size(265, 15);
+            this.darkLabel69.TabIndex = 27;
+            this.darkLabel69.Text = "초 이상. 역주행 인정하기 위한 역주행  유지  시간";
+            // 
+            // txtInverseMinTime
+            // 
+            this.txtInverseMinTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtInverseMinTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInverseMinTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtInverseMinTime.Location = new System.Drawing.Point(156, 113);
+            this.txtInverseMinTime.Name = "txtInverseMinTime";
+            this.txtInverseMinTime.Size = new System.Drawing.Size(41, 21);
+            this.txtInverseMinTime.TabIndex = 26;
+            this.txtInverseMinTime.Text = "5";
+            this.txtInverseMinTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // darkLabel70
+            // 
+            this.darkLabel70.AutoSize = true;
+            this.darkLabel70.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel70.Location = new System.Drawing.Point(32, 116);
+            this.darkLabel70.Name = "darkLabel70";
+            this.darkLabel70.Size = new System.Drawing.Size(124, 15);
+            this.darkLabel70.TabIndex = 25;
+            this.darkLabel70.Text = "역주행 인정 최소 시간";
+            // 
             // ucVDSConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2126,5 +2167,8 @@
         private DarkUI.Controls.DarkLabel darkLabel67;
         private DarkUI.Controls.DarkTextBox txtStopMinTime;
         private DarkUI.Controls.DarkLabel darkLabel68;
+        private DarkUI.Controls.DarkLabel darkLabel69;
+        private DarkUI.Controls.DarkTextBox txtInverseMinTime;
+        private DarkUI.Controls.DarkLabel darkLabel70;
     }
 }

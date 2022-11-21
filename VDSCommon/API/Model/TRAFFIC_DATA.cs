@@ -25,10 +25,13 @@ namespace VDSCommon.API.Model
         public int VEHICLE_GAP { get; set; }
 
         public String DETECT_TIME { get; set; }
+
+        public double DETECT_DISTANCE { get; set; }
         public String REPORT_YN { get; set; }
         public String STOP_YN { get; set; }
         public DateTime REG_DATE { get; set; }
         public DateTime MODIFY_DATE { get; set; }
+
 
 
         public int I_LIMIT_COUNT { get; set; }
