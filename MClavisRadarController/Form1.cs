@@ -68,7 +68,8 @@ namespace MClavisRadarController
                     Velocity_X = radarData.XX ,
                     Range_Y = radarData.Y ,
                     Range_X = radarData.X ,
-                    DETECT_TIME = radarData.DETECT_TIME
+                    DETECT_TIME = radarData.DETECT_TIME,
+                    processOutbreakYN = "N"
 
                 });
             }
@@ -264,6 +265,11 @@ namespace MClavisRadarController
             mClavisRadarManager.ProcessRadarInverseDetect(inverseMessageList[processIndex++]);
 
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            mClavisRadarManager.StartTimer();
         }
     }
 }

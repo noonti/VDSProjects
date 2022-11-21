@@ -49,6 +49,7 @@ namespace MClavisRadarManageCtrl.Protocol
                 {
                     message = new MCLAVIS_MESSAGE();
                     message.DETECT_TIME = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT);
+                    message.processOutbreakYN = "N"; // 돌발(역주행, 정지) 처리 여부
                     message.msgId = new byte[2];
                     Array.Copy(data, i, message.msgId, 0, 2);
                     i += 2;

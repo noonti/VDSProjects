@@ -179,6 +179,8 @@ namespace VDSCommon
                 txtStopGapTime.Text = korExConfig.stopGapTime.ToString();
                 txtStopGapDistance.Text = korExConfig.stopGapDistance.ToString();
                 txtStopTime.Text = korExConfig.stopCheckTime.ToString();
+                txtStopMinTime.Text = korExConfig.stopMinTime.ToString();
+                
             }
             
 
@@ -330,6 +332,7 @@ namespace VDSCommon
                 korExConfig.stopGapTime = int.Parse(txtStopGapTime.Text);
                 korExConfig.stopGapDistance = int.Parse(txtStopGapDistance.Text);
                 korExConfig.stopCheckTime = int.Parse(txtStopTime.Text);
+                korExConfig.stopMinTime = int.Parse(txtStopMinTime.Text);
 
                 nResult = 1;
             }

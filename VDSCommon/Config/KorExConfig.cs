@@ -50,6 +50,7 @@ namespace VDSCommon.Config
         public int stopGapTime { get; set; }
         public int stopCheckTime { get; set; }
         public int stopGapDistance { get; set; }
-        
+        public int stopMinTime { get; set; }
+
     }
 }

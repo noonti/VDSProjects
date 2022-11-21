@@ -517,9 +517,10 @@ namespace MClavisRadarManageCtrl
                 TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                 double passedMiliSeconds = ts.TotalMilliseconds;
 
+
                 Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 역주행 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
 
-
+#if false     // 2022.11.21 역주행 시 처리 
                 // 최종 역주행 정보 수신 후 경과 시간이 5초 초과 한 경우 역주행 수집 종료로 간주
                 if (passedMiliSeconds < VDSConfig.korExConfig.inverseCheckTime *1000) // 역주행 진행으로 간주
                 {
@@ -540,20 +541,74 @@ namespace MClavisRadarManageCtrl
                         {
                             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
                         }
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 종료 ******"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
 
                     }
                     else // 역주행 발생하였으나 일정거리 이하로 무시함
                     {
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리(50m) 미만이므로 역주행으로 판단 안함"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 최소 역주행거리({VDSConfig.korExConfig.inverseCheckDistance}m) 미만이므로 역주행으로 판단 안함"));
                     }
                     messageList.Clear();
                 }
+           
+#else
+                double distance = Math.Abs(lastMessage.Range_X - firstMessage.Range_X);
+
+                // 역주행 주행 거리가 일정거리 이상일 경우 처리 
+                // 1. 역주행 정보 수신 후 경과 시간이 특정 시간 초과한 경우 
+                if (passedMiliSeconds < VDSConfig.korExConfig.inverseCheckTime * 1000) // 유효 시간 초과 하지 않은 경우 
+                {
+                    if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance)
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
+                        var trafficData = GetTrafficData(firstMessage);
+                        AddTrafficDataEvent(trafficData);
+                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                    }
+                    else
+                    {
+                        // 아무일도 하지 않는다. 
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 역주행 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second 로 {VDSConfig.korExConfig.inverseCheckTime}초 . 처리여부firstMessage.processOutbreakYN ={firstMessage.processOutbreakYN} . 역주행 아직 진행중...."));
+                    }
+                }
+                else               // 유효 시간 초과로 역주행 종료로 처리함
+                {
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신 역주행 시간 이후{VDSConfig.korExConfig.inverseCheckTime}초 경과로 역주행 종료로 간주 "));
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m "));
+
+                    if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance) // 역주행 유효 주행거리 이상이고 아직 처리되지 않은 메시지의 경우 역주행 정보 추가
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m). 처리여부={firstMessage.processOutbreakYN} 이므로 역주행 정보 추가"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
+                        var trafficData = GetTrafficData(firstMessage);
+                        AddTrafficDataEvent(trafficData);
+                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+
+                    }
+                    else // 역주행 발생하였으나 이미 역주행 정보 처리 했거나 유효거리 이하로 무시함
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"firstMessage.object_id = {firstMessage.object_id} .역추행 처리 여부={firstMessage.processOutbreakYN}, 역주행 총 거리 = {distance} m 로 역주행 정보 추가 안함"));
+                    }
+                    messageList.Clear();
+                }
+
+#endif
             }
-            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
-            return result;
+                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+                return result;
         }
 
         private int ProcessStopMessage(List<MCLAVIS_MESSAGE> messageList, int direction)
@@ -573,7 +628,7 @@ namespace MClavisRadarManageCtrl
                 MCLAVIS_MESSAGE lastMessage = messageList.Last();
                 TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                 double passedMiliSeconds = ts.TotalMilliseconds;
-
+#if false   // 2022.11.21 수정
 
                 Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 정지 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
                 // 최종 정지 정보 수신 후 경과 시간이 1초 초과 한 경우 정지 종료로 간주
@@ -584,11 +639,72 @@ namespace MClavisRadarManageCtrl
                 }
                 else               // 정지 종료로 간주
                 {
-                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신 역주행 시간 이후 {VDSConfig.korExConfig.stopCheckTime}초 경과로 정지 종료로 간주 "));
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신된 정지 시간 이후 {VDSConfig.korExConfig.stopCheckTime}초 경과로 정지 종료로 간주 "));
+
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
+                    foreach (var message in messageList)
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                    }
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 ******"));
+
                     var trafficData = GetTrafficData(firstMessage);
                     AddTrafficDataEvent(trafficData);
                     messageList.Clear();
                 }
+#else
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 정지 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
+                // 최종 정지 정보 수신 후 경과 시간이 1초 초과 한 경우 정지 종료로 간주
+                if (passedMiliSeconds < VDSConfig.korExConfig.stopCheckTime * 1000) // 정지 진행중으로 간주
+                {
+
+                    TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                    double duration = stopTs.TotalMilliseconds;
+                    if(firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime)
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 ******"));
+
+                        var trafficData = GetTrafficData(firstMessage);
+                        AddTrafficDataEvent(trafficData);
+
+                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                    }
+                    else //
+                    {
+                        // 아무일도 하지 않는다. 
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 정지 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second 로 {VDSConfig.korExConfig.stopCheckTime}초 이내. 정지 아직 진행중...."));
+                    }
+
+                    
+                }
+                else               // 정지 종료로 간주
+                {
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신된 정지 시간 이후 {VDSConfig.korExConfig.stopCheckTime}초 경과로 정지 종료로 간주 "));
+                    TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                    double duration = stopTs.TotalMilliseconds;
+                    if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime)
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 ******"));
+
+                        var trafficData = GetTrafficData(firstMessage);
+                        AddTrafficDataEvent(trafficData);
+
+                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                    }
+                    messageList.Clear();
+                }
+#endif
+
             }
            // Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
@@ -639,7 +755,7 @@ namespace MClavisRadarManageCtrl
                 if (index >= 0)
                 {
                     messageList[index].Add(message);
-                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 id={index} 에 역주행 정보 추가. 역주행 리스트 갯수 messageList[index] = {messageList[index].Count}"));
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 id={message.object_id}는 역주행 정보 index={index} 추가. 역주행 리스트 갯수 messageList[index] = {messageList[index].Count}"));
                 }
                     
             }
@@ -658,7 +774,7 @@ namespace MClavisRadarManageCtrl
                 if (index >= 0)
                 {
                     messageList[index].Add(message);
-                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"정지 id={index} 에 정지 정보 추가. 정지 리스트 갯수 messageList[index] = {messageList[index].Count}"));
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"정지 정보(message.object_id={message.object_id}는 index={index} 에 정지 정보 추가. 정지 리스트 갯수 messageList[{index}] = {messageList[index].Count}"));
                 }
                     
             }
@@ -676,7 +792,7 @@ namespace MClavisRadarManageCtrl
             if (messageList[message.object_id].Count > 0) // 이미 역주행 정보가 할당 되었을 경우 해당 Id 에 추가한다. 
             {
                 result = message.object_id;
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 리스트 갯수 messageList[message.object_id].Count = {messageList[message.object_id].Count} 이므로 이미 할당된 역주행 id 리턴"));
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"message.object_id={message.object_id} 역주행 리스트 갯수 messageList[{message.object_id}].Count = {messageList[message.object_id].Count} 이므로 이미 할당된 역주행 index({message.object_id}) 리턴"));
             }
                 
             else

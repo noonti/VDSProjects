@@ -24,6 +24,9 @@ namespace MClavisRadarManageCtrl.Protocol
 
         public String DETECT_TIME;
 
+        public String processOutbreakYN ;
+
+
     }
 
 
