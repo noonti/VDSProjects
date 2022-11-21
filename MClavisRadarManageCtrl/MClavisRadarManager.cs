@@ -659,12 +659,12 @@ namespace MClavisRadarManageCtrl
                 }
 #else
                 Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 정지 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
+
+                TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                double duration = stopTs.TotalMilliseconds;
                 // 최종 정지 정보 수신 후 경과 시간이 1초 초과 한 경우 정지 종료로 간주
                 if (passedMiliSeconds < VDSConfig.korExConfig.stopCheckTime * 1000) // 정지 진행중으로 간주
                 {
-
-                    TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
-                    double duration = stopTs.TotalMilliseconds;
                     if(firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime * 1000)
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
@@ -690,8 +690,8 @@ namespace MClavisRadarManageCtrl
                 else               // 정지 종료로 간주
                 {
                     Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"최종 수신된 정지 시간 이후 {VDSConfig.korExConfig.stopCheckTime}초 경과로 정지 종료로 간주 "));
-                    TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
-                    double duration = stopTs.TotalMilliseconds;
+                    //TimeSpan stopTs = DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null) - DateTime.ParseExact(firstMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                    //double duration = stopTs.TotalMilliseconds;
                     if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime * 1000)
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
