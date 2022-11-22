@@ -167,8 +167,8 @@ namespace MClavisRadarManageCtrl
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            //ProcessInverseMessageList();
-            //ProcessStopMessageList();
+            ProcessInverseMessageList();
+            ProcessStopMessageList();
         }
 
         public int StartWorkThread()
@@ -482,10 +482,10 @@ namespace MClavisRadarManageCtrl
         public int ProcessInverseMessageList()
         {
             int result = 0;
-            for (int i = 1; i < 63; i++)
+            for (int i = 1; i <= 63; i++)
             {
-                ProcessInverseMessage(_inverseMessage_0[i], 0);
-                ProcessInverseMessage(_inverseMessage_1[i], 1);
+                ProcessInverseMessage( _inverseMessage_0[i], 0);
+                ProcessInverseMessage( _inverseMessage_1[i], 1);
             }
             return result;
         }
@@ -493,15 +493,15 @@ namespace MClavisRadarManageCtrl
         public int ProcessStopMessageList()
         {
             int result = 0;
-            for (int i = 1; i < 63; i++)
+            for (int i = 1; i <= 63; i++)
             {
                 ProcessStopMessage(_stopMessage_0[i], 0);
-                ProcessStopMessage(_stopMessage_1[i], 1);
+                ProcessStopMessage( _stopMessage_1[i], 1);
             }
             return result;
         }
 
-        private int ProcessInverseMessage(List<MCLAVIS_MESSAGE> messageList, int direction)
+        private int ProcessInverseMessage( List<MCLAVIS_MESSAGE> messageList, int direction)
         {
             //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int result = 0;
@@ -512,8 +512,8 @@ namespace MClavisRadarManageCtrl
             // direction :  0: 다가옴 1: 멀어짐
             lock (_inverseMessageLock)
             {
-                MCLAVIS_MESSAGE firstMessage = messageList.First();
-                MCLAVIS_MESSAGE lastMessage = messageList.Last();
+                MCLAVIS_MESSAGE firstMessage = messageList[0]; //messageList.First();
+                MCLAVIS_MESSAGE lastMessage = messageList[messageList.Count - 1]; //messageList.Last();
                 TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                 double passedMiliSeconds = ts.TotalMilliseconds;
 
@@ -575,7 +575,8 @@ namespace MClavisRadarManageCtrl
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
-                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                        firstMessage.processOutbreakYN = "Y";
+                        messageList[0] = firstMessage; // 처리완료
                     }
                     else
                     {
@@ -595,12 +596,13 @@ namespace MClavisRadarManageCtrl
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
                         foreach (var message in messageList)
                         {
-                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={firstMessage.processOutbreakYN}"));
                         }
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
-                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                        firstMessage.processOutbreakYN = "Y";
+                        messageList[0] = firstMessage; // 처리완료
 
                     }
                     else // 역주행 발생하였으나 이미 역주행 정보 처리 했거나 유효거리 이하로 무시함
@@ -629,8 +631,9 @@ namespace MClavisRadarManageCtrl
             // direction :  0: 다가옴 1: 멀어짐
             lock (_inverseMessageLock)
             {
-                MCLAVIS_MESSAGE firstMessage = messageList.First();
-                MCLAVIS_MESSAGE lastMessage = messageList.Last();
+                MCLAVIS_MESSAGE firstMessage = messageList[0]; //messageList.First();
+                MCLAVIS_MESSAGE lastMessage = messageList[messageList.Count - 1]; //messageList.Last();
+
                 TimeSpan ts = DateTime.Now - DateTime.ParseExact(lastMessage.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
                 double passedMiliSeconds = ts.TotalMilliseconds;
 #if false   // 2022.11.21 수정
@@ -667,17 +670,24 @@ namespace MClavisRadarManageCtrl
                 {
                     if(firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime * 1000)
                     {
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 1******"));
                         foreach (var message in messageList)
                         {
-                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={message.processOutbreakYN}"));
                         }
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 ******"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 1******"));
 
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
 
-                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                        firstMessage.processOutbreakYN = "Y";
+                        messageList[0] = firstMessage; // 처리완료
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 2******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={message.processOutbreakYN}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 2******"));
                     }
                     else //
                     {
@@ -694,24 +704,31 @@ namespace MClavisRadarManageCtrl
                     //double duration = stopTs.TotalMilliseconds;
                     if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.stopMinTime * 1000)
                     {
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작 ******"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작3 ******"));
                         foreach (var message in messageList)
                         {
-                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={message.processOutbreakYN}"));
                         }
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료 ******"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료3 ******"));
 
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
 
-                        firstMessage.processOutbreakYN = "Y"; // 처리완료
+                        firstMessage.processOutbreakYN = "Y";
+                        messageList[0] = firstMessage; // 처리완료
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 시작4 ******"));
+                        foreach (var message in messageList)
+                        {
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={message.processOutbreakYN}"));
+                        }
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 정지 정보 리스트 종료4 ******"));
                     }
                     messageList.Clear();
                 }
 #endif
 
             }
-           // Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
         }
 
@@ -802,7 +819,7 @@ namespace MClavisRadarManageCtrl
                 
             else
             {
-                for (i = 1; i < 63; i++)
+                for (i = 1; i <= 63; i++)
                 {
                     if (messageList[i].Count > 0)
                     {
@@ -905,7 +922,7 @@ namespace MClavisRadarManageCtrl
             }
             else
             {
-                for (i = 1; i < 63; i++)
+                for (i = 1; i <= 63; i++)
                 {
                     if (messageList[i].Count > 0)
                     {
