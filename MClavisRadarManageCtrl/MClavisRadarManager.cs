@@ -259,7 +259,14 @@ namespace MClavisRadarManageCtrl
                     }
 
                     i = _prevDataFrame.Deserialize(packet, i);
-                    ProcessDataFrame(_prevDataFrame);
+                    if(i>-1)
+                    {
+                        ProcessDataFrame(_prevDataFrame);
+                    }
+                    else 
+                    {
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"패킷 정보 이상(시작,종료 마킹 정보 오류 packet={Utility.PrintHexaString(packet, packet.Length)}"));
+                    }
                     _prevDataFrame = null;
                 }
 

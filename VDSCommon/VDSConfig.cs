@@ -405,6 +405,11 @@ namespace VDSCommon
                 value = 5;
             korExConfig.inverseMinTime = value;
 
+            double modifyValue = 0;
+            if (!double.TryParse(AppConfiguration.GetAppConfig("KOR_EX_INVERSE_MODIFY_VALUE"), out modifyValue))
+                modifyValue = 0;
+            korExConfig.inverseModifyValue = modifyValue;
+
 
 
             if (!int.TryParse(AppConfiguration.GetAppConfig("KOR_EX_STOP_GAP_TIME"), out value))
@@ -423,6 +428,10 @@ namespace VDSCommon
                 value = 5;
             korExConfig.stopMinTime = value;
 
+
+            if (!double.TryParse(AppConfiguration.GetAppConfig("KOR_EX_STOP_MODIFY_VALUE"), out modifyValue))
+                modifyValue = 0;
+            korExConfig.stopModifyValue = modifyValue;
             // korExConfig end 
 
         }
@@ -670,15 +679,17 @@ namespace VDSCommon
                 AppConfiguration.SetAppConfig("KOR_EX_INVERSE_CHECK_TIME", korExConfig.inverseCheckTime.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_INVERSE_CHECK_DISTANCE", korExConfig.inverseCheckDistance.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_INVERSE_MIN_TIME", korExConfig.inverseMinTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_INVERSE_MODIFY_VALUE", korExConfig.inverseModifyValue.ToString());
 
-
+                
 
                 AppConfiguration.SetAppConfig("KOR_EX_STOP_GAP_TIME", korExConfig.stopGapTime.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_STOP_CHECK_TIME", korExConfig.stopCheckTime.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_STOP_GAP_DISTANCE", korExConfig.stopGapDistance.ToString());
                 AppConfiguration.SetAppConfig("KOR_EX_STOP_MIN_TIME", korExConfig.stopMinTime.ToString());
+                AppConfiguration.SetAppConfig("KOR_EX_STOP_MODIFY_VALUE", korExConfig.stopModifyValue.ToString());
 
-                
+
 
                 nResult = 1;
             }

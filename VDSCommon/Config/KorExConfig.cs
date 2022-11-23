@@ -48,11 +48,14 @@ namespace VDSCommon.Config
         public int inverseCheckDistance { get; set; }
 
         public int inverseMinTime { get; set; }
+        public double inverseModifyValue { get; set; }
+
 
         public int stopGapTime { get; set; }
         public int stopCheckTime { get; set; }
         public int stopGapDistance { get; set; }
         public int stopMinTime { get; set; }
+        public double stopModifyValue { get; set; }
 
     }
 }

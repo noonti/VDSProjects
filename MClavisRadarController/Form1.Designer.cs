@@ -49,9 +49,10 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(864, 26);
+            this.button1.Location = new System.Drawing.Point(1605, 52);
+            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(139, 46);
             this.button1.TabIndex = 16;
             this.button1.Text = "Stop";
             this.button1.UseVisualStyleBackColor = true;
@@ -59,9 +60,10 @@
             // btnStart
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(783, 27);
+            this.btnStart.Location = new System.Drawing.Point(1454, 54);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.Size = new System.Drawing.Size(139, 46);
             this.btnStart.TabIndex = 15;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -70,52 +72,58 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(236, 31);
+            this.label2.Location = new System.Drawing.Point(438, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 12);
+            this.label2.Size = new System.Drawing.Size(54, 24);
             this.label2.TabIndex = 14;
             this.label2.Text = "Port";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 31);
+            this.label1.Location = new System.Drawing.Point(37, 62);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.Size = new System.Drawing.Size(160, 24);
             this.label1.TabIndex = 13;
             this.label1.Text = "Radar Address";
             // 
             // txtRemotePort
             // 
-            this.txtRemotePort.Location = new System.Drawing.Point(269, 27);
+            this.txtRemotePort.Location = new System.Drawing.Point(500, 54);
+            this.txtRemotePort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txtRemotePort.Name = "txtRemotePort";
-            this.txtRemotePort.Size = new System.Drawing.Size(55, 21);
+            this.txtRemotePort.Size = new System.Drawing.Size(99, 35);
             this.txtRemotePort.TabIndex = 12;
             this.txtRemotePort.Text = "45555";
             // 
             // txtServerAddress
             // 
             this.txtServerAddress.AcceptsReturn = true;
-            this.txtServerAddress.Location = new System.Drawing.Point(116, 27);
+            this.txtServerAddress.Location = new System.Drawing.Point(215, 54);
+            this.txtServerAddress.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txtServerAddress.Name = "txtServerAddress";
-            this.txtServerAddress.Size = new System.Drawing.Size(100, 21);
+            this.txtServerAddress.Size = new System.Drawing.Size(182, 35);
             this.txtServerAddress.TabIndex = 11;
             this.txtServerAddress.Text = "192.168.0.15";
             // 
             // txtLocalPort
             // 
-            this.txtLocalPort.Location = new System.Drawing.Point(410, 27);
+            this.txtLocalPort.Location = new System.Drawing.Point(761, 54);
+            this.txtLocalPort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txtLocalPort.Name = "txtLocalPort";
-            this.txtLocalPort.Size = new System.Drawing.Size(55, 21);
+            this.txtLocalPort.Size = new System.Drawing.Size(99, 35);
             this.txtLocalPort.TabIndex = 18;
             this.txtLocalPort.Text = "45175";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(342, 31);
+            this.label4.Location = new System.Drawing.Point(635, 62);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 12);
+            this.label4.Size = new System.Drawing.Size(118, 24);
             this.label4.TabIndex = 19;
             this.label4.Text = "Local Port";
             // 
@@ -125,10 +133,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxLog.FormattingEnabled = true;
-            this.lbxLog.ItemHeight = 12;
-            this.lbxLog.Location = new System.Drawing.Point(22, 131);
+            this.lbxLog.ItemHeight = 24;
+            this.lbxLog.Location = new System.Drawing.Point(41, 262);
+            this.lbxLog.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.lbxLog.Name = "lbxLog";
-            this.lbxLog.Size = new System.Drawing.Size(917, 292);
+            this.lbxLog.Size = new System.Drawing.Size(1700, 580);
             this.lbxLog.TabIndex = 20;
             // 
             // txtLastPacket
@@ -136,18 +145,20 @@
             this.txtLastPacket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLastPacket.Location = new System.Drawing.Point(22, 104);
+            this.txtLastPacket.Location = new System.Drawing.Point(41, 208);
+            this.txtLastPacket.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txtLastPacket.Name = "txtLastPacket";
-            this.txtLastPacket.Size = new System.Drawing.Size(917, 21);
+            this.txtLastPacket.Size = new System.Drawing.Size(1700, 35);
             this.txtLastPacket.TabIndex = 22;
             // 
             // rdgServer
             // 
             this.rdgServer.AutoSize = true;
             this.rdgServer.Checked = true;
-            this.rdgServer.Location = new System.Drawing.Point(492, 29);
+            this.rdgServer.Location = new System.Drawing.Point(914, 58);
+            this.rdgServer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.rdgServer.Name = "rdgServer";
-            this.rdgServer.Size = new System.Drawing.Size(71, 16);
+            this.rdgServer.Size = new System.Drawing.Size(137, 28);
             this.rdgServer.TabIndex = 23;
             this.rdgServer.TabStop = true;
             this.rdgServer.Text = "서버모드";
@@ -156,9 +167,10 @@
             // rdgClient
             // 
             this.rdgClient.AutoSize = true;
-            this.rdgClient.Location = new System.Drawing.Point(581, 28);
+            this.rdgClient.Location = new System.Drawing.Point(1079, 56);
+            this.rdgClient.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.rdgClient.Name = "rdgClient";
-            this.rdgClient.Size = new System.Drawing.Size(71, 16);
+            this.rdgClient.Size = new System.Drawing.Size(137, 28);
             this.rdgClient.TabIndex = 24;
             this.rdgClient.Text = "서버모드";
             this.rdgClient.UseVisualStyleBackColor = true;
@@ -166,9 +178,10 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(22, 75);
+            this.button2.Location = new System.Drawing.Point(41, 150);
+            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 23);
+            this.button2.Size = new System.Drawing.Size(199, 46);
             this.button2.TabIndex = 25;
             this.button2.Text = "Start Manager";
             this.button2.UseVisualStyleBackColor = true;
@@ -177,9 +190,10 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(156, 75);
+            this.button3.Location = new System.Drawing.Point(290, 150);
+            this.button3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 23);
+            this.button3.Size = new System.Drawing.Size(199, 46);
             this.button3.TabIndex = 26;
             this.button3.Text = "Stop Manager";
             this.button3.UseVisualStyleBackColor = true;
@@ -187,9 +201,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(323, 75);
+            this.button4.Location = new System.Drawing.Point(600, 150);
+            this.button4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(240, 23);
+            this.button4.Size = new System.Drawing.Size(446, 46);
             this.button4.TabIndex = 27;
             this.button4.Text = "Add Inverse";
             this.button4.UseVisualStyleBackColor = true;
@@ -197,19 +212,20 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(581, 75);
+            this.button5.Location = new System.Drawing.Point(1079, 150);
+            this.button5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(240, 23);
+            this.button5.Size = new System.Drawing.Size(446, 46);
             this.button5.TabIndex = 28;
-            this.button5.Text = "processInvese";
+            this.button5.Text = "Find sequence";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 425);
+            this.ClientSize = new System.Drawing.Size(1766, 850);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -226,6 +242,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRemotePort);
             this.Controls.Add(this.txtServerAddress);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

@@ -22,16 +22,29 @@ namespace MClavisRadarManageCtrl.Protocol
             while(i < packet.Length)
             {
                 seq_start = FindSequence(packet, i, MClavisDefine.START_SEQUENCE);
-                seq_end = FindSequence(packet, seq_start, MClavisDefine.END_SEQUENCE);
-                if (seq_start >= 0 && seq_end  >= 0)
+                if(seq_start >=0)
                 {
-                    i += seq_end + MClavisDefine.END_SEQUENCE.Length;
-                    int checkSum = packet[seq_end - 1]; // checkSum 
-                    // 시작+4 , 종료-1 까지 데이터 영역 
-                    int dataSize = seq_end - (seq_start + MClavisDefine.START_SEQUENCE.Length) - 1;
-                    byte[] data = new byte[dataSize];
-                    Array.Copy(packet, seq_start + 4, data,0, dataSize);
-                    AddMClavisMessage(data);
+                    seq_end = FindSequence(packet, seq_start, MClavisDefine.END_SEQUENCE);
+                    if ( seq_end >= 0)
+                    {
+                        i += seq_end + MClavisDefine.END_SEQUENCE.Length;
+                        int checkSum = packet[seq_end - 1]; // checkSum 
+                                                            // 시작+4 , 종료-1 까지 데이터 영역 
+                        int dataSize = seq_end - (seq_start + MClavisDefine.START_SEQUENCE.Length) - 1;
+                        byte[] data = new byte[dataSize];
+                        Array.Copy(packet, seq_start + 4, data, 0, dataSize);
+                        AddMClavisMessage(data);
+                    }
+                    else
+                    {
+                        i = -1;
+                        break;
+                    }
+                }
+                else
+                {
+                    i = -1;
+                    break;
                 }
             }
             return i;
