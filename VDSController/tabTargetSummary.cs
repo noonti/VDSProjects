@@ -14,6 +14,7 @@ using VDSDBHandler.DBOperation;
 using VDSDBHandler.Model;
 using VDSDBHandler;
 using VDSCommon.API.Model;
+using System.Reflection;
 
 namespace VDSController
 {
@@ -134,7 +135,13 @@ namespace VDSController
             }
 
             AddRealTimeTrafficDataList(trafficDataEvent);
-         
+            this.Invoke(
+                    (System.Action)(() =>
+                    {
+
+                        CaptureCurrentFrame(trafficDataEvent);
+                    }));
+            
             return 1;
         }
 
@@ -321,10 +328,7 @@ namespace VDSController
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            StartRTSPStreaming();
-        }
+
 
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -426,6 +430,8 @@ namespace VDSController
             item.SubItems.Add(trafficDataEvent.StoppedCarYN);
             item.SubItems.Add(trafficDataEvent.reportYN!=null? trafficDataEvent.reportYN : "N");
             lvTrafficData.Items.Insert(0,item);
+
+
 
         }
 
@@ -713,5 +719,41 @@ namespace VDSController
             return result;
         }
 
-           }
+        private void darkButton1_Click(object sender, EventArgs e)
+        {
+            StartRTSPStreaming();
+        }
+
+        private void darkButton2_Click(object sender, EventArgs e)
+        {
+            StopRTSPStreaming();
+        }
+
+        private void CaptureCurrentFrame(TrafficDataEvent trafficDataEvent)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            String fileName = String.Empty;
+            String trafficEventPath = Utility.GetTrafficEventPath();
+            int nResult = 0;
+            // 차량 정지 또는 역주행의 경후 현재 Frame 파일 저장
+            if (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0 )
+            {
+                fileName = System.IO.Path.Combine(trafficEventPath, String.Format($"역주행_일시({trafficDataEvent.detectTime.Replace(":","_")})_거리({trafficDataEvent.detectDistance}m).jpg"));
+            }
+            else if(String.Compare(trafficDataEvent.StoppedCarYN, "Y") == 0)
+            {
+                fileName = System.IO.Path.Combine(trafficEventPath, String.Format($"정지_일시({trafficDataEvent.detectTime.Replace(":", "_")})_거리({trafficDataEvent.detectDistance}m).jpg"));
+            }
+            
+            if(!String.IsNullOrEmpty(fileName))
+            {
+                nResult = rtspPlayer.SaveCurrentFrame(fileName);
+                
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행/정지 발생. 현 프레임 저장(파일명={fileName} , nResult = {nResult}"));
+            }
+
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+        }
+
+    }
 }

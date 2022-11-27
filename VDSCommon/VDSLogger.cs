@@ -78,6 +78,13 @@ namespace VDSCommon
             {
                 System.IO.Directory.CreateDirectory(_path);
             }
+
+            _path = System.IO.Path.Combine(Utility.GetApplicationPath(), "TrafficEvent");
+            if (!System.IO.Directory.Exists(_path))
+            {
+                System.IO.Directory.CreateDirectory(_path);
+            }
+
             return 1;
         }
 

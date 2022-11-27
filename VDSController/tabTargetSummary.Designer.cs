@@ -188,6 +188,7 @@ namespace VDSController
             this.darkButton2.Size = new System.Drawing.Size(126, 32);
             this.darkButton2.TabIndex = 1;
             this.darkButton2.Text = "영상종료";
+            this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click);
             // 
             // darkButton1
             // 
@@ -199,16 +200,19 @@ namespace VDSController
             this.darkButton1.Size = new System.Drawing.Size(126, 32);
             this.darkButton1.TabIndex = 0;
             this.darkButton1.Text = "영상보기";
+            this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click);
             // 
             // rtspPlayer
             // 
+            this.rtspPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtspPlayer.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rtspPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtspPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.rtspPlayer.Location = new System.Drawing.Point(0, 0);
+            this.rtspPlayer.Location = new System.Drawing.Point(31, 88);
             this.rtspPlayer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rtspPlayer.Name = "rtspPlayer";
-            this.rtspPlayer.Size = new System.Drawing.Size(978, 658);
+            this.rtspPlayer.Size = new System.Drawing.Size(912, 536);
             this.rtspPlayer.TabIndex = 31;
             // 
             // chkExpandPlayer

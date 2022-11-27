@@ -168,7 +168,9 @@ namespace VDSController
                         vdsManager.SetVDSDevice(vdsDevice);
                         break;
                 }
+                
 #if false
+
 
                 vdsDevice.SetRtspStreamingUrlDelegate(new SetRtspStreamingUrlDelegate(tabTarget.SetRtspStreamingUrl));
                 vdsManager.SetVDSDevice((IVDSDevice) vdsDevice);

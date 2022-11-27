@@ -181,6 +181,21 @@ namespace VDSCommon
         }
 
 
+        public static String GetTrafficEventPath()
+        {
+            String result = String.Empty;
+            try
+            {
+                result = System.IO.Path.Combine(GetApplicationPath(), "TrafficEvent");
+            }
+            catch (Exception ex)
+            {
+                result = String.Empty;
+                AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            return result;
+        }
+
         public static bool IsConnected(Socket socket)
         {
             try

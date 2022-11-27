@@ -42,6 +42,7 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.lbSiteName = new DarkUI.Controls.DarkLabel();
+            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,7 +50,6 @@
             this.ucServerLed = new VDSCommon.ucLEDLight();
             this.RTUStatus = new SerialComManageCtrl.ucRTUStatusBar();
             this.statusTime = new DarkUI.Controls.DarkLabel();
-            this.ucTargetSummary = new VDSController.tabTargetSummary();
             this.darkMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -224,6 +224,16 @@
             this.lbSiteName.Text = " ";
             this.lbSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ucTargetSummary
+            // 
+            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
+            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTargetSummary.Name = "ucTargetSummary";
+            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
+            this.ucTargetSummary.TabIndex = 6;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -308,16 +318,6 @@
             this.statusTime.Size = new System.Drawing.Size(175, 55);
             this.statusTime.TabIndex = 0;
             this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ucTargetSummary
-            // 
-            this.ucTargetSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTargetSummary.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucTargetSummary.Location = new System.Drawing.Point(0, 0);
-            this.ucTargetSummary.Margin = new System.Windows.Forms.Padding(5);
-            this.ucTargetSummary.Name = "ucTargetSummary";
-            this.ucTargetSummary.Size = new System.Drawing.Size(1904, 889);
-            this.ucTargetSummary.TabIndex = 6;
             // 
             // MainForm
             // 
