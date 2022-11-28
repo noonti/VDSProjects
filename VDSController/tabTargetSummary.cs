@@ -135,13 +135,17 @@ namespace VDSController
             }
 
             AddRealTimeTrafficDataList(trafficDataEvent);
-            this.Invoke(
+
+            // 차량 정지 또는 역주행의 경후 현재 Frame 파일 저장
+            if (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0 ||
+                String.Compare(trafficDataEvent.StoppedCarYN, "Y") == 0 )
+            {
+                this.Invoke(
                     (System.Action)(() =>
                     {
-
                         CaptureCurrentFrame(trafficDataEvent);
                     }));
-            
+            }
             return 1;
         }
 
@@ -429,6 +433,7 @@ namespace VDSController
             item.SubItems.Add(trafficDataEvent.reverseRunYN);
             item.SubItems.Add(trafficDataEvent.StoppedCarYN);
             item.SubItems.Add(trafficDataEvent.reportYN!=null? trafficDataEvent.reportYN : "N");
+            item.Tag = trafficDataEvent;
             lvTrafficData.Items.Insert(0,item);
 
 
@@ -659,7 +664,15 @@ namespace VDSController
                     item.SubItems.Add(" - "); // 이벤트 검지 종류
                 }
                 item.SubItems.Add(String.Format($"{trafficData.DETECT_DISTANCE}")); //이벤트 검지거리
-                item.Tag = trafficData;
+                item.Tag = new TrafficDataEvent()
+                {
+                    id = trafficData.ID,
+                    detectTime = trafficData.DETECT_TIME,
+                    reverseRunYN = trafficData.REVERSE_RUN_YN,
+                    StoppedCarYN = trafficData.STOP_YN,
+                    detectDistance = trafficData.DETECT_DISTANCE,
+
+                };
                 lvOutBreakData.Items.Add(item);
                 i++;
 
@@ -732,28 +745,64 @@ namespace VDSController
         private void CaptureCurrentFrame(TrafficDataEvent trafficDataEvent)
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
-            String fileName = String.Empty;
-            String trafficEventPath = Utility.GetTrafficEventPath();
+            //String trafficEventPath = Utility.GetTrafficEventPath();
+            //String fileName = Utility.GetTrafficEventFileName(trafficDataEvent);
+            String fullFilePath = Utility.GetTrafficEventFilePath(trafficDataEvent);// System.IO.Path.Combine(trafficEventPath, fileName);
+
             int nResult = 0;
-            // 차량 정지 또는 역주행의 경후 현재 Frame 파일 저장
-            if (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0 )
-            {
-                fileName = System.IO.Path.Combine(trafficEventPath, String.Format($"역주행_일시({trafficDataEvent.detectTime.Replace(":","_")})_거리({trafficDataEvent.detectDistance}m).jpg"));
-            }
-            else if(String.Compare(trafficDataEvent.StoppedCarYN, "Y") == 0)
-            {
-                fileName = System.IO.Path.Combine(trafficEventPath, String.Format($"정지_일시({trafficDataEvent.detectTime.Replace(":", "_")})_거리({trafficDataEvent.detectDistance}m).jpg"));
-            }
+
             
-            if(!String.IsNullOrEmpty(fileName))
+            if(!String.IsNullOrEmpty(fullFilePath))
             {
-                nResult = rtspPlayer.SaveCurrentFrame(fileName);
+                nResult = rtspPlayer.SaveCurrentFrame(fullFilePath);
                 
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행/정지 발생. 현 프레임 저장(파일명={fileName} , nResult = {nResult}"));
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행/정지 발생. 현 프레임 저장(파일명={fullFilePath} , nResult = {nResult}"));
             }
 
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
         }
 
+        private void lvOutBreakData_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lvOutBreakData.SelectedIndices.Count > 0 )
+            {
+                var items = lvOutBreakData.SelectedItems;
+                foreach (ListViewItem item in items)
+                {
+                    TrafficDataEvent trafficDataEvent = (TrafficDataEvent)item.Tag;
+                    if (trafficDataEvent != null &&
+                        (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0 ||
+                         String.Compare(trafficDataEvent.StoppedCarYN, "Y") == 0))
+                    {
+                        Utility.ViewTrafficEventPicture(Utility.GetTrafficEventFilePath(trafficDataEvent));
+                    }
+                   
+                }
+            }
+
+            // 돌발 영상 출력....
+            //Utility.ViewTrafficEventPicture(String.Format(@"D:\avogadro\Projects\VDS\SOURCE\GIT\VDSController\bin\Debug\TrafficEvent\역주행_일시(2022-11-28 00_10_18.47)_거리(166.208m).jpg"));
+        }
+
+        private void lvTrafficData_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // 돌발 영상 출력....
+            if (lvTrafficData.SelectedIndices.Count > 0)
+            {
+                var items = lvTrafficData.SelectedItems;
+                foreach (ListViewItem item in items)
+                {
+                    TrafficDataEvent trafficDataEvent = (TrafficDataEvent)item.Tag;
+                    if (trafficDataEvent != null && 
+                        (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0 ||
+                         String.Compare(trafficDataEvent.StoppedCarYN, "Y") == 0) )
+                    {
+                        Utility.ViewTrafficEventPicture(Utility.GetTrafficEventFilePath(trafficDataEvent));
+                    }
+
+                }
+            }
+            //Utility.ViewTrafficEventPicture(String.Format(@"D:\avogadro\Projects\VDS\SOURCE\GIT\VDSController\bin\Debug\TrafficEvent\역주행_일시(2022-11-28 00_10_18.47)_거리(166.208m)1.jpg"));
+        }
     }
 }

@@ -137,6 +137,8 @@ namespace VDSCommon
 
         public static VirtualKeybardForm vkForm;
 
+        public static ViewTrafficEventForm viewTrafficEventForm;
+
         public static int AddLog(LOG_TYPE logType, String strLog)
         {
             int nResult = 0;
@@ -1289,6 +1291,49 @@ namespace VDSCommon
                 result = trafficDataEvent.detectDistance;
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"거리 보정 후 정보 trafficDataEvent.detectTime = {trafficDataEvent.detectTime}, trafficDataEvent.lane = {trafficDataEvent.lane}, trafficDataEvent.speed = {trafficDataEvent.speed}, trafficDataEvent.detectDistance = {trafficDataEvent.detectDistance} , trafficDataEvent.reverseRunYN = {trafficDataEvent.reverseRunYN} trafficDataEvent.StoppedCarYN = {trafficDataEvent.StoppedCarYN}, VDSConfig.korExConfig.inverseModifyValue = {VDSConfig.korExConfig.inverseModifyValue} ,VDSConfig.korExConfig.stopModifyValue = {VDSConfig.korExConfig.stopModifyValue}, result = {result}"));
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
+            return result;
+        }
+
+        public static void ViewTrafficEventPicture(String fileName)
+        {
+            if(viewTrafficEventForm==null)
+            {
+                viewTrafficEventForm = new ViewTrafficEventForm(fileName);
+            }
+            viewTrafficEventForm.ShowDialog();
+            viewTrafficEventForm = null;
+
+        }
+
+        public static String GetTrafficEventFileName(TrafficDataEvent trafficDataEvent)
+        {
+            String result = String.Empty;
+            DateTime detectTime = DateTime.ParseExact(trafficDataEvent.detectTime, VDSConfig.RADAR_TIME_FORMAT, null);
+            String timestamp = detectTime.ToString("yyyyMMddHHmmss.ff");
+
+            // 차량 정지 또는 역주행의 경후 현재 Frame 파일 저장
+            if (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0)
+            {
+                result = String.Format($"역주행_일시({timestamp})_거리({trafficDataEvent.detectDistance} m).jpg");
+            }
+            else if (String.Compare(trafficDataEvent.StoppedCarYN, "Y") == 0)
+            {
+                result = String.Format($"정지_일시({timestamp})_거리({trafficDataEvent.detectDistance} m).jpg");
+            }
+            else
+            {
+                result = String.Format($"일반_일시({timestamp})_거리({trafficDataEvent.detectDistance} m).jpg");
+            }
+
+            return result;
+        }
+
+        public static String GetTrafficEventFilePath(TrafficDataEvent trafficDataEvent)
+        {
+            String result = String.Empty;
+            String trafficEventPath = Utility.GetTrafficEventPath();
+            String fileName = GetTrafficEventFileName(trafficDataEvent);
+            result = System.IO.Path.Combine(trafficEventPath, fileName);
             return result;
         }
     }

@@ -185,6 +185,12 @@
     <Compile Include="VDSRackStatus.cs" />
     <Compile Include="VDSServer.cs" />
     <Compile Include="VDSSyncClient.cs" />
+    <Compile Include="ViewTrafficEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewTrafficEventForm.Designer.cs">
+      <DependentUpon>ViewTrafficEventForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VitualKeyboard\ucKeyButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VDSMessageBoxForm.resx">
       <DependentUpon>VDSMessageBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewTrafficEventForm.resx">
+      <DependentUpon>ViewTrafficEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VitualKeyboard\ucKeyButton.resx">
       <DependentUpon>ucKeyButton.cs</DependentUpon>

@@ -309,6 +309,7 @@ namespace VDSDBHandler.DBOperation
                 I_END_DATE = input.I_END_DATE,
                 I_LANE = input.I_LANE,
                 I_REPORT_YN = input.REPORT_YN,
+                I_STOP_YN = String.Empty,
 
             });
             return _dapperOrm.ReturnList<dynamic>("SP_GET_TRAFFIC_STAT_LIST", param, out spResult).ToList();
