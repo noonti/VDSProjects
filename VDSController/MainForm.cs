@@ -168,7 +168,13 @@ namespace VDSController
                         vdsManager.SetVDSDevice(vdsDevice);
                         break;
                 }
-                
+
+                if (!String.IsNullOrEmpty(VDSConfig.controllerConfig.StreamingURL))
+                {
+                    ucTargetSummary.StartRTSPStreaming();
+                }
+
+
 #if false
 
 

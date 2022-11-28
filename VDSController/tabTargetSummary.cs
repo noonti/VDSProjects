@@ -152,15 +152,18 @@ namespace VDSController
         public void InitializeRTSPPlayer()
         {
             rtspPlayer.SetRTSPLogDelegate(this, new FormAddLogDelegate(AddRTSPLog));
-            if(VDSConfig.controllerConfig!=null)
-            {
-                if (VDSConfig.controllerConfig.DeviceType == 1)
-                    chkExpandPlayer.Checked = true;
-                else
-                    chkExpandPlayer.Checked = false;   
-            }
-            else
-                chkExpandPlayer.Checked = false;   
+            //if(VDSConfig.controllerConfig!=null)
+            //{
+            //    if (VDSConfig.controllerConfig.DeviceType == 1)
+            //        chkExpandPlayer.Checked = true;
+            //    else
+            //        chkExpandPlayer.Checked = false;   
+            //}
+            //else
+            //    chkExpandPlayer.Checked = false;
+
+            // 무조건 영상 보이는거로 변경함.
+            chkExpandPlayer.Checked = true;
             ExpandPnPlayer(chkExpandPlayer.Checked);
         }
         
