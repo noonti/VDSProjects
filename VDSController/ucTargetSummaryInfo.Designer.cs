@@ -39,9 +39,9 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.segmentCount = new DmitryBrant.CustomControls.SevenSegmentArray();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitLane)).BeginInit();
             this.splitLane.Panel1.SuspendLayout();
             this.splitLane.Panel2.SuspendLayout();
@@ -58,7 +58,6 @@
             this.splitLane.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitLane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.splitLane.Location = new System.Drawing.Point(0, 0);
-            this.splitLane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitLane.Name = "splitLane";
             // 
             // splitLane.Panel1
@@ -68,7 +67,7 @@
             // splitLane.Panel2
             // 
             this.splitLane.Panel2.Controls.Add(this.splitContainer2);
-            this.splitLane.Size = new System.Drawing.Size(1096, 130);
+            this.splitLane.Size = new System.Drawing.Size(959, 104);
             this.splitLane.SplitterDistance = 97;
             this.splitLane.SplitterWidth = 1;
             this.splitLane.TabIndex = 1;
@@ -80,7 +79,7 @@
             this.lbLane.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbLane.Location = new System.Drawing.Point(0, 0);
             this.lbLane.Name = "lbLane";
-            this.lbLane.Size = new System.Drawing.Size(97, 130);
+            this.lbLane.Size = new System.Drawing.Size(97, 104);
             this.lbLane.TabIndex = 3;
             this.lbLane.Text = "label1";
             this.lbLane.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -90,7 +89,6 @@
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -101,9 +99,8 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.splitContainer2.Panel2.Controls.Add(this.segmentCount);
-            this.splitContainer2.Size = new System.Drawing.Size(998, 130);
-            this.splitContainer2.SplitterDistance = 846;
-            this.splitContainer2.SplitterWidth = 5;
+            this.splitContainer2.Size = new System.Drawing.Size(861, 104);
+            this.splitContainer2.SplitterDistance = 709;
             this.splitContainer2.TabIndex = 3;
             // 
             // lvTrafficData
@@ -124,10 +121,9 @@
             this.lvTrafficData.GridLines = true;
             this.lvTrafficData.HideSelection = false;
             this.lvTrafficData.Location = new System.Drawing.Point(0, 0);
-            this.lvTrafficData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvTrafficData.MultiSelect = false;
             this.lvTrafficData.Name = "lvTrafficData";
-            this.lvTrafficData.Size = new System.Drawing.Size(846, 130);
+            this.lvTrafficData.Size = new System.Drawing.Size(709, 104);
             this.lvTrafficData.TabIndex = 3;
             this.lvTrafficData.UseCompatibleStateImageBehavior = false;
             this.lvTrafficData.View = System.Windows.Forms.View.Details;
@@ -169,13 +165,18 @@
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "역주행 여부";
+            this.columnHeader9.Text = "역주행";
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader9.Width = 100;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "정지";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "센터 전송 여부";
+            this.columnHeader10.Text = "센터 전송";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 100;
             // 
@@ -195,28 +196,21 @@
             this.segmentCount.ElementWidth = 10;
             this.segmentCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.segmentCount.ItalicFactor = -0.1F;
-            this.segmentCount.Location = new System.Drawing.Point(1, 30);
-            this.segmentCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.segmentCount.Location = new System.Drawing.Point(1, 24);
             this.segmentCount.Name = "segmentCount";
-            this.segmentCount.Size = new System.Drawing.Size(144, 75);
+            this.segmentCount.Size = new System.Drawing.Size(144, 60);
             this.segmentCount.TabIndex = 12;
             this.segmentCount.TabStop = false;
             this.segmentCount.Value = "0";
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "정지 여부";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // ucTargetSummaryInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.splitLane);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucTargetSummaryInfo";
-            this.Size = new System.Drawing.Size(1096, 130);
+            this.Size = new System.Drawing.Size(959, 104);
             this.splitLane.Panel1.ResumeLayout(false);
             this.splitLane.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitLane)).EndInit();

@@ -467,19 +467,19 @@ namespace VDSController
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "역주행 여부";
+            this.columnHeader9.Text = "역주행";
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader9.Width = 100;
             // 
             // columnHeader33
             // 
-            this.columnHeader33.Text = "정지 여부";
+            this.columnHeader33.Text = "정지";
             this.columnHeader33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader33.Width = 100;
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "센터 전송 여부";
+            this.columnHeader10.Text = "센터 전송";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader10.Width = 100;
             // 
@@ -655,25 +655,25 @@ namespace VDSController
             // 
             // columnHeader34
             // 
-            this.columnHeader34.Text = "이벤트 검지 일자";
+            this.columnHeader34.Text = "이벤트 일자";
             this.columnHeader34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader34.Width = 120;
             // 
             // columnHeader35
             // 
-            this.columnHeader35.Text = "이벤트 검지 시간";
+            this.columnHeader35.Text = "이벤트 시간";
             this.columnHeader35.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader35.Width = 120;
             // 
             // columnHeader36
             // 
-            this.columnHeader36.Text = "이벤트 검지 종류";
+            this.columnHeader36.Text = "이벤트 종류";
             this.columnHeader36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader36.Width = 120;
             // 
             // columnHeader37
             // 
-            this.columnHeader37.Text = "이벤트 검지 거리";
+            this.columnHeader37.Text = "이벤트 거리";
             this.columnHeader37.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader37.Width = 120;
             // 

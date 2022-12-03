@@ -73,7 +73,7 @@ namespace VDSController
             bool result = false;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false, System.Text.Encoding.Default))
             {
-                file.WriteLine("검지시간, 차선, 방향, 길이, 속도, 점유시간, 역주행여부, 정지여부");
+                file.WriteLine("검지시간, 차선, 방향, 길이, 속도, 점유시간, 역주행, 정지");
 
                 foreach(var trafficData in trafficDataList)
                 {

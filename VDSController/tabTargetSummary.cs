@@ -706,19 +706,19 @@ namespace VDSController
             String outbreakType = String.Empty;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false, System.Text.Encoding.Default))
             {
-                file.WriteLine("일련 번호, 이벤트 검지일자,이벤트 검지 시간,이벤트 검지 종류 ,이벤트 검지거리");
+                file.WriteLine("일련 번호, 이벤트 일자,이벤트 시간,이벤트 종류 ,이벤트 거리");
 
                 for (int i = 0; i < lvOutBreakData.Items.Count; i++)
                 {
-                    var trafficData = (TRAFFIC_DATA)lvOutBreakData.Items[i].Tag;
-                    if (trafficData != null)
+                    var trafficDataEvent = (TrafficDataEvent)lvOutBreakData.Items[i].Tag;
+                    if (trafficDataEvent != null)
                     {
-                        DateTime detectTime = DateTime.ParseExact(trafficData.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
-                        if (trafficData.REVERSE_RUN_YN == "Y")
+                        DateTime detectTime = DateTime.ParseExact(trafficDataEvent.detectTime, VDSConfig.RADAR_TIME_FORMAT, null);
+                        if (trafficDataEvent.reverseRunYN == "Y")
                         {
                             outbreakType = "역주행"; // 이벤트 검지 종류
                         }
-                        else if (trafficData.STOP_YN == "Y")
+                        else if (trafficDataEvent.StoppedCarYN == "Y")
                         {
                             outbreakType = "정지"; // 이벤트 검지 종류
                         }
@@ -727,7 +727,7 @@ namespace VDSController
                             outbreakType = " - "; // 이벤트 검지 종류
                         }
 
-                        file.WriteLine($"{i+1}, {detectTime.ToString("yyyy-MM-dd")}, {detectTime.ToString("HH:mm:ss.ff")}, {outbreakType}, {trafficData.DETECT_DISTANCE}");
+                        file.WriteLine($"{i+1}, {detectTime.ToString("yyyy-MM-dd")}, {detectTime.ToString("HH:mm:ss.ff")}, {outbreakType}, {trafficDataEvent.detectDistance}");
                     }
 
                 }

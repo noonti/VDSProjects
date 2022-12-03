@@ -15,7 +15,7 @@ namespace VDSCtrlService
 {
     /// <summary>
     /// 서비스 등록 :  sc create VDSCtrlService binPath="D:\avogadro\Projects\VDS\SOURCE\2.GIT\VDSProjects\VDSCtrlService\bin\Release\VDSCtrlService.exe"
-    /// 서비스 삭제 :  sc.exe delete SensorSyncSVC 
+    /// 서비스 삭제 :  sc.exe delete VDSCtrlService 
     /// </summary>
     /// 
     public partial class VDSCtrlService : ServiceBase
