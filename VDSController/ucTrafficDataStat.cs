@@ -73,11 +73,13 @@ namespace VDSController
             bool result = false;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false, System.Text.Encoding.Default))
             {
-                file.WriteLine("검지시간, 차선, 방향, 길이, 속도, 점유시간, 역주행, 정지");
-
-                foreach(var trafficData in trafficDataList)
+                //등록일, 검지시간, 차선, 방향, 속도, 점유시간, 차량 길이(역주행 여부)
+                //file.WriteLine("검지시간, 차선, 방향, 길이, 속도, 점유시간, 역주행, 정지");
+                file.WriteLine("등록일, 검지시간, 차선, 방향, 속도, 점유시간, 차량 길이(역주행 여부)");
+                foreach (var trafficData in trafficDataList)
                 {
-                    file.WriteLine($"{trafficData.DETECT_TIME}, {trafficData.LANE}, {trafficData.DIRECTION}, {trafficData.LENGTH}, {trafficData.SPEED},  {trafficData.OCCUPY_TIME}, {trafficData.REVERSE_RUN_YN},{trafficData.STOP_YN}");
+                    var detectTime = DateTime.ParseExact(trafficData.DETECT_TIME, VDSConfig.RADAR_TIME_FORMAT, null);
+                    file.WriteLine($"{detectTime.ToString("yyyy-MM-dd")},{detectTime.ToString("HH:mm:ss.ff")}, {trafficData.LANE}, {trafficData.DIRECTION},  {trafficData.SPEED},  {trafficData.OCCUPY_TIME},{trafficData.LENGTH}({trafficData.REVERSE_RUN_YN})");
                 }
             }
             return result;

@@ -75,17 +75,21 @@ namespace VDSController
             //                            trafficDataEvent.occupyTime, trafficDataEvent.lane);
 
             //Console.WriteLine(info);
+            if(trafficDataEvent.reverseRunYN.CompareTo("Y")!=0 &&
+                trafficDataEvent.StoppedCarYN.CompareTo("Y") != 0)  // 카운터에서는 제외(역주행, 정지 등 돌발)
+            {
+                TimeSpan duration = new TimeSpan(0, 0, 0, 0, 500); //5초 후에 초기화
+                _displayTime = DateTime.Now.Add(duration);
 
-            TimeSpan duration = new TimeSpan(0, 0, 0, 0, 500); //5초 후에 초기화
-            _displayTime = DateTime.Now.Add(duration);
+                splitLane.Panel1.BackColor = Color.Blue;
+                VecycleCount++;
+                SetVecycleCount(VecycleCount);
+                segmentCount.Value = VecycleCount.ToString();
+                lbLane.ForeColor = Color.Yellow;
 
-            splitLane.Panel1.BackColor = Color.Blue;
-            VecycleCount++;
-            SetVecycleCount(VecycleCount);
-            segmentCount.Value = VecycleCount.ToString();
-            lbLane.ForeColor = Color.Yellow;
-
-            AddRealTimeTrafficDataList(trafficDataEvent);
+                AddRealTimeTrafficDataList(trafficDataEvent);
+            }
+            
 
             return 1;
         }

@@ -40,7 +40,7 @@ namespace VDSCommon
             try
             {
                 serialPort.Open();
-                isOpened = true;
+                isOpened = serialPort.IsOpen;
                 nResult = 1;
             }
             catch(Exception ex)
@@ -60,7 +60,7 @@ namespace VDSCommon
                 if (serialPort.IsOpen)
                     serialPort.Close();
                 serialPort = null;
-                isOpened = false;
+                isOpened = serialPort.IsOpen;
                 nResult = 1;
             }
             catch (Exception ex)
@@ -78,8 +78,12 @@ namespace VDSCommon
             try
             {
                 Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" send Serial Data= {Utility.PrintHexaString(data, data.Length)} "));
-                serialPort.Write(data, 0, data.Length);
-                nResult = data.Length;
+                if(serialPort.IsOpen)
+                {
+                    serialPort.Write(data, 0, data.Length);
+                    nResult = data.Length;
+                }
+                    
             }
             catch(Exception ex)
             {

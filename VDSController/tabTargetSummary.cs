@@ -418,6 +418,10 @@ namespace VDSController
 
         private void AddRealTimeTrafficDataList(TrafficDataEvent trafficDataEvent)
         {
+            // 돌발(역주행, 정지) 정보는 제외
+            if (trafficDataEvent.reverseRunYN.CompareTo("Y") == 0 || trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0)
+                return;
+
             if (lvTrafficData.Items.Count > 1000)
                 lvTrafficData.Items.RemoveAt(lvTrafficData.Items.Count - 1);
             
