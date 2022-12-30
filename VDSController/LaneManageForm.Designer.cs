@@ -29,32 +29,34 @@
         private void InitializeComponent()
         {
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
+            this.darkButton8 = new DarkUI.Controls.DarkButton();
             this.darkButton3 = new DarkUI.Controls.DarkButton();
             this.darkButton2 = new DarkUI.Controls.DarkButton();
             this.darkButton1 = new DarkUI.Controls.DarkButton();
+            this.lvLeftLane = new VDSCommon.ListViewEx();
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbLeftSortKind = new System.Windows.Forms.ComboBox();
             this.darkLabel2 = new DarkUI.Controls.DarkLabel();
             this.txtLeftLaneGroupName = new DarkUI.Controls.DarkTextBox();
             this.darkLabel1 = new DarkUI.Controls.DarkLabel();
-            this.darkButton8 = new DarkUI.Controls.DarkButton();
             this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
             this.darkButton4 = new DarkUI.Controls.DarkButton();
             this.darkButton5 = new DarkUI.Controls.DarkButton();
             this.darkButton6 = new DarkUI.Controls.DarkButton();
             this.darkButton9 = new DarkUI.Controls.DarkButton();
+            this.lvRightLane = new VDSCommon.ListViewEx();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbRightSortKind = new System.Windows.Forms.ComboBox();
             this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.txtRightLaneGroupName = new DarkUI.Controls.DarkTextBox();
             this.darkLabel4 = new DarkUI.Controls.DarkLabel();
-            this.lvRightLane = new VDSCommon.ListViewEx();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvLeftLane = new VDSCommon.ListViewEx();
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.darkButton10 = new DarkUI.Controls.DarkButton();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.darkGroupBox1.SuspendLayout();
             this.darkGroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +79,17 @@
             this.darkGroupBox1.TabIndex = 0;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "왼쪽 방향";
+            // 
+            // darkButton8
+            // 
+            this.darkButton8.Location = new System.Drawing.Point(639, 23);
+            this.darkButton8.Name = "darkButton8";
+            this.darkButton8.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton8.Size = new System.Drawing.Size(127, 26);
+            this.darkButton8.TabIndex = 9;
+            this.darkButton8.Tag = "2";
+            this.darkButton8.Text = "저장";
+            this.darkButton8.Click += new System.EventHandler(this.darkButton8_Click);
             // 
             // darkButton3
             // 
@@ -110,6 +123,43 @@
             this.darkButton1.Tag = "2";
             this.darkButton1.Text = "추가";
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click_1);
+            // 
+            // lvLeftLane
+            // 
+            this.lvLeftLane.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader5,
+            this.columnHeader1});
+            this.lvLeftLane.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvLeftLane.FullRowSelect = true;
+            this.lvLeftLane.GridLines = true;
+            this.lvLeftLane.HideSelection = false;
+            this.lvLeftLane.Location = new System.Drawing.Point(29, 54);
+            this.lvLeftLane.MultiSelect = false;
+            this.lvLeftLane.Name = "lvLeftLane";
+            this.lvLeftLane.Size = new System.Drawing.Size(604, 147);
+            this.lvLeftLane.TabIndex = 5;
+            this.lvLeftLane.UseCompatibleStateImageBehavior = false;
+            this.lvLeftLane.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "차선명";
+            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader12.Width = 150;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "실차선번호";
+            this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader13.Width = 150;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "방향";
+            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader1.Width = 150;
             // 
             // cbLeftSortKind
             // 
@@ -151,17 +201,6 @@
             this.darkLabel1.Size = new System.Drawing.Size(53, 12);
             this.darkLabel1.TabIndex = 0;
             this.darkLabel1.Text = "행선지명";
-            // 
-            // darkButton8
-            // 
-            this.darkButton8.Location = new System.Drawing.Point(639, 23);
-            this.darkButton8.Name = "darkButton8";
-            this.darkButton8.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton8.Size = new System.Drawing.Size(127, 26);
-            this.darkButton8.TabIndex = 9;
-            this.darkButton8.Tag = "2";
-            this.darkButton8.Text = "저장";
-            this.darkButton8.Click += new System.EventHandler(this.darkButton8_Click);
             // 
             // darkGroupBox2
             // 
@@ -226,6 +265,43 @@
             this.darkButton9.Text = "추가";
             this.darkButton9.Click += new System.EventHandler(this.darkButton1_Click_1);
             // 
+            // lvRightLane
+            // 
+            this.lvRightLane.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader6,
+            this.columnHeader2});
+            this.lvRightLane.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvRightLane.FullRowSelect = true;
+            this.lvRightLane.GridLines = true;
+            this.lvRightLane.HideSelection = false;
+            this.lvRightLane.Location = new System.Drawing.Point(29, 54);
+            this.lvRightLane.MultiSelect = false;
+            this.lvRightLane.Name = "lvRightLane";
+            this.lvRightLane.Size = new System.Drawing.Size(604, 147);
+            this.lvRightLane.TabIndex = 5;
+            this.lvRightLane.UseCompatibleStateImageBehavior = false;
+            this.lvRightLane.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "차선명";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 150;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "실차선번호";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "방향";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 150;
+            // 
             // cbRightSortKind
             // 
             this.cbRightSortKind.FormattingEnabled = true;
@@ -267,66 +343,6 @@
             this.darkLabel4.TabIndex = 0;
             this.darkLabel4.Text = "행선지명";
             // 
-            // lvRightLane
-            // 
-            this.lvRightLane.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader2});
-            this.lvRightLane.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvRightLane.FullRowSelect = true;
-            this.lvRightLane.GridLines = true;
-            this.lvRightLane.HideSelection = false;
-            this.lvRightLane.Location = new System.Drawing.Point(29, 54);
-            this.lvRightLane.MultiSelect = false;
-            this.lvRightLane.Name = "lvRightLane";
-            this.lvRightLane.Size = new System.Drawing.Size(604, 147);
-            this.lvRightLane.TabIndex = 5;
-            this.lvRightLane.UseCompatibleStateImageBehavior = false;
-            this.lvRightLane.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "차선명";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 150;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "실차선번호";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 150;
-            // 
-            // lvLeftLane
-            // 
-            this.lvLeftLane.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader1});
-            this.lvLeftLane.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvLeftLane.FullRowSelect = true;
-            this.lvLeftLane.GridLines = true;
-            this.lvLeftLane.HideSelection = false;
-            this.lvLeftLane.Location = new System.Drawing.Point(29, 54);
-            this.lvLeftLane.MultiSelect = false;
-            this.lvLeftLane.Name = "lvLeftLane";
-            this.lvLeftLane.Size = new System.Drawing.Size(604, 147);
-            this.lvLeftLane.TabIndex = 5;
-            this.lvLeftLane.UseCompatibleStateImageBehavior = false;
-            this.lvLeftLane.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "차선명";
-            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader12.Width = 150;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "실차선번호";
-            this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader13.Width = 150;
-            // 
             // darkButton10
             // 
             this.darkButton10.Location = new System.Drawing.Point(333, 436);
@@ -337,17 +353,17 @@
             this.darkButton10.Text = "확인";
             this.darkButton10.Click += new System.EventHandler(this.darkButton10_Click);
             // 
-            // columnHeader1
+            // columnHeader5
             // 
-            this.columnHeader1.Text = "방향";
-            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader1.Width = 150;
+            this.columnHeader5.Text = "도공 차선번호";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 100;
             // 
-            // columnHeader2
+            // columnHeader6
             // 
-            this.columnHeader2.Text = "방향";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 150;
+            this.columnHeader6.Text = "도공 차선번호";
+            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader6.Width = 100;
             // 
             // LaneManageForm
             // 
@@ -400,5 +416,7 @@
         private DarkUI.Controls.DarkButton darkButton10;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

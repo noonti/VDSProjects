@@ -402,6 +402,7 @@ namespace VDSDBHandler.DBOperation
                 I_LANE_GROUP_ID = input.LANE_GROUP_ID,
                 I_LANE_NAME = input.LANE_NAME,
                 I_LANE = input.LANE,
+                I_KOREX_LANE = input.KOREX_LANE,
                 I_DIRECTION = input.DIRECTION,
             });
             _dapperOrm.ExecuteWithoutReturn("SP_ADD_LANE_INFO", param, out spResult);
@@ -416,6 +417,7 @@ namespace VDSDBHandler.DBOperation
                 I_LANE_GROUP_ID = input.LANE_GROUP_ID,
                 I_LANE_NAME = input.LANE_NAME,
                 I_LANE = input.LANE,
+                I_KOREX_LANE = input.KOREX_LANE,
                 I_DIRECTION = input.DIRECTION,
             });
             _dapperOrm.ExecuteWithoutReturn("SP_UPDATE_LANE_INFO", param, out spResult);

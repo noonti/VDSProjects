@@ -34,6 +34,8 @@
             this.cbLane = new System.Windows.Forms.ComboBox();
             this.darkButton10 = new DarkUI.Controls.DarkButton();
             this.darkButton1 = new DarkUI.Controls.DarkButton();
+            this.cbKorExLane = new System.Windows.Forms.ComboBox();
+            this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.SuspendLayout();
             // 
             // txtLaneName
@@ -60,7 +62,7 @@
             // 
             this.darkLabel2.AutoSize = true;
             this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(211, 30);
+            this.darkLabel2.Location = new System.Drawing.Point(187, 30);
             this.darkLabel2.Name = "darkLabel2";
             this.darkLabel2.Size = new System.Drawing.Size(29, 12);
             this.darkLabel2.TabIndex = 4;
@@ -87,14 +89,14 @@
             "14",
             "15",
             "16"});
-            this.cbLane.Location = new System.Drawing.Point(246, 26);
+            this.cbLane.Location = new System.Drawing.Point(222, 26);
             this.cbLane.Name = "cbLane";
-            this.cbLane.Size = new System.Drawing.Size(121, 20);
+            this.cbLane.Size = new System.Drawing.Size(92, 20);
             this.cbLane.TabIndex = 5;
             // 
             // darkButton10
             // 
-            this.darkButton10.Location = new System.Drawing.Point(68, 73);
+            this.darkButton10.Location = new System.Drawing.Point(119, 73);
             this.darkButton10.Name = "darkButton10";
             this.darkButton10.Padding = new System.Windows.Forms.Padding(5);
             this.darkButton10.Size = new System.Drawing.Size(127, 33);
@@ -104,7 +106,7 @@
             // 
             // darkButton1
             // 
-            this.darkButton1.Location = new System.Drawing.Point(215, 73);
+            this.darkButton1.Location = new System.Drawing.Point(266, 73);
             this.darkButton1.Name = "darkButton1";
             this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
             this.darkButton1.Size = new System.Drawing.Size(127, 33);
@@ -112,11 +114,49 @@
             this.darkButton1.Text = "취소";
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click);
             // 
+            // cbKorExLane
+            // 
+            this.cbKorExLane.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbKorExLane.FormattingEnabled = true;
+            this.cbKorExLane.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16"});
+            this.cbKorExLane.Location = new System.Drawing.Point(408, 26);
+            this.cbKorExLane.Name = "cbKorExLane";
+            this.cbKorExLane.Size = new System.Drawing.Size(92, 20);
+            this.cbKorExLane.TabIndex = 15;
+            // 
+            // darkLabel3
+            // 
+            this.darkLabel3.AutoSize = true;
+            this.darkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel3.Location = new System.Drawing.Point(324, 30);
+            this.darkLabel3.Name = "darkLabel3";
+            this.darkLabel3.Size = new System.Drawing.Size(81, 12);
+            this.darkLabel3.TabIndex = 14;
+            this.darkLabel3.Text = "도로공사 차선";
+            // 
             // AddLaneInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 118);
+            this.ClientSize = new System.Drawing.Size(511, 118);
+            this.Controls.Add(this.cbKorExLane);
+            this.Controls.Add(this.darkLabel3);
             this.Controls.Add(this.darkButton1);
             this.Controls.Add(this.darkButton10);
             this.Controls.Add(this.cbLane);
@@ -140,5 +180,7 @@
         private System.Windows.Forms.ComboBox cbLane;
         private DarkUI.Controls.DarkButton darkButton10;
         private DarkUI.Controls.DarkButton darkButton1;
+        private System.Windows.Forms.ComboBox cbKorExLane;
+        private DarkUI.Controls.DarkLabel darkLabel3;
     }
 }

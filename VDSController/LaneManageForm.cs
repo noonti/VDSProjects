@@ -181,7 +181,8 @@ namespace VDSController
                     laneInfo.LANE_GROUP_ID = laneGroup.ID;
                     laneInfo.LANE_NAME = addLaneInfoForm.laneName;
                     laneInfo.LANE = addLaneInfoForm.lane;
-                    if(AddLaneInfo(laneInfo))
+                    laneInfo.KOREX_LANE = addLaneInfoForm.korExLane;
+                    if (AddLaneInfo(laneInfo))
                     {
                         laneGroup.laneInfoList.Add(laneInfo);
                         AddLaneInfoToListView(laneInfo);
@@ -247,6 +248,7 @@ namespace VDSController
 
             item = new ListViewItem(laneInfo.LANE_NAME); // 
             item.SubItems.Add(laneInfo.LANE.ToString());
+            item.SubItems.Add(laneInfo.KOREX_LANE.ToString());
             item.SubItems.Add(laneInfo.DIRECTION == (int)MOVE_DIRECTION.TO_LEFT ? "왼쪽으로" : "오른쪽으로");
             item.Tag = laneInfo;
             list.Items.Add(item);
@@ -283,6 +285,7 @@ namespace VDSController
                         {
                             laneInfo.LANE_NAME = addLaneInfoForm.laneName;
                             laneInfo.LANE = addLaneInfoForm.lane;
+                            laneInfo.KOREX_LANE = addLaneInfoForm.korExLane;
                             if (UpdateLaneInfo(laneInfo))
                             {
                                 UpdateLaneInfoToListView(item,laneInfo);
@@ -298,6 +301,7 @@ namespace VDSController
         {
             item.SubItems[0].Text = laneInfo.LANE_NAME;
             item.SubItems[1].Text = laneInfo.LANE.ToString();
+            item.SubItems[2].Text = laneInfo.KOREX_LANE.ToString();
         }
 
         private void darkButton3_Click(object sender, EventArgs e)

@@ -20,6 +20,8 @@ namespace VDSDBHandler.Model
 
 		public int DIRECTION { get; set; }
 
+		public int KOREX_LANE { get; set; }
+
 		public String REG_DATE { get; set; }
 	}
 }

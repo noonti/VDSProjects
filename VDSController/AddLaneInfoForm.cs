@@ -17,6 +17,7 @@ namespace VDSController
     {
         public String laneName = String.Empty;
         public int lane = 0;
+        public int korExLane = 0;
         public AddLaneInfoForm()
         {
             InitializeComponent();
@@ -25,7 +26,9 @@ namespace VDSController
         public void SetLaneInfo(LANE_INFO laneInfo)
         {
             laneName = laneInfo.LANE_NAME;
-            lane = laneInfo.LANE - 1;
+            lane = laneInfo.LANE;
+            korExLane = laneInfo.KOREX_LANE;
+
         }
         private void darkButton10_Click(object sender, EventArgs e)
         {
@@ -42,6 +45,16 @@ namespace VDSController
                 Utility.ShowMessageBox("입력오류", "차선을 선택하세요", 1);
                 return;
             }
+
+            if(VDSConfig.controllerConfig.ProtocolType == 2) // 도로공사용
+            {
+                if (cbKorExLane.SelectedIndex == -1)
+                {
+                    Utility.ShowMessageBox("입력오류", "도로공사 차선을 선택하세요", 1);
+                    return;
+                }
+                korExLane = int.Parse(cbKorExLane.Text);
+            }
             lane = int.Parse(cbLane.Text);
             DialogResult = DialogResult.OK;
         }
@@ -54,7 +67,8 @@ namespace VDSController
         private void AddLaneInfoForm_Activated(object sender, EventArgs e)
         {
             txtLaneName.Text = laneName;
-            cbLane.SelectedIndex = lane ;
+            cbLane.SelectedIndex = lane - 1;
+            cbKorExLane.SelectedIndex = korExLane - 1;
         }
     
     }
