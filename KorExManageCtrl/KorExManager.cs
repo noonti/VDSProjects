@@ -214,6 +214,7 @@ namespace KorExManageCtrl
                     centerSessionContext = null;
                 }
                 sessionState = KOR_EX_SESSION_STATE.SESSION_OFFLINE;
+                _prevDataFrame = null;
                 _retryCount = 0;
             }
             catch (Exception ex)
