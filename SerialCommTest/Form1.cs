@@ -600,6 +600,16 @@ namespace SerialCommTest
 
             serialManager.RTUStatustTest(packet, packet.Length);
         }
+
+        private void darkButton9_Click_1(object sender, EventArgs e)
+        {
+            serialManager.StopManager();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            darkButton9_Click_1(sender,e);
+        }
     }
 
 

@@ -69,6 +69,7 @@
             this.darkButton2 = new DarkUI.Controls.DarkButton();
             this.darkButton5 = new DarkUI.Controls.DarkButton();
             this.darkButton7 = new DarkUI.Controls.DarkButton();
+            this.darkButton9 = new DarkUI.Controls.DarkButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.darkButton9);
             this.groupBox1.Controls.Add(this.darkButton14);
             this.groupBox1.Controls.Add(this.txtBaudRate);
             this.groupBox1.Controls.Add(this.label2);
@@ -99,7 +101,7 @@
             // 
             // darkButton14
             // 
-            this.darkButton14.Location = new System.Drawing.Point(657, 17);
+            this.darkButton14.Location = new System.Drawing.Point(527, 17);
             this.darkButton14.Name = "darkButton14";
             this.darkButton14.Padding = new System.Windows.Forms.Padding(5);
             this.darkButton14.Size = new System.Drawing.Size(139, 36);
@@ -501,6 +503,7 @@
             this.darkButton2.TabIndex = 27;
             this.darkButton2.Text = "미완성 패킷1";
             this.darkButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton2.Visible = false;
             this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click_2);
             // 
             // darkButton5
@@ -512,6 +515,7 @@
             this.darkButton5.TabIndex = 28;
             this.darkButton5.Text = "미완성 패킷2";
             this.darkButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton5.Visible = false;
             this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click_1);
             // 
             // darkButton7
@@ -523,7 +527,18 @@
             this.darkButton7.TabIndex = 29;
             this.darkButton7.Text = "완성 패킷";
             this.darkButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.darkButton7.Visible = false;
             this.darkButton7.Click += new System.EventHandler(this.darkButton7_Click_1);
+            // 
+            // darkButton9
+            // 
+            this.darkButton9.Location = new System.Drawing.Point(672, 17);
+            this.darkButton9.Name = "darkButton9";
+            this.darkButton9.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton9.Size = new System.Drawing.Size(139, 36);
+            this.darkButton9.TabIndex = 7;
+            this.darkButton9.Text = "종료";
+            this.darkButton9.Click += new System.EventHandler(this.darkButton9_Click_1);
             // 
             // Form1
             // 
@@ -547,6 +562,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RTU 제어";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -614,6 +630,7 @@
         private DarkUI.Controls.DarkButton darkButton2;
         private DarkUI.Controls.DarkButton darkButton5;
         private DarkUI.Controls.DarkButton darkButton7;
+        private DarkUI.Controls.DarkButton darkButton9;
     }
 }
 
