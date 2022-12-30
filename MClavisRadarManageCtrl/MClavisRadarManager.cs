@@ -216,7 +216,7 @@ namespace MClavisRadarManageCtrl
                             if(sock == mclavisClient.Client)
                             {
                                 byte[] packet = mclavisClient.Receive(ref remoteEP);
-                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
+                                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
                                 ProcessReceivePacket(packet);
                             }
 
