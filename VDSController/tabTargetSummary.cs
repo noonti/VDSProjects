@@ -124,8 +124,7 @@ namespace VDSController
 
         public int AddTargetInfo(TrafficDataEvent trafficDataEvent)
         {
-
-
+            
             foreach(var targetSummary in ucTargetSummaryInfo)
             {
                 if(targetSummary!=null && targetSummary.lane.travel_direction == trafficDataEvent.direction && targetSummary.lane.lane == trafficDataEvent.lane)

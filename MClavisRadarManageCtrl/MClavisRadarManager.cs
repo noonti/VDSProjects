@@ -409,6 +409,8 @@ namespace MClavisRadarManageCtrl
             result.StoppedCarYN = message.State == 10 ? "Y" : "N"; // 차량 정지 
 
 
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"레이더 차량검지 detectTime = {result.detectTime}, direction={result.direction}, lane={result.lane}, length={result.length},speed={result.speed},occupyTime={result.occupyTime} , reverseRunYN={result.reverseRunYN} ,StoppedCarYN={result.StoppedCarYN} "));
+
             // state : 6 -->  속도, 길이 산출
             // state : id:0 , 7 --> 정체 상태(30초), 8: 무차량 상태(30초), lane 값 유효
             // state : 9 --> 역주행, lane 값 0으로 고정 
@@ -424,9 +426,9 @@ namespace MClavisRadarManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             TrafficDataOperation trafficDB = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
 
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** MCLAVIS OBJECT 정보 시작****"));
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** ID={message.object_id} ,  state={message.State}, Direction={message.Lane_Dir}, Lane ={message.Lane} message.Velocity_Y={message.Velocity_Y}, message.Velocity_X = {message.Velocity_X} message.Range_Y={message.Range_Y} message.Range_X={message.Range_X} ****"));
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** MCLAVIS OBJECT 정보 종료****"));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** MCLAVIS OBJECT 정보 시작****"));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** ID={message.object_id} ,  state={message.State}, Direction={message.Lane_Dir}, Lane ={message.Lane} message.Velocity_Y={message.Velocity_Y}, message.Velocity_X = {message.Velocity_X} message.Range_Y={message.Range_Y} message.Range_X={message.Range_X} ****"));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** MCLAVIS OBJECT 정보 종료****"));
 
             trafficDB.AddRadarObjectData(new RADAR_OBJECT_DATA()
             {

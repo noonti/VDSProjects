@@ -69,14 +69,18 @@ namespace VDSController
        
         public int AddTargetInfo(TrafficDataEvent trafficDataEvent)
         {
-      
+
             //String info = String.Format(" 시간      : {0} 차선:{4}  속도      : {1} km/h 길이      : {2} cm 점유시간 : {3:f3} msec",
             //                            trafficDataEvent.detectTime, trafficDataEvent.speed , trafficDataEvent.length ,
             //                            trafficDataEvent.occupyTime, trafficDataEvent.lane);
 
             //Console.WriteLine(info);
-            if(trafficDataEvent.reverseRunYN.CompareTo("Y")!=0 &&
-                trafficDataEvent.StoppedCarYN.CompareTo("Y") != 0)  // 카운터에서는 제외(역주행, 정지 등 돌발)
+
+            if (trafficDataEvent.reverseRunYN.CompareTo("Y") == 0 || trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0)
+                return 1;
+
+            //if (trafficDataEvent.reverseRunYN.CompareTo("Y")!=0 &&
+            //    trafficDataEvent.StoppedCarYN.CompareTo("Y") != 0)  // 카운터에서는 제외(역주행, 정지 등 돌발)
             {
                 TimeSpan duration = new TimeSpan(0, 0, 0, 0, 500); //5초 후에 초기화
                 _displayTime = DateTime.Now.Add(duration);

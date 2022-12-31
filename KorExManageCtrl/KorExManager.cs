@@ -3208,7 +3208,9 @@ namespace KorExManageCtrl
             // 평균 점유율 산출
             // 평균 차량길이 산출
             List<Object> dataList = _centerData[(_activeCenterDataIndex + 1) % 2];// 저장된 센터 데이터
-            
+
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"********* traffic Data start  ********"));
+
             foreach (var data in dataList)
             {
                 trafficData = (data as TrafficDataEvent);
@@ -3239,12 +3241,16 @@ namespace KorExManageCtrl
                             laneInfo.totalLength += (trafficData.length / 10);// dm 기준...10cm = 1 dm. 1 m = 10 dm . 엠클라비스 차량 길이 단위는 m 임
                             laneInfo.totalSpeed += trafficData.speed;
                             laneInfo.totalOccupyTime += trafficData.occupyTime;
+
+                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"Lane={trafficData.korExLane}, length(dm)={(trafficData.length / 10)} speed={trafficData.speed} , occupyTime={trafficData.occupyTime}"));
+
                         }
                         
                      }
                 }
             }
-
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"********* traffic Data end  ********"));
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"********* traffic Data stat start  ********"));
             var orderLaneList = result.laneInfoList.OrderBy(x => x.lane).ToList();
             for (int i = 0; i < orderLaneList.Count; i++)
             {
@@ -3273,8 +3279,12 @@ namespace KorExManageCtrl
                     lane.carLength = 0;
 
                 }
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" 교통 정보 lane={i+1},  totalTrafficCount={totalTrafficCount} small={lane.smallTrafficCount} middle={lane.middleTrafficCount} large={lane.largeTrafficCount} "));
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" 교통 정보 lane={i+1},  lane.speed={lane.speed} lane.occupyRatio={lane.occupyRatio}, lane.carLength = {lane.carLength} "));
+                
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"********* traffic Data stat end  ********"));
+
+
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" 교통 정보 lane={lane.lane},  totalTrafficCount={totalTrafficCount} small={lane.smallTrafficCount} middle={lane.middleTrafficCount} large={lane.largeTrafficCount} ,totalSpeed={lane.totalSpeed}, totalOccupyTime={lane.totalOccupyTime}, totalLength={lane.totalLength}"));
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" 교통 정보 lane={lane.lane},  lane.speed(평균)={lane.speed} lane.occupyRatio(평균)={lane.occupyRatio}({(_currentSyncDateTime - _prevSyncDateTime).TotalMilliseconds} milisecond), lane.carLength(평균)= {lane.carLength} "));
             }
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return result;
