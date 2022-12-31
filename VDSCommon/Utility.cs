@@ -1270,7 +1270,7 @@ namespace VDSCommon
 
             if (trafficDataEvent.detectDistance < 0)
                 isMinus = true;
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"거리 보정 전 정보 trafficDataEvent.detectTime = {trafficDataEvent.detectTime}, trafficDataEvent.lane = {trafficDataEvent.lane}, trafficDataEvent.speed = {trafficDataEvent.speed}, trafficDataEvent.detectDistance = {trafficDataEvent.detectDistance} , trafficDataEvent.reverseRunYN = {trafficDataEvent.reverseRunYN} trafficDataEvent.StoppedCarYN = {trafficDataEvent.StoppedCarYN}, VDSConfig.korExConfig.inverseModifyValue = {VDSConfig.korExConfig.inverseModifyValue} ,VDSConfig.korExConfig.stopModifyValue = {VDSConfig.korExConfig.stopModifyValue}"));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"거리 보정 전 정보 trafficDataEvent.detectTime = {trafficDataEvent.detectTime}, trafficDataEvent.lane = {trafficDataEvent.lane}, trafficDataEvent.speed = {trafficDataEvent.speed}, trafficDataEvent.detectDistance = {trafficDataEvent.detectDistance} , trafficDataEvent.reverseRunYN = {trafficDataEvent.reverseRunYN} trafficDataEvent.StoppedCarYN = {trafficDataEvent.StoppedCarYN}, VDSConfig.korExConfig.inverseModifyValue = {VDSConfig.korExConfig.inverseModifyValue} ,VDSConfig.korExConfig.stopModifyValue = {VDSConfig.korExConfig.stopModifyValue}"));
             if (String.Compare(trafficDataEvent.reverseRunYN, "Y") == 0)
             {
                 result = (isMinus==true? -1:1) * (Math.Abs(trafficDataEvent.detectDistance) + VDSConfig.korExConfig.inverseModifyValue);
@@ -1289,7 +1289,7 @@ namespace VDSCommon
             }
             else
                 result = trafficDataEvent.detectDistance;
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"거리 보정 후 정보 trafficDataEvent.detectTime = {trafficDataEvent.detectTime}, trafficDataEvent.lane = {trafficDataEvent.lane}, trafficDataEvent.speed = {trafficDataEvent.speed}, trafficDataEvent.detectDistance = {trafficDataEvent.detectDistance} , trafficDataEvent.reverseRunYN = {trafficDataEvent.reverseRunYN} trafficDataEvent.StoppedCarYN = {trafficDataEvent.StoppedCarYN}, VDSConfig.korExConfig.inverseModifyValue = {VDSConfig.korExConfig.inverseModifyValue} ,VDSConfig.korExConfig.stopModifyValue = {VDSConfig.korExConfig.stopModifyValue}, result = {result}"));
+            //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"거리 보정 후 정보 trafficDataEvent.detectTime = {trafficDataEvent.detectTime}, trafficDataEvent.lane = {trafficDataEvent.lane}, trafficDataEvent.speed = {trafficDataEvent.speed}, trafficDataEvent.detectDistance = {trafficDataEvent.detectDistance} , trafficDataEvent.reverseRunYN = {trafficDataEvent.reverseRunYN} trafficDataEvent.StoppedCarYN = {trafficDataEvent.StoppedCarYN}, VDSConfig.korExConfig.inverseModifyValue = {VDSConfig.korExConfig.inverseModifyValue} ,VDSConfig.korExConfig.stopModifyValue = {VDSConfig.korExConfig.stopModifyValue}, result = {result}"));
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
             return result;
         }

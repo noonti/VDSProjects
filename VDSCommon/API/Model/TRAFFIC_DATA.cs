@@ -12,6 +12,8 @@ namespace VDSCommon.API.Model
         public String CONTROLLER_ID { get; set; }
         public String VDS_TYPE { get; set; }
         public int LANE { get; set; }
+
+        
         public int DIRECTION { get; set; }
         public int LENGTH { get; set; }
         public double SPEED { get; set; }

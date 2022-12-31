@@ -37,5 +37,7 @@ namespace VDSCommon
         public String trafficJamYN { get; set; } // 정체 여부
 
         public String StoppedCarYN { get; set; } // 차량 정지 여부
+
+        public int korExLane { get; set; }
     }
 }

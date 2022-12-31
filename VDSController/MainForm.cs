@@ -44,7 +44,7 @@ namespace VDSController
         Timer _timer = new Timer();
         bool _initialActiviated = false;
 
-        List<LANE_GROUP> laneGroupList = new List<LANE_GROUP>();
+        //List<LANE_GROUP> laneGroupList = new List<LANE_GROUP>();
 
         public MainForm()
         {
@@ -448,14 +448,14 @@ namespace VDSController
         private void GetLaneGroupList()
         {
             TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
-            laneGroupList = db.GetLaneGroupList(new LANE_GROUP()
+            GlobalCommonData.laneGroupList = db.GetLaneGroupList(new LANE_GROUP()
             {
 
             }, out SP_RESULT spResult).ToList();
 
-            GetLaneInfoList(laneGroupList);
+            GetLaneInfoList(GlobalCommonData.laneGroupList);
 
-            var leftLaneGroup = laneGroupList.Where(x => x.DIRECTION == (int)MOVE_DIRECTION.TO_LEFT).FirstOrDefault();
+            var leftLaneGroup = GlobalCommonData.laneGroupList.Where(x => x.DIRECTION == (int)MOVE_DIRECTION.TO_LEFT).FirstOrDefault();
             if(leftLaneGroup!=null)
             {
                 VDSConfig.ToLeftLaneGroup = new LaneGroup()
@@ -477,7 +477,7 @@ namespace VDSController
 
             }
 
-            var rightLaneGroup = laneGroupList.Where(x => x.DIRECTION == (int)MOVE_DIRECTION.TO_RIGHT).FirstOrDefault();
+            var rightLaneGroup = GlobalCommonData.laneGroupList.Where(x => x.DIRECTION == (int)MOVE_DIRECTION.TO_RIGHT).FirstOrDefault();
             if (rightLaneGroup != null)
             {
                 VDSConfig.ToRIghtLaneGroup = new LaneGroup()

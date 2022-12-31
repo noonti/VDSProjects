@@ -60,11 +60,9 @@ namespace VDSController
             item.SubItems.Add(data.LENGTH.ToString());
             item.SubItems.Add(data.SPEED.ToString());
             item.SubItems.Add(data.OCCUPY_TIME.ToString());
-            //item.SubItems.Add(data.LOOP1_OCCUPY_TIME.ToString());
-            //item.SubItems.Add(data.LOOP2_OCCUPY_TIME.ToString());
             item.SubItems.Add(data.REVERSE_RUN_YN);
             item.SubItems.Add(data.STOP_YN);
-            item.SubItems.Add(data.REPORT_YN);
+            //item.SubItems.Add(data.REPORT_YN);
             lvTrafficData.Items.Add(item);
         }
 

@@ -43,7 +43,6 @@ namespace VDSController
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.darkGroupBox2.SuspendLayout();
             this.darkGroupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +76,7 @@ namespace VDSController
             this.darkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.darkButton1.Location = new System.Drawing.Point(809, 12);
             this.darkButton1.Name = "darkButton1";
-            this.darkButton1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
             this.darkButton1.Size = new System.Drawing.Size(128, 32);
             this.darkButton1.TabIndex = 0;
             this.darkButton1.Text = "CSV 저장";
@@ -104,8 +103,7 @@ namespace VDSController
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader9,
-            this.columnHeader11,
-            this.columnHeader10});
+            this.columnHeader11});
             this.lvTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvTrafficData.FullRowSelect = true;
             this.lvTrafficData.GridLines = true;
@@ -165,12 +163,6 @@ namespace VDSController
             this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader11.Width = 100;
             // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "센터 전송";
-            this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 100;
-            // 
             // ucTrafficDataStat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -197,7 +189,6 @@ namespace VDSController
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private DarkUI.Controls.DarkLabel lbTotalCount;
         private DarkUI.Controls.DarkButton darkButton1;
         private System.Windows.Forms.ColumnHeader columnHeader11;

@@ -48,7 +48,7 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
                 idx += 4;
                 result[idx++] = (byte)laneInfoList.Count;
 
-                foreach (var lane in laneInfoList)
+                foreach (var lane in laneInfoList.OrderBy(x=>x.lane).ToList())
                 {
                     byte[] laneData = lane.Serialize();
                     Array.Copy(laneData, 0, result, idx, laneData.Length);

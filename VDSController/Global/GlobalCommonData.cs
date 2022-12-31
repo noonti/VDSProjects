@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VDSCommon;
 using VDSCommon.API.Model;
 using VDSDBHandler.DBOperation.VDSManage;
+using VDSDBHandler.Model;
 
 namespace VDSController.Global
 {
@@ -16,6 +17,7 @@ namespace VDSController.Global
         public static List<VDS_GROUPS> vdsGroupsList = new List<VDS_GROUPS>();
         public static List<VDS_TYPE> vdsTypeList = new List<VDS_TYPE>();
         public static List<KorexOffice> korexOfficeList = new List<KorexOffice>();
+        public static List<LANE_GROUP> laneGroupList = new List<LANE_GROUP>();
 
         public static void GetCommonData()
         {

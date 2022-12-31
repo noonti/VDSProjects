@@ -9,7 +9,7 @@ namespace KorExManageCtrl.VDSProtocol
 {
     public class AccuTrafficDataResponse : IExOPData
     {
-        public ushort[] volumData = new ushort[32];
+        public ushort[] volumData = new ushort[16];
 
 
 
@@ -18,7 +18,7 @@ namespace KorExManageCtrl.VDSProtocol
             int idx = 0;
             
             byte[] volume = new byte[2];
-            for (int i = 0; i < 32 && idx < packet.Length; i++)
+            for (int i = 0; i < 16 && idx < packet.Length; i++)
             {
                 Array.Copy(packet, idx, volume, 0, 2);
                 idx += 2;
@@ -36,8 +36,8 @@ namespace KorExManageCtrl.VDSProtocol
             try
             {
                 int idx = 0;
-                result = new byte[64];
-                for (int i = 0; i < 32 && idx < result.Length ; i++)
+                result = new byte[32];
+                for (int i = 0; i < 16 && idx < result.Length ; i++)
                 {
                     volume = Utility.toBigEndianInt16(volumData[i]);
                     Array.Copy(volume, 0, result, idx, 2);

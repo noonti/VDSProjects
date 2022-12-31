@@ -22,6 +22,8 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
         public int totalOccupyTime;
         public int totalLength;
 
+        public int lane;
+
         public LaneInfoEx()
         {
             largeTrafficCount = 0;
@@ -33,7 +35,7 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
             totalSpeed = 0;
             totalOccupyTime = 0;
             totalLength = 0;
-
+            lane = 0;
         }
 
         public int Deserialize(byte[] packet)

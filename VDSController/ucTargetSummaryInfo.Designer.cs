@@ -38,9 +38,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.segmentCount = new DmitryBrant.CustomControls.SevenSegmentArray();
             ((System.ComponentModel.ISupportInitialize)(this.splitLane)).BeginInit();
             this.splitLane.Panel1.SuspendLayout();
@@ -111,10 +108,7 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader9,
-            this.columnHeader7,
-            this.columnHeader10});
+            this.columnHeader6});
             this.lvTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvTrafficData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvTrafficData.FullRowSelect = true;
@@ -162,23 +156,6 @@
             this.columnHeader6.Text = "점유시간(ms)";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 100;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "역주행";
-            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader9.Width = 100;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "정지";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "센터 전송";
-            this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 100;
             // 
             // segmentCount
             // 
@@ -235,9 +212,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private DmitryBrant.CustomControls.SevenSegmentArray segmentCount;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

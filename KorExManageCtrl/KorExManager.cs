@@ -35,6 +35,7 @@ namespace KorExManageCtrl
         public KOR_EX_SESSION_STATE sessionState;
 
         //public List<TRAFFIC_DATA_STAT> trafficDataList = new List<TRAFFIC_DATA_STAT>();
+        List<LANE_GROUP> laneGroupList = new List<LANE_GROUP>();
 
         public SpeedData[] speedDataStat ;
 
@@ -95,6 +96,7 @@ namespace KorExManageCtrl
 
             CloseCenterSession();
 
+            GetLaneGroupList();
             //sessionState = KOR_EX_SESSION_STATE.SESSION_OFFLINE;
 
             ReadVDSParameter();
@@ -1555,7 +1557,7 @@ namespace KorExManageCtrl
                     {
                         ID = Guid.NewGuid().ToString(),
                         PARENT_ID = parentId,
-                        LANE = i+1,
+                        LANE = laneInfo.lane,
                         LARGE_COUNT = laneInfo.largeTrafficCount,
                         MIDDLE_COUNT = laneInfo.middleTrafficCount,
                         SMALL_COUNT = laneInfo.smallTrafficCount,
@@ -1733,7 +1735,7 @@ namespace KorExManageCtrl
                 for (int i = 0;i<16;i++)
                 {
                     accuTrafficData.volumData[i] =  accuTrafficDataStat[i];
-                    accuTrafficData.volumData[i+1] = accuTrafficDataStat[i];
+                    //accuTrafficData.volumData[i+1] = accuTrafficDataStat[i];
                     accuTrafficDataStat[i] = 0; // reset 
                 }
 
@@ -2897,22 +2899,28 @@ namespace KorExManageCtrl
             {
                 // 도로공사 관련 처리 추가
                 //Console.WriteLine("KorExManager---> sendTrafficData......");
-                AddCenterData(trafficDataEvent);
-                AddLocalData(trafficDataEvent);
-                
-                if(trafficDataEvent.reverseRunYN =="Y") // 역주행일 경우 센터에 통지 
+                if (trafficDataEvent.reverseRunYN.CompareTo("Y")!=0  && trafficDataEvent.StoppedCarYN.CompareTo("Y") != 0) // 돌발 정보 아닌 경우에만 카운트
                 {
+                    trafficDataEvent.korExLane = GetKorExLaneNo(trafficDataEvent);
+                    AddCenterData(trafficDataEvent);
+                    AddLocalData(trafficDataEvent);
+
+                }
+                
+                if (trafficDataEvent.reverseRunYN.CompareTo("Y")==0) // 역주행일 경우 센터에 통지 
+                {
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 감지...."));
                     SendReverseRunNotify(trafficDataEvent);
                 }
 
-                if(trafficDataEvent.StoppedCarYN=="Y") // 정치 차량 발생
+                if(trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0) // 정지 차량 발생
                 {
-
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"정지차량 감지...."));
                 }
 
-                if(trafficDataEvent.trafficJamYN=="Y") // 정체 발생...
+                if(!String.IsNullOrEmpty(trafficDataEvent.trafficJamYN) && trafficDataEvent.trafficJamYN.CompareTo("Y") == 0) // 정체 발생...
                 {
-
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"정체 발생....."));
                 }
             }
             catch (Exception ex)
@@ -3056,18 +3064,28 @@ namespace KorExManageCtrl
         public int GetKorExLaneNo(TrafficDataEvent trafficDataEvent)
         {
             int result = 0;
-            if (trafficDataEvent.lane > 0)
+            var laneGroup = laneGroupList.Where(x => x.DIRECTION == trafficDataEvent.direction).FirstOrDefault();
+            if (laneGroup != null)
             {
-                switch (trafficDataEvent.direction)
-                {
-                    case 1: // 상행(TO RIGHT)
-                        result = VDSConfig.ToLeftLaneGroup.LaneList.Count - trafficDataEvent.lane + 1;
-                        break;
-                    case 2: // 하행(TO LEFT)
-                        result = VDSConfig.ToLeftLaneGroup.LaneList.Count + trafficDataEvent.lane;
-                        break;
-                }
+                var laneInfo = laneGroup.laneInfoList.Where(x => x.LANE == trafficDataEvent.lane).FirstOrDefault();
+                if (laneInfo != null)
+                    result = laneInfo.KOREX_LANE;
+                else
+                    result = laneGroup.laneInfoList.FirstOrDefault().KOREX_LANE; // 못찾았을 경우 첫 차선 번호 리턴(역주행, 정지 등 돌발은 차선정보 없음
             }
+
+            //if (trafficDataEvent.lane > 0)
+            //{
+            //    switch (trafficDataEvent.direction)
+            //    {
+            //        case 1: // 상행(TO RIGHT)
+            //            result = VDSConfig.ToLeftLaneGroup.LaneList.Count - trafficDataEvent.lane + 1;
+            //            break;
+            //        case 2: // 하행(TO LEFT)
+            //            result = VDSConfig.ToLeftLaneGroup.LaneList.Count + trafficDataEvent.lane;
+            //            break;
+            //    }
+            //}
             return result;
         }
 
@@ -3170,13 +3188,20 @@ namespace KorExManageCtrl
 
             result.frameNo = _lastFrameNo;
             result.errorInfo = GetErrorInfo();
-            result.laneCount = (byte)(VDSConfig.ToLeftLaneGroup.LaneList.Count + VDSConfig.ToRIghtLaneGroup.LaneList.Count);
+            //result.laneCount = (byte)(VDSConfig.ToLeftLaneGroup.LaneList.Count + VDSConfig.ToRIghtLaneGroup.LaneList.Count);
+            result.laneCount = 0;
+
             // 초기화
-            for (int i = 0; i < result.laneCount; i++)
+            foreach (var laneGroup in laneGroupList)
             {
-                LaneInfoEx lane = new LaneInfoEx();
-                result.laneInfoList.Add(lane);
+                foreach(var lane in laneGroup.laneInfoList)
+                {
+                    LaneInfoEx laneEx = new LaneInfoEx();
+                    laneEx.lane = lane.KOREX_LANE;
+                    result.laneInfoList.Add(laneEx);
+                }
             }
+            result.laneCount = (byte)result.laneInfoList.Count;
 
             // 대형, 중형, 소형 교통량 산출
             // 평균 속도 산출
@@ -3189,31 +3214,41 @@ namespace KorExManageCtrl
                 trafficData = (data as TrafficDataEvent);
                 if (trafficData != null && trafficData.lane>0)
                 {
-                    if(trafficData.lane-1 < result.laneInfoList.Count)
+                    if (trafficData.korExLane >= result.laneInfoList.Min(x => x.lane) &&
+                        trafficData.korExLane <= result.laneInfoList.Max(x => x.lane)
+                       )
                     {
                         Utility.VEHICLE_LENGTH_CATEGORY lengthCategory = Utility.GetVehicleLengthCategory(trafficData.length / 100);
-                        switch (lengthCategory)
+                        var laneInfo = result.laneInfoList.Where(x => x.lane == trafficData.korExLane).FirstOrDefault();
+                        if(laneInfo!=null)
                         {
-                            case Utility.VEHICLE_LENGTH_CATEGORY.CATEGORY_SMALL:
-                                result.laneInfoList[trafficData.lane - 1].smallTrafficCount++;
-                                break;
-                            case Utility.VEHICLE_LENGTH_CATEGORY.CATEGORY_MIDDLE:
-                                result.laneInfoList[trafficData.lane - 1].middleTrafficCount++;
-                                break;
-                            case Utility.VEHICLE_LENGTH_CATEGORY.CATEGORY_LARGE:
-                                result.laneInfoList[trafficData.lane - 1].largeTrafficCount++;
-                                break;
-                        }
+                            switch (lengthCategory)
+                            {
+                                case Utility.VEHICLE_LENGTH_CATEGORY.CATEGORY_SMALL:
+                                    laneInfo.smallTrafficCount++;
 
-                        result.laneInfoList[trafficData.lane - 1].totalLength += (trafficData.length / 10);// dm 기준...10cm = 1 dm. 1 m = 10 dm . 엠클라비스 차량 길이 단위는 m 임
-                        result.laneInfoList[trafficData.lane - 1].totalSpeed += trafficData.speed;  
-                        result.laneInfoList[trafficData.lane - 1].totalOccupyTime += trafficData.occupyTime;
-                    }
+                                    break;
+                                case Utility.VEHICLE_LENGTH_CATEGORY.CATEGORY_MIDDLE:
+                                    laneInfo.middleTrafficCount++;
+                                    break;
+                                case Utility.VEHICLE_LENGTH_CATEGORY.CATEGORY_LARGE:
+                                    laneInfo.largeTrafficCount++;
+                                    break;
+                            }
+
+                            laneInfo.totalLength += (trafficData.length / 10);// dm 기준...10cm = 1 dm. 1 m = 10 dm . 엠클라비스 차량 길이 단위는 m 임
+                            laneInfo.totalSpeed += trafficData.speed;
+                            laneInfo.totalOccupyTime += trafficData.occupyTime;
+                        }
+                        
+                     }
                 }
             }
-            for (int i = 0; i < result.laneCount; i++)
+
+            var orderLaneList = result.laneInfoList.OrderBy(x => x.lane).ToList();
+            for (int i = 0; i < orderLaneList.Count; i++)
             {
-                LaneInfoEx lane = result.laneInfoList[i];
+                LaneInfoEx lane = orderLaneList[i];
                 int totalTrafficCount = lane.smallTrafficCount + lane.middleTrafficCount + lane.largeTrafficCount;
                 if (totalTrafficCount > 0)
                 {
@@ -3248,20 +3283,52 @@ namespace KorExManageCtrl
         public SpeedDataExResponse GetSpeedDataExResponse()
         {
             SpeedDataExResponse result = new SpeedDataExResponse();
-            result.laneCount = (byte)(VDSConfig.ToLeftLaneGroup.LaneList.Count + VDSConfig.ToRIghtLaneGroup.LaneList.Count);
-            for(int i=0;i< result.laneCount;i++)
+
+            result.laneCount = 0;
+            List<LaneInfoEx> laneList = new List<LaneInfoEx>();
+
+            foreach (var laneGroup in laneGroupList)
+            {
+                foreach (var lane in laneGroup.laneInfoList)
+                {
+                    LaneInfoEx laneEx = new LaneInfoEx();
+                    laneEx.lane = lane.KOREX_LANE;
+                    laneList.Add(laneEx);
+                }
+            }
+            result.laneCount = (byte)laneList.Count;
+          
+            foreach(var laneEx in laneList.OrderBy(x=>x.lane).ToList())
             {
                 SpeedData speedData = new SpeedData();
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed Data lane={i + 1} ********** start ****** "));
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed Data lane={laneEx.lane} ********** start ****** "));
                 for (int j = 0; j < 12; j++)
                 {
-                    speedData.speedCategory[j] = speedDataStat[i].speedCategory[j];
-                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed category {j + 1} = {speedData.speedCategory[j]}"));
-                    speedDataStat[i].speedCategory[j] = 0;// 리셋
+                    if(laneEx.lane>0)
+                    {
+                        speedData.speedCategory[j] = speedDataStat[laneEx.lane - 1].speedCategory[j];
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed category {j + 1} = {speedData.speedCategory[j]}"));
+                        speedDataStat[laneEx.lane - 1].speedCategory[j] = 0;// 리셋
+                    }
+                    
                 }
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed Data lane={i + 1} ********** end ****** "));
+                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed Data lane={laneEx.lane} ********** end ****** "));
                 result.speedDataList.Add(speedData);
             }
+
+            //for(int i=0;i< result.laneCount;i++)
+            //{
+            //    SpeedData speedData = new SpeedData();
+            //    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed Data lane={i + 1} ********** start ****** "));
+            //    for (int j = 0; j < 12; j++)
+            //    {
+            //        speedData.speedCategory[j] = speedDataStat[i].speedCategory[j];
+            //        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed category {j + 1} = {speedData.speedCategory[j]}"));
+            //        speedDataStat[i].speedCategory[j] = 0;// 리셋
+            //    }
+            //    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" Speed Data lane={i + 1} ********** end ****** "));
+            //    result.speedDataList.Add(speedData);
+            //}
             return result;
         }
 
@@ -3422,6 +3489,31 @@ namespace KorExManageCtrl
                     break;
             }
             return result ;
+        }
+
+        private void GetLaneGroupList()
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            laneGroupList = db.GetLaneGroupList(new LANE_GROUP()
+            {
+
+            }, out SP_RESULT spResult).ToList();
+
+            GetLaneInfoList(laneGroupList);
+
+        }
+
+        private void GetLaneInfoList(List<LANE_GROUP> groupList)
+        {
+            TrafficDataOperation db = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
+            foreach (var group in groupList)
+            {
+                group.laneInfoList = db.GetLaneInfoList(new LANE_INFO()
+                {
+                    LANE_GROUP_ID = group.ID
+
+                }, out SP_RESULT spResult).ToList();
+            }
         }
     }
 }

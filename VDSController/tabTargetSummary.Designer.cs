@@ -60,7 +60,6 @@ namespace VDSController
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucCenterTrafficData = new VDSController.ucTrafficDataStat();
             this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
@@ -415,8 +414,7 @@ namespace VDSController
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader9,
-            this.columnHeader33,
-            this.columnHeader10});
+            this.columnHeader33});
             this.lvTrafficData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvTrafficData.FullRowSelect = true;
             this.lvTrafficData.GridLines = true;
@@ -476,12 +474,6 @@ namespace VDSController
             this.columnHeader33.Text = "정지";
             this.columnHeader33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader33.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "센터 전송";
-            this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 100;
             // 
             // tabPage2
             // 
@@ -1215,7 +1207,6 @@ namespace VDSController
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.TabPage tabPage2;
         private ucTrafficDataStat ucCenterTrafficData;
         private DarkUI.Controls.DarkGroupBox darkGroupBox3;

@@ -677,6 +677,104 @@ namespace VideoVDSServerSimulator
         {
 
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            foreach (var unisem in _clientList)
+            {
+                SendSingleTrafficDataEvent(unisem._sessionContext);
+            }
+        }
+
+        private void SendSingleTrafficDataEvent(SessionContext session)
+        {
+
+            VDSTrafficDataEvent trafficDataEvent = new VDSTrafficDataEvent();
+            //byte _lane = (byte)((DateTime.Now.Millisecond % 4)+1);
+
+            byte _lane = (byte)(int.Parse(txtLane.Text));// ((DateTime.Now.Millisecond % 8) + 1);
+            byte _direction = (byte)int.Parse(txtDirection.Text);
+            
+
+            TrafficData trafficData = new TrafficData()
+            {
+
+                id = GetTrafficDataEventID(),
+                lane = _lane, // 4 차선  상행선: 3,4 차선  하행선: 1,2 차선
+                direction = _direction,
+                length = int.Parse(txtLength.Text),
+                speed = int.Parse(txtSpeed.Text),
+                vehicle_class = 2,
+                occupyTime = GetRandomOccupyTime(),
+                loop1OccupyTime = 200,
+                loop2OccupyTime = 300,
+                //reverseRunYN = DateTime.Now.Second % 2 == 0? "N":"Y",
+                reverseRunYN = "N",
+                StoppedCarYN = "N",
+                vehicleGap = 12,
+                detectTime = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT),
+                detectDistance = -100
+
+            };
+
+            trafficDataEvent.trafficDataList.Add(trafficData);
+
+            trafficDataEvent.totalCount = trafficDataEvent.trafficDataList.Count;
+
+
+            DataFrame data = new DataFrame();
+            data.RequestType = DataFrameDefine.TYPE_COMMAND;
+            data.OpCode = DataFrameDefine.OPCODE_EVENT_TRAFFIC;
+            byte[] id = Utility.StringToByte("transactionID");
+            Array.Copy(id, 0, data.TransactionId, 0, id.Length);
+            data.opDataFrame = trafficDataEvent;
+
+            byte[] packet = data.Serialize();
+
+            if (Send(session, packet) > 0) //
+            {
+                //db.AddTrafficTestData(new TRAFFIC_DATA()
+                //{
+                //    ID = trafficData.id,
+                //    VDS_TYPE = "VDS_UNISEM",
+                //    LANE= trafficData.lane,
+                //    DIRECTION = trafficData.direction,
+                //    LENGTH = trafficData.length,
+                //    SPEED = trafficData.speed,
+                //    VEHICLE_CLASS = trafficData.vehicle_class,
+                //    OCCUPY_TIME = trafficData.occupyTime,
+                //    LOOP1_OCCUPY_TIME = trafficData.loop1OccupyTime,
+                //    LOOP2_OCCUPY_TIME = trafficData.loop2OccupyTime,
+                //    REVERSE_RUN_YN = trafficData.reverseRunYN,
+                //    VEHICLE_GAP = trafficData.vehicleGap,
+                //    DETECT_TIME = trafficData.detectTime,
+                //    REPORT_YN = "Y"
+
+                //}, out SP_RESULT spResult);
+            }
+            else
+            {
+                //Console.WriteLine("전송 실패");
+                //db.AddTrafficTestData(new TRAFFIC_DATA()
+                //{
+                //    ID = trafficData.id,
+                //    VDS_TYPE = "VDS_UNISEM",
+                //    LANE = trafficData.lane,
+                //    DIRECTION = trafficData.direction,
+                //    LENGTH = trafficData.length,
+                //    SPEED = trafficData.speed,
+                //    VEHICLE_CLASS = trafficData.vehicle_class,
+                //    OCCUPY_TIME = trafficData.occupyTime,
+                //    LOOP1_OCCUPY_TIME = trafficData.loop1OccupyTime,
+                //    LOOP2_OCCUPY_TIME = trafficData.loop2OccupyTime,
+                //    REVERSE_RUN_YN = trafficData.reverseRunYN,
+                //    VEHICLE_GAP = trafficData.vehicleGap,
+                //    DETECT_TIME = trafficData.detectTime,
+                //    REPORT_YN = "N"
+
+                //}, out SP_RESULT spResult);
+            }
+        }
     }
 
 }
