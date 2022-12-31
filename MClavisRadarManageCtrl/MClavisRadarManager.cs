@@ -46,6 +46,10 @@ namespace MClavisRadarManageCtrl
 
         private System.Timers.Timer _timer = null;
 
+        private String serverAddress = String.Empty;
+        private int serverPort = 45555;
+        private int clientPort = 47515;
+
         public MClavisRadarManager()
         {
             socketMsgThreadExitEvent.Reset();
@@ -112,10 +116,15 @@ namespace MClavisRadarManageCtrl
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"mclavis remote address={address} port={port} local port={localPort}"));
             socketList.Clear();
 
-            mclavisClient = new UdpClient(localPort);
+            clientPort = localPort;
+            serverPort = port;
+            serverAddress = address;
+
+            mclavisClient = new UdpClient(clientPort);
             mclavisClient.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
-            remoteEP = new IPEndPoint(IPAddress.Parse(address), port);
+            remoteEP = new IPEndPoint(IPAddress.Parse(serverAddress), serverPort);
             socketList.Add(mclavisClient.Client);
+            StartBroadcast();
             StartWorkThread();
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
 
@@ -124,7 +133,38 @@ namespace MClavisRadarManageCtrl
             
         }
 
-        
+        public int StartBroadcast()
+        {
+            int i = 0;
+            UdpClient mclavisServer = new UdpClient();
+            if (mclavisServer != null)
+            {
+                mclavisServer.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
+
+                byte[] packet = new byte[14];
+                packet[i++] = 0x30;
+                packet[i++] = 0x01;
+                packet[i++] = 0x00;
+
+                packet[i++] = 0xCA;
+                packet[i++] = 0xCB;
+                packet[i++] = 0xCC;
+                packet[i++] = 0xCD;
+
+                packet[i++] = 0x54;
+                packet[i++] = 0x52;
+
+                packet[i++] = (0x54 ^ 0x52) ; // check sum
+
+                packet[i++] = 0xEA;
+                packet[i++] = 0xEB;
+                packet[i++] = 0xEC;
+                packet[i++] = 0xED;
+
+                mclavisServer.Send(packet,  packet.Length, serverAddress, serverPort);
+            }
+            return 1;
+        }
 
         public int StopDevice()
         {
@@ -216,7 +256,7 @@ namespace MClavisRadarManageCtrl
                             if(sock == mclavisClient.Client)
                             {
                                 byte[] packet = mclavisClient.Receive(ref remoteEP);
-                                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
+                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
                                 ProcessReceivePacket(packet);
                             }
 
