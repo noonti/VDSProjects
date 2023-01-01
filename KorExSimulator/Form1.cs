@@ -620,15 +620,21 @@ namespace KorExSimulator
 
         private void SendReverseRunResponse(ExDataFrame frame)
         {
-            ExDataFrame response = new ExDataFrame();
-            ReverseRunResponse reverseRun = new ReverseRunResponse();
-            //Array.Copy(BitConverter.GetBytes(VDSConfig.CSN), 0, csnData.csn, 0, 4);
-            Utility.GetCSN(ref response.csn);
-            response.opData = reverseRun;
-            //response._totalLength = 9;
-            SetResponseFrame(frame, ref response, ExDataFrameDefine.ACK_NORMAL);
-
+            ExResponse resultData = new ExResponse();
+            resultData.resultCode = ExDataFrameDefine.ACK_NORMAL;
+            ExDataFrame response = MakeKorExRequest(frame.opCode, resultData);
             byte[] data = response.Serialize();
+
+
+            //ExDataFrame response = new ExDataFrame();
+            //ReverseRunResponse reverseRun = new ReverseRunResponse();
+            ////Array.Copy(BitConverter.GetBytes(VDSConfig.CSN), 0, csnData.csn, 0, 4);
+            //Array.Copy(frame.csn, response.csn, frame.csn.Length);
+            //response.opData = reverseRun;
+            ////response._totalLength = 9;
+            //SetResponseFrame(frame, ref response, ExDataFrameDefine.ACK_NORMAL);
+
+            //byte[] data = response.Serialize();
             SendByEthernet(_sessionContext, data, data.Length);
         }
 
@@ -834,7 +840,7 @@ namespace KorExSimulator
             ExDataFrame response = MakeKorExRequest(ExDataFrameDefine.OP_CHECK_SESSION_COMMAND, resultData);
 
             byte[] data = response.Serialize();
-            //SendByEthernet(_sessionContext, data, data.Length);
+            SendByEthernet(_sessionContext, data, data.Length);
         }
 
         public int SetResponseFrame(ExDataFrame request, ref ExDataFrame response, byte resultCode)
@@ -846,15 +852,16 @@ namespace KorExSimulator
                 // SENDER IP
                 // 제어기 IP 설정
                 //2001:0230:abcd:ffff:0000:0000:ffff:1111
-                Array.Copy(Utility.IPAddressToKorExFormat(VDSConfig.controllerConfig.IpAddress), 0, response.senderIP, 0, 16);
-
+                //Array.Copy(Utility.IPAddressToKorExFormat(VDSConfig.controllerConfig.IpAddress), 0, response.senderIP, 0, 16);
+                Array.Copy(response.destinationIP, 0, request.senderIP, 0, 16);
                 // DESTINATION IP
                 Array.Copy(request.senderIP, 0, response.destinationIP, 0, 16);
 
-                
+
                 // CSN 
                 //Array.Copy(BitConverter.GetBytes(VDSConfig.CSN), 0, response.csn, 0, 4);
-                Utility.GetCSN(ref response.csn);
+                //Utility.GetCSN(ref response.csn);
+                Array.Copy(request.csn, 0, response.csn, 0, request.csn.Length);
 
                 //response._csn = VDSConfig.kictConfig.csn;
 

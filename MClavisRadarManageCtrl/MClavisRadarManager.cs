@@ -256,7 +256,7 @@ namespace MClavisRadarManageCtrl
                             if(sock == mclavisClient.Client)
                             {
                                 byte[] packet = mclavisClient.Receive(ref remoteEP);
-                                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
+                                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
                                 ProcessReceivePacket(packet);
                             }
 
@@ -423,7 +423,7 @@ namespace MClavisRadarManageCtrl
 
         public int AddMClavisMessage(MCLAVIS_MESSAGE message)
         {
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+           // Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             TrafficDataOperation trafficDB = new TrafficDataOperation(VDSConfig.VDS_DB_CONN);
 
             //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"**** MCLAVIS OBJECT 정보 시작****"));
@@ -448,7 +448,7 @@ namespace MClavisRadarManageCtrl
                 Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"{spResult.ERROR_MESSAGE}"));
             }
 
-            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+           // Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
             return spResult.RESULT_COUNT;
         }
 
@@ -567,7 +567,7 @@ namespace MClavisRadarManageCtrl
                 double passedMiliSeconds = ts.TotalMilliseconds;
 
 
-                Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 역주행 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
+                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"현재시간:{DateTime.Now}, 최종 저장 역주행 시간:{lastMessage.DETECT_TIME} 경과 시간={passedMiliSeconds} mili second "));
 
 #if false     // 2022.11.21 역주행 시 처리 
                 // 최종 역주행 정보 수신 후 경과 시간이 5초 초과 한 경우 역주행 수집 종료로 간주
@@ -585,7 +585,7 @@ namespace MClavisRadarManageCtrl
                     if (distance >= VDSConfig.korExConfig.inverseCheckDistance) // 일정 거리 이상인 역주행 발생
                     {
                         Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
+                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 시작 ******"));
                         foreach (var message in messageList)
                         {
                             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
@@ -615,13 +615,13 @@ namespace MClavisRadarManageCtrl
                     //if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance)
                     if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.inverseMinTime * 1000)
                     {
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
-                        foreach (var message in messageList)
-                        {
-                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
-                        }
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
+                        //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m) 이상이므로 역주행 정보 추가"));
+                        //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 시작 ******"));
+                        //foreach (var message in messageList)
+                        //{
+                        //    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}"));
+                        //}
+                        //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
                         firstMessage.processOutbreakYN = "Y";
@@ -641,13 +641,13 @@ namespace MClavisRadarManageCtrl
                     //if (firstMessage.processOutbreakYN == "N" && distance >= VDSConfig.korExConfig.inverseCheckDistance) // 역주행 유효 주행거리 이상이고 아직 처리되지 않은 메시지의 경우 역주행 정보 추가
                     if (firstMessage.processOutbreakYN == "N" && duration >= VDSConfig.korExConfig.inverseMinTime * 1000)
                         {
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m). 처리여부={firstMessage.processOutbreakYN} 이므로 역주행 정보 추가"));
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정로 리스트 시작 ******"));
-                        foreach (var message in messageList)
-                        {
-                            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={firstMessage.processOutbreakYN}"));
-                        }
-                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
+                        //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"역주행 총 거리 = {distance} m 로 일정거리({VDSConfig.korExConfig.inverseCheckDistance} m). 처리여부={firstMessage.processOutbreakYN} 이므로 역주행 정보 추가"));
+                        //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 시작 ******"));
+                        //foreach (var message in messageList)
+                        //{
+                        //    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"detect time= {message.DETECT_TIME} , object id={message.object_id}, state = {message.State}, Dir={message.Lane_Dir}, Lane={message.Lane}, Range_X={message.Range_X} , Range_Y={message.Range_Y}, ProcessOutBreakYN={firstMessage.processOutbreakYN}"));
+                        //}
+                        //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"****** 역주행 정보 리스트 종료 ******"));
                         var trafficData = GetTrafficData(firstMessage);
                         AddTrafficDataEvent(trafficData);
                         firstMessage.processOutbreakYN = "Y";

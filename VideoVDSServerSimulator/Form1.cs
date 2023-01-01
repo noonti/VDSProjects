@@ -709,7 +709,7 @@ namespace VideoVDSServerSimulator
                 loop1OccupyTime = 200,
                 loop2OccupyTime = 300,
                 //reverseRunYN = DateTime.Now.Second % 2 == 0? "N":"Y",
-                reverseRunYN = "N",
+                reverseRunYN = chkReverse.Checked?"Y":"N",
                 StoppedCarYN = "N",
                 vehicleGap = 12,
                 detectTime = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT),

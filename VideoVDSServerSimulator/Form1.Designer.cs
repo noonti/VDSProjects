@@ -52,6 +52,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.chkReverse = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnStart
@@ -265,7 +266,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(540, 119);
+            this.button5.Location = new System.Drawing.Point(636, 119);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(174, 23);
             this.button5.TabIndex = 35;
@@ -273,11 +274,22 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
+            // chkReverse
+            // 
+            this.chkReverse.AutoSize = true;
+            this.chkReverse.Location = new System.Drawing.Point(541, 125);
+            this.chkReverse.Name = "chkReverse";
+            this.chkReverse.Size = new System.Drawing.Size(60, 16);
+            this.chkReverse.TabIndex = 36;
+            this.chkReverse.Text = "역주행";
+            this.chkReverse.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 189);
+            this.Controls.Add(this.chkReverse);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -336,6 +348,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox chkReverse;
     }
 }
 

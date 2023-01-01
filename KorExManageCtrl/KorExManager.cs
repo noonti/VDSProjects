@@ -1029,9 +1029,12 @@ namespace KorExManageCtrl
                 {
                     strLog = String.Format("도로공사 센터--> 제어기 ReadCallback {0} 바이트 데이터 수신", bytesRead);
                     Utility.AddLog(LOG_TYPE.LOG_INFO, strLog);
+                    
+
 
                     byte[] packet = new byte[bytesRead];
                     Array.Copy(session.buffer, 0, packet, 0, bytesRead);
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" 도로공사 센터--> 제어기 received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
                     int i = 0;
                     while (i < packet.Length)
                     {
@@ -1073,6 +1076,7 @@ namespace KorExManageCtrl
             }
             catch (Exception ex)
             {
+                _prevDataFrame = null; // 에러 날 경우 초기화
                 if (session._type == CLIENT_TYPE.KICT_EVNT_CLIENT)
                 {
                     Console.WriteLine("event client error22");

@@ -252,10 +252,10 @@ namespace KorExManageCtrl.VDSProtocol
                     break;
 
                 case OP_REVERSE_RUN_COMMAND:
-                    if (data.Length > 0) // 역주행 정보 통지(Data 있음)
+                    if (data.Length > 3) // 역주행 정보 통지()
                         result = new ReverseRunRequest();
                     else
-                        result = new ReverseRunResponse(); // 역주행 정보 통지에 대한 응답이므로 데이터 없음
+                        result = new ReverseRunResponse(); // 역주행 정보 통지에 대한 응답(ACK,NAK)
 
                     break;
 
