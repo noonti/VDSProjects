@@ -59,8 +59,8 @@ namespace VDSCommon
             {
                 if (serialPort.IsOpen)
                     serialPort.Close();
-                serialPort = null;
                 isOpened = serialPort.IsOpen;
+                serialPort = null;
                 nResult = 1;
             }
             catch (Exception ex)

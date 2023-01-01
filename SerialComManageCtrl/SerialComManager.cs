@@ -80,7 +80,8 @@ namespace SerialComManageCtrl
             //if (rtuManager != null)
             //    rtuManager.StopManager();
 
-
+            if (prevDataFrame != null)
+                prevDataFrame = null;
 
             //if (_rtuClient == null)
             //{
@@ -171,7 +172,6 @@ namespace SerialComManageCtrl
                     {
                         Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"DataFrame 패킷 LRC 체크 실패 i={i}, packet.Length={packet.Length}"));
                     }
-
                     prevDataFrame = null;
                     nResult++;
                 }
