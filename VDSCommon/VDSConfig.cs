@@ -185,6 +185,11 @@ namespace VDSCommon
 
             controllerConfig.DeviceType = value;
 
+            value = 0;
+            if (!int.TryParse(AppConfiguration.GetAppConfig("DEVICE_POS"), out value))
+                value = 1;
+            controllerConfig.DevicePos = value;
+
 
             controllerConfig.DeviceAddress = AppConfiguration.GetAppConfig("VDS_DEVICE_ADDRESS");
             if (String.IsNullOrEmpty(controllerConfig.DeviceAddress))
@@ -587,6 +592,10 @@ namespace VDSCommon
                 AppConfiguration.SetAppConfig("VDS_DB_PASSWD", controllerConfig.DBPasswd);
 
                 AppConfiguration.SetAppConfig("VDS_TYPE", controllerConfig.DeviceType.ToString());
+
+                AppConfiguration.SetAppConfig("DEVICE_POS", controllerConfig.DevicePos.ToString());
+
+                
 
                 AppConfiguration.SetAppConfig("VDS_DEVICE_ADDRESS", controllerConfig.DeviceAddress);
 

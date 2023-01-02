@@ -99,6 +99,7 @@ namespace VDSCommon
                 rdgVideo.Checked = controllerConfig.DeviceType == 1 ? true : false;
                 rdgRadar.Checked = controllerConfig.DeviceType == 2 ? true : false;
 
+                cbDevicePos.SelectedIndex = controllerConfig.DevicePos==0? 1:(controllerConfig.DevicePos-1) ; // 1: To Right 2: To Left 
 
 
                 txtVDSDeviceAddress.Text = controllerConfig.DeviceAddress;
@@ -241,6 +242,9 @@ namespace VDSCommon
 
                 // 검지장치
                 controllerConfig.DeviceType = rdgVideo.Checked ? 1 : 2;
+
+                controllerConfig.DevicePos = cbDevicePos.SelectedIndex + 1;
+                
 
 
                 controllerConfig.DeviceAddress = txtVDSDeviceAddress.Text;

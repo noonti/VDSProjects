@@ -375,7 +375,7 @@ namespace MClavisRadarManageCtrl
         public bool IsExistMessage(MCLAVIS_MESSAGE message)
         {
             bool bResult = false;
-            int direction = message.Lane_Dir == 0 ? 0 : 1; // 0: 상행(TO RIGHT) 1: 하행(TO LEFT)
+            int direction = message.Lane_Dir == 0 ? 0 : 1; // 0: 멀어짐 1: 다가옴
             //int Lane = message.Lane - 1;
             int Lane = message.Lane;
             if (Lane >=0 && Lane <=15)
@@ -393,11 +393,12 @@ namespace MClavisRadarManageCtrl
 
         public TrafficDataEvent GetTrafficData(MCLAVIS_MESSAGE message)
         {
-
+            
             TrafficDataEvent result = new TrafficDataEvent();
             result.id = DateTime.Now.ToString("yyMMddHHmmss_") + Guid.NewGuid().ToString();
             result.detectTime = message.DETECT_TIME;// DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT);
-            result.direction = (byte)(message.Lane_Dir == 0 ? (int)MOVE_DIRECTION.TO_RIGHT : (int)MOVE_DIRECTION.TO_LEFT); // 1: 상행 2: 하행
+            //result.direction = (byte)(message.Lane_Dir == 0 ? (int)MOVE_DIRECTION.TO_RIGHT : (int)MOVE_DIRECTION.TO_LEFT); // 1: 상행 2: 하행
+            result.direction = (byte)Utility.GetLaneDirection(message.Lane_Dir);
             result.lane = message.Lane;
             result.length = (int)(message.Range_X * 100); // m 단위--> cm 단위로 변환
             result.speed = Math.Abs(message.Velocity_X);  // km/h

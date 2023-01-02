@@ -3078,18 +3078,7 @@ namespace KorExManageCtrl
                     result = laneGroup.laneInfoList.FirstOrDefault().KOREX_LANE; // 못찾았을 경우 첫 차선 번호 리턴(역주행, 정지 등 돌발은 차선정보 없음
             }
 
-            //if (trafficDataEvent.lane > 0)
-            //{
-            //    switch (trafficDataEvent.direction)
-            //    {
-            //        case 1: // 상행(TO RIGHT)
-            //            result = VDSConfig.ToLeftLaneGroup.LaneList.Count - trafficDataEvent.lane + 1;
-            //            break;
-            //        case 2: // 하행(TO LEFT)
-            //            result = VDSConfig.ToLeftLaneGroup.LaneList.Count + trafficDataEvent.lane;
-            //            break;
-            //    }
-            //}
+           
             return result;
         }
 

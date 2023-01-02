@@ -183,6 +183,8 @@
             this.darkLabel39 = new DarkUI.Controls.DarkLabel();
             this.txtControlPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel41 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel75 = new DarkUI.Controls.DarkLabel();
+            this.cbDevicePos = new DarkUI.Controls.DarkComboBox();
             this.darkGroupBox1.SuspendLayout();
             this.tabConfing.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -237,7 +239,7 @@
             this.tabPage1.Controls.Add(this.darkGroupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1130, 537);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "제어기 설정";
@@ -705,6 +707,8 @@
             this.darkGroupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox3.Controls.Add(this.cbDevicePos);
+            this.darkGroupBox3.Controls.Add(this.darkLabel75);
             this.darkGroupBox3.Controls.Add(this.txtLocalPort);
             this.darkGroupBox3.Controls.Add(this.darkLabel22);
             this.darkGroupBox3.Controls.Add(this.darkLabel16);
@@ -1042,7 +1046,7 @@
             this.tabPage2.Controls.Add(this.darkGroupBox7);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1130, 537);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "도로공사 설정";
@@ -2046,6 +2050,28 @@
             this.darkLabel41.TabIndex = 2;
             this.darkLabel41.Text = "Control Port";
             // 
+            // darkLabel75
+            // 
+            this.darkLabel75.AutoSize = true;
+            this.darkLabel75.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel75.Location = new System.Drawing.Point(751, 78);
+            this.darkLabel75.Name = "darkLabel75";
+            this.darkLabel75.Size = new System.Drawing.Size(109, 15);
+            this.darkLabel75.TabIndex = 20;
+            this.darkLabel75.Text = "검지장치 설치 위치";
+            // 
+            // cbDevicePos
+            // 
+            this.cbDevicePos.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbDevicePos.FormattingEnabled = true;
+            this.cbDevicePos.Items.AddRange(new object[] {
+            "왼쪽으로 향함",
+            "오른쪽으로 향함"});
+            this.cbDevicePos.Location = new System.Drawing.Point(864, 74);
+            this.cbDevicePos.Name = "cbDevicePos";
+            this.cbDevicePos.Size = new System.Drawing.Size(121, 22);
+            this.cbDevicePos.TabIndex = 22;
+            // 
             // ucVDSConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2252,5 +2278,7 @@
         private DarkUI.Controls.DarkLabel darkLabel71;
         private DarkUI.Controls.DarkTextBox txtInverseModifyValue;
         private DarkUI.Controls.DarkLabel darkLabel72;
+        private DarkUI.Controls.DarkComboBox cbDevicePos;
+        private DarkUI.Controls.DarkLabel darkLabel75;
     }
 }

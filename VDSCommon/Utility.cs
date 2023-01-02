@@ -1336,6 +1336,30 @@ namespace VDSCommon
             result = System.IO.Path.Combine(trafficEventPath, fileName);
             return result;
         }
+
+        public static MOVE_DIRECTION GetLaneDirection(int direction)
+        {
+            MOVE_DIRECTION result = MOVE_DIRECTION.TO_RIGHT;
+
+            // 1: To Right 2: To Left
+            switch (VDSConfig.controllerConfig.DevicePos)
+            {
+                case 1:   // 오른쪽을 바라보고 있을 경우 
+                    if(direction==0) // 다가옴
+                        result = MOVE_DIRECTION.TO_LEFT;
+                    else             // 멀어짐
+                        result = MOVE_DIRECTION.TO_RIGHT;
+                    break;
+                
+                case 2:  // 왼쪽을 바라보고 있을 경우 
+                    if (direction == 0) // 다가옴
+                        result = MOVE_DIRECTION.TO_RIGHT;
+                    else             // 멀어짐
+                        result = MOVE_DIRECTION.TO_LEFT;
+                    break;
+            }
+            return result;
+        }
     }
 }
 

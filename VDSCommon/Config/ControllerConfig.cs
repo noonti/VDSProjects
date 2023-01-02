@@ -57,6 +57,9 @@ namespace VDSCommon.Config
         // 검지 장치 주소
         public String DeviceAddress { get; set; }
 
+        // 레이더 설치 위치
+        public int DevicePos { get; set; }
+
         public int RemotePort { get; set; } // 원격 포트  
         public int LocalPort { get; set; }  // 로컬 포트 
 
