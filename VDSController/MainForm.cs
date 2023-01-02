@@ -394,6 +394,9 @@ namespace VDSController
                 case  ExDataFrameDefine.OP_SET_TEMPERATURE_COMMAND:
                     nResult = ProcessSetTemperature(commuData);
                     break;
+                case ExDataFrameDefine.OP_VDS_RESET_COMMAND:
+                    nResult = ProcessResetCommand(commuData);
+                    break;
             }
 
             return nResult;
@@ -419,6 +422,19 @@ namespace VDSController
 
                 }
             }
+            return nResult;
+        }
+
+        public int ProcessResetCommand(CommuData commuData)
+        {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            int nResult = 0;
+            //Reset......
+            StopVDSManager();
+            
+            StartVDSManager();
+
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료"));
             return nResult;
         }
 

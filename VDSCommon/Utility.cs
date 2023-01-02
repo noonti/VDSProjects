@@ -1339,23 +1339,23 @@ namespace VDSCommon
 
         public static MOVE_DIRECTION GetLaneDirection(int direction)
         {
-            MOVE_DIRECTION result = MOVE_DIRECTION.TO_RIGHT;
+            MOVE_DIRECTION result = MOVE_DIRECTION.TO_LEFT;
 
-            // 1: To Right 2: To Left
+            // 1:To Left  2:  To Right
             switch (VDSConfig.controllerConfig.DevicePos)
             {
-                case 1:   // 오른쪽을 바라보고 있을 경우 
+                case 1:   // 왼쪽을 바라보고 있을 경우 
                     if(direction==0) // 다가옴
-                        result = MOVE_DIRECTION.TO_LEFT;
-                    else             // 멀어짐
                         result = MOVE_DIRECTION.TO_RIGHT;
+                    else             // 멀어짐
+                        result = MOVE_DIRECTION.TO_LEFT;
                     break;
                 
-                case 2:  // 왼쪽을 바라보고 있을 경우 
+                case 2:  // 오른쪽을 바라보고 있을 경우 
                     if (direction == 0) // 다가옴
-                        result = MOVE_DIRECTION.TO_RIGHT;
-                    else             // 멀어짐
                         result = MOVE_DIRECTION.TO_LEFT;
+                    else             // 멀어짐
+                        result = MOVE_DIRECTION.TO_RIGHT;
                     break;
             }
             return result;

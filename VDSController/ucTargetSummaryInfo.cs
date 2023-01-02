@@ -128,8 +128,9 @@ namespace VDSController
         }
         public void ResetVecycleCount(DateTime time)
         {
+            lvTrafficData.Items.Clear();
             resetTime = time;
-            VecycleCount = 0;
+            SetVecycleCount(0);
         }
 
         private void button1_Click(object sender, EventArgs e)

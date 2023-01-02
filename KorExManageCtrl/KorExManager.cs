@@ -1887,16 +1887,13 @@ namespace KorExManageCtrl
             try
             {
                 ExDataFrame response = new ExDataFrame();
-                //ResetControllerResponse resetData = new ResetControllerResponse();
                 SetACKResponseFrame(workData.frame, ref response, ExDataFrameDefine.ACK_NORMAL, ExDataFrameDefine.NAK_NO_ERROR);
-
-                //response.opData = resetData;
-                //response._totalLength = 12  ;
-                //SetResponseFrame(workData.frame, ref response, ExDataFrameDefine.ACK_NORMAL_RESULT);
-
                 byte[] data = response.Serialize();
                 Send(workData.session, data);
-                nResult = 1;
+
+                // Reset 요청 (Main form)
+                CommuData commuData = Utility.GetCommuData(2, workData.session, workData.frame.opCode, workData);
+                nResult = AddCommuDataToForm(commuData);
             }
             catch (Exception ex)
             {
