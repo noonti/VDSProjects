@@ -142,24 +142,24 @@ namespace MClavisRadarManageCtrl
                 mclavisServer.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
 
                 byte[] packet = new byte[14];
-                packet[i++] = 0x30;
-                packet[i++] = 0x01;
-                packet[i++] = 0x00;
+                //packet[i++] = 0x30;
+                //packet[i++] = 0x01;
+                //packet[i++] = 0x00;
 
-                packet[i++] = 0xCA;
-                packet[i++] = 0xCB;
-                packet[i++] = 0xCC;
-                packet[i++] = 0xCD;
+                //packet[i++] = 0xCA;
+                //packet[i++] = 0xCB;
+                //packet[i++] = 0xCC;
+                //packet[i++] = 0xCD;
 
                 packet[i++] = 0x54;
                 packet[i++] = 0x52;
 
-                packet[i++] = (0x54 ^ 0x52) ; // check sum
+                //packet[i++] = (0x54 ^ 0x52) ; // check sum
 
-                packet[i++] = 0xEA;
-                packet[i++] = 0xEB;
-                packet[i++] = 0xEC;
-                packet[i++] = 0xED;
+                //packet[i++] = 0xEA;
+                //packet[i++] = 0xEB;
+                //packet[i++] = 0xEC;
+                //packet[i++] = 0xED;
 
                 mclavisServer.Send(packet,  packet.Length, serverAddress, serverPort);
             }
@@ -261,6 +261,7 @@ namespace MClavisRadarManageCtrl
                             }
 
                         }
+
                     }
                     socketMsgThreadExitEvent.Set();
                 }
