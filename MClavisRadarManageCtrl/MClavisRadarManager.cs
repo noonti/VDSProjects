@@ -141,7 +141,7 @@ namespace MClavisRadarManageCtrl
             {
                 mclavisServer.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
 
-                byte[] packet = new byte[14];
+                byte[] packet = new byte[2];
                 //packet[i++] = 0x30;
                 //packet[i++] = 0x01;
                 //packet[i++] = 0x00;
