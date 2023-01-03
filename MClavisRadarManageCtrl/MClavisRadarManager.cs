@@ -48,7 +48,7 @@ namespace MClavisRadarManageCtrl
 
         private String serverAddress = String.Empty;
         private int serverPort = 45555;
-        private int clientPort = 47515;
+        private int clientPort = 45175;
 
         public MClavisRadarManager()
         {
@@ -135,35 +135,42 @@ namespace MClavisRadarManageCtrl
 
         public int StartBroadcast()
         {
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int i = 0;
-            UdpClient mclavisServer = new UdpClient();
-            if (mclavisServer != null)
+            try
             {
-                mclavisServer.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
+                if (mclavisClient != null)
+                {
+                    byte[] packet = new byte[2];
+                    //packet[i++] = 0x30;
+                    //packet[i++] = 0x01;
+                    //packet[i++] = 0x00;
 
-                byte[] packet = new byte[2];
-                //packet[i++] = 0x30;
-                //packet[i++] = 0x01;
-                //packet[i++] = 0x00;
+                    //packet[i++] = 0xCA;
+                    //packet[i++] = 0xCB;
+                    //packet[i++] = 0xCC;
+                    //packet[i++] = 0xCD;
 
-                //packet[i++] = 0xCA;
-                //packet[i++] = 0xCB;
-                //packet[i++] = 0xCC;
-                //packet[i++] = 0xCD;
+                    packet[i++] = 0x54;
+                    packet[i++] = 0x52;
 
-                packet[i++] = 0x54;
-                packet[i++] = 0x52;
+                    //packet[i++] = (0x54 ^ 0x52) ; // check sum
 
-                //packet[i++] = (0x54 ^ 0x52) ; // check sum
+                    //packet[i++] = 0xEA;
+                    //packet[i++] = 0xEB;
+                    //packet[i++] = 0xEC;
+                    //packet[i++] = 0xED;
 
-                //packet[i++] = 0xEA;
-                //packet[i++] = 0xEB;
-                //packet[i++] = 0xEC;
-                //packet[i++] = 0xED;
-
-                mclavisServer.Send(packet,  packet.Length, serverAddress, serverPort);
+                    i = mclavisClient.Send(packet, packet.Length, serverAddress, serverPort);
+                }
             }
-            return 1;
+            catch (Exception ex)
+            {
+                Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+            }
+            
+            Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
+            return i;
         }
 
         public int StopDevice()
@@ -288,7 +295,7 @@ namespace MClavisRadarManageCtrl
             int i = 0;
             try
             {
-                while (i < packet.Length)
+                while ( i >= 0 && i < packet.Length )
                 {
                     if (_prevDataFrame == null)
                     {
