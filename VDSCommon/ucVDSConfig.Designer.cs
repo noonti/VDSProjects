@@ -69,6 +69,8 @@
             this.txtDBAddress = new DarkUI.Controls.DarkTextBox();
             this.darkLabel18 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
+            this.cbDevicePos = new System.Windows.Forms.ComboBox();
+            this.darkLabel75 = new DarkUI.Controls.DarkLabel();
             this.txtLocalPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel22 = new DarkUI.Controls.DarkLabel();
             this.darkLabel16 = new DarkUI.Controls.DarkLabel();
@@ -183,8 +185,6 @@
             this.darkLabel39 = new DarkUI.Controls.DarkLabel();
             this.txtControlPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel41 = new DarkUI.Controls.DarkLabel();
-            this.darkLabel75 = new DarkUI.Controls.DarkLabel();
-            this.cbDevicePos = new DarkUI.Controls.DarkComboBox();
             this.darkGroupBox1.SuspendLayout();
             this.tabConfing.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -730,6 +730,28 @@
             this.darkGroupBox3.TabIndex = 12;
             this.darkGroupBox3.TabStop = false;
             this.darkGroupBox3.Text = "차량 검지 장치 정보";
+            // 
+            // cbDevicePos
+            // 
+            this.cbDevicePos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDevicePos.FormattingEnabled = true;
+            this.cbDevicePos.Items.AddRange(new object[] {
+            "왼쪽으로 향함",
+            "오른쪽으로 향함"});
+            this.cbDevicePos.Location = new System.Drawing.Point(866, 74);
+            this.cbDevicePos.Name = "cbDevicePos";
+            this.cbDevicePos.Size = new System.Drawing.Size(121, 23);
+            this.cbDevicePos.TabIndex = 23;
+            // 
+            // darkLabel75
+            // 
+            this.darkLabel75.AutoSize = true;
+            this.darkLabel75.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel75.Location = new System.Drawing.Point(751, 78);
+            this.darkLabel75.Name = "darkLabel75";
+            this.darkLabel75.Size = new System.Drawing.Size(109, 15);
+            this.darkLabel75.TabIndex = 20;
+            this.darkLabel75.Text = "검지장치 설치 위치";
             // 
             // txtLocalPort
             // 
@@ -2050,28 +2072,6 @@
             this.darkLabel41.TabIndex = 2;
             this.darkLabel41.Text = "Control Port";
             // 
-            // darkLabel75
-            // 
-            this.darkLabel75.AutoSize = true;
-            this.darkLabel75.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel75.Location = new System.Drawing.Point(751, 78);
-            this.darkLabel75.Name = "darkLabel75";
-            this.darkLabel75.Size = new System.Drawing.Size(109, 15);
-            this.darkLabel75.TabIndex = 20;
-            this.darkLabel75.Text = "검지장치 설치 위치";
-            // 
-            // cbDevicePos
-            // 
-            this.cbDevicePos.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbDevicePos.FormattingEnabled = true;
-            this.cbDevicePos.Items.AddRange(new object[] {
-            "왼쪽으로 향함",
-            "오른쪽으로 향함"});
-            this.cbDevicePos.Location = new System.Drawing.Point(864, 74);
-            this.cbDevicePos.Name = "cbDevicePos";
-            this.cbDevicePos.Size = new System.Drawing.Size(121, 22);
-            this.cbDevicePos.TabIndex = 22;
-            // 
             // ucVDSConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2278,7 +2278,7 @@
         private DarkUI.Controls.DarkLabel darkLabel71;
         private DarkUI.Controls.DarkTextBox txtInverseModifyValue;
         private DarkUI.Controls.DarkLabel darkLabel72;
-        private DarkUI.Controls.DarkComboBox cbDevicePos;
         private DarkUI.Controls.DarkLabel darkLabel75;
+        private System.Windows.Forms.ComboBox cbDevicePos;
     }
 }

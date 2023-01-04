@@ -124,7 +124,7 @@ namespace MClavisRadarManageCtrl
             mclavisClient.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
             remoteEP = new IPEndPoint(IPAddress.Parse(serverAddress), serverPort);
             socketList.Add(mclavisClient.Client);
-            StartBroadcast();
+            //StartBroadcast();
             StartWorkThread();
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 종료 "));
 
