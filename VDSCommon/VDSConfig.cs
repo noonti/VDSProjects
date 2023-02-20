@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -252,6 +253,21 @@ namespace VDSCommon
             if (!int.TryParse(AppConfiguration.GetAppConfig("LOG_FILE_PERIOD"), out value))
                 value = 30;
             controllerConfig.LogFilePeriod = value;
+
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("SPEED_MODIFY_VALUE"), out value))
+                value = 0;
+            controllerConfig.SpeedModifyValue = value;
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("LENGTH_MODIFY_VALUE"), out value))
+                value = 0;
+            controllerConfig.LengthModifyValue = value;
+
+            if (!int.TryParse(AppConfiguration.GetAppConfig("OCCUPY_MODIFY_VALUE"), out value))
+                value = 0;
+            controllerConfig.OccupyModifyValue = value;
+
+            
         }
 
         public static void ReadKictConfig()
@@ -618,6 +634,12 @@ namespace VDSCommon
 
                 AppConfiguration.SetAppConfig("TRAFFIC_DATA_PERIOD", controllerConfig.TrafficDataPeriod.ToString());
                 AppConfiguration.SetAppConfig("LOG_FILE_PERIOD", controllerConfig.LogFilePeriod.ToString());
+
+                AppConfiguration.SetAppConfig("SPEED_MODIFY_VALUE", controllerConfig.SpeedModifyValue.ToString());
+
+                AppConfiguration.SetAppConfig("LENGTH_MODIFY_VALUE", controllerConfig.LengthModifyValue.ToString());
+
+                AppConfiguration.SetAppConfig("OCCUPY_MODIFY_VALUE", controllerConfig.OccupyModifyValue.ToString());
 
 
                 nResult = 1;

@@ -185,6 +185,15 @@
             this.darkLabel39 = new DarkUI.Controls.DarkLabel();
             this.txtControlPort = new DarkUI.Controls.DarkTextBox();
             this.darkLabel41 = new DarkUI.Controls.DarkLabel();
+            this.txtSpeedModifyValue = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel77 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel76 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel78 = new DarkUI.Controls.DarkLabel();
+            this.txtLengthModifyValue = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel79 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel80 = new DarkUI.Controls.DarkLabel();
+            this.txtOccupyModifyValue = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel81 = new DarkUI.Controls.DarkLabel();
             this.darkGroupBox1.SuspendLayout();
             this.tabConfing.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -217,7 +226,7 @@
             this.darkGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(1144, 583);
+            this.darkGroupBox1.Size = new System.Drawing.Size(1144, 621);
             this.darkGroupBox1.TabIndex = 0;
             this.darkGroupBox1.TabStop = false;
             // 
@@ -230,7 +239,7 @@
             this.tabConfing.Location = new System.Drawing.Point(3, 17);
             this.tabConfing.Name = "tabConfing";
             this.tabConfing.SelectedIndex = 0;
-            this.tabConfing.Size = new System.Drawing.Size(1138, 563);
+            this.tabConfing.Size = new System.Drawing.Size(1138, 601);
             this.tabConfing.TabIndex = 2;
             this.tabConfing.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.tabConfing_PreviewKeyDown);
             // 
@@ -240,7 +249,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1130, 537);
+            this.tabPage1.Size = new System.Drawing.Size(1130, 575);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "제어기 설정";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -258,7 +267,7 @@
             this.darkGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox2.Location = new System.Drawing.Point(3, 3);
             this.darkGroupBox2.Name = "darkGroupBox2";
-            this.darkGroupBox2.Size = new System.Drawing.Size(1124, 531);
+            this.darkGroupBox2.Size = new System.Drawing.Size(1124, 569);
             this.darkGroupBox2.TabIndex = 0;
             this.darkGroupBox2.TabStop = false;
             // 
@@ -462,6 +471,15 @@
             this.darkGroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.darkGroupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox4.Controls.Add(this.darkLabel80);
+            this.darkGroupBox4.Controls.Add(this.txtOccupyModifyValue);
+            this.darkGroupBox4.Controls.Add(this.darkLabel81);
+            this.darkGroupBox4.Controls.Add(this.darkLabel78);
+            this.darkGroupBox4.Controls.Add(this.txtLengthModifyValue);
+            this.darkGroupBox4.Controls.Add(this.darkLabel79);
+            this.darkGroupBox4.Controls.Add(this.darkLabel76);
+            this.darkGroupBox4.Controls.Add(this.txtSpeedModifyValue);
+            this.darkGroupBox4.Controls.Add(this.darkLabel77);
             this.darkGroupBox4.Controls.Add(this.darkLabel52);
             this.darkGroupBox4.Controls.Add(this.txtLogFilePeriod);
             this.darkGroupBox4.Controls.Add(this.darkLabel53);
@@ -473,7 +491,7 @@
             this.darkGroupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.darkGroupBox4.Location = new System.Drawing.Point(8, 462);
             this.darkGroupBox4.Name = "darkGroupBox4";
-            this.darkGroupBox4.Size = new System.Drawing.Size(1112, 57);
+            this.darkGroupBox4.Size = new System.Drawing.Size(1112, 91);
             this.darkGroupBox4.TabIndex = 13;
             this.darkGroupBox4.TabStop = false;
             this.darkGroupBox4.Text = "기타";
@@ -1069,7 +1087,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1130, 537);
+            this.tabPage2.Size = new System.Drawing.Size(1130, 575);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "도로공사 설정";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1087,7 +1105,7 @@
             this.darkGroupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox7.Location = new System.Drawing.Point(3, 3);
             this.darkGroupBox7.Name = "darkGroupBox7";
-            this.darkGroupBox7.Size = new System.Drawing.Size(1124, 531);
+            this.darkGroupBox7.Size = new System.Drawing.Size(1124, 569);
             this.darkGroupBox7.TabIndex = 0;
             this.darkGroupBox7.TabStop = false;
             // 
@@ -1955,7 +1973,7 @@
             this.tabPage3.Controls.Add(this.darkGroupBox9);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1130, 537);
+            this.tabPage3.Size = new System.Drawing.Size(1130, 575);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "건설기술연구원 설정";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1967,7 +1985,7 @@
             this.darkGroupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox9.Location = new System.Drawing.Point(0, 0);
             this.darkGroupBox9.Name = "darkGroupBox9";
-            this.darkGroupBox9.Size = new System.Drawing.Size(1130, 537);
+            this.darkGroupBox9.Size = new System.Drawing.Size(1130, 575);
             this.darkGroupBox9.TabIndex = 1;
             this.darkGroupBox9.TabStop = false;
             // 
@@ -2072,13 +2090,115 @@
             this.darkLabel41.TabIndex = 2;
             this.darkLabel41.Text = "Control Port";
             // 
+            // txtSpeedModifyValue
+            // 
+            this.txtSpeedModifyValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtSpeedModifyValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSpeedModifyValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtSpeedModifyValue.Location = new System.Drawing.Point(143, 62);
+            this.txtSpeedModifyValue.Name = "txtSpeedModifyValue";
+            this.txtSpeedModifyValue.Size = new System.Drawing.Size(49, 21);
+            this.txtSpeedModifyValue.TabIndex = 32;
+            this.txtSpeedModifyValue.Text = "0";
+            this.txtSpeedModifyValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // darkLabel77
+            // 
+            this.darkLabel77.AutoSize = true;
+            this.darkLabel77.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel77.Location = new System.Drawing.Point(79, 65);
+            this.darkLabel77.Name = "darkLabel77";
+            this.darkLabel77.Size = new System.Drawing.Size(58, 15);
+            this.darkLabel77.TabIndex = 31;
+            this.darkLabel77.Text = "속도 보정";
+            // 
+            // darkLabel76
+            // 
+            this.darkLabel76.AutoSize = true;
+            this.darkLabel76.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel76.Location = new System.Drawing.Point(198, 65);
+            this.darkLabel76.Name = "darkLabel76";
+            this.darkLabel76.Size = new System.Drawing.Size(34, 15);
+            this.darkLabel76.TabIndex = 33;
+            this.darkLabel76.Text = "km/h";
+            // 
+            // darkLabel78
+            // 
+            this.darkLabel78.AutoSize = true;
+            this.darkLabel78.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel78.Location = new System.Drawing.Point(412, 65);
+            this.darkLabel78.Name = "darkLabel78";
+            this.darkLabel78.Size = new System.Drawing.Size(24, 15);
+            this.darkLabel78.TabIndex = 36;
+            this.darkLabel78.Text = "cm";
+            this.darkLabel78.Click += new System.EventHandler(this.darkLabel78_Click);
+            // 
+            // txtLengthModifyValue
+            // 
+            this.txtLengthModifyValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtLengthModifyValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLengthModifyValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtLengthModifyValue.Location = new System.Drawing.Point(359, 62);
+            this.txtLengthModifyValue.Name = "txtLengthModifyValue";
+            this.txtLengthModifyValue.Size = new System.Drawing.Size(49, 21);
+            this.txtLengthModifyValue.TabIndex = 35;
+            this.txtLengthModifyValue.Text = "0";
+            this.txtLengthModifyValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLengthModifyValue.TextChanged += new System.EventHandler(this.darkTextBox2_TextChanged);
+            // 
+            // darkLabel79
+            // 
+            this.darkLabel79.AutoSize = true;
+            this.darkLabel79.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel79.Location = new System.Drawing.Point(301, 65);
+            this.darkLabel79.Name = "darkLabel79";
+            this.darkLabel79.Size = new System.Drawing.Size(58, 15);
+            this.darkLabel79.TabIndex = 34;
+            this.darkLabel79.Text = "길이 보정";
+            this.darkLabel79.Click += new System.EventHandler(this.darkLabel79_Click);
+            // 
+            // darkLabel80
+            // 
+            this.darkLabel80.AutoSize = true;
+            this.darkLabel80.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel80.Location = new System.Drawing.Point(720, 65);
+            this.darkLabel80.Name = "darkLabel80";
+            this.darkLabel80.Size = new System.Drawing.Size(37, 15);
+            this.darkLabel80.TabIndex = 39;
+            this.darkLabel80.Text = "msec";
+            this.darkLabel80.Click += new System.EventHandler(this.darkLabel80_Click);
+            // 
+            // txtOccupyModifyValue
+            // 
+            this.txtOccupyModifyValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtOccupyModifyValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtOccupyModifyValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtOccupyModifyValue.Location = new System.Drawing.Point(665, 62);
+            this.txtOccupyModifyValue.Name = "txtOccupyModifyValue";
+            this.txtOccupyModifyValue.Size = new System.Drawing.Size(49, 21);
+            this.txtOccupyModifyValue.TabIndex = 38;
+            this.txtOccupyModifyValue.Text = "0";
+            this.txtOccupyModifyValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtOccupyModifyValue.TextChanged += new System.EventHandler(this.darkTextBox3_TextChanged);
+            // 
+            // darkLabel81
+            // 
+            this.darkLabel81.AutoSize = true;
+            this.darkLabel81.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel81.Location = new System.Drawing.Point(580, 65);
+            this.darkLabel81.Name = "darkLabel81";
+            this.darkLabel81.Size = new System.Drawing.Size(82, 15);
+            this.darkLabel81.TabIndex = 37;
+            this.darkLabel81.Text = "점유시간 보정";
+            this.darkLabel81.Click += new System.EventHandler(this.darkLabel81_Click);
+            // 
             // ucVDSConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.darkGroupBox1);
             this.Name = "ucVDSConfig";
-            this.Size = new System.Drawing.Size(1144, 583);
+            this.Size = new System.Drawing.Size(1144, 621);
             this.darkGroupBox1.ResumeLayout(false);
             this.tabConfing.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -2280,5 +2400,14 @@
         private DarkUI.Controls.DarkLabel darkLabel72;
         private DarkUI.Controls.DarkLabel darkLabel75;
         private System.Windows.Forms.ComboBox cbDevicePos;
+        private DarkUI.Controls.DarkLabel darkLabel80;
+        private DarkUI.Controls.DarkTextBox txtOccupyModifyValue;
+        private DarkUI.Controls.DarkLabel darkLabel81;
+        private DarkUI.Controls.DarkLabel darkLabel78;
+        private DarkUI.Controls.DarkTextBox txtLengthModifyValue;
+        private DarkUI.Controls.DarkLabel darkLabel79;
+        private DarkUI.Controls.DarkLabel darkLabel76;
+        private DarkUI.Controls.DarkTextBox txtSpeedModifyValue;
+        private DarkUI.Controls.DarkLabel darkLabel77;
     }
 }

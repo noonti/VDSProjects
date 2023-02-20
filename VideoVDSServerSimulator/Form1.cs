@@ -405,7 +405,7 @@ namespace VideoVDSServerSimulator
                 loop2OccupyTime = 300,
                 //reverseRunYN = DateTime.Now.Second % 2 == 0? "N":"Y",
                 reverseRunYN = "N" ,
-                StoppedCarYN = "Y" ,
+                StoppedCarYN = "N" ,
                 vehicleGap = 12,
                 detectTime = DateTime.Now.ToString(VDSConfig.RADAR_TIME_FORMAT),
                 detectDistance = -100

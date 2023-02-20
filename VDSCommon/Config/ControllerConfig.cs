@@ -79,6 +79,15 @@ namespace VDSCommon.Config
         // 로그 파일 삭제 주기(일)
         public int LogFilePeriod { get; set; }
 
+        // 속도 보정값
+        public int SpeedModifyValue { get; set; }
+
+        // 길이 보정값
+        public int LengthModifyValue { get; set; }
+        
+        // 점유시간 보정값
+        public int OccupyModifyValue { get; set; }
+
         // 유지보수 서버 정보
         public String MAServerAddress { get; set; }
         public int MAServerPort { get; set; }

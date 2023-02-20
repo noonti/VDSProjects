@@ -35,7 +35,7 @@
             // 
             // darkButton1
             // 
-            this.darkButton1.Location = new System.Drawing.Point(480, 596);
+            this.darkButton1.Location = new System.Drawing.Point(480, 617);
             this.darkButton1.Name = "darkButton1";
             this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
             this.darkButton1.Size = new System.Drawing.Size(75, 28);
@@ -45,7 +45,7 @@
             // 
             // darkButton2
             // 
-            this.darkButton2.Location = new System.Drawing.Point(590, 596);
+            this.darkButton2.Location = new System.Drawing.Point(590, 617);
             this.darkButton2.Name = "darkButton2";
             this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
             this.darkButton2.Size = new System.Drawing.Size(75, 28);
@@ -57,7 +57,7 @@
             // 
             this.ucConfig.Location = new System.Drawing.Point(-8, -4);
             this.ucConfig.Name = "ucConfig";
-            this.ucConfig.Size = new System.Drawing.Size(1144, 583);
+            this.ucConfig.Size = new System.Drawing.Size(1144, 614);
             this.ucConfig.TabIndex = 9;
             this.ucConfig.Load += new System.EventHandler(this.ucConfig_Load);
             // 
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1148, 638);
+            this.ClientSize = new System.Drawing.Size(1148, 655);
             this.Controls.Add(this.ucConfig);
             this.Controls.Add(this.darkButton2);
             this.Controls.Add(this.darkButton1);

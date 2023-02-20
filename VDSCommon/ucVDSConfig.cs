@@ -119,8 +119,14 @@ namespace VDSCommon
                 txtTrafficDataPeriod.Text = controllerConfig.TrafficDataPeriod.ToString();
                 txtLogFilePeriod.Text = controllerConfig.LogFilePeriod.ToString();
 
+                txtSpeedModifyValue.Text = controllerConfig.SpeedModifyValue.ToString();
+                txtLengthModifyValue.Text = controllerConfig.LengthModifyValue.ToString();
+                txtOccupyModifyValue.Text = controllerConfig.OccupyModifyValue.ToString();
+
+
+
             }
-            
+
         }
 
         public void LoadKictConfig()
@@ -265,6 +271,11 @@ namespace VDSCommon
                 controllerConfig.TrafficDataPeriod = int.Parse(txtTrafficDataPeriod.Text);
                 controllerConfig.LogFilePeriod = int.Parse(txtLogFilePeriod.Text);
 
+                controllerConfig.SpeedModifyValue = int.Parse(txtSpeedModifyValue.Text);
+                controllerConfig.LengthModifyValue = int.Parse(txtLengthModifyValue.Text);
+                controllerConfig.OccupyModifyValue = int.Parse(txtOccupyModifyValue.Text);
+
+
                 nResult = 1;
             }
             catch (Exception ex)
@@ -400,6 +411,36 @@ namespace VDSCommon
         }
 
         private void darkTextBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkLabel79_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkLabel78_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkLabel81_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkLabel80_Click(object sender, EventArgs e)
         {
 
         }

@@ -815,7 +815,7 @@ void write_debug_log(char * szlog)
 	int fd_log;
 	struct stat buf;
 
-    /* 
+     
      //20220712 disk 용량문제로 코멘트 처리 by avogadro
 	sprintf(logDir, "/root/am1808/savefolder/%04d%02d%02d", sys_time.wYear, sys_time.wMonth, sys_time.wDay);
 
@@ -870,6 +870,6 @@ void write_debug_log(char * szlog)
 	}
 	close(fd_log);
     // 20220712 disk 용량문제로 코멘트 처리 by avogadro
-    */
+    
 }
 

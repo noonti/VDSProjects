@@ -54,6 +54,127 @@ static void * sendSavingTrafficDatatoNand(void *arg);
 
 extern int sync_time_flag;
 
+
+int deleteFolder(const char* path, int force)
+{
+    DIR* dir_ptr = NULL;
+    struct dirent* file = NULL;
+    struct stat   buf;
+    char   filename[1024];
+    char strbuf[1024];
+    printf("deleteFolder...%s \n", path);
+
+    sprintf(strbuf, "deleteFolder[%s] enter....", path);
+    write_debug_log(strbuf);
+
+    /* 목록을 읽을 디렉토리명으로 DIR *를 return 받습니다. */
+    if ((dir_ptr = opendir(path)) == NULL) {
+        /* path가 디렉토리가 아니라면 삭제하고 종료합니다. */
+        return remove(path);
+    }
+
+    /* 디렉토리의 처음부터 파일 또는 디렉토리명을 순서대로 한개씩 읽습니다. */
+    while ((file = readdir(dir_ptr)) != NULL) {
+        // readdir 읽혀진 파일명 중에 현재 디렉토리를 나타네는 . 도 포함되어 있으므로 
+        // 무한 반복에 빠지지 않으려면 파일명이 . 이면 skip 해야 함
+        if (strcmp(file->d_name, ".") == 0 || strcmp(file->d_name, "..") == 0) {
+            continue;
+        }
+
+        sprintf(filename, "%s/%s", path, file->d_name);
+
+        /* 파일의 속성(파일의 유형, 크기, 생성/변경 시간 등을 얻기 위하여 */
+        if (lstat(filename, &buf) == -1) {
+            continue;
+        }
+
+
+        if (S_ISDIR(buf.st_mode)) { // 검색된 이름의 속성이 디렉토리이면
+            
+            sprintf(strbuf, "delete...filename = %s  is directory \n", filename);
+            write_debug_log(strbuf);
+
+            /* 검색된 파일이 directory이면 재귀호출로 하위 디렉토리를 다시 검색 */
+            if (deleteFolder(filename, force) == -1 && !force) {
+                return -1;
+            }
+        }
+        else if (S_ISREG(buf.st_mode) || S_ISLNK(buf.st_mode)) { // 일반파일 또는 symbolic link 이면
+            
+            sprintf(strbuf,"delete...filename = %s  is file ", filename);
+            write_debug_log(strbuf);
+
+            if (remove(filename) == -1 && !force) {
+                return -1;
+            }
+        }
+    }
+
+    /* open된 directory 정보를 close 합니다. */
+    closedir(dir_ptr);
+
+    sprintf(strbuf, "deleteFolder[%s] leave....", path);
+    write_debug_log(strbuf);
+
+
+    return rmdir(path);
+}
+
+int checkSavedDataDirectory(char* szFilePath, int days)
+{
+    DIR* dir_ptr = NULL;
+    struct dirent* file = NULL;
+    struct stat   buf;
+
+    char   filename[1024];
+    struct tm* fileTime;
+    struct tm* pCurTime = NULL;
+    time_t curTime = time(NULL);
+    pCurTime = localtime(&curTime);
+
+    /* 목록을 읽을 디렉토리명으로 DIR *를 return */
+    if ((dir_ptr = opendir(szFilePath)) == NULL) {
+        /* path가 디렉토리가 아니면  종료. */
+        return 0;
+    }
+    write_debug_log("checkSavedDataDirectory ...enter");
+    /* 디렉토리의 처음부터 파일 또는 디렉토리명을 순서대로 한개씩 읽습니다. */
+    while ((file = readdir(dir_ptr)) != NULL) {
+        // readdir 읽혀진 파일명 중에 현재 디렉토리를 나타네는 . 도 포함되어 있으므로 
+        // 무한 반복에 빠지지 않으려면 파일명이 . 이면 skip 해야 함
+        if (strcmp(file->d_name, ".") == 0 || strcmp(file->d_name, "..") == 0) {
+            continue;
+        }
+
+        sprintf(filename, "%s/%s", szFilePath, file->d_name);
+
+        /* 파일의 속성(파일의 유형, 크기, 생성/변경 시간 등을 얻기 위하여 */
+        if (lstat(filename, &buf) == -1) {
+            continue;
+        }
+
+        double passedSecond = (curTime - buf.st_ctime) / (60 * 60 * 24); // 
+
+        if (passedSecond >= days) // 정한 기간을 초과하였을 경우 삭제 진행 
+        {
+            if (S_ISDIR(buf.st_mode))  // 검색된 이름의 속성이 디렉토리이면
+            {
+                deleteFolder(filename, 1);
+            }
+            else if (S_ISREG(buf.st_mode) || S_ISLNK(buf.st_mode)) // 일반파일 또는 symbolic link 이면
+            {
+                remove(filename);
+            }
+
+        }
+    }
+    /* open된 directory 정보를 close 합니다. */
+    closedir(dir_ptr);
+    write_debug_log("checkSavedDataDirectory ...leave");
+    return 1;
+}
+
+
 void getOsTime(SYSTEMTIME *lpSysTime)
 {
 
@@ -495,6 +616,11 @@ check_time()
             fprintf(stdout,"connot open dir!\n");
             return;
         }
+        
+        //20230207 특정 기간 지난 파일/디렉토리 삭제 추가 by avogadro start
+        checkSavedDataDirectory("/root/am1808/savefolder", 8); // /root/am1808/savefolder 아래 8일 지난 디렉토리/파일 모두 삭제 
+        //20230207 특정 기간 지난 파일/디렉토리 삭제 추가 by avogadro end 
+
 
         /* 20220712 버그로 파일삭제 안됨. 코멘트로 막고 main_proc의 main 루프에서 처리하는 것으로 변경 by avogadro
         chdir("/root/am1808/savefolder");
