@@ -417,7 +417,7 @@ namespace VDSController
 
         private void AddRealTimeTrafficDataList(TrafficDataEvent trafficDataEvent)
         {
-            // 돌발(역주행, 정지) 정보는 제외
+            // 돌발(역주행, 정지) 정보는 제외 avogadro1
             if (trafficDataEvent.reverseRunYN.CompareTo("Y") == 0 || ( !String.IsNullOrEmpty(trafficDataEvent.StoppedCarYN) && trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0) )
                 return;
 
