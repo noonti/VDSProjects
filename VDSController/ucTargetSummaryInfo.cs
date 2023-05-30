@@ -74,7 +74,7 @@ namespace VDSController
             //                            trafficDataEvent.detectTime, trafficDataEvent.speed , trafficDataEvent.length ,
             //                            trafficDataEvent.occupyTime, trafficDataEvent.lane);
 
-            //Console.WriteLine(info);
+            //Console.WriteLine(info); 
 
             if (trafficDataEvent.reverseRunYN.CompareTo("Y") == 0 || (!String.IsNullOrEmpty(trafficDataEvent.StoppedCarYN) && trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0))
                 return 1;
