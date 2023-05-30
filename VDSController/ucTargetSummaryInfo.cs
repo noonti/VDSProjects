@@ -76,7 +76,7 @@ namespace VDSController
 
             //Console.WriteLine(info);
 
-            if (trafficDataEvent.reverseRunYN.CompareTo("Y") == 0 || trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0)
+            if (trafficDataEvent.reverseRunYN.CompareTo("Y") == 0 || (!String.IsNullOrEmpty(trafficDataEvent.StoppedCarYN) && trafficDataEvent.StoppedCarYN.CompareTo("Y") == 0))
                 return 1;
 
             //if (trafficDataEvent.reverseRunYN.CompareTo("Y")!=0 &&

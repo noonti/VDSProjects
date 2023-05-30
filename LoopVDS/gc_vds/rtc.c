@@ -127,11 +127,14 @@ int checkSavedDataDirectory(char* szFilePath, int days)
     struct stat   buf;
 
     char   filename[1024];
+    char szbuf[1024];
     struct tm* fileTime;
     struct tm* pCurTime = NULL;
     time_t curTime = time(NULL);
     pCurTime = localtime(&curTime);
+    int result = 0;
 
+    memset(szbuf, 0, 1024);
     /* 목록을 읽을 디렉토리명으로 DIR *를 return */
     if ((dir_ptr = opendir(szFilePath)) == NULL) {
         /* path가 디렉토리가 아니면  종료. */
@@ -155,17 +158,38 @@ int checkSavedDataDirectory(char* szFilePath, int days)
 
         double passedSecond = (curTime - buf.st_ctime) / (60 * 60 * 24); // 
 
+        sprintf(szbuf, "%s passedSecond = %lf ", filename, passedSecond );
+        printf(szbuf);
+        write_debug_log(szbuf);
+
+
         if (passedSecond >= days) // 정한 기간을 초과하였을 경우 삭제 진행 
         {
+            sprintf(szbuf, "%s passedSecond = %lf %d days passed", filename, passedSecond, days);
+            printf(szbuf);
+            write_debug_log(szbuf);
+
             if (S_ISDIR(buf.st_mode))  // 검색된 이름의 속성이 디렉토리이면
             {
+                sprintf(szbuf, "%s is directory", filename);
+                printf(szbuf);
+                write_debug_log(szbuf);
+
                 deleteFolder(filename, 1);
             }
             else if (S_ISREG(buf.st_mode) || S_ISLNK(buf.st_mode)) // 일반파일 또는 symbolic link 이면
             {
-                remove(filename);
+                result = remove(filename);
+                sprintf(szbuf, "%s delete result=%d", filename,result);
+                printf(szbuf);
+                write_debug_log(szbuf);
             }
-
+            else
+            {
+                sprintf(szbuf, "%s is not file or symbolic link", filename, result);
+                printf(szbuf);
+                write_debug_log(szbuf);
+            }
         }
     }
     /* open된 directory 정보를 close 합니다. */
