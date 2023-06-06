@@ -122,6 +122,8 @@ namespace MClavisRadarManageCtrl
 
             mclavisClient = new UdpClient(clientPort);
             mclavisClient.Client.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
+            
+
             remoteEP = new IPEndPoint(IPAddress.Parse(serverAddress), serverPort);
             socketList.Add(mclavisClient.Client);
             //StartBroadcast();
@@ -133,7 +135,7 @@ namespace MClavisRadarManageCtrl
             
         }
 
-        public int StartBroadcast()
+        public int SendTRCommand()
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
             int i = 0;
@@ -142,26 +144,14 @@ namespace MClavisRadarManageCtrl
                 if (mclavisClient != null)
                 {
                     byte[] packet = new byte[2];
-                    //packet[i++] = 0x30;
-                    //packet[i++] = 0x01;
-                    //packet[i++] = 0x00;
-
-                    //packet[i++] = 0xCA;
-                    //packet[i++] = 0xCB;
-                    //packet[i++] = 0xCC;
-                    //packet[i++] = 0xCD;
-
                     packet[i++] = 0x54;
                     packet[i++] = 0x52;
-
-                    //packet[i++] = (0x54 ^ 0x52) ; // check sum
-
-                    //packet[i++] = 0xEA;
-                    //packet[i++] = 0xEB;
-                    //packet[i++] = 0xEC;
-                    //packet[i++] = 0xED;
-
                     i = mclavisClient.Send(packet, packet.Length, serverAddress, serverPort);
+                    Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{i} bytes send to radar device"));
+                }
+                else
+                {
+                    Utility.AddLog(LOG_TYPE.LOG_ERROR, String.Format($"MClavis Client is null "));
                 }
             }
             catch (Exception ex)
@@ -248,6 +238,9 @@ namespace MClavisRadarManageCtrl
         public void StartProcessSocketMsgThread()
         {
             Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($"{MethodBase.GetCurrentMethod().ReflectedType.Name + ":" + MethodBase.GetCurrentMethod().Name} 처리 "));
+            
+            DateTime lastReceiveTime = DateTime.Now;
+            TimeSpan ts;
             new Thread(() =>
             {
                 try
@@ -262,11 +255,30 @@ namespace MClavisRadarManageCtrl
                         {
                             if(sock == mclavisClient.Client)
                             {
-                                byte[] packet = mclavisClient.Receive(ref remoteEP);
-                                //Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
-                                ProcessReceivePacket(packet);
+                                try
+                                {
+                                    byte[] packet = mclavisClient.Receive(ref remoteEP);
+                                    if (packet != null && packet.Length > 0)
+                                    {
+                                        lastReceiveTime = DateTime.Now;
+                                        Utility.AddLog(LOG_TYPE.LOG_INFO, String.Format($" received packet= {Utility.PrintHexaString(packet, packet.Length)}"));
+                                        ProcessReceivePacket(packet);
+                                    }
+                                }
+                                catch(Exception ex)
+                                {
+                                    Utility.AddLog(LOG_TYPE.LOG_ERROR, ex.Message.ToString() + "\n" + ex.StackTrace.ToString());
+                                }
+                                
                             }
+                           
 
+                        }
+                        ts = DateTime.Now - lastReceiveTime;
+                        if (ts.TotalSeconds > 10) // 10 초 이상 패킷 온게 없으면 TR 명령어 보낸다(전원 리셋 대비)
+                        {
+                            SendTRCommand();
+                            lastReceiveTime = DateTime.Now;
                         }
 
                     }
