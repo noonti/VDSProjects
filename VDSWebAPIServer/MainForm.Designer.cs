@@ -31,25 +31,13 @@ namespace VDSWebAPIServer
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ucVDSGroupTreeView = new VDSWebAPIServer.ucTreeView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.darkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.darkButton2 = new DarkUI.Controls.DarkButton();
             this.darkButton5 = new DarkUI.Controls.DarkButton();
             this.darkButton4 = new DarkUI.Controls.DarkButton();
             this.darkButton3 = new DarkUI.Controls.DarkButton();
-            this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
-            this.darkMenuStrip1 = new DarkUI.Controls.DarkMenuStrip();
-            this.동작ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.서비스시작ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.서비스중지ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.환경설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ucVDSGroupTreeView = new VDSWebAPIServer.ucTreeView();
-            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
-            this.darkButton6 = new DarkUI.Controls.DarkButton();
-            this.darkButton1 = new DarkUI.Controls.DarkButton();
             this.lvVDSControl = new VDSCommon.ListViewEx();
             this.GrupName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VDSID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -64,6 +52,18 @@ namespace VDSWebAPIServer
             this.Fan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Heater = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Temperature = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
+            this.darkButton6 = new DarkUI.Controls.DarkButton();
+            this.darkButton1 = new DarkUI.Controls.DarkButton();
+            this.darkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
+            this.darkMenuStrip1 = new DarkUI.Controls.DarkMenuStrip();
+            this.동작ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.서비스시작ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.서비스중지ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.환경설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,14 +73,15 @@ namespace VDSWebAPIServer
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
-            this.darkMenuStrip1.SuspendLayout();
             this.darkGroupBox3.SuspendLayout();
+            this.darkMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -90,9 +91,21 @@ namespace VDSWebAPIServer
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1904, 977);
-            this.splitContainer1.SplitterDistance = 183;
+            this.splitContainer1.Size = new System.Drawing.Size(2176, 1223);
+            this.splitContainer1.SplitterDistance = 209;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // ucVDSGroupTreeView
+            // 
+            this.ucVDSGroupTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucVDSGroupTreeView.Location = new System.Drawing.Point(0, 0);
+            this.ucVDSGroupTreeView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucVDSGroupTreeView.Name = "ucVDSGroupTreeView";
+            this.ucVDSGroupTreeView.Size = new System.Drawing.Size(209, 1223);
+            this.ucVDSGroupTreeView.TabIndex = 2;
+            this.ucVDSGroupTreeView.Load += new System.EventHandler(this.ucVDSGroupTreeView_Load);
+            this.ucVDSGroupTreeView.Click += new System.EventHandler(this.ucVDSGroupTreeView_Click);
             // 
             // splitContainer2
             // 
@@ -100,6 +113,7 @@ namespace VDSWebAPIServer
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -112,8 +126,9 @@ namespace VDSWebAPIServer
             this.splitContainer2.Panel2.Controls.Add(this.lvVDSControl);
             this.splitContainer2.Panel2.Controls.Add(this.darkGroupBox3);
             this.splitContainer2.Panel2.Controls.Add(this.darkGroupBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(1717, 977);
+            this.splitContainer2.Size = new System.Drawing.Size(1962, 1223);
             this.splitContainer2.SplitterDistance = 102;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
             // darkGroupBox1
@@ -125,8 +140,10 @@ namespace VDSWebAPIServer
             this.darkGroupBox1.Controls.Add(this.darkButton3);
             this.darkGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.darkGroupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(1717, 102);
+            this.darkGroupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox1.Size = new System.Drawing.Size(1962, 102);
             this.darkGroupBox1.TabIndex = 5;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "제어기 관리";
@@ -134,10 +151,11 @@ namespace VDSWebAPIServer
             // darkButton2
             // 
             this.darkButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton2.Location = new System.Drawing.Point(1548, 42);
+            this.darkButton2.Location = new System.Drawing.Point(1769, 52);
+            this.darkButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkButton2.Name = "darkButton2";
-            this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton2.Size = new System.Drawing.Size(156, 39);
+            this.darkButton2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton2.Size = new System.Drawing.Size(178, 49);
             this.darkButton2.TabIndex = 10;
             this.darkButton2.Text = "새로고침";
             this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click);
@@ -145,10 +163,11 @@ namespace VDSWebAPIServer
             // darkButton5
             // 
             this.darkButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton5.Location = new System.Drawing.Point(1327, 42);
+            this.darkButton5.Location = new System.Drawing.Point(1517, 52);
+            this.darkButton5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkButton5.Name = "darkButton5";
-            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton5.Size = new System.Drawing.Size(156, 39);
+            this.darkButton5.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton5.Size = new System.Drawing.Size(178, 49);
             this.darkButton5.TabIndex = 9;
             this.darkButton5.Text = "제어기 삭제";
             this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click);
@@ -156,10 +175,11 @@ namespace VDSWebAPIServer
             // darkButton4
             // 
             this.darkButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton4.Location = new System.Drawing.Point(995, 42);
+            this.darkButton4.Location = new System.Drawing.Point(1137, 52);
+            this.darkButton4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkButton4.Name = "darkButton4";
-            this.darkButton4.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton4.Size = new System.Drawing.Size(156, 39);
+            this.darkButton4.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton4.Size = new System.Drawing.Size(178, 49);
             this.darkButton4.TabIndex = 8;
             this.darkButton4.Text = "제어기 추가";
             this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
@@ -167,146 +187,14 @@ namespace VDSWebAPIServer
             // darkButton3
             // 
             this.darkButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton3.Location = new System.Drawing.Point(1161, 42);
+            this.darkButton3.Location = new System.Drawing.Point(1327, 52);
+            this.darkButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.darkButton3.Name = "darkButton3";
-            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton3.Size = new System.Drawing.Size(156, 39);
+            this.darkButton3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton3.Size = new System.Drawing.Size(178, 49);
             this.darkButton3.TabIndex = 7;
             this.darkButton3.Text = "제어기 수정";
             this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
-            // 
-            // darkGroupBox2
-            // 
-            this.darkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.darkGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.darkGroupBox2.Location = new System.Drawing.Point(0, 824);
-            this.darkGroupBox2.Name = "darkGroupBox2";
-            this.darkGroupBox2.Size = new System.Drawing.Size(1717, 47);
-            this.darkGroupBox2.TabIndex = 2;
-            this.darkGroupBox2.TabStop = false;
-            // 
-            // darkMenuStrip1
-            // 
-            this.darkMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.darkMenuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.동작ToolStripMenuItem,
-            this.환경설정ToolStripMenuItem,
-            this.도움말ToolStripMenuItem});
-            this.darkMenuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.darkMenuStrip1.Name = "darkMenuStrip1";
-            this.darkMenuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.darkMenuStrip1.Size = new System.Drawing.Size(1904, 24);
-            this.darkMenuStrip1.TabIndex = 3;
-            this.darkMenuStrip1.Text = "darkMenuStrip1";
-            // 
-            // 동작ToolStripMenuItem
-            // 
-            this.동작ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.동작ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.서비스시작ToolStripMenuItem,
-            this.서비스중지ToolStripMenuItem});
-            this.동작ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.동작ToolStripMenuItem.Name = "동작ToolStripMenuItem";
-            this.동작ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.동작ToolStripMenuItem.Text = "동작";
-            // 
-            // 서비스시작ToolStripMenuItem
-            // 
-            this.서비스시작ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.서비스시작ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.서비스시작ToolStripMenuItem.Name = "서비스시작ToolStripMenuItem";
-            this.서비스시작ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.서비스시작ToolStripMenuItem.Text = "서비스 시작";
-            // 
-            // 서비스중지ToolStripMenuItem
-            // 
-            this.서비스중지ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.서비스중지ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.서비스중지ToolStripMenuItem.Name = "서비스중지ToolStripMenuItem";
-            this.서비스중지ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.서비스중지ToolStripMenuItem.Text = "서비스 중지";
-            // 
-            // 환경설정ToolStripMenuItem
-            // 
-            this.환경설정ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.환경설정ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem1,
-            this.MenuUser});
-            this.환경설정ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.환경설정ToolStripMenuItem.Name = "환경설정ToolStripMenuItem";
-            this.환경설정ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.환경설정ToolStripMenuItem.Text = "환경설정";
-            // 
-            // ToolStripMenuItem1
-            // 
-            this.ToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
-            this.ToolStripMenuItem1.Text = "환경설정";
-            this.ToolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1_Click);
-            // 
-            // MenuUser
-            // 
-            this.MenuUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.MenuUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.MenuUser.Name = "MenuUser";
-            this.MenuUser.Size = new System.Drawing.Size(138, 22);
-            this.MenuUser.Text = "사용자 관리";
-            this.MenuUser.Click += new System.EventHandler(this.MenuUser_Click);
-            // 
-            // 도움말ToolStripMenuItem
-            // 
-            this.도움말ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.도움말ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
-            this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.도움말ToolStripMenuItem.Text = "도움말";
-            // 
-            // ucVDSGroupTreeView
-            // 
-            this.ucVDSGroupTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucVDSGroupTreeView.Location = new System.Drawing.Point(0, 0);
-            this.ucVDSGroupTreeView.Name = "ucVDSGroupTreeView";
-            this.ucVDSGroupTreeView.Size = new System.Drawing.Size(183, 977);
-            this.ucVDSGroupTreeView.TabIndex = 2;
-            this.ucVDSGroupTreeView.Load += new System.EventHandler(this.ucVDSGroupTreeView_Load);
-            this.ucVDSGroupTreeView.Click += new System.EventHandler(this.ucVDSGroupTreeView_Click);
-            // 
-            // darkGroupBox3
-            // 
-            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.darkGroupBox3.Controls.Add(this.darkButton6);
-            this.darkGroupBox3.Controls.Add(this.darkButton1);
-            this.darkGroupBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.darkGroupBox3.Location = new System.Drawing.Point(1517, 0);
-            this.darkGroupBox3.Name = "darkGroupBox3";
-            this.darkGroupBox3.Size = new System.Drawing.Size(200, 824);
-            this.darkGroupBox3.TabIndex = 4;
-            this.darkGroupBox3.TabStop = false;
-            // 
-            // darkButton6
-            // 
-            this.darkButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton6.Location = new System.Drawing.Point(22, 146);
-            this.darkButton6.Name = "darkButton6";
-            this.darkButton6.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton6.Size = new System.Drawing.Size(156, 39);
-            this.darkButton6.TabIndex = 14;
-            this.darkButton6.Text = "원격설정";
-            this.darkButton6.Click += new System.EventHandler(this.darkButton6_Click_1);
-            // 
-            // darkButton1
-            // 
-            this.darkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton1.Location = new System.Drawing.Point(22, 86);
-            this.darkButton1.Name = "darkButton1";
-            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton1.Size = new System.Drawing.Size(156, 39);
-            this.darkButton1.TabIndex = 13;
-            this.darkButton1.Text = "영상보기";
-            this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click_1);
             // 
             // lvVDSControl
             // 
@@ -331,8 +219,9 @@ namespace VDSWebAPIServer
             this.lvVDSControl.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvVDSControl.HideSelection = false;
             this.lvVDSControl.Location = new System.Drawing.Point(0, 0);
+            this.lvVDSControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvVDSControl.Name = "lvVDSControl";
-            this.lvVDSControl.Size = new System.Drawing.Size(1517, 824);
+            this.lvVDSControl.Size = new System.Drawing.Size(1733, 1057);
             this.lvVDSControl.TabIndex = 5;
             this.lvVDSControl.UseCompatibleStateImageBehavior = false;
             this.lvVDSControl.View = System.Windows.Forms.View.Details;
@@ -415,13 +304,144 @@ namespace VDSWebAPIServer
             this.Temperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Temperature.Width = 100;
             // 
+            // darkGroupBox3
+            // 
+            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox3.Controls.Add(this.darkButton6);
+            this.darkGroupBox3.Controls.Add(this.darkButton1);
+            this.darkGroupBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.darkGroupBox3.Location = new System.Drawing.Point(1733, 0);
+            this.darkGroupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox3.Name = "darkGroupBox3";
+            this.darkGroupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox3.Size = new System.Drawing.Size(229, 1057);
+            this.darkGroupBox3.TabIndex = 4;
+            this.darkGroupBox3.TabStop = false;
+            // 
+            // darkButton6
+            // 
+            this.darkButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton6.Location = new System.Drawing.Point(25, 182);
+            this.darkButton6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkButton6.Name = "darkButton6";
+            this.darkButton6.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton6.Size = new System.Drawing.Size(178, 49);
+            this.darkButton6.TabIndex = 14;
+            this.darkButton6.Text = "원격설정";
+            this.darkButton6.Click += new System.EventHandler(this.darkButton6_Click_1);
+            // 
+            // darkButton1
+            // 
+            this.darkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkButton1.Location = new System.Drawing.Point(25, 108);
+            this.darkButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkButton1.Name = "darkButton1";
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.darkButton1.Size = new System.Drawing.Size(178, 49);
+            this.darkButton1.TabIndex = 13;
+            this.darkButton1.Text = "영상보기";
+            this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click_1);
+            // 
+            // darkGroupBox2
+            // 
+            this.darkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.darkGroupBox2.Location = new System.Drawing.Point(0, 1057);
+            this.darkGroupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox2.Name = "darkGroupBox2";
+            this.darkGroupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.darkGroupBox2.Size = new System.Drawing.Size(1962, 59);
+            this.darkGroupBox2.TabIndex = 2;
+            this.darkGroupBox2.TabStop = false;
+            // 
+            // darkMenuStrip1
+            // 
+            this.darkMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.darkMenuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.darkMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.동작ToolStripMenuItem,
+            this.환경설정ToolStripMenuItem,
+            this.도움말ToolStripMenuItem});
+            this.darkMenuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.darkMenuStrip1.Name = "darkMenuStrip1";
+            this.darkMenuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.darkMenuStrip1.Size = new System.Drawing.Size(2176, 28);
+            this.darkMenuStrip1.TabIndex = 3;
+            this.darkMenuStrip1.Text = "darkMenuStrip1";
+            // 
+            // 동작ToolStripMenuItem
+            // 
+            this.동작ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.동작ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.서비스시작ToolStripMenuItem,
+            this.서비스중지ToolStripMenuItem});
+            this.동작ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.동작ToolStripMenuItem.Name = "동작ToolStripMenuItem";
+            this.동작ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.동작ToolStripMenuItem.Text = "동작";
+            // 
+            // 서비스시작ToolStripMenuItem
+            // 
+            this.서비스시작ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.서비스시작ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.서비스시작ToolStripMenuItem.Name = "서비스시작ToolStripMenuItem";
+            this.서비스시작ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.서비스시작ToolStripMenuItem.Text = "서비스 시작";
+            // 
+            // 서비스중지ToolStripMenuItem
+            // 
+            this.서비스중지ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.서비스중지ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.서비스중지ToolStripMenuItem.Name = "서비스중지ToolStripMenuItem";
+            this.서비스중지ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.서비스중지ToolStripMenuItem.Text = "서비스 중지";
+            // 
+            // 환경설정ToolStripMenuItem
+            // 
+            this.환경설정ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.환경설정ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem1,
+            this.MenuUser});
+            this.환경설정ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.환경설정ToolStripMenuItem.Name = "환경설정ToolStripMenuItem";
+            this.환경설정ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.환경설정ToolStripMenuItem.Text = "환경설정";
+            // 
+            // ToolStripMenuItem1
+            // 
+            this.ToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(172, 26);
+            this.ToolStripMenuItem1.Text = "환경설정";
+            this.ToolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1_Click);
+            // 
+            // MenuUser
+            // 
+            this.MenuUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.MenuUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MenuUser.Name = "MenuUser";
+            this.MenuUser.Size = new System.Drawing.Size(172, 26);
+            this.MenuUser.Text = "사용자 관리";
+            this.MenuUser.Click += new System.EventHandler(this.MenuUser_Click);
+            // 
+            // 도움말ToolStripMenuItem
+            // 
+            this.도움말ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.도움말ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
+            this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.도움말ToolStripMenuItem.Text = "도움말";
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1001);
+            this.ClientSize = new System.Drawing.Size(2176, 1251);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.darkMenuStrip1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VDS 유지보수 프로그램";
@@ -437,9 +457,9 @@ namespace VDSWebAPIServer
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.darkGroupBox1.ResumeLayout(false);
+            this.darkGroupBox3.ResumeLayout(false);
             this.darkMenuStrip1.ResumeLayout(false);
             this.darkMenuStrip1.PerformLayout();
-            this.darkGroupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

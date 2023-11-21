@@ -17,7 +17,7 @@ namespace KorExManageCtrl.VDSProtocol_v2._0
             try
             {
                 Array.Copy(packet, idx, timeinfo, 0, timeinfo.Length);
-                idx += 2;
+                idx += timeinfo.Length;
 
             }
             catch (Exception ex)

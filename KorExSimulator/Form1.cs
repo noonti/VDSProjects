@@ -1278,7 +1278,7 @@ namespace KorExSimulator
             LengthCategory category = new LengthCategory();
             category.category[0] = 47;
             category.category[1] = 135;
-            category.category[2] = 0;
+            category.category[2] = 200;
 
             request.param = category;
 
