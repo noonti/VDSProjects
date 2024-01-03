@@ -121,7 +121,7 @@ namespace SerialComManageCtrl
 
         private void Status_Timer_Tick(object sender, EventArgs e)
         {
-            //RTUStatustRequest(); 
+            //RTUStatustRequest(); aaa
         }
 
 
